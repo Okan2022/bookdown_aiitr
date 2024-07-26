@@ -122,7 +122,7 @@ You can freely download it via the [website](https://www.europeansocialsurvey.or
 
 *I do so for reproducibility reasons. When downloading the script, users should be able to run the whole script with one click. This is because users, who are new to R might have problems with setting working directories, since working directories are prone to errors, especially at the beginning.*
 
-```{r simulating data, echo = FALSE}
+```{r simulating ess, echo = FALSE}
 set.seed(123)
 
 ess <- data.frame(
@@ -185,17 +185,12 @@ The first thing to do, when cleaning data is to load the data into R. The first 
 
 This table presents some of the most frequent data types, which you can download and load into R. There are of course more data types, and to find out if you can read them into R, you can just google the type and look for the command. Mostly you will find a package with a command. And mostly, those commands start with "read".
 
-+---------------------------+----------------+----------------------------------------------+-------------------------+
 | File                      | File Extension | Package                                      | Command                 |
-+===========================+================+==============================================+=========================+
+|---------------------------|----------------|----------------------------------------------|-------------------------|
 | **Stata**                 | .dta           | haven                                        | `read_dta()`            |
-+---------------------------+----------------+----------------------------------------------+-------------------------+
 | **CSV-Files**             | .csv           | readr (is included in the tidyverse package) | `read_csv()`            |
-+---------------------------+----------------+----------------------------------------------+-------------------------+
 | **Excel-Files**           | .xlsx; .xls    | readxl                                       | `read.rds()`            |
-+---------------------------+----------------+----------------------------------------------+-------------------------+
 | **RData (also RDS Data)** | .RData;.rds    | base R functions, no package required        | `load()` , `read.rds()` |
-+---------------------------+----------------+----------------------------------------------+-------------------------+
 
 : Examples of Different Data Types and how to load them into R
 
@@ -265,25 +260,16 @@ The first function I introduce you is the `filter()` function. Within the filter
 
     Here is a quick reminder of logical operators in R:
 
-    +--------------------------+----------------------------------------------------------------------------+
     | Logical Operator         | Meaning                                                                    |
-    +==========================+============================================================================+
+    |--------------------------|----------------------------------------------------------------------------|
     | ==                       | equals                                                                     |
-    +--------------------------+----------------------------------------------------------------------------+
     | \<                       | smaller than                                                               |
-    +--------------------------+----------------------------------------------------------------------------+
     | \>                       | greater than                                                               |
-    +--------------------------+----------------------------------------------------------------------------+
     | \<=                      | less than or equal to                                                      |
-    +--------------------------+----------------------------------------------------------------------------+
     | \>=                      | greater than or equal to                                                   |
-    +--------------------------+----------------------------------------------------------------------------+
     | ! (e.g. !=; \>!; \<!...) | not equal, not greater than, not smaller than                              |
-    +--------------------------+----------------------------------------------------------------------------+
     | &                        | element-wise AND operator. It returns TRUE if both elements are true       |
-    +--------------------------+----------------------------------------------------------------------------+
     | \|                       | element-wise OR operator. It returns TRUE if one of the statements is TRUE |
-    +--------------------------+----------------------------------------------------------------------------+
 
 #### Filtering for only one condition
 

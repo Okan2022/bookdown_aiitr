@@ -182,7 +182,7 @@ print(prices_combined) #printing it
 Objects can contain information of different *data types*:
 
 |               |               |                                              |
-|-----------------|-----------------|--------------------------------------|
+|---------------|---------------|----------------------------------------------|
 | **Numeric**   | Numbers       | `c(1, 2.4, 3.14, 4)`                         |
 | **Character** | Text          | `c("1", "blue", "fun", "monster")`           |
 | **Logical**   | True or false | `c(TRUE, FALSE, TRUE, FALSE)`                |

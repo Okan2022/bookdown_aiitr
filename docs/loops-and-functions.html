@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Loops and Functions | An intuitive Introduction to R</title>
+  <meta name="description" content="Chapter 5 Loops and Functions | An intuitive Introduction to R" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Loops and Functions | An intuitive Introduction to R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Loops and Functions | An intuitive Introduction to R" />
+  
+  
+  
+
+<meta name="author" content="Okan Sarioglu" />
+
+
+<meta name="date" content="2024-07-26" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="data-visualisation.html"/>
+<link rel="next" href="data-analysis.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.2.2/leaflet.js"></script>
+<script src="libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.2.2/leaflet-providers-plugin.js"></script>
+<script src="libs/plotly-binding-4.10.4/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">AIITR</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> An Intuitive Introduction to Data Analytics in R</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#welcome"><i class="fa fa-check"></i><b>1.1</b> Welcome !</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#about-this-course"><i class="fa fa-check"></i><b>1.2</b> About this Course</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#prerequisities"><i class="fa fa-check"></i><b>1.2.1</b> Prerequisities</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#what-is-r-and-rstudio"><i class="fa fa-check"></i><b>1.2.2</b> What is <code>R</code> and <code>RStudio</code> ?</a></li>
+<li class="chapter" data-level="1.2.3" data-path="index.html"><a href="index.html#why-r"><i class="fa fa-check"></i><b>1.2.3</b> Why <code>R</code> ?</a></li>
+<li class="chapter" data-level="1.2.4" data-path="index.html"><a href="index.html#what-expects-you-and-what-not"><i class="fa fa-check"></i><b>1.2.4</b> What expects you and what not</a></li>
+<li class="chapter" data-level="1.2.5" data-path="index.html"><a href="index.html#overview-of-the-course-structure"><i class="fa fa-check"></i><b>1.2.5</b> Overview of the course structure:</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#about-me"><i class="fa fa-check"></i><b>1.3</b> About Me</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="fundamentals.html"><a href="fundamentals.html"><i class="fa fa-check"></i><b>2</b> Fundamentals</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="fundamentals.html"><a href="fundamentals.html#getting-familiar-with-rstudio-and-establishing-a-workflow"><i class="fa fa-check"></i><b>2.1</b> Getting familiar with RStudio and establishing a Workflow</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="fundamentals.html"><a href="fundamentals.html#the-user-interface"><i class="fa fa-check"></i><b>2.1.1</b> The user interface</a></li>
+<li class="chapter" data-level="2.1.2" data-path="fundamentals.html"><a href="fundamentals.html#how-to-design-it-according-to-your-preferences-optional"><i class="fa fa-check"></i><b>2.1.2</b> How to design it according to your preferences (optional)</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="fundamentals.html"><a href="fundamentals.html#lets-get-started-r-as-a-fancy-calculator"><i class="fa fa-check"></i><b>2.2</b> Lets get started: R as a fancy calculator</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="fundamentals.html"><a href="fundamentals.html#mathmetical-operations-in-r"><i class="fa fa-check"></i><b>2.2.1</b> Mathmetical Operations in R</a></li>
+<li class="chapter" data-level="2.2.2" data-path="fundamentals.html"><a href="fundamentals.html#using-commands"><i class="fa fa-check"></i><b>2.2.2</b> Using Commands</a></li>
+<li class="chapter" data-level="2.2.3" data-path="fundamentals.html"><a href="fundamentals.html#assigning-objects-and-printing-them"><i class="fa fa-check"></i><b>2.2.3</b> Assigning objects and printing them</a></li>
+<li class="chapter" data-level="2.2.4" data-path="fundamentals.html"><a href="fundamentals.html#vectors"><i class="fa fa-check"></i><b>2.2.4</b> Vectors</a></li>
+<li class="chapter" data-level="2.2.5" data-path="fundamentals.html"><a href="fundamentals.html#object-classes"><i class="fa fa-check"></i><b>2.2.5</b> Object Classes</a></li>
+<li class="chapter" data-level="2.2.6" data-path="fundamentals.html"><a href="fundamentals.html#matrices"><i class="fa fa-check"></i><b>2.2.6</b> Matrices</a></li>
+<li class="chapter" data-level="2.2.7" data-path="fundamentals.html"><a href="fundamentals.html#data-frames"><i class="fa fa-check"></i><b>2.2.7</b> Data Frames</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="fundamentals.html"><a href="fundamentals.html#the-ifelse-function-and-ifelse-conditions"><i class="fa fa-check"></i><b>2.3</b> The <code>ifelse()</code> function and <code>ifelse</code> conditions:</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="fundamentals.html"><a href="fundamentals.html#simple-if-command"><i class="fa fa-check"></i><b>2.3.1</b> Simple if command</a></li>
+<li class="chapter" data-level="2.3.2" data-path="fundamentals.html"><a href="fundamentals.html#ifelse-command"><i class="fa fa-check"></i><b>2.3.2</b> <code>ifelse()</code> command</a></li>
+<li class="chapter" data-level="2.3.3" data-path="fundamentals.html"><a href="fundamentals.html#if-else-ladders-if-else-with-multiple-conditions"><i class="fa fa-check"></i><b>2.3.3</b> if else ladders/ if else with multiple conditions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="fundamentals.html"><a href="fundamentals.html#exercise-section"><i class="fa fa-check"></i><b>2.4</b> Exercise Section:</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="fundamentals.html"><a href="fundamentals.html#exercise-1"><i class="fa fa-check"></i><b>2.4.1</b> Exercise 1:</a></li>
+<li class="chapter" data-level="2.4.2" data-path="fundamentals.html"><a href="fundamentals.html#exercise-2"><i class="fa fa-check"></i><b>2.4.2</b> Exercise 2:</a></li>
+<li class="chapter" data-level="2.4.3" data-path="fundamentals.html"><a href="fundamentals.html#exercise-3"><i class="fa fa-check"></i><b>2.4.3</b> Exercise 3:</a></li>
+<li class="chapter" data-level="2.4.4" data-path="fundamentals.html"><a href="fundamentals.html#exercise-4"><i class="fa fa-check"></i><b>2.4.4</b> Exercise 4:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-manipulation.html"><a href="data-manipulation.html"><i class="fa fa-check"></i><b>3</b> Data Manipulation</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-manipulation.html"><a href="data-manipulation.html#packages"><i class="fa fa-check"></i><b>3.1</b> Packages</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="data-manipulation.html"><a href="data-manipulation.html#the-tidyverse-package"><i class="fa fa-check"></i><b>3.1.1</b> The <code>tidyverse</code> package</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="data-manipulation.html"><a href="data-manipulation.html#working-with-packages"><i class="fa fa-check"></i><b>3.2</b> Working with packages</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="data-manipulation.html"><a href="data-manipulation.html#installing-packages"><i class="fa fa-check"></i><b>3.2.1</b> Installing packages</a></li>
+<li class="chapter" data-level="3.2.2" data-path="data-manipulation.html"><a href="data-manipulation.html#loading-your-packages"><i class="fa fa-check"></i><b>3.2.2</b> Loading your packages</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="data-manipulation.html"><a href="data-manipulation.html#the-data-we-will-work-with-the-european-social-survey-ess"><i class="fa fa-check"></i><b>3.3</b> The Data we will work with: The European Social Survey (ESS)</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="data-manipulation.html"><a href="data-manipulation.html#load-the-data"><i class="fa fa-check"></i><b>3.3.1</b> Load the data</a></li>
+<li class="chapter" data-level="3.3.2" data-path="data-manipulation.html"><a href="data-manipulation.html#one-last-thing-pipelines"><i class="fa fa-check"></i><b>3.3.2</b> One last thing: Pipelines</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="data-manipulation.html"><a href="data-manipulation.html#lets-wrangle-the-data"><i class="fa fa-check"></i><b>3.4</b> Let’s wrangle the data</a></li>
+<li class="chapter" data-level="3.5" data-path="data-manipulation.html"><a href="data-manipulation.html#the-dplyr-package"><i class="fa fa-check"></i><b>3.5</b> The <code>dplyr</code> package</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="data-manipulation.html"><a href="data-manipulation.html#the-filter-command"><i class="fa fa-check"></i><b>3.5.1</b> The <code>filter()</code> command</a></li>
+<li class="chapter" data-level="3.5.2" data-path="data-manipulation.html"><a href="data-manipulation.html#the-select-function"><i class="fa fa-check"></i><b>3.5.2</b> The <code>select()</code> function:</a></li>
+<li class="chapter" data-level="3.5.3" data-path="data-manipulation.html"><a href="data-manipulation.html#the-arrange-function"><i class="fa fa-check"></i><b>3.5.3</b> The <code>arrange()</code> function</a></li>
+<li class="chapter" data-level="3.5.4" data-path="data-manipulation.html"><a href="data-manipulation.html#the-rename-and-relocate-function"><i class="fa fa-check"></i><b>3.5.4</b> The <code>rename()</code> and <code>relocate()</code> function</a></li>
+<li class="chapter" data-level="3.5.5" data-path="data-manipulation.html"><a href="data-manipulation.html#the-mutate-function"><i class="fa fa-check"></i><b>3.5.5</b> The <code>mutate()</code> function</a></li>
+<li class="chapter" data-level="3.5.6" data-path="data-manipulation.html"><a href="data-manipulation.html#the-group_by-and-summarize-functions"><i class="fa fa-check"></i><b>3.5.6</b> The <code>group_by()</code> and <code>summarize()</code> functions</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="data-manipulation.html"><a href="data-manipulation.html#merging-datasets"><i class="fa fa-check"></i><b>3.6</b> Merging Datasets</a></li>
+<li class="chapter" data-level="3.7" data-path="data-manipulation.html"><a href="data-manipulation.html#outlook"><i class="fa fa-check"></i><b>3.7</b> Outlook</a></li>
+<li class="chapter" data-level="3.8" data-path="data-manipulation.html"><a href="data-manipulation.html#exercise-section-1"><i class="fa fa-check"></i><b>3.8</b> Exercise Section:</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="data-manipulation.html"><a href="data-manipulation.html#exercise-1-lets-wrangle-kid"><i class="fa fa-check"></i><b>3.8.1</b> Exercise 1: Let’s wrangle kid</a></li>
+<li class="chapter" data-level="3.8.2" data-path="data-manipulation.html"><a href="data-manipulation.html#exercise-2-merging-datasets"><i class="fa fa-check"></i><b>3.8.2</b> Exercise 2: Merging Datasets</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="data-manipulation.html"><a href="data-manipulation.html#section"><i class="fa fa-check"></i><b>3.9</b> </a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-visualisation.html"><a href="data-visualisation.html"><i class="fa fa-check"></i><b>4</b> Data Visualisation</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="data-visualisation.html"><a href="data-visualisation.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="data-visualisation.html"><a href="data-visualisation.html#distributions-histogram-density-plots-and-boxplots"><i class="fa fa-check"></i><b>4.2</b> Distributions: Histogram, Density Plots, and Boxplots</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="data-visualisation.html"><a href="data-visualisation.html#histograms"><i class="fa fa-check"></i><b>4.2.1</b> Histograms</a></li>
+<li class="chapter" data-level="4.2.2" data-path="data-visualisation.html"><a href="data-visualisation.html#density-plots"><i class="fa fa-check"></i><b>4.2.2</b> Density Plots</a></li>
+<li class="chapter" data-level="4.2.3" data-path="data-visualisation.html"><a href="data-visualisation.html#boxplots"><i class="fa fa-check"></i><b>4.2.3</b> Boxplots</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="data-visualisation.html"><a href="data-visualisation.html#ranking-barplot"><i class="fa fa-check"></i><b>4.3</b> Ranking: Barplot</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="data-visualisation.html"><a href="data-visualisation.html#basic-barplot"><i class="fa fa-check"></i><b>4.3.1</b> Basic Barplot</a></li>
+<li class="chapter" data-level="4.3.2" data-path="data-visualisation.html"><a href="data-visualisation.html#reordering-them"><i class="fa fa-check"></i><b>4.3.2</b> Reordering them</a></li>
+<li class="chapter" data-level="4.3.3" data-path="data-visualisation.html"><a href="data-visualisation.html#grouped-and-stacked-barplots"><i class="fa fa-check"></i><b>4.3.3</b> Grouped and Stacked Barplots</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="data-visualisation.html"><a href="data-visualisation.html#evolution-line-chart"><i class="fa fa-check"></i><b>4.4</b> Evolution: Line Chart</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="data-visualisation.html"><a href="data-visualisation.html#basic-line-plot"><i class="fa fa-check"></i><b>4.4.1</b> Basic Line Plot</a></li>
+<li class="chapter" data-level="4.4.2" data-path="data-visualisation.html"><a href="data-visualisation.html#multiple-line-chart"><i class="fa fa-check"></i><b>4.4.2</b> Multiple Line Chart</a></li>
+<li class="chapter" data-level="4.4.3" data-path="data-visualisation.html"><a href="data-visualisation.html#grouped-line-charts"><i class="fa fa-check"></i><b>4.4.3</b> Grouped Line Charts</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="data-visualisation.html"><a href="data-visualisation.html#correlation-scatterplots"><i class="fa fa-check"></i><b>4.5</b> Correlation: Scatterplots</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="data-visualisation.html"><a href="data-visualisation.html#basic-scatterplot"><i class="fa fa-check"></i><b>4.5.1</b> Basic Scatterplot</a></li>
+<li class="chapter" data-level="4.5.2" data-path="data-visualisation.html"><a href="data-visualisation.html#scatter-plots-with-multiple-groups"><i class="fa fa-check"></i><b>4.5.2</b> Scatter Plots with multiple Groups</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="data-visualisation.html"><a href="data-visualisation.html#making-plots-with-facet_wrap-and-facet_grid"><i class="fa fa-check"></i><b>4.6</b> Making Plots with <code>facet_wrap()</code> and <code>facet_grid()</code></a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="data-visualisation.html"><a href="data-visualisation.html#the-facet_wrap-function"><i class="fa fa-check"></i><b>4.6.1</b> The <code>facet_wrap()</code> function</a></li>
+<li class="chapter" data-level="4.6.2" data-path="data-visualisation.html"><a href="data-visualisation.html#the-facet_grid-function"><i class="fa fa-check"></i><b>4.6.2</b> The <code>facet_grid()</code> function</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="data-visualisation.html"><a href="data-visualisation.html#outlook-1"><i class="fa fa-check"></i><b>4.7</b> Outlook</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="data-visualisation.html"><a href="data-visualisation.html#combining-different-types-of-graphs"><i class="fa fa-check"></i><b>4.7.1</b> Combining different types of Graphs</a></li>
+<li class="chapter" data-level="4.7.2" data-path="data-visualisation.html"><a href="data-visualisation.html#distributions-ridgeline-chart-and-violin-chart"><i class="fa fa-check"></i><b>4.7.2</b> Distributions: Ridgeline Chart and Violin Chart</a></li>
+<li class="chapter" data-level="4.7.3" data-path="data-visualisation.html"><a href="data-visualisation.html#ranking-lollipop-charts-and-radar-charts"><i class="fa fa-check"></i><b>4.7.3</b> Ranking: Lollipop Charts and Radar Charts</a></li>
+<li class="chapter" data-level="4.7.4" data-path="data-visualisation.html"><a href="data-visualisation.html#maps"><i class="fa fa-check"></i><b>4.7.4</b> Maps</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="loops-and-functions.html"><a href="loops-and-functions.html"><i class="fa fa-check"></i><b>5</b> Loops and Functions</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="loops-and-functions.html"><a href="loops-and-functions.html#loops"><i class="fa fa-check"></i><b>5.1</b> Loops</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="loops-and-functions.html"><a href="loops-and-functions.html#for-loops"><i class="fa fa-check"></i><b>5.1.1</b> <code>For</code> loops</a></li>
+<li class="chapter" data-level="5.1.2" data-path="loops-and-functions.html"><a href="loops-and-functions.html#nested-loops"><i class="fa fa-check"></i><b>5.1.2</b> Nested Loops</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="loops-and-functions.html"><a href="loops-and-functions.html#apply-function-family"><i class="fa fa-check"></i><b>5.2</b> <code>apply()</code> Function Family</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="loops-and-functions.html"><a href="loops-and-functions.html#apply"><i class="fa fa-check"></i><b>5.2.1</b> <code>apply()</code></a></li>
+<li class="chapter" data-level="5.2.2" data-path="loops-and-functions.html"><a href="loops-and-functions.html#notes"><i class="fa fa-check"></i><b>5.2.2</b> Notes</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="loops-and-functions.html"><a href="loops-and-functions.html#writing-your-own-functions"><i class="fa fa-check"></i><b>5.3</b> Writing your own functions</a></li>
+<li class="chapter" data-level="5.4" data-path="loops-and-functions.html"><a href="loops-and-functions.html#exercise-section-2"><i class="fa fa-check"></i><b>5.4</b> Exercise Section</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="loops-and-functions.html"><a href="loops-and-functions.html#exercise-1-1"><i class="fa fa-check"></i><b>5.4.1</b> Exercise 1:</a></li>
+<li class="chapter" data-level="5.4.2" data-path="loops-and-functions.html"><a href="loops-and-functions.html#exercise-2-1"><i class="fa fa-check"></i><b>5.4.2</b> Exercise 2:</a></li>
+<li class="chapter" data-level="5.4.3" data-path="loops-and-functions.html"><a href="loops-and-functions.html#exercise-3-1"><i class="fa fa-check"></i><b>5.4.3</b> Exercise 3:</a></li>
+<li class="chapter" data-level="5.4.4" data-path="loops-and-functions.html"><a href="loops-and-functions.html#exercise-4-zodiac-fortune-teller"><i class="fa fa-check"></i><b>5.4.4</b> Exercise 4: Zodiac Fortune Teller</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="data-analysis.html"><a href="data-analysis.html"><i class="fa fa-check"></i><b>6</b> Data Analysis</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="data-analysis.html"><a href="data-analysis.html#introduction-1"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="data-analysis.html"><a href="data-analysis.html#linear-regression"><i class="fa fa-check"></i><b>6.2</b> Linear Regression</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="data-analysis.html"><a href="data-analysis.html#terminology"><i class="fa fa-check"></i><b>6.2.1</b> Terminology</a></li>
+<li class="chapter" data-level="6.2.2" data-path="data-analysis.html"><a href="data-analysis.html#estimating-the-ordinary-least-squares-estimator"><i class="fa fa-check"></i><b>6.2.2</b> Estimating the Ordinary Least Squares Estimator</a></li>
+<li class="chapter" data-level="6.2.3" data-path="data-analysis.html"><a href="data-analysis.html#predictions-with-linear-regression"><i class="fa fa-check"></i><b>6.2.3</b> Predictions with Linear Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="data-analysis.html"><a href="data-analysis.html#model-fit"><i class="fa fa-check"></i><b>6.3</b> Model Fit</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="data-analysis.html"><a href="data-analysis.html#measures-of-fit"><i class="fa fa-check"></i><b>6.3.1</b> Measures of Fit</a></li>
+<li class="chapter" data-level="6.3.2" data-path="data-analysis.html"><a href="data-analysis.html#tss-ess-and-r2"><i class="fa fa-check"></i><b>6.3.2</b> TSS, ESS and <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="6.3.3" data-path="data-analysis.html"><a href="data-analysis.html#influential-outliers"><i class="fa fa-check"></i><b>6.3.3</b> Influential Outliers</a></li>
+<li class="chapter" data-level="6.3.4" data-path="data-analysis.html"><a href="data-analysis.html#functional-form"><i class="fa fa-check"></i><b>6.3.4</b> Functional Form</a></li>
+<li class="chapter" data-level="6.3.5" data-path="data-analysis.html"><a href="data-analysis.html#independent-observation"><i class="fa fa-check"></i><b>6.3.5</b> Independent Observation</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="data-analysis.html"><a href="data-analysis.html#hypothesis-testing-in-r"><i class="fa fa-check"></i><b>6.4</b> Hypothesis Testing in R</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="data-analysis.html"><a href="data-analysis.html#standard-error"><i class="fa fa-check"></i><b>6.4.1</b> Standard Error</a></li>
+<li class="chapter" data-level="6.4.2" data-path="data-analysis.html"><a href="data-analysis.html#t-value-or-t-statistic"><i class="fa fa-check"></i><b>6.4.2</b> T-Value or T-Statistic</a></li>
+<li class="chapter" data-level="6.4.3" data-path="data-analysis.html"><a href="data-analysis.html#p-values"><i class="fa fa-check"></i><b>6.4.3</b> p-values</a></li>
+<li class="chapter" data-level="6.4.4" data-path="data-analysis.html"><a href="data-analysis.html#confidence-interval"><i class="fa fa-check"></i><b>6.4.4</b> Confidence Interval</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="data-analysis.html"><a href="data-analysis.html#multivariate-regression"><i class="fa fa-check"></i><b>6.5</b> Multivariate Regression</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="data-analysis.html"><a href="data-analysis.html#model-fit-adjusted-r-squared"><i class="fa fa-check"></i><b>6.5.1</b> Model Fit: Adjusted R-squared</a></li>
+<li class="chapter" data-level="6.5.2" data-path="data-analysis.html"><a href="data-analysis.html#omitted-variable-bias"><i class="fa fa-check"></i><b>6.5.2</b> Omitted Variable Bias</a></li>
+<li class="chapter" data-level="6.5.3" data-path="data-analysis.html"><a href="data-analysis.html#multicollinearity"><i class="fa fa-check"></i><b>6.5.3</b> Multicollinearity</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="data-analysis.html"><a href="data-analysis.html#categorical-variables"><i class="fa fa-check"></i><b>6.6</b> Categorical Variables</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="data-analysis.html"><a href="data-analysis.html#interaction-effects"><i class="fa fa-check"></i><b>6.6.1</b> Interaction Effects</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="data-analysis.html"><a href="data-analysis.html#outlook-2"><i class="fa fa-check"></i><b>6.7</b> Outlook</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">An intuitive Introduction to R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="loops-and-functions" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Loops and Functions<a href="loops-and-functions.html#loops-and-functions" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>For our last chapter I want to introduce to a way to work more efficient. R is a programming language for statistical analysis, but it also includes classical elements of programming. Two main operations are loops and functions. We can automate tasks and the earlier you learn about it the faster you can advance and understand the logic of R.</p>
+<div id="loops" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Loops<a href="loops-and-functions.html#loops" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For example, you can use a loop to iterate through a list of numbers and perform calculations on each number, or to go through the rows of a dataset and apply certain operations to each row. Loops provide a way to streamline your code and avoid writing repetitive instructions manually.</p>
+<p>There are different type of Loops, but for this course we focus just on the <code>for</code> loops, since you will see them also in the QM Tutorial.</p>
+<div id="for-loops" class="section level3 hasAnchor" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> <code>For</code> loops<a href="loops-and-functions.html#for-loops" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Do you remember my grade example from the first chapter?</p>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="loops-and-functions.html#cb275-1" tabindex="-1"></a>grade <span class="ot">&lt;-</span> <span class="fl">4.0</span></span>
+<span id="cb275-2"><a href="loops-and-functions.html#cb275-2" tabindex="-1"></a></span>
+<span id="cb275-3"><a href="loops-and-functions.html#cb275-3" tabindex="-1"></a><span class="cf">if</span> (grade <span class="sc">==</span> <span class="fl">1.0</span>) {</span>
+<span id="cb275-4"><a href="loops-and-functions.html#cb275-4" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Amazing&quot;</span>) </span>
+<span id="cb275-5"><a href="loops-and-functions.html#cb275-5" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">1.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">2.0</span>) {</span>
+<span id="cb275-6"><a href="loops-and-functions.html#cb275-6" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Good Job&quot;</span>)</span>
+<span id="cb275-7"><a href="loops-and-functions.html#cb275-7" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">2.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">3.0</span>) {</span>
+<span id="cb275-8"><a href="loops-and-functions.html#cb275-8" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;OK&quot;</span>)</span>
+<span id="cb275-9"><a href="loops-and-functions.html#cb275-9" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">3.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">4.0</span>) {</span>
+<span id="cb275-10"><a href="loops-and-functions.html#cb275-10" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Life goes on&quot;</span>) </span>
+<span id="cb275-11"><a href="loops-and-functions.html#cb275-11" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] &quot;Life goes on&quot;</code></pre>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="loops-and-functions.html#cb277-1" tabindex="-1"></a>grade <span class="ot">&lt;-</span> <span class="fl">3.3</span></span>
+<span id="cb277-2"><a href="loops-and-functions.html#cb277-2" tabindex="-1"></a></span>
+<span id="cb277-3"><a href="loops-and-functions.html#cb277-3" tabindex="-1"></a><span class="cf">if</span> (grade <span class="sc">==</span> <span class="fl">1.0</span>) {</span>
+<span id="cb277-4"><a href="loops-and-functions.html#cb277-4" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Amazing&quot;</span>) </span>
+<span id="cb277-5"><a href="loops-and-functions.html#cb277-5" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">1.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">2.0</span>) {</span>
+<span id="cb277-6"><a href="loops-and-functions.html#cb277-6" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Good Job&quot;</span>)</span>
+<span id="cb277-7"><a href="loops-and-functions.html#cb277-7" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">2.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">3.0</span>) {</span>
+<span id="cb277-8"><a href="loops-and-functions.html#cb277-8" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;OK&quot;</span>)</span>
+<span id="cb277-9"><a href="loops-and-functions.html#cb277-9" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">3.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">4.0</span>) {</span>
+<span id="cb277-10"><a href="loops-and-functions.html#cb277-10" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Life goes on&quot;</span>) </span>
+<span id="cb277-11"><a href="loops-and-functions.html#cb277-11" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] &quot;Life goes on&quot;</code></pre>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="loops-and-functions.html#cb279-1" tabindex="-1"></a>grade <span class="ot">&lt;-</span> <span class="fl">4.0</span></span>
+<span id="cb279-2"><a href="loops-and-functions.html#cb279-2" tabindex="-1"></a></span>
+<span id="cb279-3"><a href="loops-and-functions.html#cb279-3" tabindex="-1"></a><span class="cf">if</span> (grade <span class="sc">==</span> <span class="fl">1.0</span>) {</span>
+<span id="cb279-4"><a href="loops-and-functions.html#cb279-4" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Amazing&quot;</span>) </span>
+<span id="cb279-5"><a href="loops-and-functions.html#cb279-5" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">1.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">2.0</span>) {</span>
+<span id="cb279-6"><a href="loops-and-functions.html#cb279-6" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Good Job&quot;</span>)</span>
+<span id="cb279-7"><a href="loops-and-functions.html#cb279-7" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">2.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">3.0</span>) {</span>
+<span id="cb279-8"><a href="loops-and-functions.html#cb279-8" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;OK&quot;</span>)</span>
+<span id="cb279-9"><a href="loops-and-functions.html#cb279-9" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">3.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">4.0</span>) {</span>
+<span id="cb279-10"><a href="loops-and-functions.html#cb279-10" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Life goes on&quot;</span>) </span>
+<span id="cb279-11"><a href="loops-and-functions.html#cb279-11" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] &quot;Life goes on&quot;</code></pre>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="loops-and-functions.html#cb281-1" tabindex="-1"></a>grade <span class="ot">&lt;-</span> <span class="fl">2.3</span></span>
+<span id="cb281-2"><a href="loops-and-functions.html#cb281-2" tabindex="-1"></a></span>
+<span id="cb281-3"><a href="loops-and-functions.html#cb281-3" tabindex="-1"></a><span class="cf">if</span> (grade <span class="sc">==</span> <span class="fl">1.0</span>) {</span>
+<span id="cb281-4"><a href="loops-and-functions.html#cb281-4" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Amazing&quot;</span>) </span>
+<span id="cb281-5"><a href="loops-and-functions.html#cb281-5" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">1.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">2.0</span>) {</span>
+<span id="cb281-6"><a href="loops-and-functions.html#cb281-6" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Good Job&quot;</span>)</span>
+<span id="cb281-7"><a href="loops-and-functions.html#cb281-7" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">2.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">3.0</span>) {</span>
+<span id="cb281-8"><a href="loops-and-functions.html#cb281-8" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;OK&quot;</span>)</span>
+<span id="cb281-9"><a href="loops-and-functions.html#cb281-9" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">3.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">4.0</span>) {</span>
+<span id="cb281-10"><a href="loops-and-functions.html#cb281-10" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Life goes on&quot;</span>) </span>
+<span id="cb281-11"><a href="loops-and-functions.html#cb281-11" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] &quot;OK&quot;</code></pre>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="loops-and-functions.html#cb283-1" tabindex="-1"></a>grade <span class="ot">&lt;-</span> <span class="fl">1.7</span></span>
+<span id="cb283-2"><a href="loops-and-functions.html#cb283-2" tabindex="-1"></a></span>
+<span id="cb283-3"><a href="loops-and-functions.html#cb283-3" tabindex="-1"></a><span class="cf">if</span> (grade <span class="sc">==</span> <span class="fl">1.0</span>) {</span>
+<span id="cb283-4"><a href="loops-and-functions.html#cb283-4" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Amazing&quot;</span>) </span>
+<span id="cb283-5"><a href="loops-and-functions.html#cb283-5" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">1.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">2.0</span>) {</span>
+<span id="cb283-6"><a href="loops-and-functions.html#cb283-6" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Good Job&quot;</span>)</span>
+<span id="cb283-7"><a href="loops-and-functions.html#cb283-7" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">2.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">3.0</span>) {</span>
+<span id="cb283-8"><a href="loops-and-functions.html#cb283-8" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;OK&quot;</span>)</span>
+<span id="cb283-9"><a href="loops-and-functions.html#cb283-9" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">3.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">4.0</span>) {</span>
+<span id="cb283-10"><a href="loops-and-functions.html#cb283-10" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Life goes on&quot;</span>) </span>
+<span id="cb283-11"><a href="loops-and-functions.html#cb283-11" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] &quot;Good Job&quot;</code></pre>
+<p>I could now write down all my grades and assign them as I did in the first chapter, but there is a way to automatize this process. For that I will use the <code>For</code> loop.</p>
+<p>First, let us make a vector with grades:</p>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="loops-and-functions.html#cb285-1" tabindex="-1"></a>grades <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.7</span>, <span class="fl">3.3</span>, <span class="fl">4.0</span>, <span class="fl">2.3</span>, <span class="fl">1.0</span>)</span></code></pre></div>
+<p>Now, we can directly dive into the loop.</p>
+<ul>
+<li><p>Write down <code>for</code> and in brackets you define the <strong>loop iterator</strong>, this is the <strong>i</strong> in the loop. Then you define in which object of interest you want to iterate. In our case, the operation should be iterated in the grades vector. I could also write down the number 5, but it is convention to define an object. Why?</p></li>
+<li><p>After closing the brackets you open fancy brackets and write down your function, as you would normally, but this time you need to define how the iterator is used. Since I use the numbers in grades, my iterator needs to be put in brackets, after the name of the grades. Why?</p></li>
+<li><p>And that’s it basically</p></li>
+</ul>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="loops-and-functions.html#cb286-1" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(grades)) {</span>
+<span id="cb286-2"><a href="loops-and-functions.html#cb286-2" tabindex="-1"></a>  <span class="cf">if</span> (grades[i] <span class="sc">==</span> <span class="fl">1.0</span>) {</span>
+<span id="cb286-3"><a href="loops-and-functions.html#cb286-3" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Amazing&quot;</span>) </span>
+<span id="cb286-4"><a href="loops-and-functions.html#cb286-4" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grades[i] <span class="sc">&gt;</span> <span class="fl">1.0</span> <span class="sc">&amp;</span> grades[i] <span class="sc">&lt;=</span> <span class="fl">2.0</span>) {</span>
+<span id="cb286-5"><a href="loops-and-functions.html#cb286-5" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Good Job&quot;</span>)</span>
+<span id="cb286-6"><a href="loops-and-functions.html#cb286-6" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grades[i] <span class="sc">&gt;</span> <span class="fl">2.0</span> <span class="sc">&amp;</span> grades[i] <span class="sc">&lt;=</span> <span class="fl">3.0</span>) {</span>
+<span id="cb286-7"><a href="loops-and-functions.html#cb286-7" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;OK&quot;</span>)</span>
+<span id="cb286-8"><a href="loops-and-functions.html#cb286-8" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grades[i] <span class="sc">&gt;</span> <span class="fl">3.0</span> <span class="sc">&amp;</span> grades[i] <span class="sc">&lt;=</span> <span class="fl">4.0</span>) {</span>
+<span id="cb286-9"><a href="loops-and-functions.html#cb286-9" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Life goes on&quot;</span>) </span>
+<span id="cb286-10"><a href="loops-and-functions.html#cb286-10" tabindex="-1"></a>}</span>
+<span id="cb286-11"><a href="loops-and-functions.html#cb286-11" tabindex="-1"></a>  </span>
+<span id="cb286-12"><a href="loops-and-functions.html#cb286-12" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] &quot;Good Job&quot;
+## [1] &quot;Life goes on&quot;
+## [1] &quot;Life goes on&quot;
+## [1] &quot;OK&quot;
+## [1] &quot;Amazing&quot;</code></pre>
+<p>Loops can look differently:</p>
+<p>In this example I have a number vector and my let the console print a sentence, where I vary the number and therefore the sentence changes over every loop</p>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="loops-and-functions.html#cb288-1" tabindex="-1"></a><span class="co"># creating num vector</span></span>
+<span id="cb288-2"><a href="loops-and-functions.html#cb288-2" tabindex="-1"></a>num <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">249</span>)</span>
+<span id="cb288-3"><a href="loops-and-functions.html#cb288-3" tabindex="-1"></a></span>
+<span id="cb288-4"><a href="loops-and-functions.html#cb288-4" tabindex="-1"></a><span class="co"># looping through vector</span></span>
+<span id="cb288-5"><a href="loops-and-functions.html#cb288-5" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> num) { </span>
+<span id="cb288-6"><a href="loops-and-functions.html#cb288-6" tabindex="-1"></a>  <span class="fu">print</span>(stringr<span class="sc">::</span><span class="fu">str_c</span>(<span class="st">&quot;This is the &quot;</span>, i, <span class="st">&quot;th Iteration&quot;</span>)) </span>
+<span id="cb288-7"><a href="loops-and-functions.html#cb288-7" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] &quot;This is the 1th Iteration&quot;
+## [1] &quot;This is the 2th Iteration&quot;
+## [1] &quot;This is the 3th Iteration&quot;
+## [1] &quot;This is the 4th Iteration&quot;
+## [1] &quot;This is the 5th Iteration&quot;
+## [1] &quot;This is the 249th Iteration&quot;</code></pre>
+</div>
+<div id="nested-loops" class="section level3 hasAnchor" number="5.1.2">
+<h3><span class="header-section-number">5.1.2</span> Nested Loops<a href="loops-and-functions.html#nested-loops" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Because you will eventually encounter them, I will show you shortly nested loops:</p>
+<p>First, let us play a game of tic tac toe:</p>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="loops-and-functions.html#cb290-1" tabindex="-1"></a><span class="co">#Defining a matrix </span></span>
+<span id="cb290-2"><a href="loops-and-functions.html#cb290-2" tabindex="-1"></a>ttt <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="st">&quot;X&quot;</span>, <span class="st">&quot;O&quot;</span>, <span class="st">&quot;X&quot;</span>,</span>
+<span id="cb290-3"><a href="loops-and-functions.html#cb290-3" tabindex="-1"></a>                <span class="st">&quot;O&quot;</span>, <span class="st">&quot;X&quot;</span>, <span class="st">&quot;O&quot;</span>,</span>
+<span id="cb290-4"><a href="loops-and-functions.html#cb290-4" tabindex="-1"></a>                <span class="st">&quot;O&quot;</span>, <span class="st">&quot;X&quot;</span>, <span class="st">&quot;O&quot;</span>), <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>We define a loop with an iterator <strong>i</strong> for the rows of the matrix, and we define another one for the columns with the iterator <strong>j</strong>.</p>
+<p>Afterwords, we built up the body, in which aim to get information about the matrix and its content. The sentence shows, which rows and columns contain which values.</p>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="loops-and-functions.html#cb291-1" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(ttt)) {</span>
+<span id="cb291-2"><a href="loops-and-functions.html#cb291-2" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(ttt)) {</span>
+<span id="cb291-3"><a href="loops-and-functions.html#cb291-3" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;On row&quot;</span>, i, <span class="st">&quot;and column&quot;</span>, </span>
+<span id="cb291-4"><a href="loops-and-functions.html#cb291-4" tabindex="-1"></a>                j, <span class="st">&quot;the board contains&quot;</span>, ttt[i,j]))</span>
+<span id="cb291-5"><a href="loops-and-functions.html#cb291-5" tabindex="-1"></a>  }</span>
+<span id="cb291-6"><a href="loops-and-functions.html#cb291-6" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] &quot;On row 1 and column 1 the board contains X&quot;
+## [1] &quot;On row 1 and column 2 the board contains O&quot;
+## [1] &quot;On row 1 and column 3 the board contains X&quot;
+## [1] &quot;On row 2 and column 1 the board contains O&quot;
+## [1] &quot;On row 2 and column 2 the board contains X&quot;
+## [1] &quot;On row 2 and column 3 the board contains O&quot;
+## [1] &quot;On row 3 and column 1 the board contains O&quot;
+## [1] &quot;On row 3 and column 2 the board contains X&quot;
+## [1] &quot;On row 3 and column 3 the board contains O&quot;</code></pre>
+</div>
+</div>
+<div id="apply-function-family" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> <code>apply()</code> Function Family<a href="loops-and-functions.html#apply-function-family" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="apply" class="section level3 hasAnchor" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> <code>apply()</code><a href="loops-and-functions.html#apply" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>apply()</code> takes a data frame or matrix as an input and gives output in vector, list or array. Apply function in R is primarily used to avoid explicit uses of loop constructs. The idea is to apply a function repeatedly to a matrix or data frame: apply(X, MARGIN, FUNCTION)</p>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="loops-and-functions.html#cb293-1" tabindex="-1"></a><span class="co">#Let us create a matrix with random numbers </span></span>
+<span id="cb293-2"><a href="loops-and-functions.html#cb293-2" tabindex="-1"></a>mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">nrow =</span> <span class="dv">5</span>, <span class="at">ncol =</span> <span class="dv">6</span>)</span>
+<span id="cb293-3"><a href="loops-and-functions.html#cb293-3" tabindex="-1"></a></span>
+<span id="cb293-4"><a href="loops-and-functions.html#cb293-4" tabindex="-1"></a><span class="co">#Checking it</span></span>
+<span id="cb293-5"><a href="loops-and-functions.html#cb293-5" tabindex="-1"></a><span class="fu">head</span>(mat)</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6]
+## [1,]    1    6    1    6    1    6
+## [2,]    2    7    2    7    2    7
+## [3,]    3    8    3    8    3    8
+## [4,]    4    9    4    9    4    9
+## [5,]    5   10    5   10    5   10</code></pre>
+<p>Assume you now want to calculate the mean of every column:</p>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="loops-and-functions.html#cb295-1" tabindex="-1"></a><span class="fu">apply</span>(mat, <span class="dv">2</span>, mean) <span class="co">#calculating mean </span></span></code></pre></div>
+<pre><code>## [1] 3 8 3 8 3 8</code></pre>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="loops-and-functions.html#cb297-1" tabindex="-1"></a><span class="fu">apply</span>(mat, <span class="dv">2</span>, sum) <span class="co">#calculating sum</span></span></code></pre></div>
+<pre><code>## [1] 15 40 15 40 15 40</code></pre>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="loops-and-functions.html#cb299-1" tabindex="-1"></a><span class="fu">apply</span>(mat, <span class="dv">2</span>, sd) <span class="co">#calculating sd</span></span></code></pre></div>
+<pre><code>## [1] 1.581139 1.581139 1.581139 1.581139 1.581139 1.581139</code></pre>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="loops-and-functions.html#cb301-1" tabindex="-1"></a><span class="co">#The corresponding Loop would look like this: </span></span>
+<span id="cb301-2"><a href="loops-and-functions.html#cb301-2" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(mat)) {</span>
+<span id="cb301-3"><a href="loops-and-functions.html#cb301-3" tabindex="-1"></a>  mean_col <span class="ot">&lt;-</span> <span class="fu">mean</span>(mat[, i])</span>
+<span id="cb301-4"><a href="loops-and-functions.html#cb301-4" tabindex="-1"></a>  <span class="fu">print</span>(mean_col)</span>
+<span id="cb301-5"><a href="loops-and-functions.html#cb301-5" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] 3
+## [1] 8
+## [1] 3
+## [1] 8
+## [1] 3
+## [1] 8</code></pre>
+<p>The <code>apply()</code> function is useful especially if you are working with dimensional bodies and want to calculate anything. However, they can not keep up with the flexibility of loops, you should be aware of that.</p>
+</div>
+<div id="notes" class="section level3 hasAnchor" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> Notes<a href="loops-and-functions.html#notes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Loops and the apply function are widely used in programming. However, this is no programming course, it is an introduction, so now you have an idea what is happening, if you are seeing those two things in the scripts. But if you are interested in this topic, please read into <code>while</code> loops and <code>repeat</code> loops. The <code>apply()</code> function is part of a family: <code>sapply()</code>, <code>lapply()</code>, <code>tapply()</code> are also in that family.</p>
+</div>
+</div>
+<div id="writing-your-own-functions" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Writing your own functions<a href="loops-and-functions.html#writing-your-own-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We can again safe a lot of time and be more efficient by writing our own function.</p>
+<ul>
+<li>First, you need to define a name for your function#</li>
+<li>Afterwards, you write down the command with the <code>function()</code> command. In to your brackets you put your variables. Later your input follows those variables.</li>
+<li>After the fancy brackets, you define your operation with your predefined variables.</li>
+<li>Lastly, you want the function to return your quantity of interest and close the fancy brackets</li>
+<li>Afterwards you have a function saved and can operate with it</li>
+</ul>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="loops-and-functions.html#cb303-1" tabindex="-1"></a><span class="co">#My function is just a sum</span></span>
+<span id="cb303-2"><a href="loops-and-functions.html#cb303-2" tabindex="-1"></a></span>
+<span id="cb303-3"><a href="loops-and-functions.html#cb303-3" tabindex="-1"></a>add <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) { </span>
+<span id="cb303-4"><a href="loops-and-functions.html#cb303-4" tabindex="-1"></a>  </span>
+<span id="cb303-5"><a href="loops-and-functions.html#cb303-5" tabindex="-1"></a>  result <span class="ot">&lt;-</span> x <span class="sc">+</span> y</span>
+<span id="cb303-6"><a href="loops-and-functions.html#cb303-6" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb303-7"><a href="loops-and-functions.html#cb303-7" tabindex="-1"></a>}</span>
+<span id="cb303-8"><a href="loops-and-functions.html#cb303-8" tabindex="-1"></a></span>
+<span id="cb303-9"><a href="loops-and-functions.html#cb303-9" tabindex="-1"></a><span class="fu">add</span>(<span class="dv">2</span>,<span class="dv">7</span>) <span class="co">#Now I can use my function</span></span></code></pre></div>
+<pre><code>## [1] 9</code></pre>
+<p>Let us calculate the area of a circle</p>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="loops-and-functions.html#cb305-1" tabindex="-1"></a>aoc <span class="ot">&lt;-</span> <span class="cf">function</span>(radius) {</span>
+<span id="cb305-2"><a href="loops-and-functions.html#cb305-2" tabindex="-1"></a>  pi <span class="ot">&lt;-</span> <span class="fl">3.14159</span></span>
+<span id="cb305-3"><a href="loops-and-functions.html#cb305-3" tabindex="-1"></a>  </span>
+<span id="cb305-4"><a href="loops-and-functions.html#cb305-4" tabindex="-1"></a>  area <span class="ot">&lt;-</span> pi <span class="sc">*</span> radius<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb305-5"><a href="loops-and-functions.html#cb305-5" tabindex="-1"></a>  </span>
+<span id="cb305-6"><a href="loops-and-functions.html#cb305-6" tabindex="-1"></a>  <span class="fu">return</span>(area)</span>
+<span id="cb305-7"><a href="loops-and-functions.html#cb305-7" tabindex="-1"></a>}</span>
+<span id="cb305-8"><a href="loops-and-functions.html#cb305-8" tabindex="-1"></a></span>
+<span id="cb305-9"><a href="loops-and-functions.html#cb305-9" tabindex="-1"></a><span class="fu">aoc</span>(<span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## [1] 78.53975</code></pre>
+<p>Let us combine what we have learned in this chapter with the Fibonacci sequence. The Fibonnaci sequence starts with 0 and 1, and each subsequent number is the sum of the two numbers before it. The Fibonacci sequence continues indefinitely, producing a sequence like this: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, and so on.</p>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="loops-and-functions.html#cb307-1" tabindex="-1"></a>fibonacci <span class="ot">&lt;-</span> <span class="cf">function</span>(n) {</span>
+<span id="cb307-2"><a href="loops-and-functions.html#cb307-2" tabindex="-1"></a>  <span class="cf">if</span> (n <span class="sc">&lt;=</span> <span class="dv">0</span>) {</span>
+<span id="cb307-3"><a href="loops-and-functions.html#cb307-3" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">&quot;Invalid input. </span></span>
+<span id="cb307-4"><a href="loops-and-functions.html#cb307-4" tabindex="-1"></a><span class="st">         Please provide a positive integer.&quot;</span>) </span>
+<span id="cb307-5"><a href="loops-and-functions.html#cb307-5" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (n <span class="sc">==</span> <span class="dv">1</span>) {</span>
+<span id="cb307-6"><a href="loops-and-functions.html#cb307-6" tabindex="-1"></a>    sequence <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb307-7"><a href="loops-and-functions.html#cb307-7" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (n <span class="sc">==</span> <span class="dv">2</span>) {</span>
+<span id="cb307-8"><a href="loops-and-functions.html#cb307-8" tabindex="-1"></a>    sequence <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb307-9"><a href="loops-and-functions.html#cb307-9" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb307-10"><a href="loops-and-functions.html#cb307-10" tabindex="-1"></a>    sequence <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n)</span>
+<span id="cb307-11"><a href="loops-and-functions.html#cb307-11" tabindex="-1"></a>    sequence[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb307-12"><a href="loops-and-functions.html#cb307-12" tabindex="-1"></a>    sequence[<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb307-13"><a href="loops-and-functions.html#cb307-13" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">3</span><span class="sc">:</span>n) {</span>
+<span id="cb307-14"><a href="loops-and-functions.html#cb307-14" tabindex="-1"></a>      sequence[i] <span class="ot">&lt;-</span> sequence[i <span class="sc">-</span> <span class="dv">1</span>] <span class="sc">+</span> sequence[i <span class="sc">-</span> <span class="dv">2</span>]</span>
+<span id="cb307-15"><a href="loops-and-functions.html#cb307-15" tabindex="-1"></a>    }</span>
+<span id="cb307-16"><a href="loops-and-functions.html#cb307-16" tabindex="-1"></a>  }</span>
+<span id="cb307-17"><a href="loops-and-functions.html#cb307-17" tabindex="-1"></a>  <span class="fu">return</span>(sequence)</span>
+<span id="cb307-18"><a href="loops-and-functions.html#cb307-18" tabindex="-1"></a>}</span>
+<span id="cb307-19"><a href="loops-and-functions.html#cb307-19" tabindex="-1"></a></span>
+<span id="cb307-20"><a href="loops-and-functions.html#cb307-20" tabindex="-1"></a><span class="fu">fibonacci</span>(<span class="dv">50</span>)</span></code></pre></div>
+<pre><code>##  [1]          0          1          1          2          3          5
+##  [7]          8         13         21         34         55         89
+## [13]        144        233        377        610        987       1597
+## [19]       2584       4181       6765      10946      17711      28657
+## [25]      46368      75025     121393     196418     317811     514229
+## [31]     832040    1346269    2178309    3524578    5702887    9227465
+## [37]   14930352   24157817   39088169   63245986  102334155  165580141
+## [43]  267914296  433494437  701408733 1134903170 1836311903 2971215073
+## [49] 4807526976 7778742049</code></pre>
+</div>
+<div id="exercise-section-2" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Exercise Section<a href="loops-and-functions.html#exercise-section-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="exercise-1-1" class="section level3 hasAnchor" number="5.4.1">
+<h3><span class="header-section-number">5.4.1</span> Exercise 1:<a href="loops-and-functions.html#exercise-1-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Write a <code>for</code> loop that prints the square of each number from 1 to 10</p>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="loops-and-functions.html#cb309-1" tabindex="-1"></a><span class="co">#Assigning an object for a better workflow</span></span>
+<span id="cb309-2"><a href="loops-and-functions.html#cb309-2" tabindex="-1"></a>number <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb309-3"><a href="loops-and-functions.html#cb309-3" tabindex="-1"></a></span>
+<span id="cb309-4"><a href="loops-and-functions.html#cb309-4" tabindex="-1"></a><span class="co">#The Loop </span></span></code></pre></div>
+</div>
+<div id="exercise-2-1" class="section level3 hasAnchor" number="5.4.2">
+<h3><span class="header-section-number">5.4.2</span> Exercise 2:<a href="loops-and-functions.html#exercise-2-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Do the same, but this time defining a function that squares numbers.</p>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="loops-and-functions.html#cb310-1" tabindex="-1"></a><span class="co">#Defining a function for squaring</span></span>
+<span id="cb310-2"><a href="loops-and-functions.html#cb310-2" tabindex="-1"></a></span>
+<span id="cb310-3"><a href="loops-and-functions.html#cb310-3" tabindex="-1"></a>sq <span class="ot">&lt;-</span> <span class="cf">function</span> (x) {</span>
+<span id="cb310-4"><a href="loops-and-functions.html#cb310-4" tabindex="-1"></a>  </span>
+<span id="cb310-5"><a href="loops-and-functions.html#cb310-5" tabindex="-1"></a>  </span>
+<span id="cb310-6"><a href="loops-and-functions.html#cb310-6" tabindex="-1"></a>  </span>
+<span id="cb310-7"><a href="loops-and-functions.html#cb310-7" tabindex="-1"></a>}</span>
+<span id="cb310-8"><a href="loops-and-functions.html#cb310-8" tabindex="-1"></a></span>
+<span id="cb310-9"><a href="loops-and-functions.html#cb310-9" tabindex="-1"></a><span class="co">#Defining a vector containing a vector from 1 to 10 </span></span>
+<span id="cb310-10"><a href="loops-and-functions.html#cb310-10" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) </span>
+<span id="cb310-11"><a href="loops-and-functions.html#cb310-11" tabindex="-1"></a></span>
+<span id="cb310-12"><a href="loops-and-functions.html#cb310-12" tabindex="-1"></a><span class="co">#Applying the number </span></span>
+<span id="cb310-13"><a href="loops-and-functions.html#cb310-13" tabindex="-1"></a><span class="fu">sq</span>(numbers)</span></code></pre></div>
+</div>
+<div id="exercise-3-1" class="section level3 hasAnchor" number="5.4.3">
+<h3><span class="header-section-number">5.4.3</span> Exercise 3:<a href="loops-and-functions.html#exercise-3-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This is the midnight formula separated in two equations:</p>
+<p>$$</p>
+<p>x_{1,2} = </p>
+<p>$$</p>
+<p>Make <strong>one function</strong> for the midnight formula, so the output are both. Test it with a = 2, b = -6, c = -8</p>
+<p><strong>Hint</strong>: You need two split up the formula into two equations with two outputs.</p>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="loops-and-functions.html#cb311-1" tabindex="-1"></a>mnf <span class="ot">&lt;-</span> </span>
+<span id="cb311-2"><a href="loops-and-functions.html#cb311-2" tabindex="-1"></a></span>
+<span id="cb311-3"><a href="loops-and-functions.html#cb311-3" tabindex="-1"></a></span>
+<span id="cb311-4"><a href="loops-and-functions.html#cb311-4" tabindex="-1"></a><span class="fu">mnf</span>(<span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">8</span>)</span></code></pre></div>
+</div>
+<div id="exercise-4-zodiac-fortune-teller" class="section level3 hasAnchor" number="5.4.4">
+<h3><span class="header-section-number">5.4.4</span> Exercise 4: Zodiac Fortune Teller<a href="loops-and-functions.html#exercise-4-zodiac-fortune-teller" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In the last exercise of this course, we will learn about our future based on our Zodiac Sign. For this we well need a <code>function</code>, a <code>loop</code> and an <code>ifelse</code> condition or function.</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>First we define a function called <code>zodiacFortuneTeller()</code>. This function takes only your sign as input</p></li>
+<li><p>Afterwards we need to define our fortunes for each zodiac with a vector</p></li>
+<li><p>Then we need to define a vector with contains the zodiac signs</p></li>
+<li><p>Lastly we need a <code>for</code> loop, which returns the respective fortune for each zodiac sign.</p></li>
+<li><p>This fortune should be returned</p></li>
+</ol>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="loops-and-functions.html#cb312-1" tabindex="-1"></a>fortune <span class="ot">&lt;-</span> <span class="cf">function</span>(sign) {</span>
+<span id="cb312-2"><a href="loops-and-functions.html#cb312-2" tabindex="-1"></a>  </span>
+<span id="cb312-3"><a href="loops-and-functions.html#cb312-3" tabindex="-1"></a>  <span class="co">#Fortunes vector </span></span>
+<span id="cb312-4"><a href="loops-and-functions.html#cb312-4" tabindex="-1"></a>  fortunes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Exciting opportunities are on the horizon for you!&quot;</span>,</span>
+<span id="cb312-5"><a href="loops-and-functions.html#cb312-5" tabindex="-1"></a>              <span class="st">&quot;Your creative talents will shine brightly this month!&quot;</span>,</span>
+<span id="cb312-6"><a href="loops-and-functions.html#cb312-6" tabindex="-1"></a>              <span class="st">&quot;Financial abundance is heading your way!&quot;</span>,</span>
+<span id="cb312-7"><a href="loops-and-functions.html#cb312-7" tabindex="-1"></a>              <span class="st">&quot;You will experience a period of personal growth and</span></span>
+<span id="cb312-8"><a href="loops-and-functions.html#cb312-8" tabindex="-1"></a><span class="st">              self-discovery!&quot;</span>,</span>
+<span id="cb312-9"><a href="loops-and-functions.html#cb312-9" tabindex="-1"></a>              <span class="st">&quot;New friendships will bring joy and fulfillment into you</span></span>
+<span id="cb312-10"><a href="loops-and-functions.html#cb312-10" tabindex="-1"></a><span class="st">              life!&quot;</span>,</span>
+<span id="cb312-11"><a href="loops-and-functions.html#cb312-11" tabindex="-1"></a>              <span class="st">&quot;Your hard work and dedication will pay off in unexpected</span></span>
+<span id="cb312-12"><a href="loops-and-functions.html#cb312-12" tabindex="-1"></a><span class="st">              ways!&quot;</span>,</span>
+<span id="cb312-13"><a href="loops-and-functions.html#cb312-13" tabindex="-1"></a>              <span class="st">&quot;Travel plans will bring you exciting adventures and memorable</span></span>
+<span id="cb312-14"><a href="loops-and-functions.html#cb312-14" tabindex="-1"></a><span class="st">              experiences!&quot;</span>,</span>
+<span id="cb312-15"><a href="loops-and-functions.html#cb312-15" tabindex="-1"></a>              <span class="st">&quot;A long-awaited dream will finally become a reality!&quot;</span>,</span>
+<span id="cb312-16"><a href="loops-and-functions.html#cb312-16" tabindex="-1"></a>              <span class="st">&quot;Your positive attitude and optimism will attract great</span></span>
+<span id="cb312-17"><a href="loops-and-functions.html#cb312-17" tabindex="-1"></a><span class="st">              success!&quot;</span>,</span>
+<span id="cb312-18"><a href="loops-and-functions.html#cb312-18" tabindex="-1"></a>              <span class="st">&quot;Love and romance will blossom in your life!&quot;</span>,</span>
+<span id="cb312-19"><a href="loops-and-functions.html#cb312-19" tabindex="-1"></a>              <span class="st">&quot;Embrace change and seize new opportunities with confidence!&quot;</span>,</span>
+<span id="cb312-20"><a href="loops-and-functions.html#cb312-20" tabindex="-1"></a>              <span class="st">&quot;Your intuitive insights will guide you to make wise</span></span>
+<span id="cb312-21"><a href="loops-and-functions.html#cb312-21" tabindex="-1"></a><span class="st">              decisions!&quot;</span>,</span>
+<span id="cb312-22"><a href="loops-and-functions.html#cb312-22" tabindex="-1"></a>              <span class="st">&quot;A new career opportunity will open doors to success and</span></span>
+<span id="cb312-23"><a href="loops-and-functions.html#cb312-23" tabindex="-1"></a><span class="st">              fulfillment!&quot;</span>,</span>
+<span id="cb312-24"><a href="loops-and-functions.html#cb312-24" tabindex="-1"></a>              <span class="st">&quot;You have the power to overcome any challenges that come your</span></span>
+<span id="cb312-25"><a href="loops-and-functions.html#cb312-25" tabindex="-1"></a><span class="st">              way!&quot;</span>,</span>
+<span id="cb312-26"><a href="loops-and-functions.html#cb312-26" tabindex="-1"></a>              <span class="st">&quot;Your generosity and kindness will be rewarded abundantly!&quot;</span>,</span>
+<span id="cb312-27"><a href="loops-and-functions.html#cb312-27" tabindex="-1"></a>              <span class="st">&quot;Self-care and self-love will lead to inner peace and harmony!&quot;</span></span>
+<span id="cb312-28"><a href="loops-and-functions.html#cb312-28" tabindex="-1"></a>              )</span>
+<span id="cb312-29"><a href="loops-and-functions.html#cb312-29" tabindex="-1"></a>  </span>
+<span id="cb312-30"><a href="loops-and-functions.html#cb312-30" tabindex="-1"></a>  <span class="co">#Zodiac_sings vector </span></span>
+<span id="cb312-31"><a href="loops-and-functions.html#cb312-31" tabindex="-1"></a>  </span>
+<span id="cb312-32"><a href="loops-and-functions.html#cb312-32" tabindex="-1"></a>  zodiac_signs <span class="ot">&lt;-</span> </span>
+<span id="cb312-33"><a href="loops-and-functions.html#cb312-33" tabindex="-1"></a>  </span>
+<span id="cb312-34"><a href="loops-and-functions.html#cb312-34" tabindex="-1"></a>  <span class="co">#For loop </span></span>
+<span id="cb312-35"><a href="loops-and-functions.html#cb312-35" tabindex="-1"></a></span>
+<span id="cb312-36"><a href="loops-and-functions.html#cb312-36" tabindex="-1"></a>  </span>
+<span id="cb312-37"><a href="loops-and-functions.html#cb312-37" tabindex="-1"></a>  </span>
+<span id="cb312-38"><a href="loops-and-functions.html#cb312-38" tabindex="-1"></a>}</span></code></pre></div>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-visualisation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/Okan2022/bookdown_aiitr/edit/main/05-loops-and-functions.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/Okan2022/bookdown_aiitr/blob/main/05-loops-and-functions.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

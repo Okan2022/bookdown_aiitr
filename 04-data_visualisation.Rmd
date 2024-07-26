@@ -1,7 +1,7 @@
 # Data Visualisation
 
 ```{r loading packages viz}
-pacman::p_load("tidyverse", "babynames", "sf", 
+pacman::p_load("tidyverse", "babynames", "sf", "ggridges",
                "rnaturalearth", "forcats" ,"tmap")
 ```
 
@@ -584,7 +584,7 @@ In the next step, let us plot the popularity of these three names over time.
 
 -   We have to specify the x and y-axis and further add a `geom_line()` layer. So far, so normal. The next thing we do, is to tell ggplot2 that we want groups. We do so, in the `ggplot()` function by setting `group = name`. We should also set the `colors = name`, otherwise all lines will be black and we cannot distinguish, which line belongs to which group.
 
-```{r basic line plot}
+```{r basic line plot groups}
 ggplot(babynames_cut, aes(x = year, y = n,
                       group = name,
                       color = name)) + 

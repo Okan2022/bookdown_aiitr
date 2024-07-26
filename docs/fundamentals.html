@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Fundamentals | An intuitive Introduction to R</title>
+  <meta name="description" content="Chapter 2 Fundamentals | An intuitive Introduction to R" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Fundamentals | An intuitive Introduction to R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Fundamentals | An intuitive Introduction to R" />
+  
+  
+  
+
+<meta name="author" content="Okan Sarioglu" />
+
+
+<meta name="date" content="2024-07-26" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="data-manipulation.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.2.2/leaflet.js"></script>
+<script src="libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.2.2/leaflet-providers-plugin.js"></script>
+<script src="libs/plotly-binding-4.10.4/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">AIITR</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> An Intuitive Introduction to Data Analytics in R</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#welcome"><i class="fa fa-check"></i><b>1.1</b> Welcome !</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#about-this-course"><i class="fa fa-check"></i><b>1.2</b> About this Course</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#prerequisities"><i class="fa fa-check"></i><b>1.2.1</b> Prerequisities</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#what-is-r-and-rstudio"><i class="fa fa-check"></i><b>1.2.2</b> What is <code>R</code> and <code>RStudio</code> ?</a></li>
+<li class="chapter" data-level="1.2.3" data-path="index.html"><a href="index.html#why-r"><i class="fa fa-check"></i><b>1.2.3</b> Why <code>R</code> ?</a></li>
+<li class="chapter" data-level="1.2.4" data-path="index.html"><a href="index.html#what-expects-you-and-what-not"><i class="fa fa-check"></i><b>1.2.4</b> What expects you and what not</a></li>
+<li class="chapter" data-level="1.2.5" data-path="index.html"><a href="index.html#overview-of-the-course-structure"><i class="fa fa-check"></i><b>1.2.5</b> Overview of the course structure:</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#about-me"><i class="fa fa-check"></i><b>1.3</b> About Me</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="fundamentals.html"><a href="fundamentals.html"><i class="fa fa-check"></i><b>2</b> Fundamentals</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="fundamentals.html"><a href="fundamentals.html#getting-familiar-with-rstudio-and-establishing-a-workflow"><i class="fa fa-check"></i><b>2.1</b> Getting familiar with RStudio and establishing a Workflow</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="fundamentals.html"><a href="fundamentals.html#the-user-interface"><i class="fa fa-check"></i><b>2.1.1</b> The user interface</a></li>
+<li class="chapter" data-level="2.1.2" data-path="fundamentals.html"><a href="fundamentals.html#how-to-design-it-according-to-your-preferences-optional"><i class="fa fa-check"></i><b>2.1.2</b> How to design it according to your preferences (optional)</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="fundamentals.html"><a href="fundamentals.html#lets-get-started-r-as-a-fancy-calculator"><i class="fa fa-check"></i><b>2.2</b> Lets get started: R as a fancy calculator</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="fundamentals.html"><a href="fundamentals.html#mathmetical-operations-in-r"><i class="fa fa-check"></i><b>2.2.1</b> Mathmetical Operations in R</a></li>
+<li class="chapter" data-level="2.2.2" data-path="fundamentals.html"><a href="fundamentals.html#using-commands"><i class="fa fa-check"></i><b>2.2.2</b> Using Commands</a></li>
+<li class="chapter" data-level="2.2.3" data-path="fundamentals.html"><a href="fundamentals.html#assigning-objects-and-printing-them"><i class="fa fa-check"></i><b>2.2.3</b> Assigning objects and printing them</a></li>
+<li class="chapter" data-level="2.2.4" data-path="fundamentals.html"><a href="fundamentals.html#vectors"><i class="fa fa-check"></i><b>2.2.4</b> Vectors</a></li>
+<li class="chapter" data-level="2.2.5" data-path="fundamentals.html"><a href="fundamentals.html#object-classes"><i class="fa fa-check"></i><b>2.2.5</b> Object Classes</a></li>
+<li class="chapter" data-level="2.2.6" data-path="fundamentals.html"><a href="fundamentals.html#matrices"><i class="fa fa-check"></i><b>2.2.6</b> Matrices</a></li>
+<li class="chapter" data-level="2.2.7" data-path="fundamentals.html"><a href="fundamentals.html#data-frames"><i class="fa fa-check"></i><b>2.2.7</b> Data Frames</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="fundamentals.html"><a href="fundamentals.html#the-ifelse-function-and-ifelse-conditions"><i class="fa fa-check"></i><b>2.3</b> The <code>ifelse()</code> function and <code>ifelse</code> conditions:</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="fundamentals.html"><a href="fundamentals.html#simple-if-command"><i class="fa fa-check"></i><b>2.3.1</b> Simple if command</a></li>
+<li class="chapter" data-level="2.3.2" data-path="fundamentals.html"><a href="fundamentals.html#ifelse-command"><i class="fa fa-check"></i><b>2.3.2</b> <code>ifelse()</code> command</a></li>
+<li class="chapter" data-level="2.3.3" data-path="fundamentals.html"><a href="fundamentals.html#if-else-ladders-if-else-with-multiple-conditions"><i class="fa fa-check"></i><b>2.3.3</b> if else ladders/ if else with multiple conditions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="fundamentals.html"><a href="fundamentals.html#exercise-section"><i class="fa fa-check"></i><b>2.4</b> Exercise Section:</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="fundamentals.html"><a href="fundamentals.html#exercise-1"><i class="fa fa-check"></i><b>2.4.1</b> Exercise 1:</a></li>
+<li class="chapter" data-level="2.4.2" data-path="fundamentals.html"><a href="fundamentals.html#exercise-2"><i class="fa fa-check"></i><b>2.4.2</b> Exercise 2:</a></li>
+<li class="chapter" data-level="2.4.3" data-path="fundamentals.html"><a href="fundamentals.html#exercise-3"><i class="fa fa-check"></i><b>2.4.3</b> Exercise 3:</a></li>
+<li class="chapter" data-level="2.4.4" data-path="fundamentals.html"><a href="fundamentals.html#exercise-4"><i class="fa fa-check"></i><b>2.4.4</b> Exercise 4:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-manipulation.html"><a href="data-manipulation.html"><i class="fa fa-check"></i><b>3</b> Data Manipulation</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-manipulation.html"><a href="data-manipulation.html#packages"><i class="fa fa-check"></i><b>3.1</b> Packages</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="data-manipulation.html"><a href="data-manipulation.html#the-tidyverse-package"><i class="fa fa-check"></i><b>3.1.1</b> The <code>tidyverse</code> package</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="data-manipulation.html"><a href="data-manipulation.html#working-with-packages"><i class="fa fa-check"></i><b>3.2</b> Working with packages</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="data-manipulation.html"><a href="data-manipulation.html#installing-packages"><i class="fa fa-check"></i><b>3.2.1</b> Installing packages</a></li>
+<li class="chapter" data-level="3.2.2" data-path="data-manipulation.html"><a href="data-manipulation.html#loading-your-packages"><i class="fa fa-check"></i><b>3.2.2</b> Loading your packages</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="data-manipulation.html"><a href="data-manipulation.html#the-data-we-will-work-with-the-european-social-survey-ess"><i class="fa fa-check"></i><b>3.3</b> The Data we will work with: The European Social Survey (ESS)</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="data-manipulation.html"><a href="data-manipulation.html#load-the-data"><i class="fa fa-check"></i><b>3.3.1</b> Load the data</a></li>
+<li class="chapter" data-level="3.3.2" data-path="data-manipulation.html"><a href="data-manipulation.html#one-last-thing-pipelines"><i class="fa fa-check"></i><b>3.3.2</b> One last thing: Pipelines</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="data-manipulation.html"><a href="data-manipulation.html#lets-wrangle-the-data"><i class="fa fa-check"></i><b>3.4</b> Let’s wrangle the data</a></li>
+<li class="chapter" data-level="3.5" data-path="data-manipulation.html"><a href="data-manipulation.html#the-dplyr-package"><i class="fa fa-check"></i><b>3.5</b> The <code>dplyr</code> package</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="data-manipulation.html"><a href="data-manipulation.html#the-filter-command"><i class="fa fa-check"></i><b>3.5.1</b> The <code>filter()</code> command</a></li>
+<li class="chapter" data-level="3.5.2" data-path="data-manipulation.html"><a href="data-manipulation.html#the-select-function"><i class="fa fa-check"></i><b>3.5.2</b> The <code>select()</code> function:</a></li>
+<li class="chapter" data-level="3.5.3" data-path="data-manipulation.html"><a href="data-manipulation.html#the-arrange-function"><i class="fa fa-check"></i><b>3.5.3</b> The <code>arrange()</code> function</a></li>
+<li class="chapter" data-level="3.5.4" data-path="data-manipulation.html"><a href="data-manipulation.html#the-rename-and-relocate-function"><i class="fa fa-check"></i><b>3.5.4</b> The <code>rename()</code> and <code>relocate()</code> function</a></li>
+<li class="chapter" data-level="3.5.5" data-path="data-manipulation.html"><a href="data-manipulation.html#the-mutate-function"><i class="fa fa-check"></i><b>3.5.5</b> The <code>mutate()</code> function</a></li>
+<li class="chapter" data-level="3.5.6" data-path="data-manipulation.html"><a href="data-manipulation.html#the-group_by-and-summarize-functions"><i class="fa fa-check"></i><b>3.5.6</b> The <code>group_by()</code> and <code>summarize()</code> functions</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="data-manipulation.html"><a href="data-manipulation.html#merging-datasets"><i class="fa fa-check"></i><b>3.6</b> Merging Datasets</a></li>
+<li class="chapter" data-level="3.7" data-path="data-manipulation.html"><a href="data-manipulation.html#outlook"><i class="fa fa-check"></i><b>3.7</b> Outlook</a></li>
+<li class="chapter" data-level="3.8" data-path="data-manipulation.html"><a href="data-manipulation.html#exercise-section-1"><i class="fa fa-check"></i><b>3.8</b> Exercise Section:</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="data-manipulation.html"><a href="data-manipulation.html#exercise-1-lets-wrangle-kid"><i class="fa fa-check"></i><b>3.8.1</b> Exercise 1: Let’s wrangle kid</a></li>
+<li class="chapter" data-level="3.8.2" data-path="data-manipulation.html"><a href="data-manipulation.html#exercise-2-merging-datasets"><i class="fa fa-check"></i><b>3.8.2</b> Exercise 2: Merging Datasets</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="data-manipulation.html"><a href="data-manipulation.html#section"><i class="fa fa-check"></i><b>3.9</b> </a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-visualisation.html"><a href="data-visualisation.html"><i class="fa fa-check"></i><b>4</b> Data Visualisation</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="data-visualisation.html"><a href="data-visualisation.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="data-visualisation.html"><a href="data-visualisation.html#distributions-histogram-density-plots-and-boxplots"><i class="fa fa-check"></i><b>4.2</b> Distributions: Histogram, Density Plots, and Boxplots</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="data-visualisation.html"><a href="data-visualisation.html#histograms"><i class="fa fa-check"></i><b>4.2.1</b> Histograms</a></li>
+<li class="chapter" data-level="4.2.2" data-path="data-visualisation.html"><a href="data-visualisation.html#density-plots"><i class="fa fa-check"></i><b>4.2.2</b> Density Plots</a></li>
+<li class="chapter" data-level="4.2.3" data-path="data-visualisation.html"><a href="data-visualisation.html#boxplots"><i class="fa fa-check"></i><b>4.2.3</b> Boxplots</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="data-visualisation.html"><a href="data-visualisation.html#ranking-barplot"><i class="fa fa-check"></i><b>4.3</b> Ranking: Barplot</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="data-visualisation.html"><a href="data-visualisation.html#basic-barplot"><i class="fa fa-check"></i><b>4.3.1</b> Basic Barplot</a></li>
+<li class="chapter" data-level="4.3.2" data-path="data-visualisation.html"><a href="data-visualisation.html#reordering-them"><i class="fa fa-check"></i><b>4.3.2</b> Reordering them</a></li>
+<li class="chapter" data-level="4.3.3" data-path="data-visualisation.html"><a href="data-visualisation.html#grouped-and-stacked-barplots"><i class="fa fa-check"></i><b>4.3.3</b> Grouped and Stacked Barplots</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="data-visualisation.html"><a href="data-visualisation.html#evolution-line-chart"><i class="fa fa-check"></i><b>4.4</b> Evolution: Line Chart</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="data-visualisation.html"><a href="data-visualisation.html#basic-line-plot"><i class="fa fa-check"></i><b>4.4.1</b> Basic Line Plot</a></li>
+<li class="chapter" data-level="4.4.2" data-path="data-visualisation.html"><a href="data-visualisation.html#multiple-line-chart"><i class="fa fa-check"></i><b>4.4.2</b> Multiple Line Chart</a></li>
+<li class="chapter" data-level="4.4.3" data-path="data-visualisation.html"><a href="data-visualisation.html#grouped-line-charts"><i class="fa fa-check"></i><b>4.4.3</b> Grouped Line Charts</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="data-visualisation.html"><a href="data-visualisation.html#correlation-scatterplots"><i class="fa fa-check"></i><b>4.5</b> Correlation: Scatterplots</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="data-visualisation.html"><a href="data-visualisation.html#basic-scatterplot"><i class="fa fa-check"></i><b>4.5.1</b> Basic Scatterplot</a></li>
+<li class="chapter" data-level="4.5.2" data-path="data-visualisation.html"><a href="data-visualisation.html#scatter-plots-with-multiple-groups"><i class="fa fa-check"></i><b>4.5.2</b> Scatter Plots with multiple Groups</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="data-visualisation.html"><a href="data-visualisation.html#making-plots-with-facet_wrap-and-facet_grid"><i class="fa fa-check"></i><b>4.6</b> Making Plots with <code>facet_wrap()</code> and <code>facet_grid()</code></a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="data-visualisation.html"><a href="data-visualisation.html#the-facet_wrap-function"><i class="fa fa-check"></i><b>4.6.1</b> The <code>facet_wrap()</code> function</a></li>
+<li class="chapter" data-level="4.6.2" data-path="data-visualisation.html"><a href="data-visualisation.html#the-facet_grid-function"><i class="fa fa-check"></i><b>4.6.2</b> The <code>facet_grid()</code> function</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="data-visualisation.html"><a href="data-visualisation.html#outlook-1"><i class="fa fa-check"></i><b>4.7</b> Outlook</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="data-visualisation.html"><a href="data-visualisation.html#combining-different-types-of-graphs"><i class="fa fa-check"></i><b>4.7.1</b> Combining different types of Graphs</a></li>
+<li class="chapter" data-level="4.7.2" data-path="data-visualisation.html"><a href="data-visualisation.html#distributions-ridgeline-chart-and-violin-chart"><i class="fa fa-check"></i><b>4.7.2</b> Distributions: Ridgeline Chart and Violin Chart</a></li>
+<li class="chapter" data-level="4.7.3" data-path="data-visualisation.html"><a href="data-visualisation.html#ranking-lollipop-charts-and-radar-charts"><i class="fa fa-check"></i><b>4.7.3</b> Ranking: Lollipop Charts and Radar Charts</a></li>
+<li class="chapter" data-level="4.7.4" data-path="data-visualisation.html"><a href="data-visualisation.html#maps"><i class="fa fa-check"></i><b>4.7.4</b> Maps</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="loops-and-functions.html"><a href="loops-and-functions.html"><i class="fa fa-check"></i><b>5</b> Loops and Functions</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="loops-and-functions.html"><a href="loops-and-functions.html#loops"><i class="fa fa-check"></i><b>5.1</b> Loops</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="loops-and-functions.html"><a href="loops-and-functions.html#for-loops"><i class="fa fa-check"></i><b>5.1.1</b> <code>For</code> loops</a></li>
+<li class="chapter" data-level="5.1.2" data-path="loops-and-functions.html"><a href="loops-and-functions.html#nested-loops"><i class="fa fa-check"></i><b>5.1.2</b> Nested Loops</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="loops-and-functions.html"><a href="loops-and-functions.html#apply-function-family"><i class="fa fa-check"></i><b>5.2</b> <code>apply()</code> Function Family</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="loops-and-functions.html"><a href="loops-and-functions.html#apply"><i class="fa fa-check"></i><b>5.2.1</b> <code>apply()</code></a></li>
+<li class="chapter" data-level="5.2.2" data-path="loops-and-functions.html"><a href="loops-and-functions.html#notes"><i class="fa fa-check"></i><b>5.2.2</b> Notes</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="loops-and-functions.html"><a href="loops-and-functions.html#writing-your-own-functions"><i class="fa fa-check"></i><b>5.3</b> Writing your own functions</a></li>
+<li class="chapter" data-level="5.4" data-path="loops-and-functions.html"><a href="loops-and-functions.html#exercise-section-2"><i class="fa fa-check"></i><b>5.4</b> Exercise Section</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="loops-and-functions.html"><a href="loops-and-functions.html#exercise-1-1"><i class="fa fa-check"></i><b>5.4.1</b> Exercise 1:</a></li>
+<li class="chapter" data-level="5.4.2" data-path="loops-and-functions.html"><a href="loops-and-functions.html#exercise-2-1"><i class="fa fa-check"></i><b>5.4.2</b> Exercise 2:</a></li>
+<li class="chapter" data-level="5.4.3" data-path="loops-and-functions.html"><a href="loops-and-functions.html#exercise-3-1"><i class="fa fa-check"></i><b>5.4.3</b> Exercise 3:</a></li>
+<li class="chapter" data-level="5.4.4" data-path="loops-and-functions.html"><a href="loops-and-functions.html#exercise-4-zodiac-fortune-teller"><i class="fa fa-check"></i><b>5.4.4</b> Exercise 4: Zodiac Fortune Teller</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="data-analysis.html"><a href="data-analysis.html"><i class="fa fa-check"></i><b>6</b> Data Analysis</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="data-analysis.html"><a href="data-analysis.html#introduction-1"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="data-analysis.html"><a href="data-analysis.html#linear-regression"><i class="fa fa-check"></i><b>6.2</b> Linear Regression</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="data-analysis.html"><a href="data-analysis.html#terminology"><i class="fa fa-check"></i><b>6.2.1</b> Terminology</a></li>
+<li class="chapter" data-level="6.2.2" data-path="data-analysis.html"><a href="data-analysis.html#estimating-the-ordinary-least-squares-estimator"><i class="fa fa-check"></i><b>6.2.2</b> Estimating the Ordinary Least Squares Estimator</a></li>
+<li class="chapter" data-level="6.2.3" data-path="data-analysis.html"><a href="data-analysis.html#predictions-with-linear-regression"><i class="fa fa-check"></i><b>6.2.3</b> Predictions with Linear Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="data-analysis.html"><a href="data-analysis.html#model-fit"><i class="fa fa-check"></i><b>6.3</b> Model Fit</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="data-analysis.html"><a href="data-analysis.html#measures-of-fit"><i class="fa fa-check"></i><b>6.3.1</b> Measures of Fit</a></li>
+<li class="chapter" data-level="6.3.2" data-path="data-analysis.html"><a href="data-analysis.html#tss-ess-and-r2"><i class="fa fa-check"></i><b>6.3.2</b> TSS, ESS and <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="6.3.3" data-path="data-analysis.html"><a href="data-analysis.html#influential-outliers"><i class="fa fa-check"></i><b>6.3.3</b> Influential Outliers</a></li>
+<li class="chapter" data-level="6.3.4" data-path="data-analysis.html"><a href="data-analysis.html#functional-form"><i class="fa fa-check"></i><b>6.3.4</b> Functional Form</a></li>
+<li class="chapter" data-level="6.3.5" data-path="data-analysis.html"><a href="data-analysis.html#independent-observation"><i class="fa fa-check"></i><b>6.3.5</b> Independent Observation</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="data-analysis.html"><a href="data-analysis.html#hypothesis-testing-in-r"><i class="fa fa-check"></i><b>6.4</b> Hypothesis Testing in R</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="data-analysis.html"><a href="data-analysis.html#standard-error"><i class="fa fa-check"></i><b>6.4.1</b> Standard Error</a></li>
+<li class="chapter" data-level="6.4.2" data-path="data-analysis.html"><a href="data-analysis.html#t-value-or-t-statistic"><i class="fa fa-check"></i><b>6.4.2</b> T-Value or T-Statistic</a></li>
+<li class="chapter" data-level="6.4.3" data-path="data-analysis.html"><a href="data-analysis.html#p-values"><i class="fa fa-check"></i><b>6.4.3</b> p-values</a></li>
+<li class="chapter" data-level="6.4.4" data-path="data-analysis.html"><a href="data-analysis.html#confidence-interval"><i class="fa fa-check"></i><b>6.4.4</b> Confidence Interval</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="data-analysis.html"><a href="data-analysis.html#multivariate-regression"><i class="fa fa-check"></i><b>6.5</b> Multivariate Regression</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="data-analysis.html"><a href="data-analysis.html#model-fit-adjusted-r-squared"><i class="fa fa-check"></i><b>6.5.1</b> Model Fit: Adjusted R-squared</a></li>
+<li class="chapter" data-level="6.5.2" data-path="data-analysis.html"><a href="data-analysis.html#omitted-variable-bias"><i class="fa fa-check"></i><b>6.5.2</b> Omitted Variable Bias</a></li>
+<li class="chapter" data-level="6.5.3" data-path="data-analysis.html"><a href="data-analysis.html#multicollinearity"><i class="fa fa-check"></i><b>6.5.3</b> Multicollinearity</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="data-analysis.html"><a href="data-analysis.html#categorical-variables"><i class="fa fa-check"></i><b>6.6</b> Categorical Variables</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="data-analysis.html"><a href="data-analysis.html#interaction-effects"><i class="fa fa-check"></i><b>6.6.1</b> Interaction Effects</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="data-analysis.html"><a href="data-analysis.html#outlook-2"><i class="fa fa-check"></i><b>6.7</b> Outlook</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">An intuitive Introduction to R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="fundamentals" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Fundamentals<a href="fundamentals.html#fundamentals" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="getting-familiar-with-rstudio-and-establishing-a-workflow" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Getting familiar with RStudio and establishing a Workflow<a href="fundamentals.html#getting-familiar-with-rstudio-and-establishing-a-workflow" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="the-user-interface" class="section level3 hasAnchor" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> The user interface<a href="fundamentals.html#the-user-interface" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>RStudio has four main components and each of them has a purpose:</p>
+<div class="float">
+<img src="images/example1.jpeg" width="4750" alt="Figure 1: Standard RStudio Interface" />
+<div class="figcaption"><strong>Figure 1: Standard RStudio Interface</strong></div>
+</div>
+<ul>
+<li><p><strong>On the top left</strong> you can see the <strong>Source</strong> window. In this window you write and run your code. The console opens after you choose, which type of Script you want to use:</p></li>
+<li><p>The standard <strong>R Script</strong> (<code>Ctrl + Shift + N</code>): In this file you can just write your code and run it. You can also make commenting lines with putting a <code>#</code> in front of it.</p></li>
+<li><p>The <strong>R Markdown File</strong>: In contrast to the standard <strong>R Script</strong> not everything written in a <strong>R Markdown File</strong> is automatically considered as Code (if not written after an <code>#</code>). A <strong>R Markdown File</strong> has options to design an HTML Output and a PDF Output. This can increase your efficiency in terms of working with partners. Further, you can write your code in <strong>chunks</strong> and have plenty options to work with those <strong>chunks</strong>. In QM and AQM you will exclusively use <strong>R Markdown</strong> and over time you will see the advantages of R Markdown.</p></li>
+<li><p><strong>On the top right</strong> you can see the <strong>Environment</strong>. Here you have an overview over all the objects currently loaded in your environment. You will learn more about objects later in the course.</p></li>
+<li><p><strong>On the bottom left</strong> you have the <strong>Console</strong>: This is where the results appear once you execute your R-code. You can also directly type R-code into the console and execute it. However, we cannot save this code which is why we usually work in the Editor.</p></li>
+<li><p><strong>On the bottom right</strong> you can see the <strong>Output</strong>: Plots (if you use the standard R Script) and other things will appear here, don’t worry too much about it for the moment.</p></li>
+</ul>
+</div>
+<div id="how-to-design-it-according-to-your-preferences-optional" class="section level3 hasAnchor" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> How to design it according to your preferences (optional)<a href="fundamentals.html#how-to-design-it-according-to-your-preferences-optional" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>You can change the appearance of <code>RStudio</code>: <code>Tools &gt; Global Options &gt; Appearance</code>. Here you can change the zoom of the Console, the font size of the your letters and the style of your code. Further, you can change RStudio to a dark theme. Play around with it and find out how it is the most comfortable for you and of course you can change it over time.</p></li>
+<li><p>You can change the <strong>Pane Layout</strong> meaning where the four components of RStudio should be: <code>RStudio</code>: <code>Tools &gt; Global Options &gt; Pane Layout</code>.</p></li>
+<li><p>You should use key shortcuts. There are pre-installed short-cuts of RStudio, which are really helpful. You should get familiar with them. <code>Tools &gt; Key Shortcut Helps</code> or directly with <code>Ctrl + Shift + K</code>. You can add your own Key Shortcuts and we will do that in this course.</p></li>
+</ul>
+</div>
+</div>
+<div id="lets-get-started-r-as-a-fancy-calculator" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Lets get started: R as a fancy calculator<a href="fundamentals.html#lets-get-started-r-as-a-fancy-calculator" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="mathmetical-operations-in-r" class="section level3 hasAnchor" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Mathmetical Operations in R<a href="fundamentals.html#mathmetical-operations-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You can use R for basic calculations:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="fundamentals.html#cb1-1" tabindex="-1"></a><span class="co">#You can use hashtags to comment</span></span>
+<span id="cb1-2"><a href="fundamentals.html#cb1-2" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="fundamentals.html#cb1-3" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span> <span class="co">#Addition</span></span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="fundamentals.html#cb3-1" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="dv">1</span> <span class="co">#Substraction</span></span></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="fundamentals.html#cb5-1" tabindex="-1"></a><span class="dv">1</span> <span class="sc">*</span> <span class="dv">1</span> <span class="co">#Multiplication </span></span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="fundamentals.html#cb7-1" tabindex="-1"></a><span class="dv">1</span> <span class="sc">/</span> <span class="dv">1</span> <span class="co">#Division</span></span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="fundamentals.html#cb9-1" tabindex="-1"></a><span class="dv">2</span><span class="sc">^</span>(<span class="dv">1</span> <span class="sc">/</span> <span class="dv">2</span>) <span class="co">#Mixed Terms</span></span></code></pre></div>
+<pre><code>## [1] 1.414214</code></pre>
+<p>You can use R also for TRUE/FALSE statements for logical statements via the comparison operators:</p>
+<ul>
+<li><code>&gt;</code> greater than</li>
+<li><code>&lt;</code> smaller than</li>
+<li><code>==</code> equal</li>
+<li><code>!=</code> not equal</li>
+<li><code>&gt;=</code> greater than or equal to</li>
+<li><code>&lt;=</code> less than or equal to</li>
+</ul>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="fundamentals.html#cb11-1" tabindex="-1"></a><span class="dv">1</span> <span class="sc">&lt;</span> <span class="dv">3</span> <span class="co">#TRUE</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="fundamentals.html#cb13-1" tabindex="-1"></a><span class="dv">5</span> <span class="sc">&gt;=</span> <span class="dv">8</span> <span class="co">#FALSE</span></span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="fundamentals.html#cb15-1" tabindex="-1"></a><span class="dv">11</span> <span class="sc">!=</span> <span class="dv">10</span> <span class="co">#TRUE</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="fundamentals.html#cb17-1" tabindex="-1"></a><span class="dv">22</span> <span class="sc">==</span> <span class="dv">22</span> <span class="co">#TRUE</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="fundamentals.html#cb19-1" tabindex="-1"></a><span class="dv">7</span> <span class="sc">&lt;</span> <span class="dv">3</span> <span class="co">#FALSE</span></span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="fundamentals.html#cb21-1" tabindex="-1"></a><span class="dv">5</span> <span class="sc">&lt;=</span> <span class="dv">2</span><span class="sc">+</span><span class="dv">3</span> <span class="co">#TRUE</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p>You can also use logical operators: - <code>&amp;</code> element-wise AND operator. It returns TRUE if both elements are true - <code>|</code> element-wise OR operator. It returns TRUE if one of the statements is TRUE - <code>!</code> Logical NOT operator. It returns FALSE if statement is TRUE</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="fundamentals.html#cb23-1" tabindex="-1"></a><span class="dv">5</span> <span class="sc">&amp;</span> <span class="dv">4</span> <span class="sc">&lt;</span> <span class="dv">8</span> <span class="co">#TRUE</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="fundamentals.html#cb25-1" tabindex="-1"></a><span class="dv">5</span> <span class="sc">|</span> <span class="dv">4</span> <span class="sc">&lt;</span> <span class="dv">8</span> <span class="co">#TRUE</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="fundamentals.html#cb27-1" tabindex="-1"></a><span class="sc">!</span><span class="dv">5</span> <span class="sc">&gt;</span> <span class="dv">2</span> <span class="co">#FALSE</span></span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+</div>
+<div id="using-commands" class="section level3 hasAnchor" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> Using Commands<a href="fundamentals.html#using-commands" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For more advanced operations you can and should use functions. Functios are mostly a word with brackets. Within a function, there are so called arguments. These arguments specify the function and give it the information it needs + optional information.</p>
+<p>e.g.</p>
+<ul>
+<li><code>sqrt(x)</code> taking the square root, <code>x</code> is any number.</li>
+<li><code>exp(x)</code> the constant e, <code>x</code> is any number.</li>
+<li><code>mean(x)</code> for the mean, <code>x</code> is any number.</li>
+<li><code>median(x)</code> for the median, <code>x</code> is any number.</li>
+</ul>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="fundamentals.html#cb29-1" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="at">x =</span> <span class="dv">36</span>) <span class="co">#square root</span></span>
+<span id="cb29-2"><a href="fundamentals.html#cb29-2" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="fundamentals.html#cb29-3" tabindex="-1"></a><span class="fu">exp</span>(<span class="at">x =</span> <span class="dv">0</span>) <span class="co"># exponential of 1</span></span>
+<span id="cb29-4"><a href="fundamentals.html#cb29-4" tabindex="-1"></a></span>
+<span id="cb29-5"><a href="fundamentals.html#cb29-5" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;U can stay under my umbrella&quot;</span>) <span class="co">#with this command you can print what you want </span></span></code></pre></div>
+<p>I explicitly choose easy examples, but sometimes commands can be complicated, because they demand special inputs. To get help, our first step should be to ask R itself:</p>
+<ul>
+<li><p>You can put a question mark in front of a function and execute it. In your output under the tab “Help” an explanation with examples will pop up and explain the function.</p></li>
+<li><p>You can also call the help() function and put the function you want to learn about without brackets in the help() function.</p></li>
+</ul>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="fundamentals.html#cb30-1" tabindex="-1"></a>?<span class="fu">exp</span>() <span class="co">#questionmark</span></span>
+<span id="cb30-2"><a href="fundamentals.html#cb30-2" tabindex="-1"></a><span class="fu">help</span>(exp) <span class="co">#help command</span></span></code></pre></div>
+</div>
+<div id="assigning-objects-and-printing-them" class="section level3 hasAnchor" number="2.2.3">
+<h3><span class="header-section-number">2.2.3</span> Assigning objects and printing them<a href="fundamentals.html#assigning-objects-and-printing-them" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Most of the time you will store your results in objects.</p>
+<ul>
+<li><p>You can do so by using the <code>&lt;-</code> operator. Afterwards you can work with the objects. Let us assign numbers to out objects.</p></li>
+<li><p>The objects will be saved and you can see them in your environment.</p></li>
+</ul>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="fundamentals.html#cb31-1" tabindex="-1"></a>Pizza <span class="ot">&lt;-</span> <span class="fl">7.50</span> <span class="co">#pizza object</span></span>
+<span id="cb31-2"><a href="fundamentals.html#cb31-2" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="fundamentals.html#cb31-3" tabindex="-1"></a>Cola <span class="ot">&lt;-</span> <span class="fl">3.50</span> <span class="co">#cola object</span></span>
+<span id="cb31-4"><a href="fundamentals.html#cb31-4" tabindex="-1"></a></span>
+<span id="cb31-5"><a href="fundamentals.html#cb31-5" tabindex="-1"></a>Pizza <span class="sc">+</span> Cola <span class="co">#addition of objects</span></span></code></pre></div>
+<pre><code>## [1] 11</code></pre>
+<p>We can then go on work with the content of the objects.</p>
+<ul>
+<li><p>For beginners, let us add the object Pizza and the object Cola together.</p></li>
+<li><p>We can also save the result of those object in a new object and work with this object and this can go on forever technically.</p></li>
+</ul>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="fundamentals.html#cb33-1" tabindex="-1"></a>Offer <span class="ot">&lt;-</span> Pizza <span class="sc">+</span> Cola <span class="co">#assigning addition </span></span>
+<span id="cb33-2"><a href="fundamentals.html#cb33-2" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="fundamentals.html#cb33-3" tabindex="-1"></a>Offer <span class="co">#printing the object</span></span></code></pre></div>
+<pre><code>## [1] 11</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="fundamentals.html#cb35-1" tabindex="-1"></a>Offer<span class="sc">^</span><span class="dv">2</span> <span class="co">#square the term with ^2</span></span></code></pre></div>
+<pre><code>## [1] 121</code></pre>
+</div>
+<div id="vectors" class="section level3 hasAnchor" number="2.2.4">
+<h3><span class="header-section-number">2.2.4</span> Vectors<a href="fundamentals.html#vectors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In R a vector contains more than one information.</p>
+<ul>
+<li>You use the <code>c()</code> command, and divide the information with a <code>,</code>. Let us compare food prices:</li>
+</ul>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="fundamentals.html#cb37-1" tabindex="-1"></a>food <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Pizza&quot;</span>, <span class="st">&quot;Kebab&quot;</span>, <span class="st">&quot;Curry&quot;</span>, </span>
+<span id="cb37-2"><a href="fundamentals.html#cb37-2" tabindex="-1"></a>          <span class="st">&quot;Fish&quot;</span>, <span class="st">&quot;Burrito&quot;</span>) <span class="co">#food vector</span></span>
+<span id="cb37-3"><a href="fundamentals.html#cb37-3" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="fundamentals.html#cb37-4" tabindex="-1"></a><span class="fu">print</span>(food) <span class="co">#printing it </span></span></code></pre></div>
+<pre><code>## [1] &quot;Pizza&quot;   &quot;Kebab&quot;   &quot;Curry&quot;   &quot;Fish&quot;    &quot;Burrito&quot;</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="fundamentals.html#cb39-1" tabindex="-1"></a>prices <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">7.50</span>, <span class="fl">6.00</span>, <span class="fl">8.50</span>, <span class="fl">3.00</span>, <span class="fl">11.00</span>) <span class="co">#price vector</span></span>
+<span id="cb39-2"><a href="fundamentals.html#cb39-2" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="fundamentals.html#cb39-3" tabindex="-1"></a><span class="fu">print</span>(prices) <span class="co">#printing it</span></span></code></pre></div>
+<pre><code>## [1]  7.5  6.0  8.5  3.0 11.0</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="fundamentals.html#cb41-1" tabindex="-1"></a>cola_prices <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">3.50</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="fl">2.50</span>, <span class="dv">3</span>) <span class="co">#cola prices vector</span></span>
+<span id="cb41-2"><a href="fundamentals.html#cb41-2" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="fundamentals.html#cb41-3" tabindex="-1"></a><span class="fu">print</span>(cola_prices) <span class="co">#printing it</span></span></code></pre></div>
+<pre><code>## [1] 3.5 3.0 4.0 2.5 3.0</code></pre>
+<p>Now we can calculate the prices for a decent meal in one step by adding the two vectors together. The vector prices_combined will give us the prices for a meal plus a cola:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="fundamentals.html#cb43-1" tabindex="-1"></a>prices_combined <span class="ot">&lt;-</span> prices <span class="sc">+</span> cola_prices <span class="co">#prices combined</span></span>
+<span id="cb43-2"><a href="fundamentals.html#cb43-2" tabindex="-1"></a></span>
+<span id="cb43-3"><a href="fundamentals.html#cb43-3" tabindex="-1"></a><span class="fu">print</span>(prices_combined) <span class="co">#printing it</span></span></code></pre></div>
+<pre><code>## [1] 11.0  9.0 12.5  5.5 14.0</code></pre>
+</div>
+<div id="object-classes" class="section level3 hasAnchor" number="2.2.5">
+<h3><span class="header-section-number">2.2.5</span> Object Classes<a href="fundamentals.html#object-classes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Objects can contain information of different <em>data types</em>:</p>
+<table>
+<colgroup>
+<col width="23%" />
+<col width="23%" />
+<col width="52%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Numeric</strong></td>
+<td>Numbers</td>
+<td><code>c(1, 2.4, 3.14, 4)</code></td>
+</tr>
+<tr class="even">
+<td><strong>Character</strong></td>
+<td>Text</td>
+<td><code>c("1", "blue", "fun", "monster")</code></td>
+</tr>
+<tr class="odd">
+<td><strong>Logical</strong></td>
+<td>True or false</td>
+<td><code>c(TRUE, FALSE, TRUE, FALSE)</code></td>
+</tr>
+<tr class="even">
+<td><strong>Factor</strong></td>
+<td>Category</td>
+<td><code>c("Strongly disagree", "Agree", "Neutral")</code></td>
+</tr>
+</tbody>
+</table>
+<p>For data analysis commands sometimes require special object classes. With the <code>class()</code> command we can find out the class. And with <code>as.numeric</code> for example we can change classes by assigning it to itself, by it is common to assign it to a new object:</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="fundamentals.html#cb45-1" tabindex="-1"></a><span class="co">#Let us find out the classes </span></span>
+<span id="cb45-2"><a href="fundamentals.html#cb45-2" tabindex="-1"></a><span class="fu">class</span>(prices) <span class="co">#numeric</span></span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="fundamentals.html#cb47-1" tabindex="-1"></a><span class="fu">class</span>(food) <span class="co">#character</span></span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="fundamentals.html#cb49-1" tabindex="-1"></a><span class="fu">class</span>(cola_prices) <span class="co">#numeric</span></span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<p>We can also change the classes of variables. To do so, we can use <code>as.factor()</code>, <code>as.numeric()</code>, <code>as.character()</code> and so forth. You can do that for every class. Let us change the cola_prices to a vector.</p>
+<ul>
+<li>To do so, we change call <code>as.character()</code> and put the object in it. Then we assign it to another object called <code>cola_prices_character</code>. This object will have the class <code>"character"</code>.</li>
+</ul>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="fundamentals.html#cb51-1" tabindex="-1"></a><span class="co">#We want the cola_prices vector to be a character </span></span>
+<span id="cb51-2"><a href="fundamentals.html#cb51-2" tabindex="-1"></a>cola_prices_character <span class="ot">&lt;-</span> <span class="fu">as.character</span>(cola_prices)</span>
+<span id="cb51-3"><a href="fundamentals.html#cb51-3" tabindex="-1"></a></span>
+<span id="cb51-4"><a href="fundamentals.html#cb51-4" tabindex="-1"></a><span class="co">#Checking it</span></span>
+<span id="cb51-5"><a href="fundamentals.html#cb51-5" tabindex="-1"></a><span class="fu">class</span>(cola_prices_character)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="fundamentals.html#cb53-1" tabindex="-1"></a><span class="fu">print</span>(cola_prices_character)</span></code></pre></div>
+<pre><code>## [1] &quot;3.5&quot; &quot;3&quot;   &quot;4&quot;   &quot;2.5&quot; &quot;3&quot;</code></pre>
+</div>
+<div id="matrices" class="section level3 hasAnchor" number="2.2.6">
+<h3><span class="header-section-number">2.2.6</span> Matrices<a href="fundamentals.html#matrices" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="making-matrices" class="section level4 hasAnchor" number="2.2.6.1">
+<h4><span class="header-section-number">2.2.6.1</span> Making Matrices<a href="fundamentals.html#making-matrices" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>There are different ways of building a matrix. Let us start by just binding the vectors as columns together. You can do that <code>cbind()</code> if you want to bind columns together. <code>rbind()</code> is therefore the command to bind rows together.</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="fundamentals.html#cb55-1" tabindex="-1"></a>price_index <span class="ot">&lt;-</span> <span class="fu">cbind</span>(food, </span>
+<span id="cb55-2"><a href="fundamentals.html#cb55-2" tabindex="-1"></a>                     prices,</span>
+<span id="cb55-3"><a href="fundamentals.html#cb55-3" tabindex="-1"></a>                     cola_prices) <span class="co">#We bind it together</span></span>
+<span id="cb55-4"><a href="fundamentals.html#cb55-4" tabindex="-1"></a></span>
+<span id="cb55-5"><a href="fundamentals.html#cb55-5" tabindex="-1"></a><span class="fu">print</span>(price_index) <span class="co">#We print it </span></span></code></pre></div>
+<pre><code>##      food      prices cola_prices
+## [1,] &quot;Pizza&quot;   &quot;7.5&quot;  &quot;3.5&quot;      
+## [2,] &quot;Kebab&quot;   &quot;6&quot;    &quot;3&quot;        
+## [3,] &quot;Curry&quot;   &quot;8.5&quot;  &quot;4&quot;        
+## [4,] &quot;Fish&quot;    &quot;3&quot;    &quot;2.5&quot;      
+## [5,] &quot;Burrito&quot; &quot;11&quot;   &quot;3&quot;</code></pre>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="fundamentals.html#cb57-1" tabindex="-1"></a><span class="co">#Let&#39;s do the same by binding the rows together</span></span>
+<span id="cb57-2"><a href="fundamentals.html#cb57-2" tabindex="-1"></a></span>
+<span id="cb57-3"><a href="fundamentals.html#cb57-3" tabindex="-1"></a>price_index2 <span class="ot">&lt;-</span> <span class="fu">rbind</span>(food, </span>
+<span id="cb57-4"><a href="fundamentals.html#cb57-4" tabindex="-1"></a>                     prices,</span>
+<span id="cb57-5"><a href="fundamentals.html#cb57-5" tabindex="-1"></a>                     cola_prices) <span class="co">#We bind it together</span></span>
+<span id="cb57-6"><a href="fundamentals.html#cb57-6" tabindex="-1"></a></span>
+<span id="cb57-7"><a href="fundamentals.html#cb57-7" tabindex="-1"></a><span class="fu">print</span>(price_index2) <span class="co">#We print it </span></span></code></pre></div>
+<pre><code>##             [,1]    [,2]    [,3]    [,4]   [,5]     
+## food        &quot;Pizza&quot; &quot;Kebab&quot; &quot;Curry&quot; &quot;Fish&quot; &quot;Burrito&quot;
+## prices      &quot;7.5&quot;   &quot;6&quot;     &quot;8.5&quot;   &quot;3&quot;    &quot;11&quot;     
+## cola_prices &quot;3.5&quot;   &quot;3&quot;     &quot;4&quot;     &quot;2.5&quot;  &quot;3&quot;</code></pre>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="fundamentals.html#cb59-1" tabindex="-1"></a><span class="co"># We can also create directly a matrix </span></span>
+<span id="cb59-2"><a href="fundamentals.html#cb59-2" tabindex="-1"></a></span>
+<span id="cb59-3"><a href="fundamentals.html#cb59-3" tabindex="-1"></a>matrix_example <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">ncol =</span> <span class="dv">5</span>, <span class="at">byrow =</span> T) <span class="co"># create numeric matrix</span></span>
+<span id="cb59-4"><a href="fundamentals.html#cb59-4" tabindex="-1"></a><span class="fu">print</span>(matrix_example)</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    1    2    3    4    5
+## [2,]    6    7    8    9   10
+## [3,]   11   12   13   14   15
+## [4,]   16   17   18   19   20</code></pre>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="fundamentals.html#cb61-1" tabindex="-1"></a><span class="fu">dim</span>(matrix_example) <span class="co">#The dim() command shows you the dimensions of a matrix</span></span></code></pre></div>
+<pre><code>## [1] 4 5</code></pre>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="fundamentals.html#cb63-1" tabindex="-1"></a><span class="co">#What happens if byrow is set to FALSE?</span></span>
+<span id="cb63-2"><a href="fundamentals.html#cb63-2" tabindex="-1"></a></span>
+<span id="cb63-3"><a href="fundamentals.html#cb63-3" tabindex="-1"></a>matrix_example2 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">ncol =</span> <span class="dv">5</span>, <span class="at">byrow =</span> F) <span class="co"># create numeric matrix</span></span>
+<span id="cb63-4"><a href="fundamentals.html#cb63-4" tabindex="-1"></a><span class="fu">print</span>(matrix_example2)</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    1    5    9   13   17
+## [2,]    2    6   10   14   18
+## [3,]    3    7   11   15   19
+## [4,]    4    8   12   16   20</code></pre>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="fundamentals.html#cb65-1" tabindex="-1"></a><span class="fu">dim</span>(matrix_example2) <span class="co">#The dim() command shows you the dimensions of a matrix</span></span></code></pre></div>
+<pre><code>## [1] 4 5</code></pre>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="fundamentals.html#cb67-1" tabindex="-1"></a><span class="co"># We can also create directly a matrix </span></span>
+<span id="cb67-2"><a href="fundamentals.html#cb67-2" tabindex="-1"></a></span>
+<span id="cb67-3"><a href="fundamentals.html#cb67-3" tabindex="-1"></a>matrix_example <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">ncol =</span> <span class="dv">5</span>, <span class="at">byrow =</span> T) <span class="co"># create numeric matrix</span></span>
+<span id="cb67-4"><a href="fundamentals.html#cb67-4" tabindex="-1"></a><span class="fu">print</span>(matrix_example)</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    1    2    3    4    5
+## [2,]    6    7    8    9   10
+## [3,]   11   12   13   14   15
+## [4,]   16   17   18   19   20</code></pre>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="fundamentals.html#cb69-1" tabindex="-1"></a><span class="fu">dim</span>(matrix_example) <span class="co">#The dim() command shows you the dimensions of a matrix</span></span></code></pre></div>
+<pre><code>## [1] 4 5</code></pre>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="fundamentals.html#cb71-1" tabindex="-1"></a><span class="co">#What happens if byrow is set to FALSE?</span></span>
+<span id="cb71-2"><a href="fundamentals.html#cb71-2" tabindex="-1"></a></span>
+<span id="cb71-3"><a href="fundamentals.html#cb71-3" tabindex="-1"></a>matrix_example2 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">ncol =</span> <span class="dv">5</span>, <span class="at">byrow =</span> F) <span class="co"># create numeric matrix</span></span>
+<span id="cb71-4"><a href="fundamentals.html#cb71-4" tabindex="-1"></a><span class="fu">print</span>(matrix_example2)</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    1    5    9   13   17
+## [2,]    2    6   10   14   18
+## [3,]    3    7   11   15   19
+## [4,]    4    8   12   16   20</code></pre>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="fundamentals.html#cb73-1" tabindex="-1"></a><span class="fu">dim</span>(matrix_example2) <span class="co">#The dim() command shows you the dimensions of a matrix</span></span></code></pre></div>
+<pre><code>## [1] 4 5</code></pre>
+</div>
+<div id="working-with-matrices" class="section level4 hasAnchor" number="2.2.6.2">
+<h4><span class="header-section-number">2.2.6.2</span> Working with Matrices<a href="fundamentals.html#working-with-matrices" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>We want to work with matrices. You can extract columns and rows.</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="fundamentals.html#cb75-1" tabindex="-1"></a><span class="co">#Let us get used to work with objects</span></span>
+<span id="cb75-2"><a href="fundamentals.html#cb75-2" tabindex="-1"></a>row <span class="ot">&lt;-</span> <span class="dv">1</span> </span>
+<span id="cb75-3"><a href="fundamentals.html#cb75-3" tabindex="-1"></a>column <span class="ot">&lt;-</span> <span class="dv">1</span> </span>
+<span id="cb75-4"><a href="fundamentals.html#cb75-4" tabindex="-1"></a></span>
+<span id="cb75-5"><a href="fundamentals.html#cb75-5" tabindex="-1"></a><span class="co">#Printing it</span></span>
+<span id="cb75-6"><a href="fundamentals.html#cb75-6" tabindex="-1"></a><span class="fu">print</span>(object1 <span class="ot">&lt;-</span> matrix_example[row, ]) <span class="co">#printing the first row</span></span></code></pre></div>
+<pre><code>## [1] 1 2 3 4 5</code></pre>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="fundamentals.html#cb77-1" tabindex="-1"></a><span class="fu">print</span>(object2 <span class="ot">&lt;-</span> matrix_example[, column]) <span class="co">#printing the first column </span></span></code></pre></div>
+<pre><code>## [1]  1  6 11 16</code></pre>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="fundamentals.html#cb79-1" tabindex="-1"></a><span class="fu">print</span>(object3 <span class="ot">&lt;-</span> matrix_example[row, column]) <span class="co">#printing first row and column</span></span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="fundamentals.html#cb81-1" tabindex="-1"></a><span class="fu">print</span>(matrix_example) <span class="co">#printing the matrix</span></span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    1    2    3    4    5
+## [2,]    6    7    8    9   10
+## [3,]   11   12   13   14   15
+## [4,]   16   17   18   19   20</code></pre>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="fundamentals.html#cb83-1" tabindex="-1"></a><span class="co">#More Information </span></span>
+<span id="cb83-2"><a href="fundamentals.html#cb83-2" tabindex="-1"></a></span>
+<span id="cb83-3"><a href="fundamentals.html#cb83-3" tabindex="-1"></a><span class="fu">nrow</span>(matrix_example) <span class="co">#How many rows</span></span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="fundamentals.html#cb85-1" tabindex="-1"></a><span class="fu">ncol</span>(matrix_example) <span class="co">#How many columns</span></span></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="fundamentals.html#cb87-1" tabindex="-1"></a><span class="fu">dim</span>(matrix_example) <span class="co">#Overall dimensions</span></span></code></pre></div>
+<pre><code>## [1] 4 5</code></pre>
+</div>
+</div>
+<div id="data-frames" class="section level3 hasAnchor" number="2.2.7">
+<h3><span class="header-section-number">2.2.7</span> Data Frames<a href="fundamentals.html#data-frames" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Data Frames are more useful than matrices, since they are able to contain objects with different classes:</p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="fundamentals.html#cb89-1" tabindex="-1"></a>df_example <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb89-2"><a href="fundamentals.html#cb89-2" tabindex="-1"></a>    <span class="at">country =</span> <span class="fu">c</span>(<span class="st">&quot;Austria&quot;</span>, <span class="st">&quot;England&quot;</span>, </span>
+<span id="cb89-3"><a href="fundamentals.html#cb89-3" tabindex="-1"></a>                <span class="st">&quot;Brazil&quot;</span>, <span class="st">&quot;Germany&quot;</span>), </span>
+<span id="cb89-4"><a href="fundamentals.html#cb89-4" tabindex="-1"></a>    <span class="at">capital =</span> <span class="fu">c</span>(<span class="st">&quot;Vienna&quot;</span>, <span class="st">&quot;London&quot;</span>, </span>
+<span id="cb89-5"><a href="fundamentals.html#cb89-5" tabindex="-1"></a>                <span class="st">&quot;Brasilia&quot;</span>, <span class="st">&quot;Berlin&quot;</span>), </span>
+<span id="cb89-6"><a href="fundamentals.html#cb89-6" tabindex="-1"></a>    <span class="at">elo =</span> <span class="fu">c</span>(<span class="dv">1761</span>, <span class="dv">1938</span>, <span class="dv">2166</span>, <span class="dv">1988</span>),</span>
+<span id="cb89-7"><a href="fundamentals.html#cb89-7" tabindex="-1"></a>    <span class="at">logical =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb89-8"><a href="fundamentals.html#cb89-8" tabindex="-1"></a>  ) <span class="co">#example df</span></span>
+<span id="cb89-9"><a href="fundamentals.html#cb89-9" tabindex="-1"></a></span>
+<span id="cb89-10"><a href="fundamentals.html#cb89-10" tabindex="-1"></a><span class="co">#Checking it</span></span>
+<span id="cb89-11"><a href="fundamentals.html#cb89-11" tabindex="-1"></a><span class="fu">print</span>(df_example)</span></code></pre></div>
+<pre><code>##   country  capital  elo logical
+## 1 Austria   Vienna 1761    TRUE
+## 2 England   London 1938   FALSE
+## 3  Brazil Brasilia 2166   FALSE
+## 4 Germany   Berlin 1988    TRUE</code></pre>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="fundamentals.html#cb91-1" tabindex="-1"></a>df_example<span class="sc">$</span>country <span class="co">#You tell R to use the data frame &quot;df_Example&quot; and with the dollar sign, you tell R to print a certain variable. </span></span></code></pre></div>
+<pre><code>## [1] &quot;Austria&quot; &quot;England&quot; &quot;Brazil&quot;  &quot;Germany&quot;</code></pre>
+</div>
+</div>
+<div id="the-ifelse-function-and-ifelse-conditions" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> The <code>ifelse()</code> function and <code>ifelse</code> conditions:<a href="fundamentals.html#the-ifelse-function-and-ifelse-conditions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>One of the most frequently used and therefore most important logical operators in programming in general are <code>ifelse</code> commands. You probably know them from Excel, but every programming language includes them, because of their usefulness. A quick reminder of their logic.</p>
+<div id="simple-if-command" class="section level3 hasAnchor" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Simple if command<a href="fundamentals.html#simple-if-command" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="float">
+<img src="images/r-if-statement.jpg" fig-align="center" alt="Figure 2: Logic of if-else statements" />
+<div class="figcaption"><strong><em>Figure 2: Logic of if-else statements</em></strong></div>
+</div>
+<p>This is the logic of a simple <strong>if statement</strong>. If a test expression is met, then the body of it (logical consequence) should happen</p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="fundamentals.html#cb93-1" tabindex="-1"></a>grade <span class="ot">&lt;-</span> <span class="fl">1.7</span> </span>
+<span id="cb93-2"><a href="fundamentals.html#cb93-2" tabindex="-1"></a></span>
+<span id="cb93-3"><a href="fundamentals.html#cb93-3" tabindex="-1"></a><span class="cf">if</span>(grade <span class="sc">&lt;</span> <span class="dv">2</span>) {</span>
+<span id="cb93-4"><a href="fundamentals.html#cb93-4" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Good Job&quot;</span>)</span>
+<span id="cb93-5"><a href="fundamentals.html#cb93-5" tabindex="-1"></a>} <span class="co"># You write down if(test expression), and then the {body expression}, thus the body expression in fancy brackets.</span></span></code></pre></div>
+<pre><code>## [1] &quot;Good Job&quot;</code></pre>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="fundamentals.html#cb95-1" tabindex="-1"></a>grade <span class="ot">&lt;-</span> <span class="fl">2.5</span> </span>
+<span id="cb95-2"><a href="fundamentals.html#cb95-2" tabindex="-1"></a></span>
+<span id="cb95-3"><a href="fundamentals.html#cb95-3" tabindex="-1"></a><span class="cf">if</span>(grade <span class="sc">&lt;</span> <span class="dv">2</span>) {</span>
+<span id="cb95-4"><a href="fundamentals.html#cb95-4" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Good Job&quot;</span>)</span>
+<span id="cb95-5"><a href="fundamentals.html#cb95-5" tabindex="-1"></a>} <span class="co">#Since the condition is not met, nothing happens</span></span></code></pre></div>
+</div>
+<div id="ifelse-command" class="section level3 hasAnchor" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> <code>ifelse()</code> command<a href="fundamentals.html#ifelse-command" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>An if command on its own is quite useless, things get interesting, when we also have a body for the else command:</p>
+<div class="float">
+<img src="images/r-if-else-statement_2.jpg" fig-align="center" alt="Figure 3: Standard RStudio Interface" />
+<div class="figcaption"><strong>Figure 3: Standard RStudio Interface</strong></div>
+</div>
+<p>Now we just add a <strong>body of else</strong> into the equation, in R that means we need to define it</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="fundamentals.html#cb96-1" tabindex="-1"></a>grade <span class="ot">&lt;-</span> <span class="fl">3.3</span> <span class="co">#assigning a grade</span></span>
+<span id="cb96-2"><a href="fundamentals.html#cb96-2" tabindex="-1"></a></span>
+<span id="cb96-3"><a href="fundamentals.html#cb96-3" tabindex="-1"></a><span class="cf">if</span> (grade <span class="sc">&lt;=</span> <span class="dv">2</span>) {</span>
+<span id="cb96-4"><a href="fundamentals.html#cb96-4" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Good Job&quot;</span>)</span>
+<span id="cb96-5"><a href="fundamentals.html#cb96-5" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb96-6"><a href="fundamentals.html#cb96-6" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Life goes on&quot;</span>)</span>
+<span id="cb96-7"><a href="fundamentals.html#cb96-7" tabindex="-1"></a>} </span></code></pre></div>
+<pre><code>## [1] &quot;Life goes on&quot;</code></pre>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="fundamentals.html#cb98-1" tabindex="-1"></a>grade <span class="ot">&lt;-</span> <span class="fl">1.3</span> <span class="co">#assigning a grade</span></span>
+<span id="cb98-2"><a href="fundamentals.html#cb98-2" tabindex="-1"></a></span>
+<span id="cb98-3"><a href="fundamentals.html#cb98-3" tabindex="-1"></a><span class="cf">if</span> (grade <span class="sc">&lt;=</span> <span class="dv">2</span>) {</span>
+<span id="cb98-4"><a href="fundamentals.html#cb98-4" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Good Job&quot;</span>)</span>
+<span id="cb98-5"><a href="fundamentals.html#cb98-5" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb98-6"><a href="fundamentals.html#cb98-6" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Life goes on&quot;</span>)</span>
+<span id="cb98-7"><a href="fundamentals.html#cb98-7" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] &quot;Good Job&quot;</code></pre>
+<p>What you see above is a classic ifelse condition, but R has a base R function called ifelse(), which does the same thing as the function above</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="fundamentals.html#cb100-1" tabindex="-1"></a><span class="fu">ifelse</span>(grade <span class="sc">&lt;=</span><span class="dv">2</span>, <span class="st">&quot;Good Job&quot;</span>, <span class="st">&quot;Life goes on&quot;</span>) <span class="co">#ifelse command</span></span></code></pre></div>
+<pre><code>## [1] &quot;Good Job&quot;</code></pre>
+</div>
+<div id="if-else-ladders-if-else-with-multiple-conditions" class="section level3 hasAnchor" number="2.3.3">
+<h3><span class="header-section-number">2.3.3</span> if else ladders/ if else with multiple conditions<a href="fundamentals.html#if-else-ladders-if-else-with-multiple-conditions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Of course not every operations requires a dichotomous operation, so what we need are if else commands with multiple conditions:</p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="fundamentals.html#cb102-1" tabindex="-1"></a>grade <span class="ot">&lt;-</span> <span class="fl">1.0</span> <span class="co">#Assigning a grade</span></span>
+<span id="cb102-2"><a href="fundamentals.html#cb102-2" tabindex="-1"></a></span>
+<span id="cb102-3"><a href="fundamentals.html#cb102-3" tabindex="-1"></a><span class="cf">if</span> (grade <span class="sc">==</span> <span class="fl">1.0</span>) {</span>
+<span id="cb102-4"><a href="fundamentals.html#cb102-4" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Amazing&quot;</span>) </span>
+<span id="cb102-5"><a href="fundamentals.html#cb102-5" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">1.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">2.0</span>) {</span>
+<span id="cb102-6"><a href="fundamentals.html#cb102-6" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Good Job&quot;</span>)</span>
+<span id="cb102-7"><a href="fundamentals.html#cb102-7" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">2.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">3.0</span>) {</span>
+<span id="cb102-8"><a href="fundamentals.html#cb102-8" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;OK&quot;</span>)</span>
+<span id="cb102-9"><a href="fundamentals.html#cb102-9" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">3.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">4.0</span>) {</span>
+<span id="cb102-10"><a href="fundamentals.html#cb102-10" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Life goes on&quot;</span>)</span>
+<span id="cb102-11"><a href="fundamentals.html#cb102-11" tabindex="-1"></a>} </span></code></pre></div>
+<pre><code>## [1] &quot;Amazing&quot;</code></pre>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="fundamentals.html#cb104-1" tabindex="-1"></a><span class="co"># if (test expression) { body expression if } else if(test expression 2) { body expression if} etc...</span></span>
+<span id="cb104-2"><a href="fundamentals.html#cb104-2" tabindex="-1"></a></span>
+<span id="cb104-3"><a href="fundamentals.html#cb104-3" tabindex="-1"></a>  </span>
+<span id="cb104-4"><a href="fundamentals.html#cb104-4" tabindex="-1"></a>grade <span class="ot">&lt;-</span> <span class="fl">2.7</span> <span class="co">#Assigning a grade</span></span>
+<span id="cb104-5"><a href="fundamentals.html#cb104-5" tabindex="-1"></a></span>
+<span id="cb104-6"><a href="fundamentals.html#cb104-6" tabindex="-1"></a><span class="cf">if</span> (grade <span class="sc">==</span> <span class="fl">1.0</span>) {</span>
+<span id="cb104-7"><a href="fundamentals.html#cb104-7" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Amazing&quot;</span>) </span>
+<span id="cb104-8"><a href="fundamentals.html#cb104-8" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">1.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">2.0</span>) {</span>
+<span id="cb104-9"><a href="fundamentals.html#cb104-9" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Good Job&quot;</span>)</span>
+<span id="cb104-10"><a href="fundamentals.html#cb104-10" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">2.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">3.0</span>) {</span>
+<span id="cb104-11"><a href="fundamentals.html#cb104-11" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;OK&quot;</span>)</span>
+<span id="cb104-12"><a href="fundamentals.html#cb104-12" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">3.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">4.0</span>) {</span>
+<span id="cb104-13"><a href="fundamentals.html#cb104-13" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Life goes on&quot;</span>)</span>
+<span id="cb104-14"><a href="fundamentals.html#cb104-14" tabindex="-1"></a>} </span></code></pre></div>
+<pre><code>## [1] &quot;OK&quot;</code></pre>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="fundamentals.html#cb106-1" tabindex="-1"></a>grade <span class="ot">&lt;-</span> <span class="fl">3.3</span> <span class="co">#Assigning a grade</span></span>
+<span id="cb106-2"><a href="fundamentals.html#cb106-2" tabindex="-1"></a></span>
+<span id="cb106-3"><a href="fundamentals.html#cb106-3" tabindex="-1"></a><span class="cf">if</span> (grade <span class="sc">==</span> <span class="fl">1.0</span>) {</span>
+<span id="cb106-4"><a href="fundamentals.html#cb106-4" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Amazing&quot;</span>) </span>
+<span id="cb106-5"><a href="fundamentals.html#cb106-5" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">1.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">2.0</span>) {</span>
+<span id="cb106-6"><a href="fundamentals.html#cb106-6" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Good Job&quot;</span>)</span>
+<span id="cb106-7"><a href="fundamentals.html#cb106-7" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">2.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">3.0</span>) {</span>
+<span id="cb106-8"><a href="fundamentals.html#cb106-8" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;OK&quot;</span>)</span>
+<span id="cb106-9"><a href="fundamentals.html#cb106-9" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">3.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">4.0</span>) {</span>
+<span id="cb106-10"><a href="fundamentals.html#cb106-10" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Life goes on&quot;</span>) </span>
+<span id="cb106-11"><a href="fundamentals.html#cb106-11" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] &quot;Life goes on&quot;</code></pre>
+<p>Again we can do so-called <strong>nested ifelse() function</strong>, using the <code>ifelse()</code> command:</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="fundamentals.html#cb108-1" tabindex="-1"></a>grade <span class="ot">&lt;-</span> <span class="fl">1.7</span> <span class="co">#Assigning a grade</span></span>
+<span id="cb108-2"><a href="fundamentals.html#cb108-2" tabindex="-1"></a></span>
+<span id="cb108-3"><a href="fundamentals.html#cb108-3" tabindex="-1"></a><span class="fu">ifelse</span>(grade <span class="sc">==</span> <span class="fl">1.0</span>, <span class="st">&quot;Amazing&quot;</span>, </span>
+<span id="cb108-4"><a href="fundamentals.html#cb108-4" tabindex="-1"></a>       <span class="fu">ifelse</span>(grade <span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="dv">2</span>, <span class="st">&quot;Good Job&quot;</span>, </span>
+<span id="cb108-5"><a href="fundamentals.html#cb108-5" tabindex="-1"></a>              <span class="fu">ifelse</span>(grade <span class="sc">&gt;</span> <span class="dv">2</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="dv">3</span>, <span class="st">&quot;OK&quot;</span>, </span>
+<span id="cb108-6"><a href="fundamentals.html#cb108-6" tabindex="-1"></a>                     <span class="fu">ifelse</span>(grade <span class="sc">&lt;</span> <span class="dv">3</span>, grade <span class="sc">&lt;=</span><span class="dv">4</span>, <span class="st">&quot;Life goes on&quot;</span></span>
+<span id="cb108-7"><a href="fundamentals.html#cb108-7" tabindex="-1"></a>                            )</span>
+<span id="cb108-8"><a href="fundamentals.html#cb108-8" tabindex="-1"></a>                     )</span>
+<span id="cb108-9"><a href="fundamentals.html#cb108-9" tabindex="-1"></a>              )</span>
+<span id="cb108-10"><a href="fundamentals.html#cb108-10" tabindex="-1"></a>       )</span></code></pre></div>
+<pre><code>## [1] &quot;Good Job&quot;</code></pre>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="fundamentals.html#cb110-1" tabindex="-1"></a>grade <span class="ot">&lt;-</span> <span class="fl">3.3</span> <span class="co">#Assigning a grade</span></span>
+<span id="cb110-2"><a href="fundamentals.html#cb110-2" tabindex="-1"></a></span>
+<span id="cb110-3"><a href="fundamentals.html#cb110-3" tabindex="-1"></a><span class="fu">ifelse</span>(grade <span class="sc">==</span> <span class="fl">1.0</span>, <span class="st">&quot;Amazing&quot;</span>, </span>
+<span id="cb110-4"><a href="fundamentals.html#cb110-4" tabindex="-1"></a>       <span class="fu">ifelse</span>(grade <span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="dv">2</span>, <span class="st">&quot;Good Job&quot;</span>, </span>
+<span id="cb110-5"><a href="fundamentals.html#cb110-5" tabindex="-1"></a>              <span class="fu">ifelse</span>(grade <span class="sc">&gt;</span> <span class="dv">2</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="dv">3</span>, <span class="st">&quot;OK&quot;</span>, </span>
+<span id="cb110-6"><a href="fundamentals.html#cb110-6" tabindex="-1"></a>                     <span class="fu">ifelse</span>(grade <span class="sc">&lt;</span> <span class="dv">3</span>, </span>
+<span id="cb110-7"><a href="fundamentals.html#cb110-7" tabindex="-1"></a>                            grade <span class="sc">&lt;=</span><span class="dv">4</span>, <span class="st">&quot;Life goes on&quot;</span>)</span>
+<span id="cb110-8"><a href="fundamentals.html#cb110-8" tabindex="-1"></a>                     )</span>
+<span id="cb110-9"><a href="fundamentals.html#cb110-9" tabindex="-1"></a>              )</span>
+<span id="cb110-10"><a href="fundamentals.html#cb110-10" tabindex="-1"></a>       )</span></code></pre></div>
+<pre><code>## [1] &quot;Life goes on&quot;</code></pre>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="fundamentals.html#cb112-1" tabindex="-1"></a><span class="co"># The same logic: ifelse(test expression, body expression if, ifelse(test expression 2, body expression if 2)) etc..</span></span></code></pre></div>
+</div>
+</div>
+<div id="exercise-section" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Exercise Section:<a href="fundamentals.html#exercise-section" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="exercise-1" class="section level3 hasAnchor" number="2.4.1">
+<h3><span class="header-section-number">2.4.1</span> Exercise 1:<a href="fundamentals.html#exercise-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Create a vector called <code>my_vector</code> with the values 1,2,3 and check is class.</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="fundamentals.html#cb113-1" tabindex="-1"></a><span class="co">#create the vector </span></span>
+<span id="cb113-2"><a href="fundamentals.html#cb113-2" tabindex="-1"></a>my_vector <span class="ot">&lt;-</span> </span>
+<span id="cb113-3"><a href="fundamentals.html#cb113-3" tabindex="-1"></a></span>
+<span id="cb113-4"><a href="fundamentals.html#cb113-4" tabindex="-1"></a><span class="co">#check the class</span></span></code></pre></div>
+</div>
+<div id="exercise-2" class="section level3 hasAnchor" number="2.4.2">
+<h3><span class="header-section-number">2.4.2</span> Exercise 2:<a href="fundamentals.html#exercise-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Create a Matrix called <code>student</code>. This should contain information about the <code>name</code>, <code>age</code> and <code>major</code>. Make three vectors wiht three entries and bind them together to a the matrix <code>student</code>. Print the matrix.</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="fundamentals.html#cb114-1" tabindex="-1"></a><span class="co">#Create the vectors </span></span>
+<span id="cb114-2"><a href="fundamentals.html#cb114-2" tabindex="-1"></a></span>
+<span id="cb114-3"><a href="fundamentals.html#cb114-3" tabindex="-1"></a>name <span class="ot">&lt;-</span> </span>
+<span id="cb114-4"><a href="fundamentals.html#cb114-4" tabindex="-1"></a>age <span class="ot">&lt;-</span> </span>
+<span id="cb114-5"><a href="fundamentals.html#cb114-5" tabindex="-1"></a>major <span class="ot">&lt;-</span> </span>
+<span id="cb114-6"><a href="fundamentals.html#cb114-6" tabindex="-1"></a></span>
+<span id="cb114-7"><a href="fundamentals.html#cb114-7" tabindex="-1"></a><span class="co">#Create the matrix</span></span>
+<span id="cb114-8"><a href="fundamentals.html#cb114-8" tabindex="-1"></a>student <span class="ot">&lt;-</span> </span>
+<span id="cb114-9"><a href="fundamentals.html#cb114-9" tabindex="-1"></a>  </span>
+<span id="cb114-10"><a href="fundamentals.html#cb114-10" tabindex="-1"></a><span class="co">#Print the matrix</span></span></code></pre></div>
+</div>
+<div id="exercise-3" class="section level3 hasAnchor" number="2.4.3">
+<h3><span class="header-section-number">2.4.3</span> Exercise 3:<a href="fundamentals.html#exercise-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Write an if-else statement that checks if a given number is positive or negative. If the number is positive, print “Number is positive”, otherwise print “Number is negative”. Feel free to decide if you want to use the ifelse function or the ifelse condition.</p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="fundamentals.html#cb115-1" tabindex="-1"></a><span class="co">#Assigning the number to the object &quot;number&quot;</span></span>
+<span id="cb115-2"><a href="fundamentals.html#cb115-2" tabindex="-1"></a>number <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">4</span></span></code></pre></div>
+</div>
+<div id="exercise-4" class="section level3 hasAnchor" number="2.4.4">
+<h3><span class="header-section-number">2.4.4</span> Exercise 4:<a href="fundamentals.html#exercise-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Write an if-else ladder that categorizes a student’s grade based on their score. The grading criteria are as follows:</p>
+<p>Score &gt;= 90: “A” Score &gt;= 80 and &lt; 90: “B” Score &gt;= 70 and &lt; 80: “C” Score &gt;= 60 and &lt; 70: “D” Score &lt; 60: “F”</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-manipulation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/Okan2022/bookdown_aiitr/edit/main/02-fundamentals.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/Okan2022/bookdown_aiitr/blob/main/02-fundamentals.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
