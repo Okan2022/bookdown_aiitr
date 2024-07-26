@@ -1,9 +1,95 @@
---- 
-title: "YOUR TITLE HERE"
-author: "YOUR NAME HERE"
+---
+title: "An intuitive Introduction to R"
+author: "Okan Sarioglu"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 ---
 
-# Down the rabbit-hole
+# An Intuitive Introduction to Data Analytics in R
 
+## Welcome !
+
+Welcome to this R course! In this course I will teach you the workflow from raw data to your very first analyses in R. When I was a beginner myself, I tried a lot of courses like this, but there were two points, which I think slowed down my learning process, I do want to make different with this course:
+
+-   The courses taught way too much unnecessary stuff for the beginning. It does not matter to know several variations of a command for example, the intuition is way more important.
+
+This course was originally a tutorial for my juniors at my university and I asked myself the question: What do they need to know, to conduct data analyses themselves with R? Well, they have to get an intuition of the workflow. So I decided to design a course, that instead of showing unnecessary variations of functions aim to show how to analyse a question of interest.
+
+-   The courses were not reproducible! That is not the directly the fault of the courses. There are tools to make R scripts reproducible, however they are not beginner friendly, so the authors of those courses are facing a trade-off: Teaching unnecessary complicated stuff at to beginners, or to leave it out and make the course not reproducible.
+
+This course is different! In this course, you can download R-scripts and load them directly on your own device and follow the course by executing the codes for yourself to have the original experience of working with R.
+
+## About this Course
+
+### Prerequisities
+
+-   `R` and RStudio. You should download the most current version of R and RStudio. How to do that easily is described here.
+
+### What is `R` and `RStudio` ?
+
+`R` is a programming language specifically developed for statistical analysis. `RStudio` is a nice graphical interface to work with R.
+
+### Why `R` ?
+
+-   Free of cost and open-source
+-   Functionalities for all steps of research process from Data Collection to Data Analysis
+-   Programming language specifically developed for statistical analysis
+-   Very active Community:
+-   e.g. `R` community on \[StackOverflow\] (https://stackoverflow.blog/2017/10/10/impressive-growth-r/)
+-   e.g. *#rstats* on twitter
+
+### What expects you and what not
+
+In this course you will learn:
+
+-   To get familiar with `R` and its basic language
+-   Core commands from the tidyverse package
+-   Data Wrangling, Data Bridging, Data Munging, Data Manipulation
+-   An efficient Workflow
+-   A brief introduction into basic Data Analysis
+
+You will **not** learn:
+
+-   Advanced R usage (Webscraping, Quantitative Text Analysis etc...)
+
+### Overview of the course structure:
+
+**1. The R environment**
+
+-   Basic Functionality (Calculations, Vectors, Matrices, Lists)
+-   Object classes
+-   Accessing, Subsetting and Naming Objects
+
+**2. Data Manipulation**
+
+-   Pipelines or Piping
+-   The tidyverse - Dplyr
+-   Loading and Storing Data
+-   Ordering your Data: Renaming, Re-Ordering, Subsetting and Selecting
+-   Transforming Variables
+-   Merging Data
+-   Missing Values
+
+**3. Exploratory Data Analysis/Descriptives**
+
+-   Summary Statistics - the Psych package
+-   Frequency Tables
+-   Cross-Tabulations, Correlation Matrice
+
+**4. Data Visualization**
+
+-   The Tidyverse - ggplot 2
+-   Constructing Plots
+-   Plotting anything
+
+**5. R Programming**
+
+-   For loops
+-   Apply function
+-   Functions
+
+## About Me
+
+My name is Okan and I am a Data Scientist. To be more precise, my profession is Data Science, but originally I graduated in Political Science. I know, what kind of transition is that? From Politics to Data? Well, my university was specialized in empirical research and Political Science was no exception. To explain political phenomena, I analysed large data sets and it was the most fun part of my studies. So I decided to become a Data Scientist and I could not be happier about that decision!
+
+Be part of this Course! Please report errors, bugs and problems with the code. If you have any ideas how to improve this course please contact me on GitHub or via E-Mail. In general, let us stay in touch, follow me on GitHub and LinkedIn and if you like this course share your experience and recommend it to others!
