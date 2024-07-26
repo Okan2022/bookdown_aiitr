@@ -12,7 +12,7 @@ There are different type of Loops, but for this course we focus just on the `for
 
 Do you remember my grade example from the first chapter?
 
-```{r}
+```{r ifelse example}
 
 grade <- 4.0
 
@@ -80,10 +80,8 @@ I could now write down all my grades and assign them as I did in the first chapt
 
 First, let us make a vector with grades:
 
-```{r}
-
+```{r grades vector}
 grades <- c(1.7, 3.3, 4.0, 2.3, 1.0)
-
 ```
 
 Now, we can directly dive into the loop.
@@ -94,7 +92,7 @@ Now, we can directly dive into the loop.
 
 -   And that's it basically
 
-```{r}
+```{r basic loop}
 
 for (i in 1:length(grades)) {
   if (grades[i] == 1.0) {
@@ -114,10 +112,11 @@ Loops can look differently:
 
 In this example I have a number vector and my let the console print a sentence, where I vary the number and therefore the sentence changes over every loop
 
-```{r}
-
+```{r loop num}
+# creating num vector
 num <- c(1, 2, 3, 4, 5, 249)
 
+# looping through vector
 for (i in num) { 
   print(stringr::str_c("This is the ", i, "th Iteration")) 
 }
@@ -130,27 +129,23 @@ Because you will eventually encounter them, I will show you shortly nested loops
 First, let us play a game of tic tac toe:
 
 ```{r}
-
 #Defining a matrix 
 ttt <- matrix(c("X", "O", "X",
                 "O", "X", "O",
                 "O", "X", "O"), nrow = 3, ncol = 3, byrow = TRUE)
-
 ```
 
 We define a loop with an iterator **i** for the rows of the matrix, and we define another one for the columns with the iterator **j**.
 
 Afterwords, we built up the body, in which aim to get information about the matrix and its content. The sentence shows, which rows and columns contain which values.
 
-```{r}
-
+```{r nested loops}
 for (i in 1:nrow(ttt)) {
   for (j in 1:ncol(ttt)) {
     print(paste("On row", i, "and column", 
                 j, "the board contains", ttt[i,j]))
   }
 }
-
 ```
 
 ## `apply()` Function Family
@@ -159,33 +154,28 @@ for (i in 1:nrow(ttt)) {
 
 `apply()` takes a data frame or matrix as an input and gives output in vector, list or array. Apply function in R is primarily used to avoid explicit uses of loop constructs. The idea is to apply a function repeatedly to a matrix or data frame: apply(X, MARGIN, FUNCTION)
 
-```{r}
-
+```{r example matrix}
 #Let us create a matrix with random numbers 
-
 mat <- matrix(1:10, nrow = 5, ncol = 6)
 
-head(mat) # It just counts to 10
-
+#Checking it
+head(mat)
 ```
 
 Assume you now want to calculate the mean of every column:
 
-```{r}
+```{r basic apply function}
 
-apply(mat, 2, mean) # You include the object, the margin: in this case 2, because a matrix is a two dimensional object and lastly the function, meaning what your quantity of interest is.
-
-apply(mat, 2, sum) #Let us get the sum of the columns
-apply(mat, 2, sd) #The standard deviation
+apply(mat, 2, mean) #calculating mean 
+apply(mat, 2, sum) #calculating sum
+apply(mat, 2, sd) #calculating sd
 
 
 #The corresponding Loop would look like this: 
-
 for (i in 1:ncol(mat)) {
   mean_col <- mean(mat[, i])
   print(mean_col)
 }
-
 ```
 
 The `apply()` function is useful especially if you are working with dimensional bodies and want to calculate anything. However, they can not keep up with the flexibility of loops, you should be aware of that.
@@ -204,7 +194,7 @@ We can again safe a lot of time and be more efficient by writing our own functio
 -   Lastly, you want the function to return your quantity of interest and close the fancy brackets
 -   Afterwards you have a function saved and can operate with it
 
-```{r}
+```{r own function}
 
 #My function is just a sum
 
@@ -220,7 +210,7 @@ add(2,7) #Now I can use my function
 
 Let us calculate the area of a circle
 
-```{r}
+```{r area of circle}
 
 aoc <- function(radius) {
   pi <- 3.14159
@@ -236,7 +226,7 @@ aoc(5)
 
 Let us combine what we have learned in this chapter with the Fibonacci sequence. The Fibonnaci sequence starts with 0 and 1, and each subsequent number is the sum of the two numbers before it. The Fibonacci sequence continues indefinitely, producing a sequence like this: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, and so on.
 
-```{r}
+```{r fibonnaci}
 
 
 fibonacci <- function(n) {
@@ -268,7 +258,7 @@ fibonacci(50)
 
 Write a `for` loop that prints the square of each number from 1 to 10
 
-```{r}
+```{r exercise 5.1}
 
 #Assigning an object for a better workflow
 number <- 10
@@ -284,7 +274,7 @@ number <- 10
 
 Do the same, but this time defining a function that squares numbers.
 
-```{r, eval=FALSE}
+```{r exercise 5.2, eval=FALSE}
 
 #Defining a function for squaring
 
@@ -316,7 +306,7 @@ Make **one function** for the midnight formula, so the output are both. Test it 
 
 **Hint**: You need two split up the formula into two equations with two outputs.
 
-```{r, eval=FALSE}
+```{r exercise 5.3, eval=FALSE}
 
 mnf <- 
 
@@ -339,7 +329,7 @@ d.  Lastly we need a `for` loop, which returns the respective fortune for each z
 
 e.  This fortune should be returned
 
-```{r, eval = FALSE}
+```{r exercise 5.4, eval = FALSE}
 
 fortune <- function(sign) {
   
@@ -379,5 +369,4 @@ fortune <- function(sign) {
   
   
 }
-
 ```

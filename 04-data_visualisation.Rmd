@@ -1,7 +1,8 @@
 # Data Visualisation
 
 ```{r loading packages viz}
-pacman::p_load("tidyverse", "babynames", "sf", "rnaturalearth", "forcats" ,"tmap")
+pacman::p_load("tidyverse", "babynames", "sf", 
+               "rnaturalearth", "forcats" ,"tmap")
 ```
 
 ## Introduction
@@ -93,6 +94,7 @@ Well, we did it. I think that this plot can be displayed in an article or report
 One elemental thing I want to talk about is the width of the size. Currently, the binwidth is at 0.3. We can adjust that by including binwidth in the geom_histogram() command:
 
 ```{r histogram with different binwidth, warning=FALSE}
+#histogram bindwidth = 0.1
 ggplot(data1, aes(x = value)) + 
   geom_histogram(color = "white", fill = "#69b3a2", 
                  binwidth = 0.1) + 
@@ -104,6 +106,7 @@ ggplot(data1, aes(x = value)) +
                      limits = c(-4, 4)) +
   theme_minimal()
 
+#histogram with bindwidth = 0.6
 ggplot(data1, aes(x = value)) + 
   geom_histogram(color = "white", fill = "#69b3a2", 
                  binwidth = 0.6) + 
@@ -114,7 +117,6 @@ ggplot(data1, aes(x = value)) +
   scale_x_continuous(breaks = seq(-4, 4, 1), 
                      limits = c(-4, 4)) +
   theme_minimal()
-
 ```
 
 #### Multiple Histograms
@@ -122,12 +124,13 @@ ggplot(data1, aes(x = value)) +
 In this part, I want to show you variations of the Histogram visualization plot. We will start with multiple distributions we probably want to display. To do so, we need a new variable we will call "Variable 2", with its own observations and add it to our dataset:
 
 ```{r adding Variable 2 to our dataset}
-
+#Creating data
 data2 <- data.frame(
   type = c(rep("Variable 2", 1000)), 
   value = c(rnorm(1000, mean = 4))
 )
 
+#rowbinding it with data1
 data2 <- rbind(data1, data2)
 ```
 
@@ -140,14 +143,13 @@ ggplot(data2, aes(x=value, fill=type)) +
     geom_histogram(color="#e9ecef",
                    position = "identity") +
     theme_bw() 
-
 ```
 
 As you can see, we get two plots colored by the type there are assigned to. We can now play around a bit. I want to introduce you the alpha specification. This makes colors more transparent. Again this a command should be used if objects are overlapping to have a clearer picture of the overlap.
 
 Additionally, I will scale new colors, here the scale\_\* function family comes again into play. We will use the scale_fill_manual command, since we want to change the color of the fill specification in the aes() command:
 
-```{r}
+```{r histogram two groups}
 ggplot(data2, aes(x=value, fill=type)) +
   geom_histogram(color="#e9ecef", 
                  alpha = 0.6, 
@@ -164,16 +166,16 @@ A density plot is a representation of the distribution of a numeric variable. It
 
 Let us start with a basic density plot:
 
-```{r}
+```{r basic density}
 ggplot(data1, aes(x = value)) + 
   geom_density()
 ```
 
 Well, we now can do the exact same things as we did above: Fill the density plot with a color with `fill()`, make the fill color more transparent with `alpha()` and change the color of the line with `color()` in the `geom_density()` function. We can rescale the x-axis with `scale_x_continous`, and we can change the labels of the axis with `labs()`, and change the theme to `theme_minimal()`.
 
-```{r}
+```{r density color}
 ggplot(data1, aes(x = value, fill =)) + 
-  geom_density(color = "black", 
+  geom_density(color = "lightgrey", 
                fill = "#F8E59A",
                alpha = 0.6) + 
   labs( 
@@ -191,7 +193,7 @@ We could also do this with multiple density plots, remember that we always need 
 
 *Note: I just copied the code from above, changed the geom_histogram() to geom_density() and then I just changed the colors, the alpha and the theme. That's it. And that is mostly how plotting works, just copy and paste from the internet, and adjust what you do not like.*
 
-```{r}
+```{r density two groups}
 ggplot(data2, aes(x=value, fill=type)) +
   geom_density(color="#0a0a0a", 
                  alpha = 0.9, 
@@ -219,14 +221,14 @@ The last visualization form of distributions are Boxplots. Boxplots are a really
 
 Let us implement a boxplot in R. Again the only thing that changes is that we use the standard ggplot() function and go on with the function geom_boxplot():
 
-```{r}
+```{r basic boxplot}
 ggplot(data1, aes(x = value)) + 
   geom_boxplot()
 ```
 
 We can also make that graph pretty with the same techniques as above:
 
-```{r}
+```{r boxplot example}
 ggplot(data1, aes(x = value)) + 
   geom_boxplot() + 
     labs( 
@@ -236,7 +238,6 @@ ggplot(data1, aes(x = value)) +
   scale_x_continuous(breaks = seq(-4, 4, 1), 
                      limits = c(-4, 4)) +
   theme_classic()
-
 ```
 
 #### Multiple Boxplots
@@ -248,7 +249,6 @@ A huge advantage of Boxplots are that it is an easy way to compare the structure
 set.seed(123)
 
 # Simulate income data
-# Assuming a normal distribution for simplicity, but this can be adjusted as needed
 income_with_migration <- rnorm(1000, mean = 40000, sd = 11000)
 income_without_migration <- rnorm(1000, mean = 55000, sd = 17500)
 
@@ -259,8 +259,7 @@ data5 <- data.frame(
 )
 ```
 
-```{r}
-# Create boxplot
+```{r grouped boxplot}
 ggplot(data5, aes(x = migration_status, 
                  y = income, fill = migration_status)) +
 geom_boxplot()  
@@ -268,7 +267,7 @@ geom_boxplot()
 
 Before interpreting the plot, let us make it prettier: We change labels of the x-axis, y-axis and give the plot a title with the `labs()` function. I do not like the colors, we change them with the `scale_fill_manual()`. Again, we define `alpha = 0.5` and also `width = 0.5` of the boxes in `geom_boxplot()`. I also think, we do not need a legend, therefore we can remove it, and use the `theme()` function. This function is powerful, since its specification gives us a lot of possibilities to design the plot according to our wishes. We specify in the `theme()` function that `legend.position = "none"`, which means that we do not want the legend to be displayed at all:
 
-```{r}
+```{r multiple boxplots}
 # Create boxplot
 ggplot(data5, aes(x = migration_status, y = income, fill = migration_status)) +
   geom_boxplot(alpha = 0.5, width = 0.5) +
@@ -296,7 +295,7 @@ The most famous, and easiest way of showing values of different groups is the Ba
 
 -   In ggplot, we only have to define the x-axis, and y-axis inside the ggplot() function, and add the function geom_bar(). Inside geom_bar() you have to add stat = "identity", for the simple reason, that we have to tell ggplot2 to display the numbers of the column "strength", otherwise it will give us an error.
 
-```{r}
+```{r barplot data}
 # Create data
 data4 <- data.frame(
   name=c("King Kong","Godzilla","Superman",
@@ -313,7 +312,7 @@ Again, we can change the look of our plot. We start by changing the color by set
 
 *Note: I can disable the name of the x-lab by simply adding empty quotation marks in the `labs()` function*
 
-```{r}
+```{r basic barplot}
 ggplot(data4, aes(x = name, y = strength)) + 
   geom_bar(stat = "identity", fill = "#AE388B") +
   labs(
@@ -326,7 +325,7 @@ ggplot(data4, aes(x = name, y = strength)) +
 
 There is also another possibility to use Barplots. We could use them to count categories. Like we would in a histogram with the difference that we now have not a range of numbers, where we count how many numbers for one variable. We have a groups and want to count how often those groups appear in our dataset. Let us assume we asked 20 kids what their favorite fictional character is among Superman, King Kong and Godzilla.
 
-```{r}
+```{r barplot count data}
 data5 <- data.frame(
   hero = c(rep("Superman", 10), 
            rep("King Kong", 3), 
@@ -340,8 +339,7 @@ data5 <- data.frame(
 ) 
 ```
 
-```{r}
-###Plotting it 
+```{r barplot count}
 ggplot(data5, aes(x = hero)) + 
   geom_bar(fill = "#AE388B") +
   labs(
@@ -357,8 +355,8 @@ We could also turn around both Barplots to have a vertical Barplot. That is quit
 
 Let us look at the plots:
 
-```{r}
-###Plot 1 
+```{r barplot flipped}
+#Plot 1 
 ggplot(data4, aes(x = name, y = strength)) + 
   geom_bar(stat = "identity", fill = "#AE388B") +
   labs(
@@ -369,7 +367,7 @@ ggplot(data4, aes(x = name, y = strength)) +
   theme_test() + 
   coord_flip()
 
-###Plot 2 
+#Plot 2 
 ggplot(data5, aes(x = hero)) + 
   geom_bar(fill = "#AE388B") +
   labs(
@@ -392,8 +390,8 @@ To make a Barplot more intuitive, we can order it so the bar with the highest x-
 
 Note: You could also do it in descending order by just wrapping a `desc()` around the value the variable should be reorder based on thus it would look like this: `fct_reorder(name, desc(strength))`.
 
-```{r}
-
+```{r barplot ordered}
+#Plot 1
 ggplot(data4, aes(x = fct_reorder(name, strength), y = strength)) + 
   geom_bar(stat = "identity", fill = "#AE388B") +
   labs(
@@ -403,6 +401,7 @@ ggplot(data4, aes(x = fct_reorder(name, strength), y = strength)) +
   ) + 
   theme_test()
 
+#Plot 2
 ggplot(data4, aes(x = fct_reorder(name, strength), y = strength)) + 
   geom_bar(stat = "identity", fill = "#AE388B") +
   labs(
@@ -412,14 +411,13 @@ ggplot(data4, aes(x = fct_reorder(name, strength), y = strength)) +
   ) + 
   theme_test() + 
   coord_flip()
-
 ```
 
 ### Grouped and Stacked Barplots
 
 We can go a step further with barplots and group them. Let us assume we asked respondents to tell us how healthy they feel on a scale from 0-10. But we want to separate respondents older than 40 and younger than 40. And we again separate the group between female and male respondents. Therefore we look at the average answer of 4 groups: Female, older 40, Male, older 40, Female younger 40 and Male younger 40. To see if there are gender differences within these groups. Let us get the data:
 
-```{r}
+```{r data grouped barplot}
 data6 <- data.frame(
   female = c("Female", "Male", "Female", "Male"), 
   age = c("Old", "Old", "Young", "Young"), 
@@ -429,14 +427,14 @@ data6 <- data.frame(
 
 Now we got the data. We have to define 3 parameters within aes(). The x-axis is the age groups, the y-axis the average value, and we have to define fill = female, since this is our group we want to investigate within the age groups. Inside geom_bar(), we need two arguments stat = "identity" and position = dodge. Et voila we will get our first **grouped barplot.**
 
-```{r}
+```{r grouped barplot dodged}
 ggplot(data6, aes(x = age, y = value, fill = female)) + 
     geom_bar(position = "dodge", stat="identity") 
 ```
 
 We could have also used the a **stacked barplot**. The difference is, that we have one bar for our x-axis group, in our example the age group, and then the amount of the second group, the gender, is stacked on top of each it other. You could also see that as a normal barplot, where the bar is colored depending on the percentual distribution of the other group. In the code the only thing changing is that we set the position argument in the geom_bar() code to position = "stack":
 
-```{r}
+```{r grouped barplot stacked}
 ggplot(data6, aes(x = age, y = value, fill = female)) + 
     geom_bar(position = "stack", stat="identity") 
 ```
@@ -447,7 +445,8 @@ Let us make them pretty with our well-known techniques, it is always the same st
 
 -   I introduce you so-called color palettes. Instead of manually scaling the color, you can use built-in color palettes for different types of plots. For Barplot you can use the scale_fill_brewer, which includes different palettes and colors, which are automatically displayed. Have a look at the palettes of the command [here](https://r-graph-gallery.com/38-rcolorbrewers-palettes.html). That can be really helpful, if you have a lot of groups, so you do not have to think about different colors, which look good together.
 
-```{r}
+```{r bar plot with color palettes}
+#Plot 1
 ggplot(data6, aes(x = age, y = value, fill = female)) + 
     geom_bar(position = "dodge", stat="identity", 
              width = 0.35) + 
@@ -462,6 +461,7 @@ ggplot(data6, aes(x = age, y = value, fill = female)) +
   theme_minimal() + 
   theme(legend.title=element_blank())
 
+#Plot 2
 ggplot(data6, aes(x = age, y = value, fill = female)) + 
     geom_bar(position = "stack", stat="identity", 
              width = 0.35) +
@@ -494,7 +494,7 @@ y2 <- cumsum(rnorm(25))
 data6 <- data.frame(date,y, y2)
 ```
 
-```{r}
+```{r basic line plot}
 ggplot(data6, aes(x = date, y = y)) + 
   geom_line()
 ```
@@ -507,7 +507,7 @@ Normally we would go on and make the plot pretty. But there are additional aesth
 
 -   The rest of the aesthetics are stay the same, re-scaling axes, coloring, and themes.
 
-```{r}
+```{r dashed line plot}
 ggplot(data6, aes(x = date, y = y)) + 
   geom_line(color = "#0F52BA", linetype = "dashed",
             size = 1) + 
@@ -532,7 +532,7 @@ In the next step, we want to plot multiple lines in one plot. This is useful whe
 
 -   In the second geom_line() command we define the our next layer. This time the x-axis stays the same logically. But now we change y and set it to the second variable we want to inspect.
 
-```{r}
+```{r multiple lines}
 ggplot(data6) + 
   geom_line(aes(x = date, y = y)) +
   geom_line(aes(x = date, y = y2))
@@ -542,7 +542,7 @@ As always, we make the plot pretty in the next step. I will use the same code as
 
 -   We can set the line type, color and size differently for each layer. We just have to specify it inside the `geom_line()` command for the respective layer.
 
-```{r}
+```{r multiple colored lines}
 ggplot(data6) + 
   geom_line(aes(x = date, y = y), 
             linetype = "twodash", 
@@ -567,14 +567,14 @@ ggplot(data6) +
 
 Another possibility of using line charts is to look at the evolution of groups separately. I introduce you to the `babynames` dataset, which is a package in R, which loads automatically the dataset about the most popular babynames in the US from 1880 until 2017. Let us have a look at it:
 
-```{r}
+```{r babynames}
 ###Looking at the dataset
 head(babynames)
 ```
 
 Well, let us say we are interested in the popularity of the names Michael, Abby, and Lisa. Let us cut down the dataset to these three names with the filter() function you learned in the previous chapter:
 
-```{r}
+```{r cleaning babynames}
 babynames_cut <- babynames %>%
   filter(name %in% c("Emma", "Kimberly", "Ruth")) %>%
   filter(sex == "F")
@@ -584,7 +584,7 @@ In the next step, let us plot the popularity of these three names over time.
 
 -   We have to specify the x and y-axis and further add a `geom_line()` layer. So far, so normal. The next thing we do, is to tell ggplot2 that we want groups. We do so, in the `ggplot()` function by setting `group = name`. We should also set the `colors = name`, otherwise all lines will be black and we cannot distinguish, which line belongs to which group.
 
-```{r}
+```{r basic line plot}
 ggplot(babynames_cut, aes(x = year, y = n,
                       group = name,
                       color = name)) + 
@@ -595,7 +595,7 @@ Well, that looks good, we can see that Ruth had its peak in the 20s, Kimberly in
 
 -   Regarding the labs, I will introduce you a way of re-naming the legend, by simply setting `color = "New Name"` in the `labs()` function
 
-```{r}
+```{r colored line plot}
 ggplot(babynames_cut, aes(x = year, y = n,
                       group = name,
                       color = name)) + 
@@ -618,7 +618,7 @@ The last type of visualization are scatter plots. A Scatter plot displays the re
 
 We want to investigate the relationship between two variables. Let us assume we are the owner of a big choclate company. We want to find the out the relationship of our marketing spendings on the sales of our chocolate. We have the data for each quarter of the year and for years:
 
-```{r}
+```{r data for scatterplot}
 # Set the seed for reproducibility
 set.seed(123)
 
@@ -643,7 +643,7 @@ A scatter plot in R is made with the same logic as always.
 
 -   We add a comma and call the `geom_point()` function
 
-```{r}
+```{r basic scatterplot}
 ggplot(data_point, aes(x = marketing_budget, 
                        y = sales)) +
   geom_point()
@@ -651,7 +651,7 @@ ggplot(data_point, aes(x = marketing_budget,
 
 Let us make the plot pretty and as always, we define a color for the dots in the layer, thus the geom_point() function, re-scale the axes (in this case I would just re-scale the x-axis), re-name the labels, give a title and define a theme.
 
-```{r}
+```{r scatterplot milk}
 ggplot(data_point, aes(x = marketing_budget, 
                        y = sales)) +
   geom_point(color = "#99582a") +
@@ -668,7 +668,7 @@ ggplot(data_point, aes(x = marketing_budget,
 
 Let us go on with our example. We do not only have one sort of chocolate but two. Chocolate milk and dark chocolate. Let us get the data for dark chocolate as well:
 
-```{r}
+```{r more data for scatterplot}
 # Set the seed for reproducibility
 set.seed(123)
 
@@ -694,7 +694,7 @@ Now, we could run the same code as above, but we would not be able to distinguis
 
 -   I will manually give the colors, since I have to use brown colors for this example.
 
-```{r}
+```{r chocolatevmilk and marketing}
 ggplot(data_point, aes(x = marketing_budget, 
                        y = sales, 
                        color = name)) +
@@ -724,7 +724,7 @@ Using colors is one way to differentiate between groups in scatter plots.
 
 Let us have a look:
 
-```{r}
+```{r scatterplots with shapes}
 ggplot(data_point, aes(x = marketing_budget, 
                        y = sales, 
                        shape = name)) +
@@ -747,7 +747,7 @@ There are different types of shapes and we can set them manually via numbers.
 
 -   In the `labs()` function we will set the argument to `color = ""` and `shape = ""`. So the legend shows the colored shape as the legend.
 
-```{r}
+```{r colors and shapes}
 ggplot(data_point, aes(x = marketing_budget, 
                        y = sales, 
                        shape = name,
@@ -774,7 +774,7 @@ Sometimes we do not want to compare the elements in a plot (e.g. dots, lines), b
 
 That is rather abstract, let us stick with our chocolate company. We want to compare the effect of our marketing budget on sales for different quarters. We want to plot the same scatter plot as before, but this time for each quarter. We could of course split up the data set to each quarter and plot 4 plots. But that is not efficient. Let us copy the code from above for the basic plot, and just add the `facet_wrap()` function and inside this wave symbol `~` and add the variable we want separate for, in our case the quarters.
 
-```{r}
+```{r basic facet_wrap}
 ggplot(data_point, aes(x = marketing_budget, 
                        y = sales)) +
   geom_point() + 
@@ -783,7 +783,7 @@ ggplot(data_point, aes(x = marketing_budget,
 
 As you can see ggplot2 plots 4 graphs for each quarter. Instead of plotting 4 graphs and writing unnecessary long code, we can use the handy facet_warp() function. If we want to make the graph pretty, it is quite easy, since it is identical as if we want to make a single plot pretty. Thus, we can just copy the code from above and include it:
 
-```{r}
+```{r facet_wrap colors}
 ggplot(data_point, aes(x = marketing_budget, 
                        y = sales)) +
   geom_point(color = "#99582a") +
@@ -799,7 +799,7 @@ ggplot(data_point, aes(x = marketing_budget,
 
 We can also add a facet_wrap() function for our plot with different shapes and colors for chocolate milk and dark chocolate:
 
-```{r}
+```{r facet_wrap with shape and colors}
 ggplot(data_point, aes(x = marketing_budget, 
                        y = sales, 
                        shape = name,
@@ -827,8 +827,9 @@ The facet grid function does the same as the facet_wrap() function, but it allow
 
 -   We use the geom_line() function and make the plot pretty by giving meaningful label names, coloring each year with a unique color, giving a title, defining a theme and hiding the legend, since it would only show that the years have unique colors.
 
-```{r}
-set.seed(123) # For reproducibility
+```{r data facet_grid}
+#Set seed for reproducilty
+set.seed(123)
 
 # Define the cities, years, and months
 cities <- c("London", "Paris", "Berlin")
@@ -846,7 +847,7 @@ data$Temperature <- round(rnorm(nrow(data), mean = 15, sd = 10), 1) +
 head(data)
 ```
 
-```{r}
+```{r plot for temperatures}
 # Convert Month to a factor for better axis labeling
 data$Month <- factor(data$Month, levels = 1:4, labels = month.abb[1:4])
 
@@ -861,6 +862,7 @@ p <- ggplot(data, aes(x = Month, y = Temperature, group = Year, color = factor(Y
   theme(legend.position = "none") +
   facet_grid(Year ~ City)
 
+#Printing it
 p
 ```
 
@@ -874,10 +876,7 @@ I can only encourage you to go on and explore the world of data visualization in
 
 You can also combine different types of graphs. But be careful! Too much in one graph can be distracting. In the following, I will present a graph with two y-axis, one for a line chart with dots and one for a barplot. The x-axis presents the months of the year
 
-```{r}
-# Load necessary library
-library(ggplot2)
-
+```{r multiple graphs in one graph}
 # Simulating example data
 example_data <- data.frame(
   months = factor(1:12, levels = 1:12, labels = month.abb), 
@@ -907,9 +906,6 @@ ggplot(example_data, aes(x = months)) +
     axis.title.y.left = element_text(color = "skyblue"),
     axis.title.y.right = element_text(color = "red")
   )
-
-
-
 ```
 
 ### Distributions: Ridgeline Chart and Violin Chart
@@ -919,11 +915,10 @@ Two visualizations, which get more and more popular: The Ridgeline Chart and the
 The violin chart displays a density plot horizontally. Moreover, it displays mirrors the density plot and puts it toegether:
 
 ```{r violin chart}
-# Load necessary libraries
-library(ggplot2)
+# Setting seed for reproducibility
+set.seed(123)  
 
 # Simulate example sports data
-set.seed(123)  # For reproducibility
 sports_data <- data.frame(
   sport = factor(rep(c("Basketball", "Soccer", "Swimming", "Gymnastics", "Tennis"), each = 100)),
   height = c(
@@ -951,19 +946,13 @@ ggplot(sports_data, aes(x = sport, y = height, fill = sport)) +
     axis.title.y = element_text(size = 14)
   ) +
   scale_fill_brewer(palette = "RdBu")
-
-
 ```
 
 The Ridgeline chart is a nice way to compare more than 2 distributions. The idea is to plot the scale on the x-axis. On the y-axis the groups you want to compare are plotted:
 
 ```{r ridgeline plot}
-
-# Load necessary libraries
-library(ggridges)
-
-# Simulating example data
-set.seed(123)  # For reproducibility
+# Setting seed for reproducibility
+set.seed(123)  
 
 # Normal distribution
 normal_data <- rnorm(1000, mean = 50, sd = 10)
@@ -994,8 +983,6 @@ ggplot(example_data, aes(x = value, y = distribution, fill = distribution)) +
   ) +
   theme_ridges() + 
   theme(legend.position = "none")
-
-
 ```
 
 ### Ranking: Lollipop Charts and Radar Charts
@@ -1012,8 +999,6 @@ Lollipop Charts are getting more and more popular, so I want to show them to you
 ggplot(data4, aes(x=name, y=strength)) +
   geom_point() + 
   geom_segment(aes(x=name, xend=name, y=0, yend=strength))
-
-
 ```
 
 Let us make it pretty. We can give the line different colors and adjust it with the same methods as the line chart. The same goes for the dots we can adjust them as much as we like:

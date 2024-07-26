@@ -6,8 +6,7 @@
 
 RStudio has four main components and each of them has a purpose:
 
-![**Figure 1: Standard RStudio Interface**](images/example1.jpeg)
-
+![**Figure 1: Standard RStudio Interface**](images/example1.jpeg){width="4750"}
 
 -   **On the top left** you can see the **Source** window. In this window you write and run your code. The console opens after you choose, which type of Script you want to use:
 
@@ -35,7 +34,7 @@ RStudio has four main components and each of them has a purpose:
 
 You can use R for basic calculations:
 
-```{r}
+```{r calculations}
 
 #You can use hashtags to comment
 
@@ -60,7 +59,7 @@ You can use R also for TRUE/FALSE statements for logical statements via the comp
 -   `>=` greater than or equal to
 -   `<=` less than or equal to
 
-```{r}
+```{r logical operators}
 
 1 < 3 #TRUE
 
@@ -76,12 +75,9 @@ You can use R also for TRUE/FALSE statements for logical statements via the comp
 
 ```
 
-You can also use logical operators: 
--   `&` element-wise AND operator. It returns TRUE if both elements are true
--   `|` element-wise OR operator. It returns TRUE if one of the statements is TRUE
--   `!` Logical NOT operator. It returns FALSE if statement is TRUE
+You can also use logical operators: - `&` element-wise AND operator. It returns TRUE if both elements are true - `|` element-wise OR operator. It returns TRUE if one of the statements is TRUE - `!` Logical NOT operator. It returns FALSE if statement is TRUE
 
-```{r}
+```{r logical statements}
 
 5 & 4 < 8 #TRUE
 
@@ -102,17 +98,12 @@ e.g.
 -   `mean(x)` for the mean, `x` is any number.
 -   `median(x)` for the median, `x` is any number.
 
-```{r, eval=FALSE}
-sqrt(x = 36)
+```{r functions, eval=FALSE}
+sqrt(x = 36) #square root
 
-exp(x = 0)
+exp(x = 0) # exponential of 1
 
 print("U can stay under my umbrella") #with this command you can print what you want 
-
-#If you need help with a command you can use a question mark in front of the command or the help command
-
-?exp()
-help(exp)
 ```
 
 I explicitly choose easy examples, but sometimes commands can be complicated, because they demand special inputs. To get help, our first step should be to ask R itself:
@@ -121,9 +112,9 @@ I explicitly choose easy examples, but sometimes commands can be complicated, be
 
 -   You can also call the help() function and put the function you want to learn about without brackets in the help() function.
 
-```{r}
-?exp()
-help(exp)
+```{r help}
+?exp() #questionmark
+help(exp) #help command
 ```
 
 ### Assigning objects and printing them
@@ -134,12 +125,12 @@ Most of the time you will store your results in objects.
 
 -   The objects will be saved and you can see them in your environment.
 
-```{r}
-Pizza <- 7.50 
+```{r objects}
+Pizza <- 7.50 #pizza object
 
-Cola <- 3.50 
+Cola <- 3.50 #cola object
 
-Pizza + Cola
+Pizza + Cola #addition of objects
 ```
 
 We can then go on work with the content of the objects.
@@ -149,13 +140,11 @@ We can then go on work with the content of the objects.
 -   We can also save the result of those object in a new object and work with this object and this can go on forever technically.
 
 ```{r}
-Pizza + Cola
+Offer <- Pizza + Cola #assigning addition 
 
-Offer <- Pizza + Cola 
+Offer #printing the object
 
-Offer
-
-Offer^2 #you square the term with ^2
+Offer^2 #square the term with ^2
 ```
 
 ### Vectors
@@ -164,28 +153,28 @@ In R a vector contains more than one information.
 
 -   You use the `c()` command, and divide the information with a `,`. Let us compare food prices:
 
-```{r}
+```{r interacting objects}
 
 food <- c("Pizza", "Kebab", "Curry", 
-          "Fish", "Burrito")
+          "Fish", "Burrito") #food vector
 
-print(food)
+print(food) #printing it 
 
-prices <- c(7.50, 6.00, 8.50, 3.00, 11.00)
+prices <- c(7.50, 6.00, 8.50, 3.00, 11.00) #price vector
 
-print(prices)
+print(prices) #printing it
 
-cola_prices <- c(3.50, 3, 4, 2.50, 3)
+cola_prices <- c(3.50, 3, 4, 2.50, 3) #cola prices vector
 
-print(cola_prices)
+print(cola_prices) #printing it
 ```
 
 Now we can calculate the prices for a decent meal in one step by adding the two vectors together. The vector prices_combined will give us the prices for a meal plus a cola:
 
-```{r}
-prices_combined <- prices + cola_prices
+```{r interacting objects 2}
+prices_combined <- prices + cola_prices #prices combined
 
-print(prices_combined)
+print(prices_combined) #printing it
 ```
 
 ### Object Classes
@@ -193,7 +182,7 @@ print(prices_combined)
 Objects can contain information of different *data types*:
 
 |               |               |                                              |
-|---------------|---------------|----------------------------------------------|
+|-----------------|-----------------|--------------------------------------|
 | **Numeric**   | Numbers       | `c(1, 2.4, 3.14, 4)`                         |
 | **Character** | Text          | `c("1", "blue", "fun", "monster")`           |
 | **Logical**   | True or false | `c(TRUE, FALSE, TRUE, FALSE)`                |
@@ -201,18 +190,18 @@ Objects can contain information of different *data types*:
 
 For data analysis commands sometimes require special object classes. With the `class()` command we can find out the class. And with `as.numeric` for example we can change classes by assigning it to itself, by it is common to assign it to a new object:
 
-```{r}
+```{r classes}
 #Let us find out the classes 
-class(prices)
-class(food)
-class(cola_prices)
+class(prices) #numeric
+class(food) #character
+class(cola_prices) #numeric
 ```
 
 We can also change the classes of variables. To do so, we can use `as.factor()`, `as.numeric()`, `as.character()` and so forth. You can do that for every class. Let us change the cola_prices to a vector.
 
 -   To do so, we change call `as.character()` and put the object in it. Then we assign it to another object called `cola_prices_character`. This object will have the class `"character"`.
 
-```{r}
+```{r changing classes}
 #We want the cola_prices vector to be a character 
 cola_prices_character <- as.character(cola_prices)
 
@@ -227,8 +216,7 @@ print(cola_prices_character)
 
 There are different ways of building a matrix. Let us start by just binding the vectors as columns together. You can do that `cbind()` if you want to bind columns together. `rbind()` is therefore the command to bind rows together.
 
-```{r}
-
+```{r matrix}
 price_index <- cbind(food, 
                      prices,
                      cola_prices) #We bind it together
@@ -261,7 +249,7 @@ dim(matrix_example2) #The dim() command shows you the dimensions of a matrix
 
 ```
 
-```{r}
+```{r simulating matrix}
 # We can also create directly a matrix 
 
 matrix_example <- matrix(1:20, nrow = 4, ncol = 5, byrow = T) # create numeric matrix
@@ -282,27 +270,20 @@ dim(matrix_example2) #The dim() command shows you the dimensions of a matrix
 
 We want to work with matrices. You can extract columns and rows.
 
-```{r}
-
+```{r working with matrices}
 #Let us get used to work with objects
-
 row <- 1 
 column <- 1 
 
-#The number before the comma in the square brackets refer to the row(s), and after the comma everything refers to the column. If you use both, you logically refer directly to a number
+#Printing it
+print(object1 <- matrix_example[row, ]) #printing the first row
+print(object2 <- matrix_example[, column]) #printing the first column 
+print(object3 <- matrix_example[row, column]) #printing first row and column
 
-print(object1 <- matrix_example[row, ])
-print(object2 <- matrix_example[, column])
-print(object3 <- matrix_example[row, column])
-
-print(matrix_example)
-
-
-  
-
+print(matrix_example) #printing the matrix
 ```
 
-```{r}
+```{r matrix info}
 #More Information 
 
 nrow(matrix_example) #How many rows
@@ -316,23 +297,22 @@ dim(matrix_example) #Overall dimensions
 
 Data Frames are more useful than matrices, since they are able to contain objects with different classes:
 
-```{r}
+```{r dfs}
 
-df_example <-
-  data.frame(
+df_example <- data.frame(
     country = c("Austria", "England", 
                 "Brazil", "Germany"), 
     capital = c("Vienna", "London", 
                 "Brasilia", "Berlin"), 
     elo = c(1761, 1938, 2166, 1988),
     logical = c(TRUE, FALSE, FALSE, TRUE)
-  )
+  ) #example df
 
 #Checking it
 print(df_example)
 ```
 
-```{r}
+```{r getting columns}
 df_example$country #You tell R to use the data frame "df_Example" and with the dollar sign, you tell R to print a certain variable. 
 ```
 
@@ -342,10 +322,11 @@ One of the most frequently used and therefore most important logical operators i
 
 ### Simple if command
 
-![**Figure 2: Standard RStudio Interface**](images/r-if-statement.jpg){fig-align="center"}
+![***Figure 2: Logic of if-else statements***](images/r-if-statement.jpg){fig-align="center"}
+
 This is the logic of a simple **if statement**. If a test expression is met, then the body of it (logical consequence) should happen
 
-```{r}
+```{r if else statements}
 
 grade <- 1.7 
 
@@ -369,17 +350,17 @@ An if command on its own is quite useless, things get interesting, when we also 
 
 Now we just add a **body of else** into the equation, in R that means we need to define it
 
-```{r}
+```{r more if else statements}
 
-grade <- 3.3
+grade <- 3.3 #assigning a grade
 
 if (grade <= 2) {
   print("Good Job")
 } else {
   print("Life goes on")
-} #You add an else command and {Body expression else}, thus the body expression of else in fancy brackets 
+} 
 
-grade <- 1.3 
+grade <- 1.3 #assigning a grade
 
 if (grade <= 2) {
   print("Good Job")
@@ -390,32 +371,17 @@ if (grade <= 2) {
 
 What you see above is a classic ifelse condition, but R has a base R function called ifelse(), which does the same thing as the function above
 
-```{r}
-ifelse(grade <=2, "Good Job", "Life goes on") #The command is called ifelse() ==> ifelse(test expression, body expression if, body expression else). It does not look so fancy as the if else condition tho 
+```{r ifelse command}
+ifelse(grade <=2, "Good Job", "Life goes on") #ifelse command
 ```
 
 ### if else ladders/ if else with multiple conditions
 
 Of course not every operations requires a dichotomous operation, so what we need are if else commands with multiple conditions:
 
-```{r}
+```{r if else multiple}
 
-grade <- 1.0 
-
-if (grade == 1.0) {
-  print("Amazing") 
-} else if (grade > 1.0 & grade <= 2.0) {
-  print("Good Job")
-} else if (grade > 2.0 & grade <= 3.0) {
-  print("OK")
-} else if (grade > 3.0 & grade <= 4.0) {
-  print("Life goes on")
-} #You just need to add another if function into the body expression of the first else body expression: 
-
-# if (test expression) { body expression if } else if(test expression 2) { body expression if} etc...
-
-  
-grade <- 2.7
+grade <- 1.0 #Assigning a grade
 
 if (grade == 1.0) {
   print("Amazing") 
@@ -427,7 +393,22 @@ if (grade == 1.0) {
   print("Life goes on")
 } 
 
-grade <- 3.3
+# if (test expression) { body expression if } else if(test expression 2) { body expression if} etc...
+
+  
+grade <- 2.7 #Assigning a grade
+
+if (grade == 1.0) {
+  print("Amazing") 
+} else if (grade > 1.0 & grade <= 2.0) {
+  print("Good Job")
+} else if (grade > 2.0 & grade <= 3.0) {
+  print("OK")
+} else if (grade > 3.0 & grade <= 4.0) {
+  print("Life goes on")
+} 
+
+grade <- 3.3 #Assigning a grade
 
 if (grade == 1.0) {
   print("Amazing") 
@@ -443,9 +424,9 @@ if (grade == 1.0) {
 
 Again we can do so-called **nested ifelse() function**, using the `ifelse()` command:
 
-```{r}
+```{r ifelse nested}
 
-grade <- 1.7
+grade <- 1.7 #Assigning a grade
 
 ifelse(grade == 1.0, "Amazing", 
        ifelse(grade > 1 & grade <= 2, "Good Job", 
@@ -456,7 +437,7 @@ ifelse(grade == 1.0, "Amazing",
               )
        )
 
-grade <- 3.3 
+grade <- 3.3 #Assigning a grade
 
 ifelse(grade == 1.0, "Amazing", 
        ifelse(grade > 1 & grade <= 2, "Good Job", 
@@ -477,7 +458,7 @@ ifelse(grade == 1.0, "Amazing",
 
 Create a vector called `my_vector` with the values 1,2,3 and check is class.
 
-```{r, eval=FALSE}
+```{r exercise 1, eval=FALSE}
 #create the vector 
 my_vector <- 
 
@@ -489,7 +470,7 @@ my_vector <-
 
 Create a Matrix called `student`. This should contain information about the `name`, `age` and `major`. Make three vectors wiht three entries and bind them together to a the matrix `student`. Print the matrix.
 
-```{r, eval = FALSE}
+```{r exercise 2, eval = FALSE}
 #Create the vectors 
 
 name <- 
@@ -507,7 +488,7 @@ student <-
 
 Write an if-else statement that checks if a given number is positive or negative. If the number is positive, print "Number is positive", otherwise print "Number is negative". Feel free to decide if you want to use the ifelse function or the ifelse condition.
 
-```{r}
+```{r exercise 3}
 
 #Assigning the number to the object "number"
 number <- -4
@@ -522,6 +503,6 @@ Write an if-else ladder that categorizes a student's grade based on their score.
 
 Score \>= 90: "A" Score \>= 80 and \< 90: "B" Score \>= 70 and \< 80: "C" Score \>= 60 and \< 70: "D" Score \< 60: "F"
 
-```{r}
+```{r exercise 4}
 
 ```

@@ -87,7 +87,8 @@ for (i in 2:length(date)) {
 
 # creating DataFrame 
 df_time_series <- data.frame(y_time, date)
-####################################################################################
+
+###Defining a function
 
 #Creating Function for Kable Table 
 table_ovb <- function(model1, model2) {
@@ -155,8 +156,7 @@ where $x_i$ is the answer of respondent *i* for our independent variable x, $\ba
 The **covariance** is then divided by the squared deviation to the average answer of our independent variable x. This will get us the estimated coefficient for our model $\hat{\beta_1}$ . Sounds complicated but lets do it in R:
 
 ```{r calculating ols by hand}
-
-#Let us first get the cpvariance
+#Let us first get the covariance
 cov <- sum((df$x - mean(df$x)) * (df$y - mean(df$y)))
 
 #Now we get the variance of x 
@@ -167,8 +167,8 @@ x_sq
 # We just have to divide them 
 slope <- cov/x_sq 
 
-print(slope) # 0.679
-
+#printing it
+print(slope)
 ```
 
 To get the intercept $\hat{\beta_0}$ we have to take the result of the slope and implement it into this formula:
@@ -180,10 +180,11 @@ $$
 We multiply $\hat{\beta_1}$ with the average of our independent variable X. The result is subtracted from the average of our dependent variable y.
 
 ```{r calculating intercept by hand}
-
+#calculating the intercept
 beta_0 <- mean(df$y) - (slope * mean(df$x))
 
-beta_0 # 0.38
+#printing it
+beta_0
 ```
 
 Now we estimated our parameters and can display the for our model by simply putting it into the systematic component:
@@ -197,10 +198,11 @@ $$
 This procedure by hand is way to time-wasting. R has a built in function to calculate the parameter for us called `lm()` :
 
 ```{r calculating linear regression automated}
-
+#running a linear regression
 model1 <- lm(y ~ x, 
              data = df) 
 
+#Printing a summary of the model results
 summary(model1)
 ```
 
@@ -217,13 +219,14 @@ $$
 We just have to put in x-values and according to our model we would get a prediction of the respondents y-value $\hat{y_i}$. We can do that for all x-values in our dataset and get a column with all the predicted values, let us call it (`y_hat`) :
 
 ```{r calculating predictions}
+#First, we calculate the predictions for y
+df$y_hat <- -0.33 + 0.68*df$x 
 
-df$y_hat <- -0.33 + 0.68*df$x #First, we calculate the predictions for y
-
-head(df) #Checking 
+#Checking 
+head(df) 
 
 #We could also do it automatically via the predict() function
-automated_predictions <- predict(model1) #Just passing the model to the function 
+automated_predictions <- predict(model1) 
 ```
 
 ## Model Fit
@@ -249,23 +252,22 @@ where
 Reconsider the graph at 2.2.1, the residuals are basically the red lines, thus the distance from the line to the point. We can calculate the residuals for our graph:
 
 ```{r calculating residuals}
-
 #We get the Residuals by subtracting our actual y from y_hat
 df$residuals <- df$y - df$y_hat 
 
-head(df) #Checking
+#cheking it
+head(df) 
 
 #We could have done that automatically with R as well !  
-
 df$residuals_auto <- residuals(model1)
 
-head(df) #Checking, you will see the values are differing, that is because of rounding
+#Checking it
+head(df)
 ```
 
 Let us have a look at a so-called **Residual Plot**: On the x-axis you plot the **fitted values**, thus our `y_hat`. On the y-axis you plot the residuals, thus $y-\hat{y}$. Then you plot a horizontal line at y = 0. All dots on those lines show us the values correctly predicted by our model.
 
 ```{r residual plot}
-
 ggplot(df, aes(x, residuals_auto)) + 
   geom_point() + 
   geom_hline(yintercept = 0) +
@@ -281,16 +283,18 @@ ggplot(df, aes(x, residuals_auto)) +
 One assumption of linear regression is that the variance of the error term is not correlated with our independent variable. Well, that is quite technocratic and means basically, that the residuals are distributed equally over the independent variables. Let us plot it to get a visual intuition:
 
 ```{r homo and hetero plot, warnings = FALSE}
-
+#setting seed for reproduciability
 set.seed(123)
 
 # Generate some data
 x <- runif(150, 0.05, 1)
 e <- rnorm(150, 0, 0.5)
 
-y_homo <- 2 * x + e #homoskedastic data 
-y_hetero <- 2 * x + e*x^2 #heteroskedastic data 
-
+#homoskedastic data 
+y_homo <- 2 * x + e 
+#heteroskedastic data 
+y_hetero <- 2 * x + e*x^2 
+#making a data frame with both data
 df_homo_hetero <- data.frame(x, y_homo, y_hetero)
 
 # Scatterplot with homoscedasticity
@@ -330,16 +334,18 @@ Now that we have the Residuals, we can calculate the Total Sum of Square (TSS), 
 -   $R^2$ (The Variation we can predict from our model): $R^2 = \frac{ESS}{TSS}$ , well to get the proportion we just divide the variation we can explain from our DV from the actual variation through the total variation in the DV. If these two values are the same, thus our model predicts all the variation in our dependent variable and this $R^2$ is 1. If our model could not explain anything the variation would be 0, since the values of both cannot be negative. Let us calculate them:
 
 ```{r calculating r2 by hand}
-
+#total sum of squares
 tss <- sum((df$y - mean(df$y))^2)
-
+#explained sum of squares
 ess <- sum((df$y_hat - mean(df$y))^2)
-
+#caculating r squared
 r_squared <- ess/tss
 
-r_squared #0.878 that is approxiametly the same value as we calculated above, again it is not exact, due to rounding
+#Printing it
+r_squared
 
-summary(model1)$r.squared #Our value is approxiametly the same value as we calculated above, again it is not exact, due to rounding
+#Summarizing it
+summary(model1)$r.squared
 ```
 
 ### Influential Outliers
@@ -347,7 +353,6 @@ summary(model1)$r.squared #Our value is approxiametly the same value as we calcu
 Outliers are extremely deviating values, which can impact our analysis and bias it. Therefore, we have to check, if our data contains such values. But first let us see how they can impact our data:
 
 ```{r plotting bias through outliers}
-
 #set seed 
 set.seed(069)
 
@@ -388,7 +393,6 @@ ggplot(data_outlier, aes(x = x1, y = y1)) +
 We see that this one observation completely biases our sample. But how do we find out, which observation is an influential outlier? There is a metric called **Cook's Distance**, we can use. Let us do it and plot it in R.
 
 ```{r plotting cooks distance}
-
 #Cooks Distance can be calculated with a built-in function
 data_outlier$cooks_distance <- cooks.distance(model_outlier) 
 
@@ -407,12 +411,10 @@ We can clearly see that **Cook's Distance** detected the outlier. The rule is th
 Linear regression is a mathematical model. Therefore it is based on assumptions. But we should not just assume them, we should test them! One assumption is that linearity is assumed between X and Y. But that can be problematic consider following example:
 
 ```{r plotting linear fit through quadratic form}
-
 # estimate a simple regression model 
 model_simple <- lm(Y_quadratic ~ X_quadratic, data = df2)
 
 # Summarize it
-
 summary(model_simple)
 
 #Plot it
@@ -420,18 +422,15 @@ ggplot(df2, aes(x = X_quadratic, y = Y_quadratic)) +
   geom_point(shape = 20, size = 3) + 
   geom_smooth(method = "lm", se = FALSE) + 
   theme_bw()
-
 ```
 
 As you can see something look wrong. There seems to be a correlation between the two variables, but it does not seem linear. In such a case it does make sense to square the independent variable and run the regression again:
 
 ```{r plotting quadratic fit with quadratic form}
-
 # estimate a simple regression model 
 model_quadratic <- lm(Y_quadratic ~ X_quadratic^2, data = df2)
 
 #Summarize it 
-
 summary(model_quadratic)
 
 #Plot it
@@ -448,8 +447,10 @@ ggplot(df2, aes(x = X_quadratic, y = Y_quadratic)) +
 Well that looks better and is the proper way to deal with quadratic relationships in linear regression. Well, data can take on not only a quadratic form, it could also take on a form of a square-root function. I will show the most classical example of such a functional form. The `gapminder` data is loaded. It contains data about the average life expectancy (`lifeExp`)and the GDP per capita (`gdpPercap`) of countries in different years. Let us look if the GDP per Capita is correlated with Life Expectancy:
 
 ```{r unlogged fit, warning=FALSE}
+#checking the data
 head(gapminder)
 
+#Plotting it
 ggplot(gapminder, aes(gdpPercap, lifeExp)) + 
   geom_point() + 
   geom_smooth(method = "loess", se = FALSE) + 
@@ -525,9 +526,10 @@ The rule of thumb is that the lower the RSME, the better. It is a non-standardiz
 The standard error of a coefficient estimate is the metric directly presented next to the coefficient in the regression output. It is the square root of the variance of the regression coefficient.
 
 ```{r se}
-
+#calculating standard error by hand
 se <- SSR/(nrow(df) - 2 * (sum(df$x - mean(x))))
 
+#Printing it
 print(se)
 ```
 
@@ -542,9 +544,11 @@ $$
 where $\beta_i$ is the coefficient calculated by the linear regression, and $SE(\beta_i)$ is the standard error. Let us calculate it manually by hand for our example:
 
 ```{r t-value by hand}
+#t value by hand
 t_value_intercept <- -0.32773/0.30271 
 t_value_x         <- 0.67949/0.04813 
 
+#printing it
 print(t_value_intercept) #-1.082653
 print(t_value_x) #-14.11781
 ```
@@ -641,11 +645,13 @@ plotly:: ggplotly(ggplot(t_value_data, aes(x = x, y = density)) +
 -   Since the math is complicated and thus not help to understand the intuition, I directly show you how to calculate the p-value by hand:
 
 ```{r p-value by hand }
+#calculating the p values by hand
 p_value_1 <- 2 * pt(-abs(t_value_intercept), 28)
 p_value_2 <- 2 * pt(-abs(t_value_x), 28)
 
-print(p_value_1) #0.28
-print(p_value_2) #2.94e-14
+#printing it
+print(p_value_1) 
+print(p_value_2)
 ```
 
 We get the same values as in our regression, and we decided before that our critical value (denoted as $\alpha$) should be less than 0.05 to reject the null hypothesis. Therefore we can reject the null hypothesis for the coefficient of our variable x. Since the coefficient is positive, the interpretation would be that x has on average a positive effect on y, since the probability that the value is different than 0 is lower than the critical value of 5%.
@@ -661,15 +667,15 @@ In the following, let us assume we draw 1000 samples before the election, to get
 So if we draw 1000 samples, in 950 the confidence intervals have to cover the true population parameter:
 
 ```{r simulating 100 CIs}
-###Since this is a simulation we need to set a seed
+#Since this is a simulation we need to set a seed
 set.seed(187)
 
-###We will need to have vectors for the upper confidence interval and the lower one
+#We will need to have vectors for the upper confidence interval and the lower one
 lower_ci <- numeric(100)
 upper_ci <- numeric(100)
 estimates <- numeric(100)
 
-###This loop represents 
+#This loop represents 
 for(i in 1:length(lower_ci)) {
   
   Y <- rnorm(100, mean = 24, sd = 2)
@@ -679,24 +685,26 @@ for(i in 1:length(lower_ci)) {
   
 }
 
-###Let us bind both vectors together 
+#Let us bind both vectors together 
 CIs <- data.frame(estimates, lower_ci, upper_ci)
 
-###Print it 
+#Print it 
 head(CIs)
 ```
 
 Now we have drawn our 1000 samples and computed our estimates as well as their corresponding intervals. Thus, 1000 samples about the vote share of Party A. Let us check, if the true population parameter is 95% of times within our computed confidence intervals:
 
 ```{r plotting simulated CIs}
-###Getting the true mean 
+#Getting the true mean 
 true_mean <- 24
-###First, we identify those who are not including 24 our true population parameter
+
+#First, we identify those who are not including 24 our true population parameter
 CIs$missed <- ifelse(CIs$lower_ci > true_mean | CIs$upper_ci < true_mean, "Out", "In")
-###Let us give every sample an identification number 
+
+#Let us give every sample an identification number 
 CIs$id <- 1:nrow(CIs)
 
-###Plotting it 
+#Plotting it 
 ggplot(data = CIs) +
   geom_pointrange(
     aes(
@@ -710,8 +718,8 @@ ggplot(data = CIs) +
   geom_vline(
     aes(xintercept = true_mean), # add vertical line at true_mean
   ) +
-  scale_color_manual(values = c("azure4", "red")) + # set our preferred colors
-  theme_minimal() + # some theme to change the appearance
+  scale_color_manual(values = c("azure4", "red")) + 
+  theme_minimal() + 
   labs(
     title = "Confidence Interval for Mean",
     subtitle = "Population mean equals 24",
@@ -720,8 +728,7 @@ ggplot(data = CIs) +
     color = "Is true population parameter inside the CI?"
   ) +
   theme(legend.position = "top") + # switch the legend to the top
-  scale_x_continuous(breaks = c(seq(15, 30, by = 1))) # change values on x-axis
-
+  scale_x_continuous(breaks = c(seq(15, 30, by = 1)))
 ```
 
 Well, we can see that the majority of the computed intervals include the true population parameter. But there are three, which are not. That is within our definition.
@@ -736,23 +743,22 @@ CI_{upper} = \beta_i + 1.96 * SE(\beta_i)
 $$
 
 ```{r computing CIs by hand for model 1}
-###Let us look at the confindence intervals of model 1 
+#Let us look at the confindence intervals of model 1 
 confint(model1)
 
-###Let us compute the confidence values by hand for the intercept and x 
-# Intercept 
+#Let us compute the confidence values by hand for the intercept and x 
 ci_lower_int <- model1$coefficients[1] - 1.96 * summary(model1)$coef[, "Std. Error"][1]
 ci_upper_int <- model1$coefficients[1] + 1.96 * summary(model1)$coef[, "Std. Error"][1]
 
-# Print it 
+#Print it 
 print(ci_lower_int)
 print(ci_upper_int)
 
-# Estimate X 
+#Estimate X 
 ci_lower_est <- model1$coefficients[2] - 1.96 * summary(model1)$coef[, "Std. Error"][2]
 ci_upper_est <- model1$coefficients[2] + 1.96 * summary(model1)$coef[, "Std. Error"][2]
 
-# Print it
+#Print it
 print(ci_lower_est)
 print(ci_upper_est)
 ```
@@ -792,8 +798,8 @@ $$ Y_i = \beta_0 + \beta_1X_i + \beta_2Z_i + \epsilon_i $$
 Let us compute the slopes:
 
 ```{r computing model for multivariate analysis}
-
-lm(y ~ x + categorical_variable, data = df) %>% summary()
+lm(y ~ x + categorical_variable, data = df) %>% 
+  summary()
 ```
 
 We can see, that this works fine, we only had to add the independent variable in the command such as in our systematic component. Regarding the interpretation it is analogous to the normal linear regression one. For a one-unit increase in our independent variable x, the dependent variable y increases 0.67 units on average, holding all else constant. For category 1 in comparison to category 0, the dependent variable y increases 0.52 units on average, holding all else equal. Now, we can put the calculated coefficients into our systematic component and make predictions:
@@ -827,17 +833,20 @@ where
 In `R`, we can extract the adjusted R-squared simply from our model in chunk, multivariate regression:
 
 ```{r calculating adj r2}
+#running multivariate model
 multivariate_model <- lm(y ~ x + categorical_variable, data = df)
 
+#Getting summary
 summary(multivariate_model)
 
-summary(multivariate_model)$adj.r.squared #Extract Adjusted R-squared
+#Extract Adjusted R-squared
+summary(multivariate_model)$adj.r.squared
 
-#By Hand
-
+#Calculating by hand
 adj_r_squared <- 1 - (((1-summary(multivariate_model)$r.squared) * (nrow(df) - 1))/(nrow(df) - 2 - 1))
 
-print(adj_r_squared) #0.88
+#printing it
+print(adj_r_squared)
 ```
 
 ### Omitted Variable Bias
@@ -880,7 +889,8 @@ summary(model_without_temperature)
 summary(model_with_only_temperature)
 summary(model_with_temperature)  
 
-#Let us display both models next to each other.EDIT: I created this function specifically, the code for the function is at the top.   
+#Let us display both models next to each other
+#EDIT: I created this function specifically, the code for the function is at the top.   
 table_ovb(model_without_temperature, model_with_temperature)
 ```
 
@@ -897,7 +907,6 @@ $$
 Let us compute them:
 
 ```{r Multicollinearity}
-
 # Set seed for reproducibility
 set.seed(42)
 
@@ -915,7 +924,6 @@ gaming_time <- 0.7 * learning_time +
   sqrt(1 - 0.7^2) * rnorm(n, sd = 1) 
 
 #generate error term
-
 epsilon <- rnorm(n, 0, 3)
 
 # Generate grades
@@ -927,10 +935,10 @@ df_grades <- data.frame(learning_time,
                    grades)
 
 # Display first few rows of the data frame
-
 grades_model <- lm(grades ~ learning_time + gaming_time, 
                    data = df_grades)
 
+#Getting the summary
 summary(grades_model)
 ```
 
@@ -956,8 +964,6 @@ round(cormatrix, 2) #round it to the second digit and display it
 #  select(learning_time, gaming_time) %>% 
 #  cor() %>% 
 #  round(2) 
-
-
 ```
 
 We can see that the correlation between both variables is way to high. Now, with only two variables the table works fine, but what if we have, let us say, 20 variables? It could get messy, therefore you could also use the correlation matrix, which I introduced in the chapter before. In this case, it does not make sense, since it would just print out one block. But keep it nevertheless in mind for the future.
@@ -986,7 +992,7 @@ The rule is that if a value exceeds 10, it is considered critical. We should alw
 As I mentioned in the first chapter, there are different types of variables, let us reconsider them:
 
 |               |               |                                              |
-|------------------|------------------|-------------------------------------|
+|------------------|------------------|------------------------------------|
 | **Numeric**   | Numbers       | `c(1, 2.4, 3.14, 4)`                         |
 | **Character** | Text          | `c("1", "blue", "fun", "monster")`           |
 | **Logical**   | True or false | `c(TRUE, FALSE, TRUE, FALSE)`                |
@@ -1001,12 +1007,12 @@ table(df$categorical_variable)
 As we can see our data set now contains a categorical variable with two categories, named "A" and "B". Those categories could be anything: Female and Male, bought a product or did not buy a product, vaccine or placebo and so on. What happens, when we now run a model?
 
 ```{r model with categorical variable}
-
+#running a model with a categorical variable
 model2 <- lm(y ~ categorical_variable, 
              data = df) 
 
-summary(model2) #0.92
-
+#Getting the summary
+summary(model2) 
 ```
 
 We see a coefficient of 0.64 that is fine. But as you see the category "category_A" is not display, why? Categorical variables are calculated based on so-called "reference categories". R determines the reference category based on alphabetical order. In this case the category "A" is the reference category. The reference category is named like this, since the computed coefficients refer to it. The reference category "A" takes on the value 0. The coefficient of the category B is "0.92". That means that category "B" if the a respondent is part of category "B" than the dependent variable Y increases on average 0.64 units in comparison to category "A", holding all else equal.
@@ -1014,18 +1020,21 @@ We see a coefficient of 0.64 that is fine. But as you see the category "category
 That sounds technocratic, let us get an intuition. We add a zero to our code and look at the output:
 
 ```{r running the model with + 0}
+#running the model
 model3 <- lm(y ~ categorical_variable + 0, 
              data = df) 
-summary(model3) #A:2.9, B:3.86
+#getting a summary
+summary(model3)
 ```
 
 The coefficients changed, but not really. Let us subtract the coefficient from category A from category B:
 
 ```{r subtracting categories to get coefficient}
-
+#results
 result <- coefficients(model3)[2] - coefficients(model3)[1] #coefficents can be extracted this way
 
-result #0.92
+#printing it
+result
 ```
 
 We get the same coefficient as above and that is what R does automatically when computing coefficients of categorical variables. The reference category is scaled to 0 and the other categories are following.
@@ -1057,15 +1066,13 @@ where
 Interactions effects can be implemented in R, by simply writing it explicitly into the function, either with an asterisks `*` or a double point `:`, let us have a look it:
 
 ```{r model with interaction effect}
-
+#running a model with an interaction effect
 model_interaction <- lm(y ~ x + categorical_variable + categorical_variable*x, data = df) 
 
-#Or with a :
-
-model_interaction <- lm(y ~ x + categorical_variable + categorical_variable:x, data = df)
+#With ":" instead of "*"
+#model_interaction <- lm(y ~ x + categorical_variable + categorical_variable:x, data = df)
 
 #Looking at the results 
-
 summary(model_interaction)
 ```
 

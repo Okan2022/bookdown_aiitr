@@ -20,8 +20,8 @@ To install packages you use the very creative `install.packages()` command in R.
 
 -   You put the name of the package in quotation marks into the function.
 
-```{r, eval = FALSE}
-install.packages("pacman") 
+```{r install packages}
+install.packages("pacman") #installing packages
 ```
 
 ### Loading your packages
@@ -32,7 +32,7 @@ While you only need to install a package once, you need to load it every time in
 
 -   Put the name of
 
-```{r, eval = FALSE}
+```{r load packages}
 library(pacman) #You run the code and voila you can use the package
 ```
 
@@ -44,8 +44,8 @@ One way is the `pacman` package:
 
 -   Second, the p_load command, loads the packages in the brackets and checks if they are installed, if not, it automatically installs and loads them.
 
-```{r}
-pacman::p_load("tidyverse", "haven", "psych", "WDI", "gapminder") 
+```{r pacman}
+pacman::p_load("tidyverse", "psych", "WDI", "gapminder") #loading packages
 ```
 
 ## The Data we will work with: The European Social Survey (ESS)
@@ -56,7 +56,7 @@ You can freely download it via the [website](https://www.europeansocialsurvey.or
 
 +--------------+--------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
 | **Variable** | **Description**                                        | Scales                                                                                                |
-+:============:+========================================================+=======================================================================================================+
++:============:+:======================================================:+:=====================================================================================================:+
 | **idnt**     | Respondent's identification number                     | unique number from 1-9000                                                                             |
 +--------------+--------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
 | **year**     | The year when the survey was conducted                 | only 2020                                                                                             |
@@ -122,7 +122,7 @@ You can freely download it via the [website](https://www.europeansocialsurvey.or
 
 *I do so for reproducibility reasons. When downloading the script, users should be able to run the whole script with one click. This is because users, who are new to R might have problems with setting working directories, since working directories are prone to errors, especially at the beginning.*
 
-```{r, echo = FALSE}
+```{r simulating data, echo = FALSE}
 set.seed(123)
 
 ess <- data.frame(
@@ -179,8 +179,6 @@ The first thing to do, when cleaning data is to load the data into R. The first 
 
 -   **Remote:** This means the dataset is laying around on some external Cloud or Server and you have the possibility to load it into R, without downloading it on your local devise. Depending on the dataset there are different ways, I will show you later how to get data from the World Bank.
 
-<!-- -->
-
 -   **Local:** To get data from your devise, you have to tell R, where to find it, meaning you tell him the path. Go to your file and click on it. The path will be shown in the address bar, just copy it and paste it in R with the responding command. The command is defined by the type of the file as you can see in the table below. Here is an example how it could look wit a .csv file
 
     `data <- read.csv("C:/Users/YourUsername/Documents/data.csv")`
@@ -235,7 +233,7 @@ It is the same code, in R this code would do the same. But the advantage is that
 
 -   But I could also use pipes, where I clearly see that first the mean, then the exponential and then the square root is taken: `q %>% mean() %>% exp() %>% sqrt()`. Run both codes, they are producing the same result.
 
-```{r}
+```{r piping}
 #Making a vector with three random numbers
 q <- c(6,3,8)
 
@@ -299,32 +297,38 @@ The first function I introduce you is the `filter()` function. Within the filter
 
 *Note: Since the cntry variable is a character variable, we have to put the condition in square brackets. The variable agea is a numeric variable, therefore we only need the number.*
 
-```{r}
+```{r filter one condition}
+#filtering for cases only in Hungary
 d1 <- ess %>% 
-  filter(cntry == "HU") #filtering for cases only in Hungary.
+  filter(cntry == "HU")
 
-head(d1) #Lets have a look if everything worked out 
+#checking it
+head(d1) 
 
+#We only want participants younger than 40
 d2 <- ess %>%  
-  filter(agea <= 40) #We only want participants younger than 40
+  filter(agea <= 40)
 
-head(d2) #Lets have a look if everything worked out
+#checking it
+head(d2) 
 ```
 
 #### Filtering for multiple condition
 
-```{r}
+```{r filter multiple condition}
+#filtering for cases in Hungary and France
+d1 <- ess %>% 
+  filter(cntry %in% c("HU", "FR"))
 
-d1 <- ess %>% #Our dataset 
-  filter(cntry %in% c("HU", "FR")) #filtering for cases in Hungary and France.
+#Checking it
+head(d2)  
 
-head(d2) #Lets have a look if everything worked out 
-
-d2 <- ess %>% #Our dataset 
+#filtering for cases under 40 in Hungary and France
+d2 <- ess %>%
   filter(cntry %in% c("HU", "FR") &
-           agea <= 40) #filtering for cases under 40 in Hungary and France.
+           agea <= 40)
 
-#Lets have a look if everything worked out 
+#Checking it
 head(d2)
 
 #d2 <- ess %>% #Our dataset
@@ -341,21 +345,25 @@ We obviously do not care about all variables a dataset can offer (mostly). To se
 
 -   We only have to pass their column names to `select()`. That's it.
 
-```{r}
+```{r select}
+#Selecting relevant variables
 d1 <- ess %>%
-   select(year, cntry, happy, agea, gndr, eisced) #Let's get the for us relevant variables
+   select(year, cntry, happy, agea, gndr, eisced) 
 
-head(d1) #always check
+#Checking it
+head(d1) 
 ```
 
 #### Deleting Rows
 
 -   To delete row, you just put a minus in front of the column, you want to delete. That's it, the rest stays the same.
 
-```{r}
+```{r minus select}
+#We delete columns by simply putting a comma before it
 d2 <- d1 %>% 
-  select(-agea) #We delete columns by simply putting a comma before it
+  select(-agea)
 
+#Checking it
 head(d2)
 ```
 
@@ -367,11 +375,13 @@ One huge advantage of piping is, that we can clear our data in one step or at le
 
 -   The two commands are separated by a pipe.
 
-```{r}
+```{r filter and select}
+#Combining codes
 d1 <- ess %>%
   filter(agea < 40) %>%
   select(year, cntry, happy, agea, gndr, eisced)
 
+#Checking it
 head(d1)
 ```
 
@@ -383,14 +393,14 @@ If we want our data to be in a certain order, we arrange it with this function.
 
 -   The arrange() function is called, and afterwards we call the variable we want to arrange based on. The default function of arrange, orders the data always in ascending order.
 
-```{r}
-#Let us take the code for d7 as example again 
-
+```{r arrange}
+#Adding arrange()
 d1 <- ess %>%
   filter(agea < 40) %>%
   select(year, cntry, happy, agea, gndr, eisced) %>% 
-  arrange(agea) #We just use the agea function and then R sorts the variable from the lowest to the highest 
+  arrange(agea) 
 
+#Checking it
 head(d1)
 ```
 
@@ -398,16 +408,14 @@ head(d1)
 
 -   If we want to order them in ascending order, we have to call `desc()` inside the `arrange()` and put the name of the variable inside `desc()`.
 
-```{r}
-#What if we want to have it from the highest to the lowest? 
-
-#Let us take the code for d7 as example again 
-
+```{r arrange descending}
+#arranging in descending order 
 d1 <- ess %>%
   filter(agea < 40) %>%
   select(year, cntry, happy, agea, gndr, eisced) %>% 
-  arrange(desc(agea))#We just use the desc() function in the arrange finction and R sorts the variable from the lowest to the highest 
+  arrange(desc(agea))
 
+#Checking it
 head(d1)
 ```
 
@@ -421,9 +429,8 @@ Two functions to make our dataset structured more useful are `rename()` and `rel
 
 Note: If you have a variable, which is binary, thus has two discrete categories, you name it after the category which corresponds to the higher value. If male is 0 and female is 1, you name it after the higher category 1, therefore the variable is named female.
 
-```{r}
-#we again take d7s code 
-
+```{r rename}
+#Renaming variables
 d1 <- ess %>%
   filter(agea < 40) %>%
   select(year, cntry, happy, agea, gndr, eisced) %>% 
@@ -431,8 +438,9 @@ d1 <- ess %>%
   rename(county = cntry, 
          age = agea, 
          education = eisced, 
-         female = gndr) #First you put the new name, equal sign and then you put the old name of the variable 
+         female = gndr) 
 
+#Checking it
 head(d1)
 ```
 
@@ -442,7 +450,8 @@ head(d1)
 
 -   You can also rearrange single columns, you call the name of the column, which you want to rarrange. and then you either call .before and a column or .after and a column. And the column you want to rearrange is placed before or after the column you want to place. You separate both arguments with a comma.
 
-```{r}
+```{r relocate}
+#relocating variables
 d1 <- ess %>%
   filter(agea < 40) %>%
   select(year, cntry, happy, agea, gndr, eisced) %>% 
@@ -453,9 +462,10 @@ d1 <- ess %>%
          female = gndr) %>% 
   relocate(education, age, female, country, happy, year) #determine the order
 
+#Checking it
 head(d1)
 
-# We can also specifically determine where we want to have the variable 
+#relocate after 
 d2 <- ess %>%
   filter(agea < 40) %>%
   select(year, cntry, happy, agea, gndr, eisced) %>% 
@@ -464,12 +474,12 @@ d2 <- ess %>%
          age = agea, 
          education = eisced, 
          female = gndr) %>%
-  relocate(country, .after = age) #after with a point in front of it puts the variable after age
+  relocate(country, .after = age) 
 
+#Checking it
 head(d2)
 
-
-
+#relocating before 
 d3 <- ess %>%
   filter(agea < 40) %>%
   select(year, cntry, happy, agea, gndr, eisced) %>% 
@@ -478,9 +488,9 @@ d3 <- ess %>%
          age = agea, 
          education = eisced, 
          female = gndr) %>%
-  relocate(country, .before = age) #after with a point in front of it puts the variable after age
- #before with a point in front of it puts the variable before age
+  relocate(country, .before = age) 
 
+#Checking it
 head(d3)
 ```
 
@@ -492,23 +502,22 @@ The next function is the powerful `mutate()` command. For the start, just think 
 
 -   After defining the new name you put an equal sign after it and define the calculation. In our case we just multiply happy, so all values in the happy column by 10
 
-```{r}
-
+```{r mutate}
+#mutating variables
 d1 <- ess %>%
   mutate(happy_10 = happy*10) 
 
+#checking it
 head(d1)
 
-#We can also combine two or more variables to create another variable and we can change the class of a variable
-
+#mutating variables
 d2 <- ess %>% 
   mutate(new_variable = happy*10/eisced+67, 
          female_char = as.character(gndr)) %>% 
   select(female_char, new_variable)
 
-
+#checking it
 head(d2)
-
 ```
 
 We can also use mutate for more than calculations. We can also define new columns by mutating existing columns into different classes:
@@ -517,7 +526,8 @@ We can also use mutate for more than calculations. We can also define new column
 
 -   The second call in mutate() changes the class of the gndr variable to a character and saves it as such in the dataset.
 
-```{r}
+```{r mutate 2}
+#more mutating
 d2 <- ess %>% 
   mutate(new_variable = happy*10/eisced+67, 
          female_char = as.character(gndr)) %>% 
@@ -545,10 +555,11 @@ You can use the `recode()` function:
 
 *Note: We can assign different values, do not worry about the "NA_real\_" value I will come back to that later*
 
-```{r}
+```{r recode}
+#Get an overview of the variable
+table(ess$happy)
 
-table(ess$happy) # Check the variables
-
+#recoding variables
 d1 <- ess %>% 
   mutate(
     gndr_fac = as.factor(gndr), #always check the class
@@ -590,8 +601,8 @@ As you see, the `recode()` command is quite extensive. The **tidyverse** offers 
 
 *Note: What is not explicitly stated in the case_when() function will be coded as NA.*
 
-```{r}
-
+```{r case_when}
+#recoding with case_when
 d1 <- ess %>% 
   mutate(gndr_fac = as.factor(gndr),
     happy_cat = case_when(
@@ -603,8 +614,6 @@ d1 <- ess %>%
     gndr == 2 ~ "Female"
     ))
 
-#Do not get confused with the brackets and the equal signs, I always do...
-
 #Checking it
 table(d1$female)
 table(d1$happy_cat)
@@ -615,8 +624,8 @@ table(d1$happy_cat)
 
 Do you remember the `ifelse()` function? As already mentioned, the `case_when()` command is a generalized `ifelse()` function. If you want to keep it old school, we can also recode with the `ifelse()` function:
 
-```{r}
-
+```{r ifelse}
+#recoding with ifelse function
 d1 <- ess %>% 
   mutate(gndr_fac = as.factor(gndr),
          happy_cat = ifelse(happy < 5, 0, 
@@ -644,17 +653,18 @@ For us, this is a problem, because we cannot run an analysis with missing values
 
 We will do the second one, and I already showed how to recode useless values to NAs so this should be clear by now. Remember, the `ifelse()` and `recode()` explicitly need input to turn values into NAs.
 
-```{r}
+```{r workflow with drop_na}
+#Creating missing values and showing a mutating workflow
 d1 <- ess %>%
-  filter(agea >=40) %>% #filtering for bigger equal 40 years old
-  select(year, cntry, netusoft, agea, eisced, gndr, happy) %>% #selecting only relevant variables 
-  arrange(desc(agea)) %>% #arranging them 
+  filter(agea >=40) %>% 
+  select(year, cntry, netusoft, agea, eisced, gndr, happy) %>% 
+  arrange(desc(agea)) %>% 
   rename(
     internet_use = netusoft,
     age = agea, 
     education = eisced, 
     female = gndr) %>% 
-  mutate( #Coding the missing categories into actual missing values 
+  mutate( 
     internet_use = case_when( 
       internet_use < 5 ~ NA_real_, 
       TRUE ~ internet_use), 
@@ -672,17 +682,19 @@ d1 <- ess %>%
     happy = case_when(
       happy %in% c(77, 88, 99) ~ NA_real_,
       TRUE ~ happy)
-    ) %>% 
-  drop_na() #dropping all rows with NAs
+    )
 
+#Checking it
 head(d1) 
 ```
 
-```{r}
-d1 <- ess %>% 
+```{r missing values}
+#dropping NAs 
+d2 <- d1 %>% 
   drop_na() 
 
-d1 <- na.omit(ess) 
+#dropping NAs
+d2 <- na.omit(d1) 
 ```
 
 Now we have all ingredients to make our dataset. Do you remember our research question? We want to find out if people, who tend to not trust science are less willing to get vaccinated. We want to do that for all people over 40.
@@ -701,8 +713,8 @@ Two of the most useful commands in R for summary statistics are `group_by()` and
 
 -   Second, we call summarize() and define the name of the new column, let us call it average_happiness() and then we call the metric of the variable we are interested in. In our example, we were interested in the average happiness, so we have to call mean() and the happy variable:
 
-```{r group_by and summarize}
-
+```{r group_by and summarise}
+#group_by and summarize
 d1 <- ess %>% 
   mutate(
     gndr_fac = as.factor(gndr),
@@ -715,6 +727,7 @@ d1 <- ess %>%
   group_by(female) %>% 
   summarize(average_happiness = mean(happy))
 
+#Checking it
 head(d1)
 ```
 
@@ -724,7 +737,8 @@ Et voilà, we get a dataset with two observations, because we have only two grou
 
 The `group_by()` and `summarize()` functions are of course way more flexible, for example, we can define more groups. What about that, you are interested in the level of happiness of females, and males in the countries conducted by the ESS. You just put the countries and then the gender variable in the `group_by()`. Further we might be interested in more metrics, no problem, let us just define more columns with `summarize()`. Again, you have to first clean the data by transforming the class and deleting missing values.
 
-```{r}
+```{r group_by and summarise 2}
+#grouping and summarize
 d1 <- ess %>% 
   mutate(
     country = cntry,
@@ -761,15 +775,14 @@ There are several ways of getting World Bank Data, but I will show you the most 
 
 First we define, which countries should be included:
 
-```{r}
-countries <- c("BE", "BG", "CH", "EE", "FR","GB")
+```{r getting countries}
+countries <- c("BE", "BG", "CH", "EE", "FR","GB") 
 ```
 
 Afterwards we define, which variables we want. You do that by using the official indicator, thus the variable you want. You can find the indicators on the website of the [world bank data](https://data.worldbank.org/indicator). Click on the variables you want, then click on the details, and there you find the indicator. I will use GDP per capita, Fuel exports, CO2 emissions (kt).
 
-```{r}
-indicators = c("NY.GDP.PCAP.CD", "TX.VAL.FUEL.ZS.UN", 
-               "EN.ATM.CO2E.KT")
+```{r getting indicators}
+indicators = c("NY.GDP.PCAP.CD", "TX.VAL.FUEL.ZS.UN", "EN.ATM.CO2E.KT")
 ```
 
 Now we are ready to use the API.
@@ -782,7 +795,7 @@ Now we are ready to use the API.
 
 -   Lastly, with the "`start =`" argument we define the starting year, so data which goes back to that date is loaded and with "`end =`" is analagos to define where the time should stop. Thus, both arguments define the time span we want to inspect
 
-```{r}
+```{r world bank data}
 wb <- WDI( 
   country = countries, #We include our countries 
   indicator = indicators, #We include our variables 
@@ -795,9 +808,10 @@ wb <- WDI(
 head(wb)
 ```
 
-Let us transform the dataset(Only variables we need, arranging it alphabetically, renaming it and rounding one variable to make the numbers more intuitive):
+Let us transform the dataset (Only variables we need, arranging it alphabetically, renaming it and rounding one variable to make the numbers more intuitive):
 
-```{r}
+```{r cleaning wb}
+#Cleaning the wb data
 wb <- wb %>%
   select(iso2c, NY.GDP.PCAP.CD, TX.VAL.FUEL.ZS.UN, EN.ATM.CO2E.KT) %>%
   arrange(iso2c) %>%
@@ -813,17 +827,16 @@ head(wb)
 
 Now, we cut down and prepare our ESS data by selecting the countries we are interested in, renaming the country variable (I'll explain later why), we group by the country (iso2c) and the year (year) to get the average happiness by country. Lastly, we round the value to get only two decimals.
 
-```{r}
-
+```{r making happy_agg}
+#preparing ess
 d1 <- ess %>%
   filter(cntry == c("BE", "BG", "CZ", "EE", "FI")) %>%
   rename(iso2c = cntry) %>%
   group_by(iso2c, year) %>% 
   summarise(happy_agg = round(mean(happy), 2))
   
-
-head(d1) #The skimr package also helps
-
+#Checking it
+head(d1) 
 ```
 
 #### `left_join()` and `right_join()` with one identifier
@@ -850,9 +863,8 @@ To merge two datasets, you need at least one common variable. One variable will 
 
 -   We define the by = argument and put the unique identifier in quotation marks, meaning the variable name
 
-```{r, eval = FALSE}
-
-###left_join
+```{r left_join, eval = FALSE}
+#left_join
 merged_data <- left_join(d1, wb, 
                          by = "iso2c")
 
@@ -862,8 +874,8 @@ head(merged_data)
 
 For right_join() you do the exact same, but remember you get a different result.
 
-```{r}
-###right_join
+```{r right_join}
+#right_join
 merged_data2 <- right_join(d1, wb, 
                            by = "iso2c")
 
@@ -877,7 +889,7 @@ Sometimes, you have multiple dimensions. For example, what if we also include th
 
 Let us get again World Bank Data and clean it:
 
-```{r}
+```{r,  world bank 2}
 #Getting the Data
 wb <- WDI( 
   country = c("BE", "BG"), #We include our countries 
@@ -901,7 +913,7 @@ head(wb)
 
 Now we just simulate some data we want to merge:
 
-```{r}
+```{r, happy_agg for two years}
 #Getting the Data
 d1 <- data.frame(
   iso2c = c("BE", "BE", "BG", "BG", "CZ", "CZ"), 
@@ -920,12 +932,9 @@ How does it look like when we have two variables and the combination out of thos
 ![](images/left_join_with_two_identifiers.PNG){fig-align="center" width="800"}
 
 -   As you can see the dataset again takes on the number of observations of our left table
-
-<!-- -->
-
 -   To implement it, we have to change by argument. We define a vector, where we put our two identifiers in quotation marks:
 
-```{r}
+```{r left_join multiple}
 #Merging the Data with left_join()
 merged_data3 <- left_join(d1, wb,
                           by = c("iso2c", "year"))
@@ -933,13 +942,13 @@ merged_data3 <- left_join(d1, wb,
 head(merged_data3)
 ```
 
--   right_join() with two identifiers:
+-   `right_join()` with two identifiers:
 
 ![](images/right_join_with_two_identifier.PNG){fig-align="center" width="800"}
 
 -   Again we do the same with `right_join()`:
 
-```{r}
+```{r, right_join multiple}
 merged_data4 <- right_join(d1, wb,
                           by = c("iso2c", "year"))
 head(merged_data4)
@@ -1028,7 +1037,7 @@ f.  Rename the variables to more intuitive names, don't forget to name binary va
 g.  drop all missing values
 h.  Check out your new dataset
 
-```{r, eval=FALSE}
+```{r exercise 2.1, eval=FALSE}
 
 ```
 
@@ -1038,14 +1047,14 @@ The `gapminder` package in R loads automatically the gapminder dataset. The gapm
 
 a.  Get an overview of the gapminder dataset. There are different ways to do so, you can choose by yourself
 
-```{r, eval=FALSE}
+```{r exercise 2.2, eval=FALSE}
 
 ```
 
 b.  Load World Bank Data from 1972 to 2007 and load the variable "Exports and Goods (% of GDP)".
 c.  Merge the World Bank data to the gapminder data, so a dataset evolves with the number of observations of the gapminder data.
 
-```{r, eval=FALSE}
+```{r exercise 2.3, eval=FALSE}
   
 ```
 
