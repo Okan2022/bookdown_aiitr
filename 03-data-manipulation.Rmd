@@ -185,12 +185,17 @@ The first thing to do, when cleaning data is to load the data into R. The first 
 
 This table presents some of the most frequent data types, which you can download and load into R. There are of course more data types, and to find out if you can read them into R, you can just google the type and look for the command. Mostly you will find a package with a command. And mostly, those commands start with "read".
 
++---------------------------+----------------+----------------------------------------------+-------------------------+
 | File                      | File Extension | Package                                      | Command                 |
-|---------------------------|----------------|----------------------------------------------|-------------------------|
++===========================+================+==============================================+=========================+
 | **Stata**                 | .dta           | haven                                        | `read_dta()`            |
++---------------------------+----------------+----------------------------------------------+-------------------------+
 | **CSV-Files**             | .csv           | readr (is included in the tidyverse package) | `read_csv()`            |
++---------------------------+----------------+----------------------------------------------+-------------------------+
 | **Excel-Files**           | .xlsx; .xls    | readxl                                       | `read.rds()`            |
++---------------------------+----------------+----------------------------------------------+-------------------------+
 | **RData (also RDS Data)** | .RData;.rds    | base R functions, no package required        | `load()` , `read.rds()` |
++---------------------------+----------------+----------------------------------------------+-------------------------+
 
 : Examples of Different Data Types and how to load them into R
 
@@ -260,16 +265,25 @@ The first function I introduce you is the `filter()` function. Within the filter
 
     Here is a quick reminder of logical operators in R:
 
+    +--------------------------+----------------------------------------------------------------------------+
     | Logical Operator         | Meaning                                                                    |
-    |--------------------------|----------------------------------------------------------------------------|
+    +==========================+============================================================================+
     | ==                       | equals                                                                     |
+    +--------------------------+----------------------------------------------------------------------------+
     | \<                       | smaller than                                                               |
+    +--------------------------+----------------------------------------------------------------------------+
     | \>                       | greater than                                                               |
+    +--------------------------+----------------------------------------------------------------------------+
     | \<=                      | less than or equal to                                                      |
+    +--------------------------+----------------------------------------------------------------------------+
     | \>=                      | greater than or equal to                                                   |
+    +--------------------------+----------------------------------------------------------------------------+
     | ! (e.g. !=; \>!; \<!...) | not equal, not greater than, not smaller than                              |
+    +--------------------------+----------------------------------------------------------------------------+
     | &                        | element-wise AND operator. It returns TRUE if both elements are true       |
+    +--------------------------+----------------------------------------------------------------------------+
     | \|                       | element-wise OR operator. It returns TRUE if one of the statements is TRUE |
+    +--------------------------+----------------------------------------------------------------------------+
 
 #### Filtering for only one condition
 
@@ -629,13 +643,20 @@ table(d1$female)
 
 #### Handling Missing Values/Incomplete Data
 
-As you saw right now, not all data in a dataset is complete. Of course not, there are several sources, which can lead to incomplete/missing data. Which means we need to deal with it directly. If we look into the codebook, the ESS declares different types of missing values with high numbers: 77 means "Refusal", so the respondent refused to answer, 88 means "dont know", and 99 "No answer". Note that the ESS does so, since some researchers are interested in missing values, and why they happen, so they can investigate it.
+As you saw right now, not all data in a dataset is complete. Of course not, there are several sources, which can lead to incomplete/missing data. Can you think of reasons why?
+
+In Data Sciences we need to deal with missing values directly. If we look into the codebook, the ESS declares different types of missing values with high numbers: 7(7) means "Refusal", so the respondent refused to answer, 8(8) means "dont know", and 9(9) "No answer".
+
+*Note that the ESS does so, since some researchers are interested in missing values, and why they happen, so they can investigate it.*
 
 For us, this is a problem, because we cannot run an analysis with missing values. There are two options:
 
--   Using statistics to artificially fill them out, this called multiple imputation techniques, but this requires advanced data science knowledge so I do not recommend that for beginners.
+1.  Using statistics to artificially fill them out, this called multiple imputation techniques, but this requires advanced data science knowledge so I do not recommend that for beginners.
+2.  Just delete incomplete observations to have a dataset without missing values
 
--   Just delete incomplete observations to have a dataset without missing values
+The ESS assigns values to missing values. First, we have to tell R that we do want those values to be missing values otherwise it biases our analyses. In the following, we have to recode the variables and tell R, that the missing values are declared as such:
+
+-   I already showed you how to do so. In the following I will use `case_when()`
 
 We will do the second one, and I already showed how to recode useless values to NAs so this should be clear by now. Remember, the `ifelse()` and `recode()` explicitly need input to turn values into NAs.
 
@@ -674,6 +695,14 @@ d1 <- ess %>%
 head(d1) 
 ```
 
+When you print the dataset, you see that now there are some values named "NA". That stands for not available.
+
+-   If we want to delete NAs, we can use the tidyverse way by simply piping to `drop_na()`
+
+-   The base R way would be to put the dataset name `na.omit()`.
+
+We assign both to a new data frame. We will see in the result that all rows are deleted which include NAs. This is one of the reasons it is important to cut down to variables we only need, so that only incomplete observations of our variables we need are deleted. So always remember, first transforming, than dropping.
+
 ```{r missing values}
 #dropping NAs 
 d2 <- d1 %>% 
@@ -681,7 +710,12 @@ d2 <- d1 %>%
 
 #dropping NAs
 d2 <- na.omit(d1) 
+
+#Checking if there are NAs
+colSums(is.na(d2))
 ```
+
+We see that there are no missing values left in our dataset, and our number of observations are reduced.
 
 Now we have all ingredients to make our dataset. Do you remember our research question? We want to find out if people, who tend to not trust science are less willing to get vaccinated. We want to do that for all people over 40.
 

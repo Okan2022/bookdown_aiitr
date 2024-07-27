@@ -152,3 +152,7 @@ variance-of-inflation-vif
 categorical-variables
 interaction-effects
 outlook-2
+ifelse-statements-and-the-ifelse-function
+if-else-statement-with-only-one-condition
+if-statements-with-else-condition
+the-ifelse-command

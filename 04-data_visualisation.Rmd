@@ -134,7 +134,7 @@ data2 <- data.frame(
 data2 <- rbind(data1, data2)
 ```
 
-We have two variables, each with their own distribution. We have to tell ggplot2 to distinguish the numbers by the different variables. We do so by modifying the inside of the aes() function. Our x-axis stays the same, right? We still want the values to be on the x-axis, so that parts stays the same. We define the fill within the aes() command to tell ggplot to fill the values of the two variables. Additionally, I will specify position = "identity" in the plot, this specification helps to adjust the position, when two histograms are overlapping, which will be the case.
+We have two variables, each with their own distribution. We have to tell ggplot2 to distinguish the numbers by the different variables. We do so by modifying the inside of the `aes()` function. Our x-axis stays the same, right? We still want the values to be on the x-axis, so that parts stays the same. We define the fill within the `aes()` command to tell ggplot to fill the values of the two variables. Additionally, I will specify position = "identity" in the plot, this specification helps to adjust the position, when two histograms are overlapping, which will be the case.
 
 *Note: I leave out the \`fill\` specification for the reason that the colors are defined by default for both graphs (but we can change that, I will show that later).*
 
@@ -142,7 +142,7 @@ We have two variables, each with their own distribution. We have to tell ggplot2
 ggplot(data2, aes(x=value, fill=type)) +
     geom_histogram(color="#e9ecef",
                    position = "identity") +
-    theme_bw() 
+  theme_bw() 
 ```
 
 As you can see, we get two plots colored by the type there are assigned to. We can now play around a bit. I want to introduce you the alpha specification. This makes colors more transparent. Again this a command should be used if objects are overlapping to have a clearer picture of the overlap.
@@ -249,19 +249,21 @@ A huge advantage of Boxplots are that it is an easy way to compare the structure
 set.seed(123)
 
 # Simulate income data
-income_with_migration <- rnorm(1000, mean = 40000, sd = 11000)
-income_without_migration <- rnorm(1000, mean = 55000, sd = 17500)
+income_18_24 <- rnorm(1000, mean = 40000, sd = 11000)
+income_25_34 <- rnorm(1000, mean = 55000, sd = 17500)
+income_35_59 <- rnorm(1000, mean = 70000, sd = 25000)
 
 # Combine into a data frame
 data5 <- data.frame(
-  income = c(income_with_migration, income_without_migration),
-  migration_status = factor(rep(c("With Migration Background", "Without Migration Background"), each = 1000))
+  income = c(income_18_24, income_25_34, income_35_59),
+  age = factor(rep(c("18-24", "25-34", "35-59"), 
+                                each = 1000))
 )
 ```
 
 ```{r grouped boxplot}
-ggplot(data5, aes(x = migration_status, 
-                 y = income, fill = migration_status)) +
+ggplot(data5, aes(x = age, 
+                 y = income, fill = age)) +
 geom_boxplot()  
 ```
 
@@ -269,12 +271,12 @@ Before interpreting the plot, let us make it prettier: We change labels of the x
 
 ```{r multiple boxplots}
 # Create boxplot
-ggplot(data5, aes(x = migration_status, y = income, fill = migration_status)) +
+ggplot(data5, aes(x = age, y = income, fill = age)) +
   geom_boxplot(alpha = 0.5, width = 0.5) +
-  scale_fill_manual(values = c("#acf6c8", "#D1BC8A")) +
+  scale_fill_manual(values = c("#acf6c8", "#ecec53" ,"#D1BC8A")) +
   labs(
-    title = "Comparison of Income Distribution by Migration Background",
-    x = "Migration Background",
+    title = "Comparison of Income Distribution by Age",
+    x = "Age",
     y = "Income"
   ) +
   theme_minimal() +
@@ -894,7 +896,7 @@ ggplot(example_data, aes(x = months)) +
   geom_bar(aes(y = n_deaths), stat = "identity", fill = "skyblue", 
           alpha = 0.6) + 
   geom_line(aes(y = avg_temp * scale_factor, group = 1), 
-            color = "red", size = 1) +
+            color = "#2c2c2c", linewidth = 1, linetype = "dashed") +
   scale_y_continuous(
     name = "Number of Traffic Deaths",
     sec.axis = sec_axis(~ . / scale_factor, name = "Average Temperature (Celsius)")
@@ -904,7 +906,7 @@ ggplot(example_data, aes(x = months)) +
   theme_bw() +
   theme(
     axis.title.y.left = element_text(color = "skyblue"),
-    axis.title.y.right = element_text(color = "red")
+    axis.title.y.right = element_text(color = "#2c2c2c")
   )
 ```
 
@@ -1018,8 +1020,6 @@ ggplot(data4, aes(x=name, y=strength)) +
     axis.ticks.x = element_blank()
   ) 
 ```
-
-#### Radar Charts
 
 ### Maps
 

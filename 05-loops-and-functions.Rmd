@@ -221,35 +221,44 @@ aoc <- function(radius) {
 }
 
 aoc(5)
-
 ```
 
-Let us combine what we have learned in this chapter with the Fibonacci sequence. The Fibonnaci sequence starts with 0 and 1, and each subsequent number is the sum of the two numbers before it. The Fibonacci sequence continues indefinitely, producing a sequence like this: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, and so on.
+Let us combine what we have learned in this chapter with a meeting of animals. You do not have to understand the code, and I also do not want to explain it, but just to make clear what loops and functions are able to do. And all packages are written based on functions and loops, so it is useful to get an overview how it could look like.
 
-```{r fibonnaci}
+In this loop, we let R print out what persons in a classroom are doing. Before that we identify where the individuals are sitting. And the seating order in a class, is nothing more that a matrix right? We have rows and columns. This loops identifies in which row (i) and in which column (j) an individual sits. Moreover, the values in the matrix are student ids and the loop knows the id of students and prints out where which student sits. So this is an unnecessary loop, but I think a good example. Imagine the class are 1000 of people, then this loop would be necessary. As I said you do not need to completely understand it. Its purpose is to illustrate what you can do in R.
 
-
-fibonacci <- function(n) {
-  if (n <= 0) {
-    stop("Invalid input. 
-         Please provide a positive integer.") 
-  } else if (n == 1) {
-    sequence <- 0
-  } else if (n == 2) {
-    sequence <- c(0, 1)
-  } else {
-    sequence <- numeric(n)
-    sequence[1] <- 0
-    sequence[2] <- 1
-    for (i in 3:n) {
-      sequence[i] <- sequence[i - 1] + sequence[i - 2]
+```{r animal}
+# The function
+print_classroom <- function(x) {
+  for (i in 1:length(x)) {  # Outer loop iterates over rows
+    for (j in 1:length(x[[i]])) {  # Inner loop iterates over columns
+      student <- x[[i]][j]
+      if (student == 1) {
+        comment <- "Alice"
+      } else if (student == 2) {
+        comment <- "Bob"
+      } else if (student == 3) {
+        comment <- "Cathy"
+      } else if (student == 4) {
+        comment <- "David"
+      } else if (student == 5) {
+        comment <- "Eva"
+      } else {
+        comment <- paste("Unknown student", student, "is doing something interesting.")
+      }
+      cat("At row", i, "column", j, ":", comment, "\n")
     }
   }
-  return(sequence)
 }
 
-fibonacci(50)
+# Example usage
+seating_order <- list(
+  c(1, 5, 2),
+  c(4, 3)
+)
 
+#Checking it
+print_classroom(seating_order)
 ```
 
 ## Exercise Section
@@ -312,61 +321,6 @@ mnf <-
 
 
 mnf(2, 6, 8)
-
 ```
 
-### Exercise 4: Zodiac Fortune Teller
-
-In the last exercise of this course, we will learn about our future based on our Zodiac Sign. For this we well need a `function`, a `loop` and an `ifelse` condition or function.
-
-a.  First we define a function called `zodiacFortuneTeller()`. This function takes only your sign as input
-
-b.  Afterwards we need to define our fortunes for each zodiac with a vector
-
-c.  Then we need to define a vector with contains the zodiac signs
-
-d.  Lastly we need a `for` loop, which returns the respective fortune for each zodiac sign.
-
-e.  This fortune should be returned
-
-```{r exercise 5.4, eval = FALSE}
-
-fortune <- function(sign) {
-  
-  #Fortunes vector 
-  fortunes <- c("Exciting opportunities are on the horizon for you!",
-              "Your creative talents will shine brightly this month!",
-              "Financial abundance is heading your way!",
-              "You will experience a period of personal growth and
-              self-discovery!",
-              "New friendships will bring joy and fulfillment into you
-              life!",
-              "Your hard work and dedication will pay off in unexpected
-              ways!",
-              "Travel plans will bring you exciting adventures and memorable
-              experiences!",
-              "A long-awaited dream will finally become a reality!",
-              "Your positive attitude and optimism will attract great
-              success!",
-              "Love and romance will blossom in your life!",
-              "Embrace change and seize new opportunities with confidence!",
-              "Your intuitive insights will guide you to make wise
-              decisions!",
-              "A new career opportunity will open doors to success and
-              fulfillment!",
-              "You have the power to overcome any challenges that come your
-              way!",
-              "Your generosity and kindness will be rewarded abundantly!",
-              "Self-care and self-love will lead to inner peace and harmony!"
-              )
-  
-  #Zodiac_sings vector 
-  
-  zodiac_signs <- 
-  
-  #For loop 
-
-  
-  
-}
-```
+### 
