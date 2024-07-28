@@ -261,6 +261,12 @@ seating_order <- list(
 print_classroom(seating_order)
 ```
 
+## Outlook
+
+This course was a short introduction to automatize work and write efficient code: Loops and Functions. Since both concepts can get really complicated really fast, and in the beginning of your R-journey you will be less likely to use loops and functions. At some point however will you be confronted with loops and functions. And the earlier you see them, the better.
+
+-   For further information on programming in R, I recommend ["Hands-On Programming with R"](https://rstudio-education.github.io/hopr/index.html) by Garret Grolemund. In this book, the authors shows projects where he uses functions and loops, so it is a nice illustration of the usage of loops and functions.
+
 ## Exercise Section
 
 ### Exercise 1:

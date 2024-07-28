@@ -5,7 +5,7 @@ date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 ---
 
-# An Intuitive Introduction to Data Analytics in R
+# An Intuitive Introduction to R
 
 ## Welcome !
 

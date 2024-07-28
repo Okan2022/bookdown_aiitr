@@ -1,4 +1,4 @@
-an-intuitive-introduction-to-data-analytics-in-r
+an-intuitive-introduction-to-r
 welcome
 about-this-course
 prerequisities
@@ -26,6 +26,7 @@ if-else-statement-with-only-one-condition
 if-statements-with-else-condition
 the-ifelse-command
 if-else-ladders-if-else-with-multiple-conditions
+outlook
 exercise-section
 exercise-1
 exercise-2
@@ -69,7 +70,7 @@ merging-datasets
 introduction-to-merging-with-dplyr-and-preparing-data
 left_join-and-right_join-with-one-identifier
 left_join-and-right_join-with-two-identifiers
-outlook
+outlook-1
 exercise-section-1
 exercise-1-lets-wrangle-kid
 exercise-2-merging-datasets
@@ -99,12 +100,14 @@ scatter-plots-with-multiple-groups
 making-plots-with-facet_wrap-and-facet_grid
 the-facet_wrap-function
 the-facet_grid-function
-outlook-1
+outlook-2
 combining-different-types-of-graphs
 distributions-ridgeline-chart-and-violin-chart
 ranking-lollipop-charts-and-radar-charts
 lollipop-charts
 maps
+outlook-3
+exercise-section-2
 loops-and-functions
 loops
 for-loops
@@ -113,7 +116,8 @@ apply-function-family
 apply
 notes
 writing-your-own-functions
-exercise-section-2
+outlook-4
+exercise-section-3
 exercise-1-1
 exercise-2-1
 exercise-3-1
@@ -150,4 +154,5 @@ testing-correlations-to-each-other
 variance-of-inflation-vif
 categorical-variables
 interaction-effects
-outlook-2
+outlook-5
+exercise-section-4

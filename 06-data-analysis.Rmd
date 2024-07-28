@@ -5,7 +5,7 @@
 Hello, this is an introductory course to the central concepts of statistical analysis and hypothesis testing in R! The goal of this course is to provide you with the basic ideas of statistical analysis and hypothesis testing. For me, it is important that you get an intuition about what is going on rather than terrorizing you with complicated math. Although, I cannot and will not leave out central formulas, you will be fine with the maths. I wish you fun and please do not hesitate to help making that course better.
 
 ```{r loading packages}
-pacman::p_load("tidyverse", "ggpubr", "gapminder", "kableExtra", 
+pacman::p_load("tidyverse", "ggpubr","gapminder", "sjPlot", "kableExtra", 
                "GGally", "car", "margins", "plotly")
 ```
 
@@ -38,7 +38,6 @@ where
 To get the idea of linear regression, let us look at an example. To do so, let us simulate some data and plot it.You now should have the data frame `df` in your environment. It contains a variable X, which is our independent variable. Y is also included, which is your dependent variable. You want to explain Y with your X. Let us plot the variables with a scatterplot:
 
 ```{r simulating data, echo=FALSE}
-set.seed(21) 
 
 set.seed(123) # For reproducibility
 
@@ -46,14 +45,9 @@ n <- 30
 
 x <- runif(n) * 10 
 
-target_correlation <- 0.6 
-
 categorical_variable <- factor(sample(c(0, 1), n, replace = TRUE))
 
-# Introduce an interaction effect
-interaction_effect <- 1.25 # Choose a value that creates a significant interaction
-y <- target_correlation * x + sqrt(1 - target_correlation^2) * rnorm(n, sd = 1) + 
-    interaction_effect * x * as.numeric(categorical_variable)
+y <- 0.8 + 1.6 * x + rnorm(n, 0, 3)
 
 df <- data.frame(x,y, categorical_variable)
 
@@ -124,7 +118,7 @@ ggplot(df, aes(x, y)) +
   geom_point() +
   theme_bw() + 
   scale_x_continuous(breaks = seq(0, 10, by = 1)) +
-  scale_y_continuous(breaks = seq(-1, 20, by = 1))
+  scale_y_continuous(breaks = seq(0, 20, by = 2))
 ```
 
 We can see that there has to be some relationship between both those variables: The higher x gets the higher y gets. Linear regression can help us investigate the relationship. We just have to take the formula and estimated $\beta_0$ and $\beta_1$ . To do so, we estimate the **ordinary least square (OLS) estimator**. To understand what the OLS estimator does, look at the scatter plot again: **The OLS estimator fits a line through all the dots, that minimizes the distance to the dots as much as possible**. Afterward, we only extract the intercept $\beta_0$ (that is the point, where the line crosses the y-axis), and $\beta_1$ (that is the slope of the line). However, since these are estimated values for our model we have to call them by convention $\hat{\beta_0}$ and $\hat{\beta_1}$ . We will denote them in the following as such.
@@ -138,7 +132,7 @@ ggplot(df, aes(x, y)) +
   geom_point() +
   theme_bw() + 
   scale_x_continuous(breaks = seq(0, 10, by = 1)) +
-  scale_y_continuous(breaks = seq(-1, 20, by = 1)) + 
+  scale_y_continuous(breaks = seq(0, 30, by = 5)) + 
   geom_smooth(method = "lm", se = FALSE) + 
   geom_segment(aes(x = x, y = y, xend = x, yend = predict(lm(y ~ x, data = df))), linewidth = 0.5) 
 ```
@@ -220,13 +214,13 @@ We just have to put in x-values and according to our model we would get a predic
 
 ```{r calculating predictions}
 #First, we calculate the predictions for y
-df$y_hat <- -0.33 + 0.68*df$x 
-
-#Checking 
-head(df) 
+df$y_hat <- 1.6821 + 1.5394*df$x 
 
 #We could also do it automatically via the predict() function
-automated_predictions <- predict(model1) 
+df$auto_y_hat <- predict(model1)
+
+#Checking it 
+head(df)
 ```
 
 ## Model Fit
@@ -271,8 +265,8 @@ Let us have a look at a so-called **Residual Plot**: On the x-axis you plot the 
 ggplot(df, aes(x, residuals_auto)) + 
   geom_point() + 
   geom_hline(yintercept = 0) +
-  scale_y_continuous("Residuals", seq(-1.5, 1.5, 0.5), 
-                     limits = c(-1.5, 1.5)) +
+  scale_y_continuous("Residuals", seq(-6, 6, 1), 
+                     limits = c(-6, 6)) +
   scale_x_continuous("Fitted Values", seq(0, 10, 1), 
                      limits = c(0, 10)) +
   theme_bw()
@@ -282,7 +276,7 @@ ggplot(df, aes(x, residuals_auto)) +
 
 One assumption of linear regression is that the variance of the error term is not correlated with our independent variable. Well, that is quite technocratic and means basically, that the residuals are distributed equally over the independent variables. Let us plot it to get a visual intuition:
 
-```{r homo and hetero plot, warnings = FALSE}
+```{r homo and hetero plot, message=FALSE}
 #setting seed for reproduciability
 set.seed(123)
 
@@ -301,7 +295,7 @@ df_homo_hetero <- data.frame(x, y_homo, y_hetero)
 homoskedastic_plot <- ggplot(df_homo_hetero, aes(x = x, y = y_homo)) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE) +# Add linear regression line
-  scale_y_continuous("Y", seq(-0.5, 3, 0.5), limits = c(-0.5, 3)) +
+  scale_y_continuous("Y", seq(-0.5, 3.5, 0.5), limits = c(-0.5, 3.5)) +
   labs(title = "Homoskedastic Plot") +
   theme_minimal()
 
@@ -311,7 +305,7 @@ heteroskedastic_plot <- ggplot(df_homo_hetero,
   geom_point() +
   geom_smooth(method = "lm", se = FALSE) +#Add linear regression line
   labs(title = "Heteroskedastic Plot") +
-  scale_y_continuous("Y", seq(-0.5, 3, 0.5), limits = c(-0.5, 3)) +
+  scale_y_continuous("Y", seq(-0.5, 3.5, 0.5), limits = c(-0.5, 3.5)) +
   theme_minimal()
 
 # Combine plots using facet_wrap
@@ -624,8 +618,8 @@ plotly:: ggplotly(ggplot(t_value_data, aes(x = x, y = density)) +
                color = "pink", 
                linetype = "dashed", 
                linewidth = 0.2) +
-    geom_point(aes(x = -1.082653, y = dt(-1.082653, df = 28), 
-                   color = "pink")) +
+    annotate("point", x = -1.082653, y = dt(-1.082653, df = 28), 
+             color = "pink") +
   scale_x_continuous("X", seq(-5,5,1), limits = c(-5,5)) +
   theme_classic() +
     theme(legend.position = "none")
@@ -1063,36 +1057,56 @@ where
 
 -   $\epsilon_i$ is the *error term*, thus how our observed data differs from actual population data (e.g. Measurement Error).
 
-Interactions effects can be implemented in R, by simply writing it explicitly into the function, either with an asterisks `*` or a double point `:`, let us have a look it:
+In the following, I will show you an example how to use interaction effects. Let's say that I conducted a survey among 1000 respondents and asked them about how many hours they spent on R online courses such as this one. Then I asked about their coding ability. Lastly, I asked if they learned with this course or with other courses (0 = other courses, 1 = this course). Now we want to find out if spending more hours on a course lead to a higher coding ability in R. Furthermore, we want to find out if this course in comparison to other courses lead to a higher ability. To do so, we interact hours spent on courses with the variable indicating if the respondent worked through other courses or this course.
+
+-   Interactions effects can be implemented in R, by simply writing it explicitly into the function `lm()`, either with an asterisks `*` or a double point `:`, let us have a look it:
 
 ```{r model with interaction effect}
-#running a model with an interaction effect
-model_interaction <- lm(y ~ x + categorical_variable + categorical_variable*x, data = df) 
+# Setting seed for reproducibility
+set.seed(123)
 
-#With ":" instead of "*"
-#model_interaction <- lm(y ~ x + categorical_variable + categorical_variable:x, data = df)
+# Generate hours spent on a course
+hours_spent <- runif(100, min = 0, max = 10)
 
-#Looking at the results 
+# Generate the course dummy (0 = other courses, 1 = this course)
+this_course = sample(c(0, 1), n, replace = TRUE)
+
+# Generate y with interaction effect
+coding_ability <- 2 + 0.5 * hours_spent + 0 * this_course + 
+  1.5 * hours_spent * this_course + rnorm(n)
+
+# Create a data frame
+df_int <- data.frame(hours_spent, this_course, coding_ability)
+
+# Fit the interaction model
+model_interaction <- lm(coding_ability ~  hours_spent * this_course, data = df_int)
+
+# Summarizing models
 summary(model_interaction)
 ```
 
-As you can see a coefficient is displayed, but the interpretation is a bit messy. With a one unit increase in x for group A,, the dependent variable y decreases by -0,47, in comparison to a one-unit increase in x for group B on average, holding all else constant.
+Interaction effects on their own are not intuitive. To get an intuition we have to graphically plot it. The `sjPlot` package offers the `plot_model()` command, which automatically plots so called predicted probabilities. It would be too much to go into detail about predicted probabilities. What is more important is, that we get a graph, which shows the effect of of the interaction:
 
-This interpretation is not intuitive, and a mess. We only have two groups, but what if we interact a variable with a categorical variable with 5 categories? Or with another 10-point scale variable? Visualization can help us to get a better intuition.
+-   We call `plot_model()` and include our model with the interaction effect `model_interaction`
 
-```{r plotting interaction effect}
-ggplot(df, aes(x = x, y = y, color = categorical_variable)) + 
-  geom_smooth(method = "lm") +
-  scale_color_manual(values = c("#ED2939", "#0A6522")) +
-  scale_x_continuous(
-    breaks = seq(0,10, 1)) +
-  labs(x = "X", 
-       y = "Y", 
-    color = "Categorical Variable") +
-  theme_bw() 
+-   Then we have to call the type and set it to `type="int"`, which explicitly plots interaction effects.
+
+```{r plotting interaction effect, message=FALSE}
+plot_model(model_interaction, type = "int") +
+  scale_x_continuous(breaks = seq(0,10, 1)) + 
+  labs(title = "Coding Ability after this Course in Comparison",
+       x = "Hours spent", 
+       y = "Coding Ability in R") +
+  scale_color_manual(
+    values = c("red", "blue"),
+    labels = c("Other Courses", "This Course")
+  ) +
+  theme_sjplot() +
+  theme(legend.position = "bottom", 
+        legend.title = element_blank())
 ```
 
-On the x-axis, we have our independent variable and on the y-axis we do have our dependent variable. So far, so normal. But we see two lines: One line for all observations in category 0 and one line for all observations 1. That is exactly what an interaction does. For every point in our independent variable a coefficient is computed in the category 0, and one line for every observation in the category 1.
+On the x-axis, we have our independent variable and on the y-axis we do have our dependent variable. So far, so normal. But we see two lines: One line for all observations in category "Other Courses" (red line) and one line for all observations with "This Course" (blue line). That is exactly what an interaction does. For every point in our independent variable a probability for y is computed in one category, and one line for every observation in the other category.
 
 To interpret it we follow two steps: First, looking at the direction of the lines. We can see that X has a positive effect on Y. Both lines are increasing with higher X-values. Now, the interaction allows us to compare the effect from X on Y for all groups of the categorical variable. In our example that means, that observations in group 1 display a higher effect than observations in group 0. That could be for several reasons.
 
@@ -1101,12 +1115,22 @@ Let us fill this example with life: We are studying **the effect of study hours 
 **Interpretation:**
 
 1.  **Direction of the Lines:**
-    -   Both lines (for group 0 and group 1) are increasing, indicating that more study hours lead to higher exam scores for both groups.
+    -   Both lines (for group 0 and group 1) are increasing, indicating that more hours spent on courses lead to higher coding ability in R, on average.
 2.  **Effect Comparison**:
-    -   The slope for group 1 (students who attended the preparatory course) is steeper compared to group 0 (students who did not attend the preparatory course).
+    -   The slope for group 1 ( attended this course) is steeper compared to group 0 (attended to other courses).
 
-    -   This means that for students who attended the preparatory course, each additional hour of study has a larger positive impact on their exam scores compared to those who did not attend the course.
+    -   This means that for students who attended this course, each additional hour of study has a larger positive impact on their coding ability in R compared to those who did attend another course
 
 By visualizing and analyzing the interaction effect, we can draw meaningful conclusions about how different factors (like attending a preparatory course) modify the relationship between study efforts and performance outcomes.
 
 ## Outlook
+
+This chapter was an introduction to hypothesis testing and basic statistical applications. Further, you were introduced in the most popular and important model, linear regression. The chapter showed not only how linear regression in R is computed, but also how to check if effects are robust and how the models fits. Also extensions to linear regression, namely multivariate regression and categorical variable were introduced.
+
+Linear regression is the basis of nearly everything. Advanced modelling of different classes of dependent variables to even machine learning techniques are based on linear regression. This was the reason, I did not show just linear regression, but also how vulnerable the model is. Poor modelling will always lead to poor results, so we have to aim to check how good our model fits our data and thus research interest.
+
+Further Links:
+
+-   A course I can recommend if you want to have a detailed deep dive into statistics is ["Introduction to Econometrics with R"](https://www.econometrics-with-r.org/index.html) by Christoph Hanck, Martin Arnold, Alexander Gerber, and Martin Schmelzer.
+
+## Exercise Section

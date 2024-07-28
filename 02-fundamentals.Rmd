@@ -182,7 +182,7 @@ print(prices_combined) #printing it
 Objects can contain information of different *data types*:
 
 |               |               |                                              |
-|----------------|----------------|----------------------------------------|
+|-----------------|-----------------|--------------------------------------|
 | **Numeric**   | Numbers       | `c(1, 2.4, 3.14, 4)`                         |
 | **Character** | Text          | `c("1", "blue", "fun", "monster")`           |
 | **Logical**   | True or false | `c(TRUE, FALSE, TRUE, FALSE)`                |
@@ -528,7 +528,11 @@ ifelse(grade == 1.0, "Amazing",
 # The same logic: ifelse(test expression, body expression if, ifelse(test expression 2, body expression if 2)) etc..
 ```
 
-## Exercise Section:
+## Outlook
+
+This section was a brief introduction to the fundamentals of R. It was kept simple to give you a feeling for a R. These are the absolute basics, which are needed to understand everything, which will be built based on it.
+
+## Exercise Section
 
 ### Exercise 1:
 

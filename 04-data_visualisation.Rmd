@@ -1049,3 +1049,11 @@ tm_shape(world) +
               style = "cat",
               id = "sovereignt")
 ```
+
+## Outlook
+
+This chapter was an introduction to one of the most fun part of R, making plots. I introduced you to the standard forms of visualization and gave you a little primer to further visualizations and what is possible in R. The package `ggplot2` is one of the most intuitive (although not for beginners) for data visualization.
+
+-   There is only one book I have to recommend regarding data visualization and that is the ["R Gallery Book"](https://bookdown.org/content/b298e479-b1ab-49fa-b83d-a57c2b034d49/) by Kyle W. Brown. Also check out the [website](https://r-graph-gallery.com/) of this book, it is the standard website, where I search for code snippets for graphs, I can only recommend it.
+
+## Exercise Section

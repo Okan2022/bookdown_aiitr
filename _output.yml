@@ -3,6 +3,9 @@ bookdown::gitbook:
   config:
     toc:
       before: |
-        <li><a href="./">AIITR</a></li>
+        <div style="text-align: center;">
+          <img src="images/AIITR.svg" alt="AIITR Logo" style="vertical-align: middle; margin-left: 5px; width: 150px; height: auto;">
+          <li style="display: inline; list-style-type: none;"><a href="./">by Okan Sarioglu</a></li>
+        </div>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>

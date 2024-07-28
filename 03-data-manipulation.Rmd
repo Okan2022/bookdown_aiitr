@@ -20,21 +20,17 @@ To install packages you use the very creative `install.packages()` command in R.
 
 -   You put the name of the package in quotation marks into the function.
 
-```{r install packages}
-install.packages("pacman") #installing packages
-```
+`install.packages("pacman")`
 
 ### Loading your packages
 
 While you only need to install a package once, you need to load it every time in your script, when you open it. You can do that with the `library()` function in R:
 
--   Call the library() function.
+-   Call the `library()` function.
 
 -   Put the name of
 
-```{r load packages}
-library(pacman) #You run the code and voila you can use the package
-```
+`library(pacman)`
 
 It is always important to have an efficient workflow in R. Traditional R users, load all packages they need at the beginning of their page. Logically, so they just need to go back to the top of the script and need to load it every time they open the script. But there are way more elegant and pragmatic ways to do that.
 
@@ -43,6 +39,10 @@ One way is the `pacman` package:
 -   First, if you use the name of package and put a "::" behind it you tell R to go into the package and to specifically get one command of the package, in our case the `p_load` command.
 
 -   Second, the p_load command, loads the packages in the brackets and checks if they are installed, if not, it automatically installs and loads them.
+
+```{r installing pacman if needed, echo = FALSE}
+if (!require("pacman")) install.packages("pacman")
+```
 
 ```{r pacman}
 pacman::p_load("tidyverse", "psych", "WDI", "gapminder") #loading packages
@@ -974,11 +974,15 @@ merged_data4 <- right_join(d1, wb,
 head(merged_data4)
 ```
 
+*Note: However, this chapter only touched the basics and for merging alone there are several further commands, like inner_join(), anti_join(), semi_join()...etc. But when you encounter problems with the two functions I showed you will run into them eventually.*
+
 ## Outlook
 
-This Chapter introduced you to the basic functions of the dplyr package. You are now able to transform variables according to your needs. Further, you learned how to use pipes to work efficient code. However, this chapter only touched the basics and for merging alone there are several further commands, like inner_join(), anti_join(), semi_join()...etc. But when you encounter problems with the two functions I showed you will run into them eventually.
+This Chapter introduced you to the basic functions of the dplyr package. You are now able to transform variables according to your needs. Further, you learned how to use pipes to work efficient code. Loading data, transforming data, and preparing datasets for the analysis. There are a lot of techniques, and in the end of the day data wrangling is the most extensive part, because every analysis is individual and requires an individual preparation. The more individual the analysis, the more individual the preparation.
 
-## Exercise Section:
+-   I recommend the standard book for data science in R in this chapter, since it has a strong emphasis on data manipulation: ["R for Data Science"](https://r4ds.had.co.nz/) by Hadley Wickham & Garrett Grolemund.
+
+## Exercise Section
 
 ### Exercise 1: Let's wrangle kid
 
