@@ -23,7 +23,7 @@
 <meta name="author" content="Okan Sarioglu" />
 
 
-<meta name="date" content="2024-07-26" />
+<meta name="date" content="2024-07-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -189,11 +189,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2.6" data-path="fundamentals.html"><a href="fundamentals.html#matrices"><i class="fa fa-check"></i><b>2.2.6</b> Matrices</a></li>
 <li class="chapter" data-level="2.2.7" data-path="fundamentals.html"><a href="fundamentals.html#data-frames"><i class="fa fa-check"></i><b>2.2.7</b> Data Frames</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="fundamentals.html"><a href="fundamentals.html#the-ifelse-function-and-ifelse-conditions"><i class="fa fa-check"></i><b>2.3</b> The <code>ifelse()</code> function and <code>ifelse</code> conditions:</a>
+<li class="chapter" data-level="2.3" data-path="fundamentals.html"><a href="fundamentals.html#ifelse-statements-and-the-ifelse-function"><i class="fa fa-check"></i><b>2.3</b> <code>ifelse</code> statements and the <code>ifelse()</code> function</a>
 <ul>
-<li class="chapter" data-level="2.3.1" data-path="fundamentals.html"><a href="fundamentals.html#simple-if-command"><i class="fa fa-check"></i><b>2.3.1</b> Simple if command</a></li>
-<li class="chapter" data-level="2.3.2" data-path="fundamentals.html"><a href="fundamentals.html#ifelse-command"><i class="fa fa-check"></i><b>2.3.2</b> <code>ifelse()</code> command</a></li>
-<li class="chapter" data-level="2.3.3" data-path="fundamentals.html"><a href="fundamentals.html#if-else-ladders-if-else-with-multiple-conditions"><i class="fa fa-check"></i><b>2.3.3</b> if else ladders/ if else with multiple conditions</a></li>
+<li class="chapter" data-level="2.3.1" data-path="fundamentals.html"><a href="fundamentals.html#if-else-statement-with-only-one-condition"><i class="fa fa-check"></i><b>2.3.1</b> If else statement with only one condition</a></li>
+<li class="chapter" data-level="2.3.2" data-path="fundamentals.html"><a href="fundamentals.html#if-statements-with-else-condition"><i class="fa fa-check"></i><b>2.3.2</b> if statements with else condition</a></li>
+<li class="chapter" data-level="2.3.3" data-path="fundamentals.html"><a href="fundamentals.html#the-ifelse-command"><i class="fa fa-check"></i><b>2.3.3</b> The <code>ifelse()</code> command</a></li>
+<li class="chapter" data-level="2.3.4" data-path="fundamentals.html"><a href="fundamentals.html#if-else-ladders-if-else-with-multiple-conditions"><i class="fa fa-check"></i><b>2.3.4</b> if else ladders/ if else with multiple conditions</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="fundamentals.html"><a href="fundamentals.html#exercise-section"><i class="fa fa-check"></i><b>2.4</b> Exercise Section:</a>
 <ul>
@@ -236,7 +237,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.8.1" data-path="data-manipulation.html"><a href="data-manipulation.html#exercise-1-lets-wrangle-kid"><i class="fa fa-check"></i><b>3.8.1</b> Exercise 1: Let’s wrangle kid</a></li>
 <li class="chapter" data-level="3.8.2" data-path="data-manipulation.html"><a href="data-manipulation.html#exercise-2-merging-datasets"><i class="fa fa-check"></i><b>3.8.2</b> Exercise 2: Merging Datasets</a></li>
 </ul></li>
-<li class="chapter" data-level="3.9" data-path="data-manipulation.html"><a href="data-manipulation.html#section"><i class="fa fa-check"></i><b>3.9</b> </a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="data-visualisation.html"><a href="data-visualisation.html"><i class="fa fa-check"></i><b>4</b> Data Visualisation</a>
 <ul>
@@ -295,7 +295,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.4.1" data-path="loops-and-functions.html"><a href="loops-and-functions.html#exercise-1-1"><i class="fa fa-check"></i><b>5.4.1</b> Exercise 1:</a></li>
 <li class="chapter" data-level="5.4.2" data-path="loops-and-functions.html"><a href="loops-and-functions.html#exercise-2-1"><i class="fa fa-check"></i><b>5.4.2</b> Exercise 2:</a></li>
 <li class="chapter" data-level="5.4.3" data-path="loops-and-functions.html"><a href="loops-and-functions.html#exercise-3-1"><i class="fa fa-check"></i><b>5.4.3</b> Exercise 3:</a></li>
-<li class="chapter" data-level="5.4.4" data-path="loops-and-functions.html"><a href="loops-and-functions.html#exercise-4-zodiac-fortune-teller"><i class="fa fa-check"></i><b>5.4.4</b> Exercise 4: Zodiac Fortune Teller</a></li>
+<li class="chapter" data-level="5.4.4" data-path="loops-and-functions.html"><a href="loops-and-functions.html#section"><i class="fa fa-check"></i><b>5.4.4</b> </a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="data-analysis.html"><a href="data-analysis.html"><i class="fa fa-check"></i><b>6</b> Data Analysis</a>
@@ -506,9 +506,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Objects can contain information of different <em>data types</em>:</p>
 <table>
 <colgroup>
-<col width="23%" />
-<col width="23%" />
-<col width="52%" />
+<col width="22%" />
+<col width="22%" />
+<col width="55%" />
 </colgroup>
 <tbody>
 <tr class="odd">
@@ -559,6 +559,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="making-matrices" class="section level4 hasAnchor" number="2.2.6.1">
 <h4><span class="header-section-number">2.2.6.1</span> Making Matrices<a href="fundamentals.html#making-matrices" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>There are different ways of building a matrix. Let us start by just binding the vectors as columns together. You can do that <code>cbind()</code> if you want to bind columns together. <code>rbind()</code> is therefore the command to bind rows together.</p>
+<ul>
+<li><p>You have to call <code>cbind()</code> and include the vectors you want to bind together</p></li>
+<li><p>The same with <code>rbind()</code></p></li>
+</ul>
 <div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="fundamentals.html#cb55-1" tabindex="-1"></a>price_index <span class="ot">&lt;-</span> <span class="fu">cbind</span>(food, </span>
 <span id="cb55-2"><a href="fundamentals.html#cb55-2" tabindex="-1"></a>                     prices,</span>
 <span id="cb55-3"><a href="fundamentals.html#cb55-3" tabindex="-1"></a>                     cola_prices) <span class="co">#We bind it together</span></span>
@@ -581,158 +585,231 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## food        &quot;Pizza&quot; &quot;Kebab&quot; &quot;Curry&quot; &quot;Fish&quot; &quot;Burrito&quot;
 ## prices      &quot;7.5&quot;   &quot;6&quot;     &quot;8.5&quot;   &quot;3&quot;    &quot;11&quot;     
 ## cola_prices &quot;3.5&quot;   &quot;3&quot;     &quot;4&quot;     &quot;2.5&quot;  &quot;3&quot;</code></pre>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="fundamentals.html#cb59-1" tabindex="-1"></a><span class="co"># We can also create directly a matrix </span></span>
-<span id="cb59-2"><a href="fundamentals.html#cb59-2" tabindex="-1"></a></span>
-<span id="cb59-3"><a href="fundamentals.html#cb59-3" tabindex="-1"></a>matrix_example <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">ncol =</span> <span class="dv">5</span>, <span class="at">byrow =</span> T) <span class="co"># create numeric matrix</span></span>
-<span id="cb59-4"><a href="fundamentals.html#cb59-4" tabindex="-1"></a><span class="fu">print</span>(matrix_example)</span></code></pre></div>
+<p>We can also generate a matrix by simulating it. There are a lot of things to care about, simply because a lot is possible:</p>
+<ul>
+<li><p>You first call the matrix() command.</p></li>
+<li><p>The first argument is an interval of numbers. These are our total observations if you want.</p></li>
+<li><p>The second and third argument are our number of rows <code>nrow()</code> and our number of columns <code>ncol()</code>. If you multiply them, they have to result in the number of observations you defined before. We have 20 numbers and 4 multiplied by 5 is 20, thus this is fine.</p></li>
+<li><p>Lastly you have to define if the numbers should be included from left to right, thus by row or if they should be ordered from top to bottom. We go through both examples and then it should become clear.</p></li>
+<li><p>The <code>dim()</code> command is helpful, because it shows us to inspect the dimensions.</p></li>
+</ul>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="fundamentals.html#cb59-1" tabindex="-1"></a><span class="co"># Create a matrix</span></span>
+<span id="cb59-2"><a href="fundamentals.html#cb59-2" tabindex="-1"></a>matrix_example <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">ncol =</span> <span class="dv">5</span>, <span class="at">byrow =</span> T) <span class="co">#</span></span>
+<span id="cb59-3"><a href="fundamentals.html#cb59-3" tabindex="-1"></a></span>
+<span id="cb59-4"><a href="fundamentals.html#cb59-4" tabindex="-1"></a><span class="co"># Checking it</span></span>
+<span id="cb59-5"><a href="fundamentals.html#cb59-5" tabindex="-1"></a><span class="fu">print</span>(matrix_example)</span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3] [,4] [,5]
 ## [1,]    1    2    3    4    5
 ## [2,]    6    7    8    9   10
 ## [3,]   11   12   13   14   15
 ## [4,]   16   17   18   19   20</code></pre>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="fundamentals.html#cb61-1" tabindex="-1"></a><span class="fu">dim</span>(matrix_example) <span class="co">#The dim() command shows you the dimensions of a matrix</span></span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="fundamentals.html#cb61-1" tabindex="-1"></a><span class="co"># Checking the dimensions</span></span>
+<span id="cb61-2"><a href="fundamentals.html#cb61-2" tabindex="-1"></a><span class="fu">dim</span>(matrix_example)</span></code></pre></div>
 <pre><code>## [1] 4 5</code></pre>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="fundamentals.html#cb63-1" tabindex="-1"></a><span class="co">#What happens if byrow is set to FALSE?</span></span>
-<span id="cb63-2"><a href="fundamentals.html#cb63-2" tabindex="-1"></a></span>
-<span id="cb63-3"><a href="fundamentals.html#cb63-3" tabindex="-1"></a>matrix_example2 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">ncol =</span> <span class="dv">5</span>, <span class="at">byrow =</span> F) <span class="co"># create numeric matrix</span></span>
-<span id="cb63-4"><a href="fundamentals.html#cb63-4" tabindex="-1"></a><span class="fu">print</span>(matrix_example2)</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="fundamentals.html#cb63-1" tabindex="-1"></a><span class="co"># What happens if byrow is set to FALSE?</span></span>
+<span id="cb63-2"><a href="fundamentals.html#cb63-2" tabindex="-1"></a>matrix_example2 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">ncol =</span> <span class="dv">5</span>, <span class="at">byrow =</span> F)</span>
+<span id="cb63-3"><a href="fundamentals.html#cb63-3" tabindex="-1"></a></span>
+<span id="cb63-4"><a href="fundamentals.html#cb63-4" tabindex="-1"></a><span class="co"># Checking it </span></span>
+<span id="cb63-5"><a href="fundamentals.html#cb63-5" tabindex="-1"></a><span class="fu">print</span>(matrix_example2)</span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3] [,4] [,5]
 ## [1,]    1    5    9   13   17
 ## [2,]    2    6   10   14   18
 ## [3,]    3    7   11   15   19
 ## [4,]    4    8   12   16   20</code></pre>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="fundamentals.html#cb65-1" tabindex="-1"></a><span class="fu">dim</span>(matrix_example2) <span class="co">#The dim() command shows you the dimensions of a matrix</span></span></code></pre></div>
-<pre><code>## [1] 4 5</code></pre>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="fundamentals.html#cb67-1" tabindex="-1"></a><span class="co"># We can also create directly a matrix </span></span>
-<span id="cb67-2"><a href="fundamentals.html#cb67-2" tabindex="-1"></a></span>
-<span id="cb67-3"><a href="fundamentals.html#cb67-3" tabindex="-1"></a>matrix_example <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">ncol =</span> <span class="dv">5</span>, <span class="at">byrow =</span> T) <span class="co"># create numeric matrix</span></span>
-<span id="cb67-4"><a href="fundamentals.html#cb67-4" tabindex="-1"></a><span class="fu">print</span>(matrix_example)</span></code></pre></div>
-<pre><code>##      [,1] [,2] [,3] [,4] [,5]
-## [1,]    1    2    3    4    5
-## [2,]    6    7    8    9   10
-## [3,]   11   12   13   14   15
-## [4,]   16   17   18   19   20</code></pre>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="fundamentals.html#cb69-1" tabindex="-1"></a><span class="fu">dim</span>(matrix_example) <span class="co">#The dim() command shows you the dimensions of a matrix</span></span></code></pre></div>
-<pre><code>## [1] 4 5</code></pre>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="fundamentals.html#cb71-1" tabindex="-1"></a><span class="co">#What happens if byrow is set to FALSE?</span></span>
-<span id="cb71-2"><a href="fundamentals.html#cb71-2" tabindex="-1"></a></span>
-<span id="cb71-3"><a href="fundamentals.html#cb71-3" tabindex="-1"></a>matrix_example2 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">ncol =</span> <span class="dv">5</span>, <span class="at">byrow =</span> F) <span class="co"># create numeric matrix</span></span>
-<span id="cb71-4"><a href="fundamentals.html#cb71-4" tabindex="-1"></a><span class="fu">print</span>(matrix_example2)</span></code></pre></div>
-<pre><code>##      [,1] [,2] [,3] [,4] [,5]
-## [1,]    1    5    9   13   17
-## [2,]    2    6   10   14   18
-## [3,]    3    7   11   15   19
-## [4,]    4    8   12   16   20</code></pre>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="fundamentals.html#cb73-1" tabindex="-1"></a><span class="fu">dim</span>(matrix_example2) <span class="co">#The dim() command shows you the dimensions of a matrix</span></span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="fundamentals.html#cb65-1" tabindex="-1"></a><span class="fu">dim</span>(matrix_example2)</span></code></pre></div>
 <pre><code>## [1] 4 5</code></pre>
 </div>
 <div id="working-with-matrices" class="section level4 hasAnchor" number="2.2.6.2">
 <h4><span class="header-section-number">2.2.6.2</span> Working with Matrices<a href="fundamentals.html#working-with-matrices" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>We want to work with matrices. You can extract columns and rows.</p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="fundamentals.html#cb75-1" tabindex="-1"></a><span class="co">#Let us get used to work with objects</span></span>
-<span id="cb75-2"><a href="fundamentals.html#cb75-2" tabindex="-1"></a>row <span class="ot">&lt;-</span> <span class="dv">1</span> </span>
-<span id="cb75-3"><a href="fundamentals.html#cb75-3" tabindex="-1"></a>column <span class="ot">&lt;-</span> <span class="dv">1</span> </span>
-<span id="cb75-4"><a href="fundamentals.html#cb75-4" tabindex="-1"></a></span>
-<span id="cb75-5"><a href="fundamentals.html#cb75-5" tabindex="-1"></a><span class="co">#Printing it</span></span>
-<span id="cb75-6"><a href="fundamentals.html#cb75-6" tabindex="-1"></a><span class="fu">print</span>(object1 <span class="ot">&lt;-</span> matrix_example[row, ]) <span class="co">#printing the first row</span></span></code></pre></div>
+<p>We want to work with matrices. The first tool to learn is how to inspect the matrices:</p>
+<ul>
+<li><p>First, you call the matrix. In our example, matrix_example with square brackets.</p></li>
+<li><p>In these brackets you can call single rows by entering the number of the row you want to inspect, and then you put a comma behind it to signal R that you want to have the row.</p></li>
+<li><p>If you put a number behind the comma, you tell R to give you the column with the number.</p></li>
+<li><p>If you want a single number then you have to define a row and a column.</p></li>
+</ul>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="fundamentals.html#cb67-1" tabindex="-1"></a><span class="co">#Let us get used to work with objects</span></span>
+<span id="cb67-2"><a href="fundamentals.html#cb67-2" tabindex="-1"></a>row <span class="ot">&lt;-</span> <span class="dv">1</span> </span>
+<span id="cb67-3"><a href="fundamentals.html#cb67-3" tabindex="-1"></a>column <span class="ot">&lt;-</span> <span class="dv">1</span> </span>
+<span id="cb67-4"><a href="fundamentals.html#cb67-4" tabindex="-1"></a></span>
+<span id="cb67-5"><a href="fundamentals.html#cb67-5" tabindex="-1"></a><span class="co">#Printing it</span></span>
+<span id="cb67-6"><a href="fundamentals.html#cb67-6" tabindex="-1"></a><span class="fu">print</span>(object1 <span class="ot">&lt;-</span> matrix_example[row, ]) <span class="co">#printing the first row</span></span></code></pre></div>
 <pre><code>## [1] 1 2 3 4 5</code></pre>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="fundamentals.html#cb77-1" tabindex="-1"></a><span class="fu">print</span>(object2 <span class="ot">&lt;-</span> matrix_example[, column]) <span class="co">#printing the first column </span></span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="fundamentals.html#cb69-1" tabindex="-1"></a><span class="fu">print</span>(object2 <span class="ot">&lt;-</span> matrix_example[, column]) <span class="co">#printing the first column </span></span></code></pre></div>
 <pre><code>## [1]  1  6 11 16</code></pre>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="fundamentals.html#cb79-1" tabindex="-1"></a><span class="fu">print</span>(object3 <span class="ot">&lt;-</span> matrix_example[row, column]) <span class="co">#printing first row and column</span></span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="fundamentals.html#cb71-1" tabindex="-1"></a><span class="fu">print</span>(object3 <span class="ot">&lt;-</span> matrix_example[row, column]) <span class="co">#printing first row and column</span></span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="fundamentals.html#cb81-1" tabindex="-1"></a><span class="fu">print</span>(matrix_example) <span class="co">#printing the matrix</span></span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="fundamentals.html#cb73-1" tabindex="-1"></a><span class="fu">print</span>(matrix_example) <span class="co">#printing the matrix</span></span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3] [,4] [,5]
 ## [1,]    1    2    3    4    5
 ## [2,]    6    7    8    9   10
 ## [3,]   11   12   13   14   15
 ## [4,]   16   17   18   19   20</code></pre>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="fundamentals.html#cb83-1" tabindex="-1"></a><span class="co">#More Information </span></span>
-<span id="cb83-2"><a href="fundamentals.html#cb83-2" tabindex="-1"></a></span>
-<span id="cb83-3"><a href="fundamentals.html#cb83-3" tabindex="-1"></a><span class="fu">nrow</span>(matrix_example) <span class="co">#How many rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="fundamentals.html#cb75-1" tabindex="-1"></a><span class="co">#More Information </span></span>
+<span id="cb75-2"><a href="fundamentals.html#cb75-2" tabindex="-1"></a></span>
+<span id="cb75-3"><a href="fundamentals.html#cb75-3" tabindex="-1"></a><span class="fu">nrow</span>(matrix_example) <span class="co">#How many rows</span></span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="fundamentals.html#cb85-1" tabindex="-1"></a><span class="fu">ncol</span>(matrix_example) <span class="co">#How many columns</span></span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="fundamentals.html#cb77-1" tabindex="-1"></a><span class="fu">ncol</span>(matrix_example) <span class="co">#How many columns</span></span></code></pre></div>
 <pre><code>## [1] 5</code></pre>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="fundamentals.html#cb87-1" tabindex="-1"></a><span class="fu">dim</span>(matrix_example) <span class="co">#Overall dimensions</span></span></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="fundamentals.html#cb79-1" tabindex="-1"></a><span class="fu">dim</span>(matrix_example) <span class="co">#Overall dimensions</span></span></code></pre></div>
 <pre><code>## [1] 4 5</code></pre>
 </div>
 </div>
 <div id="data-frames" class="section level3 hasAnchor" number="2.2.7">
 <h3><span class="header-section-number">2.2.7</span> Data Frames<a href="fundamentals.html#data-frames" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Data Frames are more useful than matrices, since they are able to contain objects with different classes:</p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="fundamentals.html#cb89-1" tabindex="-1"></a>df_example <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb89-2"><a href="fundamentals.html#cb89-2" tabindex="-1"></a>    <span class="at">country =</span> <span class="fu">c</span>(<span class="st">&quot;Austria&quot;</span>, <span class="st">&quot;England&quot;</span>, </span>
-<span id="cb89-3"><a href="fundamentals.html#cb89-3" tabindex="-1"></a>                <span class="st">&quot;Brazil&quot;</span>, <span class="st">&quot;Germany&quot;</span>), </span>
-<span id="cb89-4"><a href="fundamentals.html#cb89-4" tabindex="-1"></a>    <span class="at">capital =</span> <span class="fu">c</span>(<span class="st">&quot;Vienna&quot;</span>, <span class="st">&quot;London&quot;</span>, </span>
-<span id="cb89-5"><a href="fundamentals.html#cb89-5" tabindex="-1"></a>                <span class="st">&quot;Brasilia&quot;</span>, <span class="st">&quot;Berlin&quot;</span>), </span>
-<span id="cb89-6"><a href="fundamentals.html#cb89-6" tabindex="-1"></a>    <span class="at">elo =</span> <span class="fu">c</span>(<span class="dv">1761</span>, <span class="dv">1938</span>, <span class="dv">2166</span>, <span class="dv">1988</span>),</span>
-<span id="cb89-7"><a href="fundamentals.html#cb89-7" tabindex="-1"></a>    <span class="at">logical =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)</span>
-<span id="cb89-8"><a href="fundamentals.html#cb89-8" tabindex="-1"></a>  ) <span class="co">#example df</span></span>
-<span id="cb89-9"><a href="fundamentals.html#cb89-9" tabindex="-1"></a></span>
-<span id="cb89-10"><a href="fundamentals.html#cb89-10" tabindex="-1"></a><span class="co">#Checking it</span></span>
-<span id="cb89-11"><a href="fundamentals.html#cb89-11" tabindex="-1"></a><span class="fu">print</span>(df_example)</span></code></pre></div>
-<pre><code>##   country  capital  elo logical
-## 1 Austria   Vienna 1761    TRUE
-## 2 England   London 1938   FALSE
-## 3  Brazil Brasilia 2166   FALSE
-## 4 Germany   Berlin 1988    TRUE</code></pre>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="fundamentals.html#cb91-1" tabindex="-1"></a>df_example<span class="sc">$</span>country <span class="co">#You tell R to use the data frame &quot;df_Example&quot; and with the dollar sign, you tell R to print a certain variable. </span></span></code></pre></div>
+<p>The next type of data storage are data frames. These are the standard storage objects for data in R. The reason is simple, matrices are only able to contain one type of variables (numeric, character, etc…).</p>
+<ul>
+<li>In this example, we have a dataset with the variable country (character), the capital (character), the population in mio (numeric), and a if the country is in europe (logical)</li>
+</ul>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="fundamentals.html#cb81-1" tabindex="-1"></a><span class="co"># making an example df</span></span>
+<span id="cb81-2"><a href="fundamentals.html#cb81-2" tabindex="-1"></a>df_example <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb81-3"><a href="fundamentals.html#cb81-3" tabindex="-1"></a>    <span class="at">country =</span> <span class="fu">c</span>(<span class="st">&quot;Austria&quot;</span>, <span class="st">&quot;England&quot;</span>, </span>
+<span id="cb81-4"><a href="fundamentals.html#cb81-4" tabindex="-1"></a>                <span class="st">&quot;Brazil&quot;</span>, <span class="st">&quot;Germany&quot;</span>), </span>
+<span id="cb81-5"><a href="fundamentals.html#cb81-5" tabindex="-1"></a>    <span class="at">capital =</span> <span class="fu">c</span>(<span class="st">&quot;Vienna&quot;</span>, <span class="st">&quot;London&quot;</span>, </span>
+<span id="cb81-6"><a href="fundamentals.html#cb81-6" tabindex="-1"></a>                <span class="st">&quot;Brasilia&quot;</span>, <span class="st">&quot;Berlin&quot;</span>), </span>
+<span id="cb81-7"><a href="fundamentals.html#cb81-7" tabindex="-1"></a>    <span class="at">pop =</span> <span class="fu">c</span>(<span class="fl">9.04</span>, <span class="fl">55.98</span>, <span class="fl">215.3</span>, <span class="fl">83.8</span>),</span>
+<span id="cb81-8"><a href="fundamentals.html#cb81-8" tabindex="-1"></a>    <span class="at">europe =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb81-9"><a href="fundamentals.html#cb81-9" tabindex="-1"></a>  )</span>
+<span id="cb81-10"><a href="fundamentals.html#cb81-10" tabindex="-1"></a></span>
+<span id="cb81-11"><a href="fundamentals.html#cb81-11" tabindex="-1"></a><span class="co"># Checking it</span></span>
+<span id="cb81-12"><a href="fundamentals.html#cb81-12" tabindex="-1"></a><span class="fu">print</span>(df_example)</span></code></pre></div>
+<pre><code>##   country  capital    pop europe
+## 1 Austria   Vienna   9.04   TRUE
+## 2 England   London  55.98  FALSE
+## 3  Brazil Brasilia 215.30   TRUE
+## 4 Germany   Berlin  83.80   TRUE</code></pre>
+<ul>
+<li>If you want to work with data frames you can call columns by calling the name of the data frame putting a dollar sign behind it and then calling the name of the column, you want to inspect:</li>
+</ul>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="fundamentals.html#cb83-1" tabindex="-1"></a>df_example<span class="sc">$</span>country  </span></code></pre></div>
 <pre><code>## [1] &quot;Austria&quot; &quot;England&quot; &quot;Brazil&quot;  &quot;Germany&quot;</code></pre>
+<p>You see that you get the vector of the column. We can go further and work more with data frames</p>
+<ul>
+<li><p>Let us call a single observation in the data frame: You call the column you want to inspect the same way as before, this time you also put square brackets behind and call the number of the observation in the column.</p></li>
+<li><p>We want to have “Brazil”. “Brazil” is the third element of the <code>df_example$country</code>, thus we include 3 in the square brackets:</p></li>
+</ul>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="fundamentals.html#cb85-1" tabindex="-1"></a>df_example<span class="sc">$</span>country[<span class="dv">3</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;Brazil&quot;</code></pre>
+<p>The last thing to do with data frames is to get columns based on conditions. In the next part of this chapter we will get a method to do so, but we can do so as well with the data frame. Imagine you want to have a vector of <code>df$country</code>, but only with countries that have a <code>df$pop</code> bigger than 60. Meaning a population bigger than 60.</p>
+<ul>
+<li><p>To do so we call the <code>df$country</code> column and put square brackets behind it</p></li>
+<li><p>Further we need to call in the square brackets the condition. Thus, the variable <code>df_example$pop</code> and set it to bigger than 60. Et voila, we get the columns of <code>df_example$country</code> bigger than 60.</p></li>
+</ul>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="fundamentals.html#cb87-1" tabindex="-1"></a>df_example<span class="sc">$</span>country[df_example<span class="sc">$</span>pop <span class="sc">&gt;</span> <span class="dv">60</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;Brazil&quot;  &quot;Germany&quot;</code></pre>
 </div>
 </div>
-<div id="the-ifelse-function-and-ifelse-conditions" class="section level2 hasAnchor" number="2.3">
-<h2><span class="header-section-number">2.3</span> The <code>ifelse()</code> function and <code>ifelse</code> conditions:<a href="fundamentals.html#the-ifelse-function-and-ifelse-conditions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="ifelse-statements-and-the-ifelse-function" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> <code>ifelse</code> statements and the <code>ifelse()</code> function<a href="fundamentals.html#ifelse-statements-and-the-ifelse-function" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>One of the most frequently used and therefore most important logical operators in programming in general are <code>ifelse</code> commands. You probably know them from Excel, but every programming language includes them, because of their usefulness. A quick reminder of their logic.</p>
-<div id="simple-if-command" class="section level3 hasAnchor" number="2.3.1">
-<h3><span class="header-section-number">2.3.1</span> Simple if command<a href="fundamentals.html#simple-if-command" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="if-else-statement-with-only-one-condition" class="section level3 hasAnchor" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> If else statement with only one condition<a href="fundamentals.html#if-else-statement-with-only-one-condition" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>First, you define an if statement. The if statement is a logical statement for example bigger, smaller than X. The logical statement is your test expression. With this you tell the program to test the condition for an object, in excel a cell or whatever object in your programming language can be tested. The program then checks if the condition is TRUE or FALSE. Until this point every if else is the same and now we will look at some variations:</p>
 <div class="float">
-<img src="images/r-if-statement.jpg" fig-align="center" alt="Figure 2: Logic of if-else statements" />
+<img src="images/r-if-else-statement_2.png" fig-align="center" width="350" alt="Figure 2: Logic of if-else statements" />
 <div class="figcaption"><strong><em>Figure 2: Logic of if-else statements</em></strong></div>
 </div>
-<p>This is the logic of a simple <strong>if statement</strong>. If a test expression is met, then the body of it (logical consequence) should happen</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="fundamentals.html#cb93-1" tabindex="-1"></a>grade <span class="ot">&lt;-</span> <span class="fl">1.7</span> </span>
-<span id="cb93-2"><a href="fundamentals.html#cb93-2" tabindex="-1"></a></span>
-<span id="cb93-3"><a href="fundamentals.html#cb93-3" tabindex="-1"></a><span class="cf">if</span>(grade <span class="sc">&lt;</span> <span class="dv">2</span>) {</span>
-<span id="cb93-4"><a href="fundamentals.html#cb93-4" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Good Job&quot;</span>)</span>
-<span id="cb93-5"><a href="fundamentals.html#cb93-5" tabindex="-1"></a>} <span class="co"># You write down if(test expression), and then the {body expression}, thus the body expression in fancy brackets.</span></span></code></pre></div>
+<p>Figure <a href="#fig:2"><strong>??</strong></a> shows the logic of an if else statement with one condition. We say that if the test expression is true something should happen. If not nothing happens, because nothing was defined.</p>
+<ul>
+<li><p>We want R to judge our grades in school. For this reason we define an object called grade and assign 1.7 to it.</p></li>
+<li><p>In the next step we call if and open a bracket. We include the test expression in the bracket, which shall be if grade, our grade is smaller than 2</p></li>
+<li><p>Then we open curly brackets to define what should happen if the test expression is TRUE. Meaning what should happen if the grade is better than 2. We define print(“Good Job”).</p></li>
+<li><p>Here is the general logic of a if else statement:</p>
+<p><code>if (test expression) {</code></p>
+<p><code>Body of if</code></p>
+<p><code>}</code></p></li>
+</ul>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="fundamentals.html#cb89-1" tabindex="-1"></a>grade <span class="ot">&lt;-</span> <span class="fl">1.7</span> </span>
+<span id="cb89-2"><a href="fundamentals.html#cb89-2" tabindex="-1"></a></span>
+<span id="cb89-3"><a href="fundamentals.html#cb89-3" tabindex="-1"></a><span class="cf">if</span>(grade <span class="sc">&lt;</span> <span class="dv">2</span>) {</span>
+<span id="cb89-4"><a href="fundamentals.html#cb89-4" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Good Job&quot;</span>)</span>
+<span id="cb89-5"><a href="fundamentals.html#cb89-5" tabindex="-1"></a>} <span class="co"># You write down if(test expression), and then the {body expression}, thus the body expression in fancy brackets.</span></span></code></pre></div>
 <pre><code>## [1] &quot;Good Job&quot;</code></pre>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="fundamentals.html#cb95-1" tabindex="-1"></a>grade <span class="ot">&lt;-</span> <span class="fl">2.5</span> </span>
-<span id="cb95-2"><a href="fundamentals.html#cb95-2" tabindex="-1"></a></span>
-<span id="cb95-3"><a href="fundamentals.html#cb95-3" tabindex="-1"></a><span class="cf">if</span>(grade <span class="sc">&lt;</span> <span class="dv">2</span>) {</span>
-<span id="cb95-4"><a href="fundamentals.html#cb95-4" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Good Job&quot;</span>)</span>
-<span id="cb95-5"><a href="fundamentals.html#cb95-5" tabindex="-1"></a>} <span class="co">#Since the condition is not met, nothing happens</span></span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="fundamentals.html#cb91-1" tabindex="-1"></a>grade <span class="ot">&lt;-</span> <span class="fl">2.5</span> </span>
+<span id="cb91-2"><a href="fundamentals.html#cb91-2" tabindex="-1"></a></span>
+<span id="cb91-3"><a href="fundamentals.html#cb91-3" tabindex="-1"></a><span class="cf">if</span>(grade <span class="sc">&lt;</span> <span class="dv">2</span>) {</span>
+<span id="cb91-4"><a href="fundamentals.html#cb91-4" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Good Job&quot;</span>)</span>
+<span id="cb91-5"><a href="fundamentals.html#cb91-5" tabindex="-1"></a>} <span class="co">#Since the condition is not met, nothing happens</span></span></code></pre></div>
+<p>As you can see if the grade is bigger than 2 nothing happens. Otherwise “Good Job” is printed as intended.</p>
 </div>
-<div id="ifelse-command" class="section level3 hasAnchor" number="2.3.2">
-<h3><span class="header-section-number">2.3.2</span> <code>ifelse()</code> command<a href="fundamentals.html#ifelse-command" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>An if command on its own is quite useless, things get interesting, when we also have a body for the else command:</p>
+<div id="if-statements-with-else-condition" class="section level3 hasAnchor" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> if statements with else condition<a href="fundamentals.html#if-statements-with-else-condition" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>An if command on its own is quite useless. Things get interesting, when we also have a body for the else command. What happens now, is that instead of nothing being printed when the test expression is FALSE. Then the body of else is printed.</p>
 <div class="float">
-<img src="images/r-if-else-statement_2.jpg" fig-align="center" alt="Figure 3: Standard RStudio Interface" />
+<img src="images/r-if-statement.png" fig-align="center" width="350" alt="Figure 3: Standard RStudio Interface" />
 <div class="figcaption"><strong>Figure 3: Standard RStudio Interface</strong></div>
 </div>
-<p>Now we just add a <strong>body of else</strong> into the equation, in R that means we need to define it</p>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="fundamentals.html#cb96-1" tabindex="-1"></a>grade <span class="ot">&lt;-</span> <span class="fl">3.3</span> <span class="co">#assigning a grade</span></span>
-<span id="cb96-2"><a href="fundamentals.html#cb96-2" tabindex="-1"></a></span>
-<span id="cb96-3"><a href="fundamentals.html#cb96-3" tabindex="-1"></a><span class="cf">if</span> (grade <span class="sc">&lt;=</span> <span class="dv">2</span>) {</span>
-<span id="cb96-4"><a href="fundamentals.html#cb96-4" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Good Job&quot;</span>)</span>
-<span id="cb96-5"><a href="fundamentals.html#cb96-5" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb96-6"><a href="fundamentals.html#cb96-6" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Life goes on&quot;</span>)</span>
-<span id="cb96-7"><a href="fundamentals.html#cb96-7" tabindex="-1"></a>} </span></code></pre></div>
+<p>Now we just add a <strong>body of else</strong> into the equation, in R that means we need to define it:</p>
+<ul>
+<li>We take the if else statement of the chunk before and now we add an <code>else</code> and open curly brackets, where we define the body of <code>else</code>.</li>
+</ul>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="fundamentals.html#cb92-1" tabindex="-1"></a>grade <span class="ot">&lt;-</span> <span class="fl">3.3</span> <span class="co">#assigning a grade</span></span>
+<span id="cb92-2"><a href="fundamentals.html#cb92-2" tabindex="-1"></a></span>
+<span id="cb92-3"><a href="fundamentals.html#cb92-3" tabindex="-1"></a><span class="cf">if</span> (grade <span class="sc">&lt;=</span> <span class="dv">2</span>) {</span>
+<span id="cb92-4"><a href="fundamentals.html#cb92-4" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Good Job&quot;</span>)</span>
+<span id="cb92-5"><a href="fundamentals.html#cb92-5" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb92-6"><a href="fundamentals.html#cb92-6" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Life goes on&quot;</span>)</span>
+<span id="cb92-7"><a href="fundamentals.html#cb92-7" tabindex="-1"></a>} </span></code></pre></div>
 <pre><code>## [1] &quot;Life goes on&quot;</code></pre>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="fundamentals.html#cb98-1" tabindex="-1"></a>grade <span class="ot">&lt;-</span> <span class="fl">1.3</span> <span class="co">#assigning a grade</span></span>
-<span id="cb98-2"><a href="fundamentals.html#cb98-2" tabindex="-1"></a></span>
-<span id="cb98-3"><a href="fundamentals.html#cb98-3" tabindex="-1"></a><span class="cf">if</span> (grade <span class="sc">&lt;=</span> <span class="dv">2</span>) {</span>
-<span id="cb98-4"><a href="fundamentals.html#cb98-4" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Good Job&quot;</span>)</span>
-<span id="cb98-5"><a href="fundamentals.html#cb98-5" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb98-6"><a href="fundamentals.html#cb98-6" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Life goes on&quot;</span>)</span>
-<span id="cb98-7"><a href="fundamentals.html#cb98-7" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="fundamentals.html#cb94-1" tabindex="-1"></a>grade <span class="ot">&lt;-</span> <span class="fl">1.3</span> <span class="co">#assigning a grade</span></span>
+<span id="cb94-2"><a href="fundamentals.html#cb94-2" tabindex="-1"></a></span>
+<span id="cb94-3"><a href="fundamentals.html#cb94-3" tabindex="-1"></a><span class="cf">if</span> (grade <span class="sc">&lt;=</span> <span class="dv">2</span>) {</span>
+<span id="cb94-4"><a href="fundamentals.html#cb94-4" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Good Job&quot;</span>)</span>
+<span id="cb94-5"><a href="fundamentals.html#cb94-5" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb94-6"><a href="fundamentals.html#cb94-6" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Life goes on&quot;</span>)</span>
+<span id="cb94-7"><a href="fundamentals.html#cb94-7" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;Good Job&quot;</code></pre>
-<p>What you see above is a classic ifelse condition, but R has a base R function called ifelse(), which does the same thing as the function above</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="fundamentals.html#cb100-1" tabindex="-1"></a><span class="fu">ifelse</span>(grade <span class="sc">&lt;=</span><span class="dv">2</span>, <span class="st">&quot;Good Job&quot;</span>, <span class="st">&quot;Life goes on&quot;</span>) <span class="co">#ifelse command</span></span></code></pre></div>
+<p>We see that in any case a result is printed.</p>
+</div>
+<div id="the-ifelse-command" class="section level3 hasAnchor" number="2.3.3">
+<h3><span class="header-section-number">2.3.3</span> The <code>ifelse()</code> command<a href="fundamentals.html#the-ifelse-command" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>What you see above is the manual way of coding an if else condition. But there is also an ifelse() function in R, where you do not have different colors and fancy brackets everywhere.</p>
+<ul>
+<li><p>you call ifelse()</p></li>
+<li><p>The first argument is your test expression</p></li>
+<li><p>The second the body of if</p></li>
+<li><p>The third the body of else</p></li>
+</ul>
+<p><code>ifelse(test expression, body of if, body of else)</code></p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="fundamentals.html#cb96-1" tabindex="-1"></a><span class="fu">ifelse</span>(grade <span class="sc">&lt;=</span><span class="dv">2</span>, <span class="st">&quot;Good Job&quot;</span>, <span class="st">&quot;Life goes on&quot;</span>) <span class="co">#ifelse command</span></span></code></pre></div>
 <pre><code>## [1] &quot;Good Job&quot;</code></pre>
 </div>
-<div id="if-else-ladders-if-else-with-multiple-conditions" class="section level3 hasAnchor" number="2.3.3">
-<h3><span class="header-section-number">2.3.3</span> if else ladders/ if else with multiple conditions<a href="fundamentals.html#if-else-ladders-if-else-with-multiple-conditions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Of course not every operations requires a dichotomous operation, so what we need are if else commands with multiple conditions:</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="fundamentals.html#cb102-1" tabindex="-1"></a>grade <span class="ot">&lt;-</span> <span class="fl">1.0</span> <span class="co">#Assigning a grade</span></span>
+<div id="if-else-ladders-if-else-with-multiple-conditions" class="section level3 hasAnchor" number="2.3.4">
+<h3><span class="header-section-number">2.3.4</span> if else ladders/ if else with multiple conditions<a href="fundamentals.html#if-else-ladders-if-else-with-multiple-conditions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The world is a complex place. Sometimes things are not black and white. Thus we have to be prepared for different scenarios. To make it less melodramatic, if else statements are also possible with several bodies of else. Let us take the example that we want to have a statement of R regarding our grade for different number intervals. What R does is to check the first condition, afterward he checks the second test expression and so forth until he finds a hit and prints it. If no expression is found, you have to define a last else expression.</p>
+<ul>
+<li><p>You add else if with curly brackets where the test expression is included.</p></li>
+<li><p>Lastly, you define an else with curly brackets for the case there is not test expression</p></li>
+</ul>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="fundamentals.html#cb98-1" tabindex="-1"></a>grade <span class="ot">&lt;-</span> <span class="fl">3.3</span> <span class="co">#Assigning a grade</span></span>
+<span id="cb98-2"><a href="fundamentals.html#cb98-2" tabindex="-1"></a></span>
+<span id="cb98-3"><a href="fundamentals.html#cb98-3" tabindex="-1"></a><span class="cf">if</span> (grade <span class="sc">==</span> <span class="fl">1.0</span>) {</span>
+<span id="cb98-4"><a href="fundamentals.html#cb98-4" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Amazing&quot;</span>) </span>
+<span id="cb98-5"><a href="fundamentals.html#cb98-5" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">1.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">2.0</span>) {</span>
+<span id="cb98-6"><a href="fundamentals.html#cb98-6" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Good Job&quot;</span>)</span>
+<span id="cb98-7"><a href="fundamentals.html#cb98-7" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">2.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">3.0</span>) {</span>
+<span id="cb98-8"><a href="fundamentals.html#cb98-8" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;OK&quot;</span>)</span>
+<span id="cb98-9"><a href="fundamentals.html#cb98-9" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">3.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">4.0</span>) {</span>
+<span id="cb98-10"><a href="fundamentals.html#cb98-10" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Life goes on&quot;</span>)</span>
+<span id="cb98-11"><a href="fundamentals.html#cb98-11" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb98-12"><a href="fundamentals.html#cb98-12" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;No expression found&quot;</span>)</span>
+<span id="cb98-13"><a href="fundamentals.html#cb98-13" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] &quot;Life goes on&quot;</code></pre>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="fundamentals.html#cb100-1" tabindex="-1"></a>grade <span class="ot">&lt;-</span> <span class="fl">1.7</span> <span class="co">#Assigning a grade</span></span>
+<span id="cb100-2"><a href="fundamentals.html#cb100-2" tabindex="-1"></a></span>
+<span id="cb100-3"><a href="fundamentals.html#cb100-3" tabindex="-1"></a><span class="cf">if</span> (grade <span class="sc">==</span> <span class="fl">1.0</span>) {</span>
+<span id="cb100-4"><a href="fundamentals.html#cb100-4" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Amazing&quot;</span>) </span>
+<span id="cb100-5"><a href="fundamentals.html#cb100-5" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">1.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">2.0</span>) {</span>
+<span id="cb100-6"><a href="fundamentals.html#cb100-6" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Good Job&quot;</span>)</span>
+<span id="cb100-7"><a href="fundamentals.html#cb100-7" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">2.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">3.0</span>) {</span>
+<span id="cb100-8"><a href="fundamentals.html#cb100-8" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;OK&quot;</span>)</span>
+<span id="cb100-9"><a href="fundamentals.html#cb100-9" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">3.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">4.0</span>) {</span>
+<span id="cb100-10"><a href="fundamentals.html#cb100-10" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Life goes on&quot;</span>)</span>
+<span id="cb100-11"><a href="fundamentals.html#cb100-11" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb100-12"><a href="fundamentals.html#cb100-12" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;No expression found&quot;</span>)</span>
+<span id="cb100-13"><a href="fundamentals.html#cb100-13" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] &quot;Good Job&quot;</code></pre>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="fundamentals.html#cb102-1" tabindex="-1"></a>grade <span class="ot">&lt;-</span> <span class="fl">5.0</span> <span class="co">#Assigning a grade</span></span>
 <span id="cb102-2"><a href="fundamentals.html#cb102-2" tabindex="-1"></a></span>
 <span id="cb102-3"><a href="fundamentals.html#cb102-3" tabindex="-1"></a><span class="cf">if</span> (grade <span class="sc">==</span> <span class="fl">1.0</span>) {</span>
 <span id="cb102-4"><a href="fundamentals.html#cb102-4" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Amazing&quot;</span>) </span>
@@ -742,59 +819,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb102-8"><a href="fundamentals.html#cb102-8" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;OK&quot;</span>)</span>
 <span id="cb102-9"><a href="fundamentals.html#cb102-9" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">3.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">4.0</span>) {</span>
 <span id="cb102-10"><a href="fundamentals.html#cb102-10" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Life goes on&quot;</span>)</span>
-<span id="cb102-11"><a href="fundamentals.html#cb102-11" tabindex="-1"></a>} </span></code></pre></div>
-<pre><code>## [1] &quot;Amazing&quot;</code></pre>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="fundamentals.html#cb104-1" tabindex="-1"></a><span class="co"># if (test expression) { body expression if } else if(test expression 2) { body expression if} etc...</span></span>
+<span id="cb102-11"><a href="fundamentals.html#cb102-11" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb102-12"><a href="fundamentals.html#cb102-12" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;No expression found&quot;</span>)</span>
+<span id="cb102-13"><a href="fundamentals.html#cb102-13" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] &quot;No expression found&quot;</code></pre>
+<p>Again we can do so-called <strong>nested ifelse function</strong>, using the <code>ifelse()</code> command:</p>
+<ul>
+<li><p>Instead of defining an else condition, we define another <code>ifelse()</code> command and do as long as we need to.</p></li>
+<li><p>The last <code>ifelse()</code> is then the only one with a clear else condition.</p></li>
+</ul>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="fundamentals.html#cb104-1" tabindex="-1"></a>grade <span class="ot">&lt;-</span> <span class="fl">1.7</span> <span class="co">#Assigning a grade</span></span>
 <span id="cb104-2"><a href="fundamentals.html#cb104-2" tabindex="-1"></a></span>
-<span id="cb104-3"><a href="fundamentals.html#cb104-3" tabindex="-1"></a>  </span>
-<span id="cb104-4"><a href="fundamentals.html#cb104-4" tabindex="-1"></a>grade <span class="ot">&lt;-</span> <span class="fl">2.7</span> <span class="co">#Assigning a grade</span></span>
-<span id="cb104-5"><a href="fundamentals.html#cb104-5" tabindex="-1"></a></span>
-<span id="cb104-6"><a href="fundamentals.html#cb104-6" tabindex="-1"></a><span class="cf">if</span> (grade <span class="sc">==</span> <span class="fl">1.0</span>) {</span>
-<span id="cb104-7"><a href="fundamentals.html#cb104-7" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Amazing&quot;</span>) </span>
-<span id="cb104-8"><a href="fundamentals.html#cb104-8" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">1.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">2.0</span>) {</span>
-<span id="cb104-9"><a href="fundamentals.html#cb104-9" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Good Job&quot;</span>)</span>
-<span id="cb104-10"><a href="fundamentals.html#cb104-10" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">2.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">3.0</span>) {</span>
-<span id="cb104-11"><a href="fundamentals.html#cb104-11" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;OK&quot;</span>)</span>
-<span id="cb104-12"><a href="fundamentals.html#cb104-12" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">3.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">4.0</span>) {</span>
-<span id="cb104-13"><a href="fundamentals.html#cb104-13" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Life goes on&quot;</span>)</span>
-<span id="cb104-14"><a href="fundamentals.html#cb104-14" tabindex="-1"></a>} </span></code></pre></div>
-<pre><code>## [1] &quot;OK&quot;</code></pre>
+<span id="cb104-3"><a href="fundamentals.html#cb104-3" tabindex="-1"></a><span class="fu">ifelse</span>(grade <span class="sc">==</span> <span class="fl">1.0</span>, <span class="st">&quot;Amazing&quot;</span>, </span>
+<span id="cb104-4"><a href="fundamentals.html#cb104-4" tabindex="-1"></a>       <span class="fu">ifelse</span>(grade <span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="dv">2</span>, <span class="st">&quot;Good Job&quot;</span>, </span>
+<span id="cb104-5"><a href="fundamentals.html#cb104-5" tabindex="-1"></a>              <span class="fu">ifelse</span>(grade <span class="sc">&gt;</span> <span class="dv">2</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="dv">3</span>, <span class="st">&quot;OK&quot;</span>, </span>
+<span id="cb104-6"><a href="fundamentals.html#cb104-6" tabindex="-1"></a>                     <span class="fu">ifelse</span>(grade <span class="sc">&lt;</span> <span class="dv">3</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span><span class="dv">4</span>, <span class="st">&quot;Life goes on&quot;</span>, </span>
+<span id="cb104-7"><a href="fundamentals.html#cb104-7" tabindex="-1"></a>                            <span class="st">&quot;No expression found&quot;</span></span>
+<span id="cb104-8"><a href="fundamentals.html#cb104-8" tabindex="-1"></a>                            )</span>
+<span id="cb104-9"><a href="fundamentals.html#cb104-9" tabindex="-1"></a>                     )</span>
+<span id="cb104-10"><a href="fundamentals.html#cb104-10" tabindex="-1"></a>              )</span>
+<span id="cb104-11"><a href="fundamentals.html#cb104-11" tabindex="-1"></a>       )</span></code></pre></div>
+<pre><code>## [1] &quot;Good Job&quot;</code></pre>
 <div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="fundamentals.html#cb106-1" tabindex="-1"></a>grade <span class="ot">&lt;-</span> <span class="fl">3.3</span> <span class="co">#Assigning a grade</span></span>
 <span id="cb106-2"><a href="fundamentals.html#cb106-2" tabindex="-1"></a></span>
-<span id="cb106-3"><a href="fundamentals.html#cb106-3" tabindex="-1"></a><span class="cf">if</span> (grade <span class="sc">==</span> <span class="fl">1.0</span>) {</span>
-<span id="cb106-4"><a href="fundamentals.html#cb106-4" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Amazing&quot;</span>) </span>
-<span id="cb106-5"><a href="fundamentals.html#cb106-5" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">1.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">2.0</span>) {</span>
-<span id="cb106-6"><a href="fundamentals.html#cb106-6" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Good Job&quot;</span>)</span>
-<span id="cb106-7"><a href="fundamentals.html#cb106-7" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">2.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">3.0</span>) {</span>
-<span id="cb106-8"><a href="fundamentals.html#cb106-8" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;OK&quot;</span>)</span>
-<span id="cb106-9"><a href="fundamentals.html#cb106-9" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">3.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">4.0</span>) {</span>
-<span id="cb106-10"><a href="fundamentals.html#cb106-10" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Life goes on&quot;</span>) </span>
-<span id="cb106-11"><a href="fundamentals.html#cb106-11" tabindex="-1"></a>}</span></code></pre></div>
-<pre><code>## [1] &quot;Life goes on&quot;</code></pre>
-<p>Again we can do so-called <strong>nested ifelse() function</strong>, using the <code>ifelse()</code> command:</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="fundamentals.html#cb108-1" tabindex="-1"></a>grade <span class="ot">&lt;-</span> <span class="fl">1.7</span> <span class="co">#Assigning a grade</span></span>
-<span id="cb108-2"><a href="fundamentals.html#cb108-2" tabindex="-1"></a></span>
-<span id="cb108-3"><a href="fundamentals.html#cb108-3" tabindex="-1"></a><span class="fu">ifelse</span>(grade <span class="sc">==</span> <span class="fl">1.0</span>, <span class="st">&quot;Amazing&quot;</span>, </span>
-<span id="cb108-4"><a href="fundamentals.html#cb108-4" tabindex="-1"></a>       <span class="fu">ifelse</span>(grade <span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="dv">2</span>, <span class="st">&quot;Good Job&quot;</span>, </span>
-<span id="cb108-5"><a href="fundamentals.html#cb108-5" tabindex="-1"></a>              <span class="fu">ifelse</span>(grade <span class="sc">&gt;</span> <span class="dv">2</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="dv">3</span>, <span class="st">&quot;OK&quot;</span>, </span>
-<span id="cb108-6"><a href="fundamentals.html#cb108-6" tabindex="-1"></a>                     <span class="fu">ifelse</span>(grade <span class="sc">&lt;</span> <span class="dv">3</span>, grade <span class="sc">&lt;=</span><span class="dv">4</span>, <span class="st">&quot;Life goes on&quot;</span></span>
-<span id="cb108-7"><a href="fundamentals.html#cb108-7" tabindex="-1"></a>                            )</span>
-<span id="cb108-8"><a href="fundamentals.html#cb108-8" tabindex="-1"></a>                     )</span>
-<span id="cb108-9"><a href="fundamentals.html#cb108-9" tabindex="-1"></a>              )</span>
-<span id="cb108-10"><a href="fundamentals.html#cb108-10" tabindex="-1"></a>       )</span></code></pre></div>
-<pre><code>## [1] &quot;Good Job&quot;</code></pre>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="fundamentals.html#cb110-1" tabindex="-1"></a>grade <span class="ot">&lt;-</span> <span class="fl">3.3</span> <span class="co">#Assigning a grade</span></span>
-<span id="cb110-2"><a href="fundamentals.html#cb110-2" tabindex="-1"></a></span>
-<span id="cb110-3"><a href="fundamentals.html#cb110-3" tabindex="-1"></a><span class="fu">ifelse</span>(grade <span class="sc">==</span> <span class="fl">1.0</span>, <span class="st">&quot;Amazing&quot;</span>, </span>
-<span id="cb110-4"><a href="fundamentals.html#cb110-4" tabindex="-1"></a>       <span class="fu">ifelse</span>(grade <span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="dv">2</span>, <span class="st">&quot;Good Job&quot;</span>, </span>
-<span id="cb110-5"><a href="fundamentals.html#cb110-5" tabindex="-1"></a>              <span class="fu">ifelse</span>(grade <span class="sc">&gt;</span> <span class="dv">2</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="dv">3</span>, <span class="st">&quot;OK&quot;</span>, </span>
-<span id="cb110-6"><a href="fundamentals.html#cb110-6" tabindex="-1"></a>                     <span class="fu">ifelse</span>(grade <span class="sc">&lt;</span> <span class="dv">3</span>, </span>
-<span id="cb110-7"><a href="fundamentals.html#cb110-7" tabindex="-1"></a>                            grade <span class="sc">&lt;=</span><span class="dv">4</span>, <span class="st">&quot;Life goes on&quot;</span>)</span>
-<span id="cb110-8"><a href="fundamentals.html#cb110-8" tabindex="-1"></a>                     )</span>
-<span id="cb110-9"><a href="fundamentals.html#cb110-9" tabindex="-1"></a>              )</span>
-<span id="cb110-10"><a href="fundamentals.html#cb110-10" tabindex="-1"></a>       )</span></code></pre></div>
-<pre><code>## [1] &quot;Life goes on&quot;</code></pre>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="fundamentals.html#cb112-1" tabindex="-1"></a><span class="co"># The same logic: ifelse(test expression, body expression if, ifelse(test expression 2, body expression if 2)) etc..</span></span></code></pre></div>
+<span id="cb106-3"><a href="fundamentals.html#cb106-3" tabindex="-1"></a><span class="fu">ifelse</span>(grade <span class="sc">==</span> <span class="fl">1.0</span>, <span class="st">&quot;Amazing&quot;</span>, </span>
+<span id="cb106-4"><a href="fundamentals.html#cb106-4" tabindex="-1"></a>       <span class="fu">ifelse</span>(grade <span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="dv">2</span>, <span class="st">&quot;Good Job&quot;</span>, </span>
+<span id="cb106-5"><a href="fundamentals.html#cb106-5" tabindex="-1"></a>              <span class="fu">ifelse</span>(grade <span class="sc">&gt;</span> <span class="dv">2</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="dv">3</span>, <span class="st">&quot;OK&quot;</span>, </span>
+<span id="cb106-6"><a href="fundamentals.html#cb106-6" tabindex="-1"></a>                     <span class="fu">ifelse</span>(grade <span class="sc">&lt;</span> <span class="dv">3</span> <span class="sc">&amp;</span></span>
+<span id="cb106-7"><a href="fundamentals.html#cb106-7" tabindex="-1"></a>                            grade <span class="sc">&lt;=</span><span class="dv">4</span>, <span class="st">&quot;Life goes on&quot;</span>, </span>
+<span id="cb106-8"><a href="fundamentals.html#cb106-8" tabindex="-1"></a>                            <span class="st">&quot;No expression found&quot;</span>)</span>
+<span id="cb106-9"><a href="fundamentals.html#cb106-9" tabindex="-1"></a>                     )</span>
+<span id="cb106-10"><a href="fundamentals.html#cb106-10" tabindex="-1"></a>              )</span>
+<span id="cb106-11"><a href="fundamentals.html#cb106-11" tabindex="-1"></a>       )</span></code></pre></div>
+<pre><code>## [1] &quot;No expression found&quot;</code></pre>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="fundamentals.html#cb108-1" tabindex="-1"></a><span class="co"># The same logic: ifelse(test expression, body expression if, ifelse(test expression 2, body expression if 2)) etc..</span></span></code></pre></div>
 </div>
 </div>
 <div id="exercise-section" class="section level2 hasAnchor" number="2.4">
@@ -802,30 +860,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="exercise-1" class="section level3 hasAnchor" number="2.4.1">
 <h3><span class="header-section-number">2.4.1</span> Exercise 1:<a href="fundamentals.html#exercise-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Create a vector called <code>my_vector</code> with the values 1,2,3 and check is class.</p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="fundamentals.html#cb113-1" tabindex="-1"></a><span class="co">#create the vector </span></span>
-<span id="cb113-2"><a href="fundamentals.html#cb113-2" tabindex="-1"></a>my_vector <span class="ot">&lt;-</span> </span>
-<span id="cb113-3"><a href="fundamentals.html#cb113-3" tabindex="-1"></a></span>
-<span id="cb113-4"><a href="fundamentals.html#cb113-4" tabindex="-1"></a><span class="co">#check the class</span></span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="fundamentals.html#cb109-1" tabindex="-1"></a><span class="co">#create the vector </span></span>
+<span id="cb109-2"><a href="fundamentals.html#cb109-2" tabindex="-1"></a>my_vector <span class="ot">&lt;-</span> </span>
+<span id="cb109-3"><a href="fundamentals.html#cb109-3" tabindex="-1"></a></span>
+<span id="cb109-4"><a href="fundamentals.html#cb109-4" tabindex="-1"></a><span class="co">#check the class</span></span></code></pre></div>
 </div>
 <div id="exercise-2" class="section level3 hasAnchor" number="2.4.2">
 <h3><span class="header-section-number">2.4.2</span> Exercise 2:<a href="fundamentals.html#exercise-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Create a Matrix called <code>student</code>. This should contain information about the <code>name</code>, <code>age</code> and <code>major</code>. Make three vectors wiht three entries and bind them together to a the matrix <code>student</code>. Print the matrix.</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="fundamentals.html#cb114-1" tabindex="-1"></a><span class="co">#Create the vectors </span></span>
-<span id="cb114-2"><a href="fundamentals.html#cb114-2" tabindex="-1"></a></span>
-<span id="cb114-3"><a href="fundamentals.html#cb114-3" tabindex="-1"></a>name <span class="ot">&lt;-</span> </span>
-<span id="cb114-4"><a href="fundamentals.html#cb114-4" tabindex="-1"></a>age <span class="ot">&lt;-</span> </span>
-<span id="cb114-5"><a href="fundamentals.html#cb114-5" tabindex="-1"></a>major <span class="ot">&lt;-</span> </span>
-<span id="cb114-6"><a href="fundamentals.html#cb114-6" tabindex="-1"></a></span>
-<span id="cb114-7"><a href="fundamentals.html#cb114-7" tabindex="-1"></a><span class="co">#Create the matrix</span></span>
-<span id="cb114-8"><a href="fundamentals.html#cb114-8" tabindex="-1"></a>student <span class="ot">&lt;-</span> </span>
-<span id="cb114-9"><a href="fundamentals.html#cb114-9" tabindex="-1"></a>  </span>
-<span id="cb114-10"><a href="fundamentals.html#cb114-10" tabindex="-1"></a><span class="co">#Print the matrix</span></span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="fundamentals.html#cb110-1" tabindex="-1"></a><span class="co">#Create the vectors </span></span>
+<span id="cb110-2"><a href="fundamentals.html#cb110-2" tabindex="-1"></a></span>
+<span id="cb110-3"><a href="fundamentals.html#cb110-3" tabindex="-1"></a>name <span class="ot">&lt;-</span> </span>
+<span id="cb110-4"><a href="fundamentals.html#cb110-4" tabindex="-1"></a>age <span class="ot">&lt;-</span> </span>
+<span id="cb110-5"><a href="fundamentals.html#cb110-5" tabindex="-1"></a>major <span class="ot">&lt;-</span> </span>
+<span id="cb110-6"><a href="fundamentals.html#cb110-6" tabindex="-1"></a></span>
+<span id="cb110-7"><a href="fundamentals.html#cb110-7" tabindex="-1"></a><span class="co">#Create the matrix</span></span>
+<span id="cb110-8"><a href="fundamentals.html#cb110-8" tabindex="-1"></a>student <span class="ot">&lt;-</span> </span>
+<span id="cb110-9"><a href="fundamentals.html#cb110-9" tabindex="-1"></a>  </span>
+<span id="cb110-10"><a href="fundamentals.html#cb110-10" tabindex="-1"></a><span class="co">#Print the matrix</span></span></code></pre></div>
 </div>
 <div id="exercise-3" class="section level3 hasAnchor" number="2.4.3">
 <h3><span class="header-section-number">2.4.3</span> Exercise 3:<a href="fundamentals.html#exercise-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Write an if-else statement that checks if a given number is positive or negative. If the number is positive, print “Number is positive”, otherwise print “Number is negative”. Feel free to decide if you want to use the ifelse function or the ifelse condition.</p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="fundamentals.html#cb115-1" tabindex="-1"></a><span class="co">#Assigning the number to the object &quot;number&quot;</span></span>
-<span id="cb115-2"><a href="fundamentals.html#cb115-2" tabindex="-1"></a>number <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">4</span></span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="fundamentals.html#cb111-1" tabindex="-1"></a><span class="co">#Assigning the number to the object &quot;number&quot;</span></span>
+<span id="cb111-2"><a href="fundamentals.html#cb111-2" tabindex="-1"></a>number <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">4</span></span></code></pre></div>
 </div>
 <div id="exercise-4" class="section level3 hasAnchor" number="2.4.4">
 <h3><span class="header-section-number">2.4.4</span> Exercise 4:<a href="fundamentals.html#exercise-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>

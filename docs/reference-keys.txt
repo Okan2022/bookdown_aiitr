@@ -21,9 +21,10 @@ matrices
 making-matrices
 working-with-matrices
 data-frames
-the-ifelse-function-and-ifelse-conditions
-simple-if-command
-ifelse-command
+ifelse-statements-and-the-ifelse-function
+if-else-statement-with-only-one-condition
+if-statements-with-else-condition
+the-ifelse-command
 if-else-ladders-if-else-with-multiple-conditions
 exercise-section
 exercise-1
@@ -72,7 +73,6 @@ outlook
 exercise-section-1
 exercise-1-lets-wrangle-kid
 exercise-2-merging-datasets
-section
 data-visualisation
 introduction
 distributions-histogram-density-plots-and-boxplots
@@ -104,7 +104,6 @@ combining-different-types-of-graphs
 distributions-ridgeline-chart-and-violin-chart
 ranking-lollipop-charts-and-radar-charts
 lollipop-charts
-radar-charts
 maps
 loops-and-functions
 loops
@@ -118,7 +117,7 @@ exercise-section-2
 exercise-1-1
 exercise-2-1
 exercise-3-1
-exercise-4-zodiac-fortune-teller
+section
 data-analysis
 introduction-1
 linear-regression
@@ -152,7 +151,3 @@ variance-of-inflation-vif
 categorical-variables
 interaction-effects
 outlook-2
-ifelse-statements-and-the-ifelse-function
-if-else-statement-with-only-one-condition
-if-statements-with-else-condition
-the-ifelse-command

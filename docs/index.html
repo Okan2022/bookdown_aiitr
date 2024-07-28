@@ -23,7 +23,7 @@
 <meta name="author" content="Okan Sarioglu" />
 
 
-<meta name="date" content="2024-07-26" />
+<meta name="date" content="2024-07-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -189,11 +189,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2.6" data-path="fundamentals.html"><a href="fundamentals.html#matrices"><i class="fa fa-check"></i><b>2.2.6</b> Matrices</a></li>
 <li class="chapter" data-level="2.2.7" data-path="fundamentals.html"><a href="fundamentals.html#data-frames"><i class="fa fa-check"></i><b>2.2.7</b> Data Frames</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="fundamentals.html"><a href="fundamentals.html#the-ifelse-function-and-ifelse-conditions"><i class="fa fa-check"></i><b>2.3</b> The <code>ifelse()</code> function and <code>ifelse</code> conditions:</a>
+<li class="chapter" data-level="2.3" data-path="fundamentals.html"><a href="fundamentals.html#ifelse-statements-and-the-ifelse-function"><i class="fa fa-check"></i><b>2.3</b> <code>ifelse</code> statements and the <code>ifelse()</code> function</a>
 <ul>
-<li class="chapter" data-level="2.3.1" data-path="fundamentals.html"><a href="fundamentals.html#simple-if-command"><i class="fa fa-check"></i><b>2.3.1</b> Simple if command</a></li>
-<li class="chapter" data-level="2.3.2" data-path="fundamentals.html"><a href="fundamentals.html#ifelse-command"><i class="fa fa-check"></i><b>2.3.2</b> <code>ifelse()</code> command</a></li>
-<li class="chapter" data-level="2.3.3" data-path="fundamentals.html"><a href="fundamentals.html#if-else-ladders-if-else-with-multiple-conditions"><i class="fa fa-check"></i><b>2.3.3</b> if else ladders/ if else with multiple conditions</a></li>
+<li class="chapter" data-level="2.3.1" data-path="fundamentals.html"><a href="fundamentals.html#if-else-statement-with-only-one-condition"><i class="fa fa-check"></i><b>2.3.1</b> If else statement with only one condition</a></li>
+<li class="chapter" data-level="2.3.2" data-path="fundamentals.html"><a href="fundamentals.html#if-statements-with-else-condition"><i class="fa fa-check"></i><b>2.3.2</b> if statements with else condition</a></li>
+<li class="chapter" data-level="2.3.3" data-path="fundamentals.html"><a href="fundamentals.html#the-ifelse-command"><i class="fa fa-check"></i><b>2.3.3</b> The <code>ifelse()</code> command</a></li>
+<li class="chapter" data-level="2.3.4" data-path="fundamentals.html"><a href="fundamentals.html#if-else-ladders-if-else-with-multiple-conditions"><i class="fa fa-check"></i><b>2.3.4</b> if else ladders/ if else with multiple conditions</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="fundamentals.html"><a href="fundamentals.html#exercise-section"><i class="fa fa-check"></i><b>2.4</b> Exercise Section:</a>
 <ul>
@@ -236,7 +237,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.8.1" data-path="data-manipulation.html"><a href="data-manipulation.html#exercise-1-lets-wrangle-kid"><i class="fa fa-check"></i><b>3.8.1</b> Exercise 1: Let’s wrangle kid</a></li>
 <li class="chapter" data-level="3.8.2" data-path="data-manipulation.html"><a href="data-manipulation.html#exercise-2-merging-datasets"><i class="fa fa-check"></i><b>3.8.2</b> Exercise 2: Merging Datasets</a></li>
 </ul></li>
-<li class="chapter" data-level="3.9" data-path="data-manipulation.html"><a href="data-manipulation.html#section"><i class="fa fa-check"></i><b>3.9</b> </a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="data-visualisation.html"><a href="data-visualisation.html"><i class="fa fa-check"></i><b>4</b> Data Visualisation</a>
 <ul>
@@ -295,7 +295,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.4.1" data-path="loops-and-functions.html"><a href="loops-and-functions.html#exercise-1-1"><i class="fa fa-check"></i><b>5.4.1</b> Exercise 1:</a></li>
 <li class="chapter" data-level="5.4.2" data-path="loops-and-functions.html"><a href="loops-and-functions.html#exercise-2-1"><i class="fa fa-check"></i><b>5.4.2</b> Exercise 2:</a></li>
 <li class="chapter" data-level="5.4.3" data-path="loops-and-functions.html"><a href="loops-and-functions.html#exercise-3-1"><i class="fa fa-check"></i><b>5.4.3</b> Exercise 3:</a></li>
-<li class="chapter" data-level="5.4.4" data-path="loops-and-functions.html"><a href="loops-and-functions.html#exercise-4-zodiac-fortune-teller"><i class="fa fa-check"></i><b>5.4.4</b> Exercise 4: Zodiac Fortune Teller</a></li>
+<li class="chapter" data-level="5.4.4" data-path="loops-and-functions.html"><a href="loops-and-functions.html#section"><i class="fa fa-check"></i><b>5.4.4</b> </a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="data-analysis.html"><a href="data-analysis.html"><i class="fa fa-check"></i><b>6</b> Data Analysis</a>
@@ -356,7 +356,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">An intuitive Introduction to R</h1>
 <p class="author"><em>Okan Sarioglu</em></p>
-<p class="date"><em>2024-07-26</em></p>
+<p class="date"><em>2024-07-28</em></p>
 </div>
 <div id="an-intuitive-introduction-to-data-analytics-in-r" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">Chapter 1</span> An Intuitive Introduction to Data Analytics in R<a href="index.html#an-intuitive-introduction-to-data-analytics-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h1>

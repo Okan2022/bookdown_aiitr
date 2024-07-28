@@ -641,7 +641,7 @@ table(d1$happy_cat)
 table(d1$female)
 ```
 
-#### Handling Missing Values/Incomplete Data
+### Handling Missing Values/Incomplete Data
 
 As you saw right now, not all data in a dataset is complete. Of course not, there are several sources, which can lead to incomplete/missing data. Can you think of reasons why?
 
@@ -1079,5 +1079,3 @@ c.  Merge the World Bank data to the gapminder data, so a dataset evolves with t
 ```
 
 d\. Clean the data by dropping all missing values
-
-## 

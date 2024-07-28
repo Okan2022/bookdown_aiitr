@@ -23,7 +23,7 @@
 <meta name="author" content="Okan Sarioglu" />
 
 
-<meta name="date" content="2024-07-26" />
+<meta name="date" content="2024-07-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -189,11 +189,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2.6" data-path="fundamentals.html"><a href="fundamentals.html#matrices"><i class="fa fa-check"></i><b>2.2.6</b> Matrices</a></li>
 <li class="chapter" data-level="2.2.7" data-path="fundamentals.html"><a href="fundamentals.html#data-frames"><i class="fa fa-check"></i><b>2.2.7</b> Data Frames</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="fundamentals.html"><a href="fundamentals.html#the-ifelse-function-and-ifelse-conditions"><i class="fa fa-check"></i><b>2.3</b> The <code>ifelse()</code> function and <code>ifelse</code> conditions:</a>
+<li class="chapter" data-level="2.3" data-path="fundamentals.html"><a href="fundamentals.html#ifelse-statements-and-the-ifelse-function"><i class="fa fa-check"></i><b>2.3</b> <code>ifelse</code> statements and the <code>ifelse()</code> function</a>
 <ul>
-<li class="chapter" data-level="2.3.1" data-path="fundamentals.html"><a href="fundamentals.html#simple-if-command"><i class="fa fa-check"></i><b>2.3.1</b> Simple if command</a></li>
-<li class="chapter" data-level="2.3.2" data-path="fundamentals.html"><a href="fundamentals.html#ifelse-command"><i class="fa fa-check"></i><b>2.3.2</b> <code>ifelse()</code> command</a></li>
-<li class="chapter" data-level="2.3.3" data-path="fundamentals.html"><a href="fundamentals.html#if-else-ladders-if-else-with-multiple-conditions"><i class="fa fa-check"></i><b>2.3.3</b> if else ladders/ if else with multiple conditions</a></li>
+<li class="chapter" data-level="2.3.1" data-path="fundamentals.html"><a href="fundamentals.html#if-else-statement-with-only-one-condition"><i class="fa fa-check"></i><b>2.3.1</b> If else statement with only one condition</a></li>
+<li class="chapter" data-level="2.3.2" data-path="fundamentals.html"><a href="fundamentals.html#if-statements-with-else-condition"><i class="fa fa-check"></i><b>2.3.2</b> if statements with else condition</a></li>
+<li class="chapter" data-level="2.3.3" data-path="fundamentals.html"><a href="fundamentals.html#the-ifelse-command"><i class="fa fa-check"></i><b>2.3.3</b> The <code>ifelse()</code> command</a></li>
+<li class="chapter" data-level="2.3.4" data-path="fundamentals.html"><a href="fundamentals.html#if-else-ladders-if-else-with-multiple-conditions"><i class="fa fa-check"></i><b>2.3.4</b> if else ladders/ if else with multiple conditions</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="fundamentals.html"><a href="fundamentals.html#exercise-section"><i class="fa fa-check"></i><b>2.4</b> Exercise Section:</a>
 <ul>
@@ -236,7 +237,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.8.1" data-path="data-manipulation.html"><a href="data-manipulation.html#exercise-1-lets-wrangle-kid"><i class="fa fa-check"></i><b>3.8.1</b> Exercise 1: Let’s wrangle kid</a></li>
 <li class="chapter" data-level="3.8.2" data-path="data-manipulation.html"><a href="data-manipulation.html#exercise-2-merging-datasets"><i class="fa fa-check"></i><b>3.8.2</b> Exercise 2: Merging Datasets</a></li>
 </ul></li>
-<li class="chapter" data-level="3.9" data-path="data-manipulation.html"><a href="data-manipulation.html#section"><i class="fa fa-check"></i><b>3.9</b> </a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="data-visualisation.html"><a href="data-visualisation.html"><i class="fa fa-check"></i><b>4</b> Data Visualisation</a>
 <ul>
@@ -295,7 +295,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.4.1" data-path="loops-and-functions.html"><a href="loops-and-functions.html#exercise-1-1"><i class="fa fa-check"></i><b>5.4.1</b> Exercise 1:</a></li>
 <li class="chapter" data-level="5.4.2" data-path="loops-and-functions.html"><a href="loops-and-functions.html#exercise-2-1"><i class="fa fa-check"></i><b>5.4.2</b> Exercise 2:</a></li>
 <li class="chapter" data-level="5.4.3" data-path="loops-and-functions.html"><a href="loops-and-functions.html#exercise-3-1"><i class="fa fa-check"></i><b>5.4.3</b> Exercise 3:</a></li>
-<li class="chapter" data-level="5.4.4" data-path="loops-and-functions.html"><a href="loops-and-functions.html#exercise-4-zodiac-fortune-teller"><i class="fa fa-check"></i><b>5.4.4</b> Exercise 4: Zodiac Fortune Teller</a></li>
+<li class="chapter" data-level="5.4.4" data-path="loops-and-functions.html"><a href="loops-and-functions.html#section"><i class="fa fa-check"></i><b>5.4.4</b> </a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="data-analysis.html"><a href="data-analysis.html"><i class="fa fa-check"></i><b>6</b> Data Analysis</a>
@@ -363,87 +363,87 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="for-loops" class="section level3 hasAnchor" number="5.1.1">
 <h3><span class="header-section-number">5.1.1</span> <code>For</code> loops<a href="loops-and-functions.html#for-loops" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Do you remember my grade example from the first chapter?</p>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="loops-and-functions.html#cb275-1" tabindex="-1"></a>grade <span class="ot">&lt;-</span> <span class="fl">4.0</span></span>
-<span id="cb275-2"><a href="loops-and-functions.html#cb275-2" tabindex="-1"></a></span>
-<span id="cb275-3"><a href="loops-and-functions.html#cb275-3" tabindex="-1"></a><span class="cf">if</span> (grade <span class="sc">==</span> <span class="fl">1.0</span>) {</span>
-<span id="cb275-4"><a href="loops-and-functions.html#cb275-4" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Amazing&quot;</span>) </span>
-<span id="cb275-5"><a href="loops-and-functions.html#cb275-5" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">1.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">2.0</span>) {</span>
-<span id="cb275-6"><a href="loops-and-functions.html#cb275-6" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Good Job&quot;</span>)</span>
-<span id="cb275-7"><a href="loops-and-functions.html#cb275-7" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">2.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">3.0</span>) {</span>
-<span id="cb275-8"><a href="loops-and-functions.html#cb275-8" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;OK&quot;</span>)</span>
-<span id="cb275-9"><a href="loops-and-functions.html#cb275-9" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">3.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">4.0</span>) {</span>
-<span id="cb275-10"><a href="loops-and-functions.html#cb275-10" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Life goes on&quot;</span>) </span>
-<span id="cb275-11"><a href="loops-and-functions.html#cb275-11" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="loops-and-functions.html#cb274-1" tabindex="-1"></a>grade <span class="ot">&lt;-</span> <span class="fl">4.0</span></span>
+<span id="cb274-2"><a href="loops-and-functions.html#cb274-2" tabindex="-1"></a></span>
+<span id="cb274-3"><a href="loops-and-functions.html#cb274-3" tabindex="-1"></a><span class="cf">if</span> (grade <span class="sc">==</span> <span class="fl">1.0</span>) {</span>
+<span id="cb274-4"><a href="loops-and-functions.html#cb274-4" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Amazing&quot;</span>) </span>
+<span id="cb274-5"><a href="loops-and-functions.html#cb274-5" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">1.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">2.0</span>) {</span>
+<span id="cb274-6"><a href="loops-and-functions.html#cb274-6" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Good Job&quot;</span>)</span>
+<span id="cb274-7"><a href="loops-and-functions.html#cb274-7" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">2.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">3.0</span>) {</span>
+<span id="cb274-8"><a href="loops-and-functions.html#cb274-8" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;OK&quot;</span>)</span>
+<span id="cb274-9"><a href="loops-and-functions.html#cb274-9" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">3.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">4.0</span>) {</span>
+<span id="cb274-10"><a href="loops-and-functions.html#cb274-10" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Life goes on&quot;</span>) </span>
+<span id="cb274-11"><a href="loops-and-functions.html#cb274-11" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;Life goes on&quot;</code></pre>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="loops-and-functions.html#cb277-1" tabindex="-1"></a>grade <span class="ot">&lt;-</span> <span class="fl">3.3</span></span>
-<span id="cb277-2"><a href="loops-and-functions.html#cb277-2" tabindex="-1"></a></span>
-<span id="cb277-3"><a href="loops-and-functions.html#cb277-3" tabindex="-1"></a><span class="cf">if</span> (grade <span class="sc">==</span> <span class="fl">1.0</span>) {</span>
-<span id="cb277-4"><a href="loops-and-functions.html#cb277-4" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Amazing&quot;</span>) </span>
-<span id="cb277-5"><a href="loops-and-functions.html#cb277-5" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">1.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">2.0</span>) {</span>
-<span id="cb277-6"><a href="loops-and-functions.html#cb277-6" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Good Job&quot;</span>)</span>
-<span id="cb277-7"><a href="loops-and-functions.html#cb277-7" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">2.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">3.0</span>) {</span>
-<span id="cb277-8"><a href="loops-and-functions.html#cb277-8" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;OK&quot;</span>)</span>
-<span id="cb277-9"><a href="loops-and-functions.html#cb277-9" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">3.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">4.0</span>) {</span>
-<span id="cb277-10"><a href="loops-and-functions.html#cb277-10" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Life goes on&quot;</span>) </span>
-<span id="cb277-11"><a href="loops-and-functions.html#cb277-11" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="loops-and-functions.html#cb276-1" tabindex="-1"></a>grade <span class="ot">&lt;-</span> <span class="fl">3.3</span></span>
+<span id="cb276-2"><a href="loops-and-functions.html#cb276-2" tabindex="-1"></a></span>
+<span id="cb276-3"><a href="loops-and-functions.html#cb276-3" tabindex="-1"></a><span class="cf">if</span> (grade <span class="sc">==</span> <span class="fl">1.0</span>) {</span>
+<span id="cb276-4"><a href="loops-and-functions.html#cb276-4" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Amazing&quot;</span>) </span>
+<span id="cb276-5"><a href="loops-and-functions.html#cb276-5" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">1.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">2.0</span>) {</span>
+<span id="cb276-6"><a href="loops-and-functions.html#cb276-6" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Good Job&quot;</span>)</span>
+<span id="cb276-7"><a href="loops-and-functions.html#cb276-7" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">2.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">3.0</span>) {</span>
+<span id="cb276-8"><a href="loops-and-functions.html#cb276-8" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;OK&quot;</span>)</span>
+<span id="cb276-9"><a href="loops-and-functions.html#cb276-9" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">3.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">4.0</span>) {</span>
+<span id="cb276-10"><a href="loops-and-functions.html#cb276-10" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Life goes on&quot;</span>) </span>
+<span id="cb276-11"><a href="loops-and-functions.html#cb276-11" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;Life goes on&quot;</code></pre>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="loops-and-functions.html#cb279-1" tabindex="-1"></a>grade <span class="ot">&lt;-</span> <span class="fl">4.0</span></span>
-<span id="cb279-2"><a href="loops-and-functions.html#cb279-2" tabindex="-1"></a></span>
-<span id="cb279-3"><a href="loops-and-functions.html#cb279-3" tabindex="-1"></a><span class="cf">if</span> (grade <span class="sc">==</span> <span class="fl">1.0</span>) {</span>
-<span id="cb279-4"><a href="loops-and-functions.html#cb279-4" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Amazing&quot;</span>) </span>
-<span id="cb279-5"><a href="loops-and-functions.html#cb279-5" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">1.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">2.0</span>) {</span>
-<span id="cb279-6"><a href="loops-and-functions.html#cb279-6" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Good Job&quot;</span>)</span>
-<span id="cb279-7"><a href="loops-and-functions.html#cb279-7" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">2.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">3.0</span>) {</span>
-<span id="cb279-8"><a href="loops-and-functions.html#cb279-8" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;OK&quot;</span>)</span>
-<span id="cb279-9"><a href="loops-and-functions.html#cb279-9" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">3.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">4.0</span>) {</span>
-<span id="cb279-10"><a href="loops-and-functions.html#cb279-10" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Life goes on&quot;</span>) </span>
-<span id="cb279-11"><a href="loops-and-functions.html#cb279-11" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="loops-and-functions.html#cb278-1" tabindex="-1"></a>grade <span class="ot">&lt;-</span> <span class="fl">4.0</span></span>
+<span id="cb278-2"><a href="loops-and-functions.html#cb278-2" tabindex="-1"></a></span>
+<span id="cb278-3"><a href="loops-and-functions.html#cb278-3" tabindex="-1"></a><span class="cf">if</span> (grade <span class="sc">==</span> <span class="fl">1.0</span>) {</span>
+<span id="cb278-4"><a href="loops-and-functions.html#cb278-4" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Amazing&quot;</span>) </span>
+<span id="cb278-5"><a href="loops-and-functions.html#cb278-5" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">1.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">2.0</span>) {</span>
+<span id="cb278-6"><a href="loops-and-functions.html#cb278-6" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Good Job&quot;</span>)</span>
+<span id="cb278-7"><a href="loops-and-functions.html#cb278-7" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">2.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">3.0</span>) {</span>
+<span id="cb278-8"><a href="loops-and-functions.html#cb278-8" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;OK&quot;</span>)</span>
+<span id="cb278-9"><a href="loops-and-functions.html#cb278-9" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">3.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">4.0</span>) {</span>
+<span id="cb278-10"><a href="loops-and-functions.html#cb278-10" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Life goes on&quot;</span>) </span>
+<span id="cb278-11"><a href="loops-and-functions.html#cb278-11" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;Life goes on&quot;</code></pre>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="loops-and-functions.html#cb281-1" tabindex="-1"></a>grade <span class="ot">&lt;-</span> <span class="fl">2.3</span></span>
-<span id="cb281-2"><a href="loops-and-functions.html#cb281-2" tabindex="-1"></a></span>
-<span id="cb281-3"><a href="loops-and-functions.html#cb281-3" tabindex="-1"></a><span class="cf">if</span> (grade <span class="sc">==</span> <span class="fl">1.0</span>) {</span>
-<span id="cb281-4"><a href="loops-and-functions.html#cb281-4" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Amazing&quot;</span>) </span>
-<span id="cb281-5"><a href="loops-and-functions.html#cb281-5" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">1.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">2.0</span>) {</span>
-<span id="cb281-6"><a href="loops-and-functions.html#cb281-6" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Good Job&quot;</span>)</span>
-<span id="cb281-7"><a href="loops-and-functions.html#cb281-7" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">2.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">3.0</span>) {</span>
-<span id="cb281-8"><a href="loops-and-functions.html#cb281-8" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;OK&quot;</span>)</span>
-<span id="cb281-9"><a href="loops-and-functions.html#cb281-9" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">3.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">4.0</span>) {</span>
-<span id="cb281-10"><a href="loops-and-functions.html#cb281-10" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Life goes on&quot;</span>) </span>
-<span id="cb281-11"><a href="loops-and-functions.html#cb281-11" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="loops-and-functions.html#cb280-1" tabindex="-1"></a>grade <span class="ot">&lt;-</span> <span class="fl">2.3</span></span>
+<span id="cb280-2"><a href="loops-and-functions.html#cb280-2" tabindex="-1"></a></span>
+<span id="cb280-3"><a href="loops-and-functions.html#cb280-3" tabindex="-1"></a><span class="cf">if</span> (grade <span class="sc">==</span> <span class="fl">1.0</span>) {</span>
+<span id="cb280-4"><a href="loops-and-functions.html#cb280-4" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Amazing&quot;</span>) </span>
+<span id="cb280-5"><a href="loops-and-functions.html#cb280-5" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">1.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">2.0</span>) {</span>
+<span id="cb280-6"><a href="loops-and-functions.html#cb280-6" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Good Job&quot;</span>)</span>
+<span id="cb280-7"><a href="loops-and-functions.html#cb280-7" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">2.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">3.0</span>) {</span>
+<span id="cb280-8"><a href="loops-and-functions.html#cb280-8" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;OK&quot;</span>)</span>
+<span id="cb280-9"><a href="loops-and-functions.html#cb280-9" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">3.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">4.0</span>) {</span>
+<span id="cb280-10"><a href="loops-and-functions.html#cb280-10" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Life goes on&quot;</span>) </span>
+<span id="cb280-11"><a href="loops-and-functions.html#cb280-11" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;OK&quot;</code></pre>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="loops-and-functions.html#cb283-1" tabindex="-1"></a>grade <span class="ot">&lt;-</span> <span class="fl">1.7</span></span>
-<span id="cb283-2"><a href="loops-and-functions.html#cb283-2" tabindex="-1"></a></span>
-<span id="cb283-3"><a href="loops-and-functions.html#cb283-3" tabindex="-1"></a><span class="cf">if</span> (grade <span class="sc">==</span> <span class="fl">1.0</span>) {</span>
-<span id="cb283-4"><a href="loops-and-functions.html#cb283-4" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Amazing&quot;</span>) </span>
-<span id="cb283-5"><a href="loops-and-functions.html#cb283-5" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">1.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">2.0</span>) {</span>
-<span id="cb283-6"><a href="loops-and-functions.html#cb283-6" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Good Job&quot;</span>)</span>
-<span id="cb283-7"><a href="loops-and-functions.html#cb283-7" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">2.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">3.0</span>) {</span>
-<span id="cb283-8"><a href="loops-and-functions.html#cb283-8" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;OK&quot;</span>)</span>
-<span id="cb283-9"><a href="loops-and-functions.html#cb283-9" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">3.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">4.0</span>) {</span>
-<span id="cb283-10"><a href="loops-and-functions.html#cb283-10" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Life goes on&quot;</span>) </span>
-<span id="cb283-11"><a href="loops-and-functions.html#cb283-11" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="loops-and-functions.html#cb282-1" tabindex="-1"></a>grade <span class="ot">&lt;-</span> <span class="fl">1.7</span></span>
+<span id="cb282-2"><a href="loops-and-functions.html#cb282-2" tabindex="-1"></a></span>
+<span id="cb282-3"><a href="loops-and-functions.html#cb282-3" tabindex="-1"></a><span class="cf">if</span> (grade <span class="sc">==</span> <span class="fl">1.0</span>) {</span>
+<span id="cb282-4"><a href="loops-and-functions.html#cb282-4" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Amazing&quot;</span>) </span>
+<span id="cb282-5"><a href="loops-and-functions.html#cb282-5" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">1.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">2.0</span>) {</span>
+<span id="cb282-6"><a href="loops-and-functions.html#cb282-6" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Good Job&quot;</span>)</span>
+<span id="cb282-7"><a href="loops-and-functions.html#cb282-7" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">2.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">3.0</span>) {</span>
+<span id="cb282-8"><a href="loops-and-functions.html#cb282-8" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;OK&quot;</span>)</span>
+<span id="cb282-9"><a href="loops-and-functions.html#cb282-9" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grade <span class="sc">&gt;</span> <span class="fl">3.0</span> <span class="sc">&amp;</span> grade <span class="sc">&lt;=</span> <span class="fl">4.0</span>) {</span>
+<span id="cb282-10"><a href="loops-and-functions.html#cb282-10" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Life goes on&quot;</span>) </span>
+<span id="cb282-11"><a href="loops-and-functions.html#cb282-11" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;Good Job&quot;</code></pre>
 <p>I could now write down all my grades and assign them as I did in the first chapter, but there is a way to automatize this process. For that I will use the <code>For</code> loop.</p>
 <p>First, let us make a vector with grades:</p>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="loops-and-functions.html#cb285-1" tabindex="-1"></a>grades <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.7</span>, <span class="fl">3.3</span>, <span class="fl">4.0</span>, <span class="fl">2.3</span>, <span class="fl">1.0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="loops-and-functions.html#cb284-1" tabindex="-1"></a>grades <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.7</span>, <span class="fl">3.3</span>, <span class="fl">4.0</span>, <span class="fl">2.3</span>, <span class="fl">1.0</span>)</span></code></pre></div>
 <p>Now, we can directly dive into the loop.</p>
 <ul>
 <li><p>Write down <code>for</code> and in brackets you define the <strong>loop iterator</strong>, this is the <strong>i</strong> in the loop. Then you define in which object of interest you want to iterate. In our case, the operation should be iterated in the grades vector. I could also write down the number 5, but it is convention to define an object. Why?</p></li>
 <li><p>After closing the brackets you open fancy brackets and write down your function, as you would normally, but this time you need to define how the iterator is used. Since I use the numbers in grades, my iterator needs to be put in brackets, after the name of the grades. Why?</p></li>
 <li><p>And that’s it basically</p></li>
 </ul>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="loops-and-functions.html#cb286-1" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(grades)) {</span>
-<span id="cb286-2"><a href="loops-and-functions.html#cb286-2" tabindex="-1"></a>  <span class="cf">if</span> (grades[i] <span class="sc">==</span> <span class="fl">1.0</span>) {</span>
-<span id="cb286-3"><a href="loops-and-functions.html#cb286-3" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Amazing&quot;</span>) </span>
-<span id="cb286-4"><a href="loops-and-functions.html#cb286-4" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grades[i] <span class="sc">&gt;</span> <span class="fl">1.0</span> <span class="sc">&amp;</span> grades[i] <span class="sc">&lt;=</span> <span class="fl">2.0</span>) {</span>
-<span id="cb286-5"><a href="loops-and-functions.html#cb286-5" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Good Job&quot;</span>)</span>
-<span id="cb286-6"><a href="loops-and-functions.html#cb286-6" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grades[i] <span class="sc">&gt;</span> <span class="fl">2.0</span> <span class="sc">&amp;</span> grades[i] <span class="sc">&lt;=</span> <span class="fl">3.0</span>) {</span>
-<span id="cb286-7"><a href="loops-and-functions.html#cb286-7" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;OK&quot;</span>)</span>
-<span id="cb286-8"><a href="loops-and-functions.html#cb286-8" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grades[i] <span class="sc">&gt;</span> <span class="fl">3.0</span> <span class="sc">&amp;</span> grades[i] <span class="sc">&lt;=</span> <span class="fl">4.0</span>) {</span>
-<span id="cb286-9"><a href="loops-and-functions.html#cb286-9" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Life goes on&quot;</span>) </span>
-<span id="cb286-10"><a href="loops-and-functions.html#cb286-10" tabindex="-1"></a>}</span>
-<span id="cb286-11"><a href="loops-and-functions.html#cb286-11" tabindex="-1"></a>  </span>
-<span id="cb286-12"><a href="loops-and-functions.html#cb286-12" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="loops-and-functions.html#cb285-1" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(grades)) {</span>
+<span id="cb285-2"><a href="loops-and-functions.html#cb285-2" tabindex="-1"></a>  <span class="cf">if</span> (grades[i] <span class="sc">==</span> <span class="fl">1.0</span>) {</span>
+<span id="cb285-3"><a href="loops-and-functions.html#cb285-3" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Amazing&quot;</span>) </span>
+<span id="cb285-4"><a href="loops-and-functions.html#cb285-4" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grades[i] <span class="sc">&gt;</span> <span class="fl">1.0</span> <span class="sc">&amp;</span> grades[i] <span class="sc">&lt;=</span> <span class="fl">2.0</span>) {</span>
+<span id="cb285-5"><a href="loops-and-functions.html#cb285-5" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Good Job&quot;</span>)</span>
+<span id="cb285-6"><a href="loops-and-functions.html#cb285-6" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grades[i] <span class="sc">&gt;</span> <span class="fl">2.0</span> <span class="sc">&amp;</span> grades[i] <span class="sc">&lt;=</span> <span class="fl">3.0</span>) {</span>
+<span id="cb285-7"><a href="loops-and-functions.html#cb285-7" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;OK&quot;</span>)</span>
+<span id="cb285-8"><a href="loops-and-functions.html#cb285-8" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (grades[i] <span class="sc">&gt;</span> <span class="fl">3.0</span> <span class="sc">&amp;</span> grades[i] <span class="sc">&lt;=</span> <span class="fl">4.0</span>) {</span>
+<span id="cb285-9"><a href="loops-and-functions.html#cb285-9" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Life goes on&quot;</span>) </span>
+<span id="cb285-10"><a href="loops-and-functions.html#cb285-10" tabindex="-1"></a>}</span>
+<span id="cb285-11"><a href="loops-and-functions.html#cb285-11" tabindex="-1"></a>  </span>
+<span id="cb285-12"><a href="loops-and-functions.html#cb285-12" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;Good Job&quot;
 ## [1] &quot;Life goes on&quot;
 ## [1] &quot;Life goes on&quot;
@@ -451,13 +451,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [1] &quot;Amazing&quot;</code></pre>
 <p>Loops can look differently:</p>
 <p>In this example I have a number vector and my let the console print a sentence, where I vary the number and therefore the sentence changes over every loop</p>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="loops-and-functions.html#cb288-1" tabindex="-1"></a><span class="co"># creating num vector</span></span>
-<span id="cb288-2"><a href="loops-and-functions.html#cb288-2" tabindex="-1"></a>num <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">249</span>)</span>
-<span id="cb288-3"><a href="loops-and-functions.html#cb288-3" tabindex="-1"></a></span>
-<span id="cb288-4"><a href="loops-and-functions.html#cb288-4" tabindex="-1"></a><span class="co"># looping through vector</span></span>
-<span id="cb288-5"><a href="loops-and-functions.html#cb288-5" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> num) { </span>
-<span id="cb288-6"><a href="loops-and-functions.html#cb288-6" tabindex="-1"></a>  <span class="fu">print</span>(stringr<span class="sc">::</span><span class="fu">str_c</span>(<span class="st">&quot;This is the &quot;</span>, i, <span class="st">&quot;th Iteration&quot;</span>)) </span>
-<span id="cb288-7"><a href="loops-and-functions.html#cb288-7" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="loops-and-functions.html#cb287-1" tabindex="-1"></a><span class="co"># creating num vector</span></span>
+<span id="cb287-2"><a href="loops-and-functions.html#cb287-2" tabindex="-1"></a>num <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">249</span>)</span>
+<span id="cb287-3"><a href="loops-and-functions.html#cb287-3" tabindex="-1"></a></span>
+<span id="cb287-4"><a href="loops-and-functions.html#cb287-4" tabindex="-1"></a><span class="co"># looping through vector</span></span>
+<span id="cb287-5"><a href="loops-and-functions.html#cb287-5" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> num) { </span>
+<span id="cb287-6"><a href="loops-and-functions.html#cb287-6" tabindex="-1"></a>  <span class="fu">print</span>(stringr<span class="sc">::</span><span class="fu">str_c</span>(<span class="st">&quot;This is the &quot;</span>, i, <span class="st">&quot;th Iteration&quot;</span>)) </span>
+<span id="cb287-7"><a href="loops-and-functions.html#cb287-7" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;This is the 1th Iteration&quot;
 ## [1] &quot;This is the 2th Iteration&quot;
 ## [1] &quot;This is the 3th Iteration&quot;
@@ -469,18 +469,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">5.1.2</span> Nested Loops<a href="loops-and-functions.html#nested-loops" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Because you will eventually encounter them, I will show you shortly nested loops:</p>
 <p>First, let us play a game of tic tac toe:</p>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="loops-and-functions.html#cb290-1" tabindex="-1"></a><span class="co">#Defining a matrix </span></span>
-<span id="cb290-2"><a href="loops-and-functions.html#cb290-2" tabindex="-1"></a>ttt <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="st">&quot;X&quot;</span>, <span class="st">&quot;O&quot;</span>, <span class="st">&quot;X&quot;</span>,</span>
-<span id="cb290-3"><a href="loops-and-functions.html#cb290-3" tabindex="-1"></a>                <span class="st">&quot;O&quot;</span>, <span class="st">&quot;X&quot;</span>, <span class="st">&quot;O&quot;</span>,</span>
-<span id="cb290-4"><a href="loops-and-functions.html#cb290-4" tabindex="-1"></a>                <span class="st">&quot;O&quot;</span>, <span class="st">&quot;X&quot;</span>, <span class="st">&quot;O&quot;</span>), <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="loops-and-functions.html#cb289-1" tabindex="-1"></a><span class="co">#Defining a matrix </span></span>
+<span id="cb289-2"><a href="loops-and-functions.html#cb289-2" tabindex="-1"></a>ttt <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="st">&quot;X&quot;</span>, <span class="st">&quot;O&quot;</span>, <span class="st">&quot;X&quot;</span>,</span>
+<span id="cb289-3"><a href="loops-and-functions.html#cb289-3" tabindex="-1"></a>                <span class="st">&quot;O&quot;</span>, <span class="st">&quot;X&quot;</span>, <span class="st">&quot;O&quot;</span>,</span>
+<span id="cb289-4"><a href="loops-and-functions.html#cb289-4" tabindex="-1"></a>                <span class="st">&quot;O&quot;</span>, <span class="st">&quot;X&quot;</span>, <span class="st">&quot;O&quot;</span>), <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>We define a loop with an iterator <strong>i</strong> for the rows of the matrix, and we define another one for the columns with the iterator <strong>j</strong>.</p>
 <p>Afterwords, we built up the body, in which aim to get information about the matrix and its content. The sentence shows, which rows and columns contain which values.</p>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="loops-and-functions.html#cb291-1" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(ttt)) {</span>
-<span id="cb291-2"><a href="loops-and-functions.html#cb291-2" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(ttt)) {</span>
-<span id="cb291-3"><a href="loops-and-functions.html#cb291-3" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;On row&quot;</span>, i, <span class="st">&quot;and column&quot;</span>, </span>
-<span id="cb291-4"><a href="loops-and-functions.html#cb291-4" tabindex="-1"></a>                j, <span class="st">&quot;the board contains&quot;</span>, ttt[i,j]))</span>
-<span id="cb291-5"><a href="loops-and-functions.html#cb291-5" tabindex="-1"></a>  }</span>
-<span id="cb291-6"><a href="loops-and-functions.html#cb291-6" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="loops-and-functions.html#cb290-1" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(ttt)) {</span>
+<span id="cb290-2"><a href="loops-and-functions.html#cb290-2" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(ttt)) {</span>
+<span id="cb290-3"><a href="loops-and-functions.html#cb290-3" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;On row&quot;</span>, i, <span class="st">&quot;and column&quot;</span>, </span>
+<span id="cb290-4"><a href="loops-and-functions.html#cb290-4" tabindex="-1"></a>                j, <span class="st">&quot;the board contains&quot;</span>, ttt[i,j]))</span>
+<span id="cb290-5"><a href="loops-and-functions.html#cb290-5" tabindex="-1"></a>  }</span>
+<span id="cb290-6"><a href="loops-and-functions.html#cb290-6" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;On row 1 and column 1 the board contains X&quot;
 ## [1] &quot;On row 1 and column 2 the board contains O&quot;
 ## [1] &quot;On row 1 and column 3 the board contains X&quot;
@@ -497,11 +497,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="apply" class="section level3 hasAnchor" number="5.2.1">
 <h3><span class="header-section-number">5.2.1</span> <code>apply()</code><a href="loops-and-functions.html#apply" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><code>apply()</code> takes a data frame or matrix as an input and gives output in vector, list or array. Apply function in R is primarily used to avoid explicit uses of loop constructs. The idea is to apply a function repeatedly to a matrix or data frame: apply(X, MARGIN, FUNCTION)</p>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="loops-and-functions.html#cb293-1" tabindex="-1"></a><span class="co">#Let us create a matrix with random numbers </span></span>
-<span id="cb293-2"><a href="loops-and-functions.html#cb293-2" tabindex="-1"></a>mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">nrow =</span> <span class="dv">5</span>, <span class="at">ncol =</span> <span class="dv">6</span>)</span>
-<span id="cb293-3"><a href="loops-and-functions.html#cb293-3" tabindex="-1"></a></span>
-<span id="cb293-4"><a href="loops-and-functions.html#cb293-4" tabindex="-1"></a><span class="co">#Checking it</span></span>
-<span id="cb293-5"><a href="loops-and-functions.html#cb293-5" tabindex="-1"></a><span class="fu">head</span>(mat)</span></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="loops-and-functions.html#cb292-1" tabindex="-1"></a><span class="co">#Let us create a matrix with random numbers </span></span>
+<span id="cb292-2"><a href="loops-and-functions.html#cb292-2" tabindex="-1"></a>mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">nrow =</span> <span class="dv">5</span>, <span class="at">ncol =</span> <span class="dv">6</span>)</span>
+<span id="cb292-3"><a href="loops-and-functions.html#cb292-3" tabindex="-1"></a></span>
+<span id="cb292-4"><a href="loops-and-functions.html#cb292-4" tabindex="-1"></a><span class="co">#Checking it</span></span>
+<span id="cb292-5"><a href="loops-and-functions.html#cb292-5" tabindex="-1"></a><span class="fu">head</span>(mat)</span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6]
 ## [1,]    1    6    1    6    1    6
 ## [2,]    2    7    2    7    2    7
@@ -509,17 +509,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [4,]    4    9    4    9    4    9
 ## [5,]    5   10    5   10    5   10</code></pre>
 <p>Assume you now want to calculate the mean of every column:</p>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="loops-and-functions.html#cb295-1" tabindex="-1"></a><span class="fu">apply</span>(mat, <span class="dv">2</span>, mean) <span class="co">#calculating mean </span></span></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="loops-and-functions.html#cb294-1" tabindex="-1"></a><span class="fu">apply</span>(mat, <span class="dv">2</span>, mean) <span class="co">#calculating mean </span></span></code></pre></div>
 <pre><code>## [1] 3 8 3 8 3 8</code></pre>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="loops-and-functions.html#cb297-1" tabindex="-1"></a><span class="fu">apply</span>(mat, <span class="dv">2</span>, sum) <span class="co">#calculating sum</span></span></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="loops-and-functions.html#cb296-1" tabindex="-1"></a><span class="fu">apply</span>(mat, <span class="dv">2</span>, sum) <span class="co">#calculating sum</span></span></code></pre></div>
 <pre><code>## [1] 15 40 15 40 15 40</code></pre>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="loops-and-functions.html#cb299-1" tabindex="-1"></a><span class="fu">apply</span>(mat, <span class="dv">2</span>, sd) <span class="co">#calculating sd</span></span></code></pre></div>
-<pre><code>## [1] 1.581139 1.581139 1.581139 1.581139 1.581139 1.581139</code></pre>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="loops-and-functions.html#cb301-1" tabindex="-1"></a><span class="co">#The corresponding Loop would look like this: </span></span>
-<span id="cb301-2"><a href="loops-and-functions.html#cb301-2" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(mat)) {</span>
-<span id="cb301-3"><a href="loops-and-functions.html#cb301-3" tabindex="-1"></a>  mean_col <span class="ot">&lt;-</span> <span class="fu">mean</span>(mat[, i])</span>
-<span id="cb301-4"><a href="loops-and-functions.html#cb301-4" tabindex="-1"></a>  <span class="fu">print</span>(mean_col)</span>
-<span id="cb301-5"><a href="loops-and-functions.html#cb301-5" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="loops-and-functions.html#cb298-1" tabindex="-1"></a><span class="fu">apply</span>(mat, <span class="dv">2</span>, sd) <span class="co">#calculating sd</span></span></code></pre></div>
+<pre><code>## [1] 1.581139 1.581139 1.581139 1.581139 1.581139
+## [6] 1.581139</code></pre>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="loops-and-functions.html#cb300-1" tabindex="-1"></a><span class="co">#The corresponding Loop would look like this: </span></span>
+<span id="cb300-2"><a href="loops-and-functions.html#cb300-2" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(mat)) {</span>
+<span id="cb300-3"><a href="loops-and-functions.html#cb300-3" tabindex="-1"></a>  mean_col <span class="ot">&lt;-</span> <span class="fu">mean</span>(mat[, i])</span>
+<span id="cb300-4"><a href="loops-and-functions.html#cb300-4" tabindex="-1"></a>  <span class="fu">print</span>(mean_col)</span>
+<span id="cb300-5"><a href="loops-and-functions.html#cb300-5" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## [1] 3
 ## [1] 8
 ## [1] 3
@@ -543,84 +544,92 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Lastly, you want the function to return your quantity of interest and close the fancy brackets</li>
 <li>Afterwards you have a function saved and can operate with it</li>
 </ul>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="loops-and-functions.html#cb303-1" tabindex="-1"></a><span class="co">#My function is just a sum</span></span>
-<span id="cb303-2"><a href="loops-and-functions.html#cb303-2" tabindex="-1"></a></span>
-<span id="cb303-3"><a href="loops-and-functions.html#cb303-3" tabindex="-1"></a>add <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) { </span>
-<span id="cb303-4"><a href="loops-and-functions.html#cb303-4" tabindex="-1"></a>  </span>
-<span id="cb303-5"><a href="loops-and-functions.html#cb303-5" tabindex="-1"></a>  result <span class="ot">&lt;-</span> x <span class="sc">+</span> y</span>
-<span id="cb303-6"><a href="loops-and-functions.html#cb303-6" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
-<span id="cb303-7"><a href="loops-and-functions.html#cb303-7" tabindex="-1"></a>}</span>
-<span id="cb303-8"><a href="loops-and-functions.html#cb303-8" tabindex="-1"></a></span>
-<span id="cb303-9"><a href="loops-and-functions.html#cb303-9" tabindex="-1"></a><span class="fu">add</span>(<span class="dv">2</span>,<span class="dv">7</span>) <span class="co">#Now I can use my function</span></span></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="loops-and-functions.html#cb302-1" tabindex="-1"></a><span class="co">#My function is just a sum</span></span>
+<span id="cb302-2"><a href="loops-and-functions.html#cb302-2" tabindex="-1"></a></span>
+<span id="cb302-3"><a href="loops-and-functions.html#cb302-3" tabindex="-1"></a>add <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) { </span>
+<span id="cb302-4"><a href="loops-and-functions.html#cb302-4" tabindex="-1"></a>  </span>
+<span id="cb302-5"><a href="loops-and-functions.html#cb302-5" tabindex="-1"></a>  result <span class="ot">&lt;-</span> x <span class="sc">+</span> y</span>
+<span id="cb302-6"><a href="loops-and-functions.html#cb302-6" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb302-7"><a href="loops-and-functions.html#cb302-7" tabindex="-1"></a>}</span>
+<span id="cb302-8"><a href="loops-and-functions.html#cb302-8" tabindex="-1"></a></span>
+<span id="cb302-9"><a href="loops-and-functions.html#cb302-9" tabindex="-1"></a><span class="fu">add</span>(<span class="dv">2</span>,<span class="dv">7</span>) <span class="co">#Now I can use my function</span></span></code></pre></div>
 <pre><code>## [1] 9</code></pre>
 <p>Let us calculate the area of a circle</p>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="loops-and-functions.html#cb305-1" tabindex="-1"></a>aoc <span class="ot">&lt;-</span> <span class="cf">function</span>(radius) {</span>
-<span id="cb305-2"><a href="loops-and-functions.html#cb305-2" tabindex="-1"></a>  pi <span class="ot">&lt;-</span> <span class="fl">3.14159</span></span>
-<span id="cb305-3"><a href="loops-and-functions.html#cb305-3" tabindex="-1"></a>  </span>
-<span id="cb305-4"><a href="loops-and-functions.html#cb305-4" tabindex="-1"></a>  area <span class="ot">&lt;-</span> pi <span class="sc">*</span> radius<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb305-5"><a href="loops-and-functions.html#cb305-5" tabindex="-1"></a>  </span>
-<span id="cb305-6"><a href="loops-and-functions.html#cb305-6" tabindex="-1"></a>  <span class="fu">return</span>(area)</span>
-<span id="cb305-7"><a href="loops-and-functions.html#cb305-7" tabindex="-1"></a>}</span>
-<span id="cb305-8"><a href="loops-and-functions.html#cb305-8" tabindex="-1"></a></span>
-<span id="cb305-9"><a href="loops-and-functions.html#cb305-9" tabindex="-1"></a><span class="fu">aoc</span>(<span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="loops-and-functions.html#cb304-1" tabindex="-1"></a>aoc <span class="ot">&lt;-</span> <span class="cf">function</span>(radius) {</span>
+<span id="cb304-2"><a href="loops-and-functions.html#cb304-2" tabindex="-1"></a>  pi <span class="ot">&lt;-</span> <span class="fl">3.14159</span></span>
+<span id="cb304-3"><a href="loops-and-functions.html#cb304-3" tabindex="-1"></a>  </span>
+<span id="cb304-4"><a href="loops-and-functions.html#cb304-4" tabindex="-1"></a>  area <span class="ot">&lt;-</span> pi <span class="sc">*</span> radius<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb304-5"><a href="loops-and-functions.html#cb304-5" tabindex="-1"></a>  </span>
+<span id="cb304-6"><a href="loops-and-functions.html#cb304-6" tabindex="-1"></a>  <span class="fu">return</span>(area)</span>
+<span id="cb304-7"><a href="loops-and-functions.html#cb304-7" tabindex="-1"></a>}</span>
+<span id="cb304-8"><a href="loops-and-functions.html#cb304-8" tabindex="-1"></a></span>
+<span id="cb304-9"><a href="loops-and-functions.html#cb304-9" tabindex="-1"></a><span class="fu">aoc</span>(<span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## [1] 78.53975</code></pre>
-<p>Let us combine what we have learned in this chapter with the Fibonacci sequence. The Fibonnaci sequence starts with 0 and 1, and each subsequent number is the sum of the two numbers before it. The Fibonacci sequence continues indefinitely, producing a sequence like this: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, and so on.</p>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="loops-and-functions.html#cb307-1" tabindex="-1"></a>fibonacci <span class="ot">&lt;-</span> <span class="cf">function</span>(n) {</span>
-<span id="cb307-2"><a href="loops-and-functions.html#cb307-2" tabindex="-1"></a>  <span class="cf">if</span> (n <span class="sc">&lt;=</span> <span class="dv">0</span>) {</span>
-<span id="cb307-3"><a href="loops-and-functions.html#cb307-3" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">&quot;Invalid input. </span></span>
-<span id="cb307-4"><a href="loops-and-functions.html#cb307-4" tabindex="-1"></a><span class="st">         Please provide a positive integer.&quot;</span>) </span>
-<span id="cb307-5"><a href="loops-and-functions.html#cb307-5" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (n <span class="sc">==</span> <span class="dv">1</span>) {</span>
-<span id="cb307-6"><a href="loops-and-functions.html#cb307-6" tabindex="-1"></a>    sequence <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb307-7"><a href="loops-and-functions.html#cb307-7" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (n <span class="sc">==</span> <span class="dv">2</span>) {</span>
-<span id="cb307-8"><a href="loops-and-functions.html#cb307-8" tabindex="-1"></a>    sequence <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb307-9"><a href="loops-and-functions.html#cb307-9" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb307-10"><a href="loops-and-functions.html#cb307-10" tabindex="-1"></a>    sequence <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n)</span>
-<span id="cb307-11"><a href="loops-and-functions.html#cb307-11" tabindex="-1"></a>    sequence[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb307-12"><a href="loops-and-functions.html#cb307-12" tabindex="-1"></a>    sequence[<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb307-13"><a href="loops-and-functions.html#cb307-13" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">3</span><span class="sc">:</span>n) {</span>
-<span id="cb307-14"><a href="loops-and-functions.html#cb307-14" tabindex="-1"></a>      sequence[i] <span class="ot">&lt;-</span> sequence[i <span class="sc">-</span> <span class="dv">1</span>] <span class="sc">+</span> sequence[i <span class="sc">-</span> <span class="dv">2</span>]</span>
-<span id="cb307-15"><a href="loops-and-functions.html#cb307-15" tabindex="-1"></a>    }</span>
-<span id="cb307-16"><a href="loops-and-functions.html#cb307-16" tabindex="-1"></a>  }</span>
-<span id="cb307-17"><a href="loops-and-functions.html#cb307-17" tabindex="-1"></a>  <span class="fu">return</span>(sequence)</span>
-<span id="cb307-18"><a href="loops-and-functions.html#cb307-18" tabindex="-1"></a>}</span>
-<span id="cb307-19"><a href="loops-and-functions.html#cb307-19" tabindex="-1"></a></span>
-<span id="cb307-20"><a href="loops-and-functions.html#cb307-20" tabindex="-1"></a><span class="fu">fibonacci</span>(<span class="dv">50</span>)</span></code></pre></div>
-<pre><code>##  [1]          0          1          1          2          3          5
-##  [7]          8         13         21         34         55         89
-## [13]        144        233        377        610        987       1597
-## [19]       2584       4181       6765      10946      17711      28657
-## [25]      46368      75025     121393     196418     317811     514229
-## [31]     832040    1346269    2178309    3524578    5702887    9227465
-## [37]   14930352   24157817   39088169   63245986  102334155  165580141
-## [43]  267914296  433494437  701408733 1134903170 1836311903 2971215073
-## [49] 4807526976 7778742049</code></pre>
+<p>Let us combine what we have learned in this chapter with a meeting of animals. You do not have to understand the code, and I also do not want to explain it, but just to make clear what loops and functions are able to do. And all packages are written based on functions and loops, so it is useful to get an overview how it could look like.</p>
+<p>In this loop, we let R print out what persons in a classroom are doing. Before that we identify where the individuals are sitting. And the seating order in a class, is nothing more that a matrix right? We have rows and columns. This loops identifies in which row (i) and in which column (j) an individual sits. Moreover, the values in the matrix are student ids and the loop knows the id of students and prints out where which student sits. So this is an unnecessary loop, but I think a good example. Imagine the class are 1000 of people, then this loop would be necessary. As I said you do not need to completely understand it. Its purpose is to illustrate what you can do in R.</p>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="loops-and-functions.html#cb306-1" tabindex="-1"></a><span class="co"># The function</span></span>
+<span id="cb306-2"><a href="loops-and-functions.html#cb306-2" tabindex="-1"></a>print_classroom <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb306-3"><a href="loops-and-functions.html#cb306-3" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(x)) {  <span class="co"># Outer loop iterates over rows</span></span>
+<span id="cb306-4"><a href="loops-and-functions.html#cb306-4" tabindex="-1"></a>    <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(x[[i]])) {  <span class="co"># Inner loop iterates over columns</span></span>
+<span id="cb306-5"><a href="loops-and-functions.html#cb306-5" tabindex="-1"></a>      student <span class="ot">&lt;-</span> x[[i]][j]</span>
+<span id="cb306-6"><a href="loops-and-functions.html#cb306-6" tabindex="-1"></a>      <span class="cf">if</span> (student <span class="sc">==</span> <span class="dv">1</span>) {</span>
+<span id="cb306-7"><a href="loops-and-functions.html#cb306-7" tabindex="-1"></a>        comment <span class="ot">&lt;-</span> <span class="st">&quot;Alice&quot;</span></span>
+<span id="cb306-8"><a href="loops-and-functions.html#cb306-8" tabindex="-1"></a>      } <span class="cf">else</span> <span class="cf">if</span> (student <span class="sc">==</span> <span class="dv">2</span>) {</span>
+<span id="cb306-9"><a href="loops-and-functions.html#cb306-9" tabindex="-1"></a>        comment <span class="ot">&lt;-</span> <span class="st">&quot;Bob&quot;</span></span>
+<span id="cb306-10"><a href="loops-and-functions.html#cb306-10" tabindex="-1"></a>      } <span class="cf">else</span> <span class="cf">if</span> (student <span class="sc">==</span> <span class="dv">3</span>) {</span>
+<span id="cb306-11"><a href="loops-and-functions.html#cb306-11" tabindex="-1"></a>        comment <span class="ot">&lt;-</span> <span class="st">&quot;Cathy&quot;</span></span>
+<span id="cb306-12"><a href="loops-and-functions.html#cb306-12" tabindex="-1"></a>      } <span class="cf">else</span> <span class="cf">if</span> (student <span class="sc">==</span> <span class="dv">4</span>) {</span>
+<span id="cb306-13"><a href="loops-and-functions.html#cb306-13" tabindex="-1"></a>        comment <span class="ot">&lt;-</span> <span class="st">&quot;David&quot;</span></span>
+<span id="cb306-14"><a href="loops-and-functions.html#cb306-14" tabindex="-1"></a>      } <span class="cf">else</span> <span class="cf">if</span> (student <span class="sc">==</span> <span class="dv">5</span>) {</span>
+<span id="cb306-15"><a href="loops-and-functions.html#cb306-15" tabindex="-1"></a>        comment <span class="ot">&lt;-</span> <span class="st">&quot;Eva&quot;</span></span>
+<span id="cb306-16"><a href="loops-and-functions.html#cb306-16" tabindex="-1"></a>      } <span class="cf">else</span> {</span>
+<span id="cb306-17"><a href="loops-and-functions.html#cb306-17" tabindex="-1"></a>        comment <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;Unknown student&quot;</span>, student, <span class="st">&quot;is doing something interesting.&quot;</span>)</span>
+<span id="cb306-18"><a href="loops-and-functions.html#cb306-18" tabindex="-1"></a>      }</span>
+<span id="cb306-19"><a href="loops-and-functions.html#cb306-19" tabindex="-1"></a>      <span class="fu">cat</span>(<span class="st">&quot;At row&quot;</span>, i, <span class="st">&quot;column&quot;</span>, j, <span class="st">&quot;:&quot;</span>, comment, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb306-20"><a href="loops-and-functions.html#cb306-20" tabindex="-1"></a>    }</span>
+<span id="cb306-21"><a href="loops-and-functions.html#cb306-21" tabindex="-1"></a>  }</span>
+<span id="cb306-22"><a href="loops-and-functions.html#cb306-22" tabindex="-1"></a>}</span>
+<span id="cb306-23"><a href="loops-and-functions.html#cb306-23" tabindex="-1"></a></span>
+<span id="cb306-24"><a href="loops-and-functions.html#cb306-24" tabindex="-1"></a><span class="co"># Example usage</span></span>
+<span id="cb306-25"><a href="loops-and-functions.html#cb306-25" tabindex="-1"></a>seating_order <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb306-26"><a href="loops-and-functions.html#cb306-26" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">2</span>),</span>
+<span id="cb306-27"><a href="loops-and-functions.html#cb306-27" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">3</span>)</span>
+<span id="cb306-28"><a href="loops-and-functions.html#cb306-28" tabindex="-1"></a>)</span>
+<span id="cb306-29"><a href="loops-and-functions.html#cb306-29" tabindex="-1"></a></span>
+<span id="cb306-30"><a href="loops-and-functions.html#cb306-30" tabindex="-1"></a><span class="co">#Checking it</span></span>
+<span id="cb306-31"><a href="loops-and-functions.html#cb306-31" tabindex="-1"></a><span class="fu">print_classroom</span>(seating_order)</span></code></pre></div>
+<pre><code>## At row 1 column 1 : Alice 
+## At row 1 column 2 : Eva 
+## At row 1 column 3 : Bob 
+## At row 2 column 1 : David 
+## At row 2 column 2 : Cathy</code></pre>
 </div>
 <div id="exercise-section-2" class="section level2 hasAnchor" number="5.4">
 <h2><span class="header-section-number">5.4</span> Exercise Section<a href="loops-and-functions.html#exercise-section-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="exercise-1-1" class="section level3 hasAnchor" number="5.4.1">
 <h3><span class="header-section-number">5.4.1</span> Exercise 1:<a href="loops-and-functions.html#exercise-1-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Write a <code>for</code> loop that prints the square of each number from 1 to 10</p>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="loops-and-functions.html#cb309-1" tabindex="-1"></a><span class="co">#Assigning an object for a better workflow</span></span>
-<span id="cb309-2"><a href="loops-and-functions.html#cb309-2" tabindex="-1"></a>number <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb309-3"><a href="loops-and-functions.html#cb309-3" tabindex="-1"></a></span>
-<span id="cb309-4"><a href="loops-and-functions.html#cb309-4" tabindex="-1"></a><span class="co">#The Loop </span></span></code></pre></div>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="loops-and-functions.html#cb308-1" tabindex="-1"></a><span class="co">#Assigning an object for a better workflow</span></span>
+<span id="cb308-2"><a href="loops-and-functions.html#cb308-2" tabindex="-1"></a>number <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb308-3"><a href="loops-and-functions.html#cb308-3" tabindex="-1"></a></span>
+<span id="cb308-4"><a href="loops-and-functions.html#cb308-4" tabindex="-1"></a><span class="co">#The Loop </span></span></code></pre></div>
 </div>
 <div id="exercise-2-1" class="section level3 hasAnchor" number="5.4.2">
 <h3><span class="header-section-number">5.4.2</span> Exercise 2:<a href="loops-and-functions.html#exercise-2-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Do the same, but this time defining a function that squares numbers.</p>
-<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="loops-and-functions.html#cb310-1" tabindex="-1"></a><span class="co">#Defining a function for squaring</span></span>
-<span id="cb310-2"><a href="loops-and-functions.html#cb310-2" tabindex="-1"></a></span>
-<span id="cb310-3"><a href="loops-and-functions.html#cb310-3" tabindex="-1"></a>sq <span class="ot">&lt;-</span> <span class="cf">function</span> (x) {</span>
-<span id="cb310-4"><a href="loops-and-functions.html#cb310-4" tabindex="-1"></a>  </span>
-<span id="cb310-5"><a href="loops-and-functions.html#cb310-5" tabindex="-1"></a>  </span>
-<span id="cb310-6"><a href="loops-and-functions.html#cb310-6" tabindex="-1"></a>  </span>
-<span id="cb310-7"><a href="loops-and-functions.html#cb310-7" tabindex="-1"></a>}</span>
-<span id="cb310-8"><a href="loops-and-functions.html#cb310-8" tabindex="-1"></a></span>
-<span id="cb310-9"><a href="loops-and-functions.html#cb310-9" tabindex="-1"></a><span class="co">#Defining a vector containing a vector from 1 to 10 </span></span>
-<span id="cb310-10"><a href="loops-and-functions.html#cb310-10" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) </span>
-<span id="cb310-11"><a href="loops-and-functions.html#cb310-11" tabindex="-1"></a></span>
-<span id="cb310-12"><a href="loops-and-functions.html#cb310-12" tabindex="-1"></a><span class="co">#Applying the number </span></span>
-<span id="cb310-13"><a href="loops-and-functions.html#cb310-13" tabindex="-1"></a><span class="fu">sq</span>(numbers)</span></code></pre></div>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="loops-and-functions.html#cb309-1" tabindex="-1"></a><span class="co">#Defining a function for squaring</span></span>
+<span id="cb309-2"><a href="loops-and-functions.html#cb309-2" tabindex="-1"></a></span>
+<span id="cb309-3"><a href="loops-and-functions.html#cb309-3" tabindex="-1"></a>sq <span class="ot">&lt;-</span> <span class="cf">function</span> (x) {</span>
+<span id="cb309-4"><a href="loops-and-functions.html#cb309-4" tabindex="-1"></a>  </span>
+<span id="cb309-5"><a href="loops-and-functions.html#cb309-5" tabindex="-1"></a>  </span>
+<span id="cb309-6"><a href="loops-and-functions.html#cb309-6" tabindex="-1"></a>  </span>
+<span id="cb309-7"><a href="loops-and-functions.html#cb309-7" tabindex="-1"></a>}</span>
+<span id="cb309-8"><a href="loops-and-functions.html#cb309-8" tabindex="-1"></a></span>
+<span id="cb309-9"><a href="loops-and-functions.html#cb309-9" tabindex="-1"></a><span class="co">#Defining a vector containing a vector from 1 to 10 </span></span>
+<span id="cb309-10"><a href="loops-and-functions.html#cb309-10" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) </span>
+<span id="cb309-11"><a href="loops-and-functions.html#cb309-11" tabindex="-1"></a></span>
+<span id="cb309-12"><a href="loops-and-functions.html#cb309-12" tabindex="-1"></a><span class="co">#Applying the number </span></span>
+<span id="cb309-13"><a href="loops-and-functions.html#cb309-13" tabindex="-1"></a><span class="fu">sq</span>(numbers)</span></code></pre></div>
 </div>
 <div id="exercise-3-1" class="section level3 hasAnchor" number="5.4.3">
 <h3><span class="header-section-number">5.4.3</span> Exercise 3:<a href="loops-and-functions.html#exercise-3-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -630,59 +639,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>$$</p>
 <p>Make <strong>one function</strong> for the midnight formula, so the output are both. Test it with a = 2, b = -6, c = -8</p>
 <p><strong>Hint</strong>: You need two split up the formula into two equations with two outputs.</p>
-<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="loops-and-functions.html#cb311-1" tabindex="-1"></a>mnf <span class="ot">&lt;-</span> </span>
-<span id="cb311-2"><a href="loops-and-functions.html#cb311-2" tabindex="-1"></a></span>
-<span id="cb311-3"><a href="loops-and-functions.html#cb311-3" tabindex="-1"></a></span>
-<span id="cb311-4"><a href="loops-and-functions.html#cb311-4" tabindex="-1"></a><span class="fu">mnf</span>(<span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">8</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="loops-and-functions.html#cb310-1" tabindex="-1"></a>mnf <span class="ot">&lt;-</span> </span>
+<span id="cb310-2"><a href="loops-and-functions.html#cb310-2" tabindex="-1"></a></span>
+<span id="cb310-3"><a href="loops-and-functions.html#cb310-3" tabindex="-1"></a></span>
+<span id="cb310-4"><a href="loops-and-functions.html#cb310-4" tabindex="-1"></a><span class="fu">mnf</span>(<span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">8</span>)</span></code></pre></div>
 </div>
-<div id="exercise-4-zodiac-fortune-teller" class="section level3 hasAnchor" number="5.4.4">
-<h3><span class="header-section-number">5.4.4</span> Exercise 4: Zodiac Fortune Teller<a href="loops-and-functions.html#exercise-4-zodiac-fortune-teller" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>In the last exercise of this course, we will learn about our future based on our Zodiac Sign. For this we well need a <code>function</code>, a <code>loop</code> and an <code>ifelse</code> condition or function.</p>
-<ol style="list-style-type: lower-alpha">
-<li><p>First we define a function called <code>zodiacFortuneTeller()</code>. This function takes only your sign as input</p></li>
-<li><p>Afterwards we need to define our fortunes for each zodiac with a vector</p></li>
-<li><p>Then we need to define a vector with contains the zodiac signs</p></li>
-<li><p>Lastly we need a <code>for</code> loop, which returns the respective fortune for each zodiac sign.</p></li>
-<li><p>This fortune should be returned</p></li>
-</ol>
-<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="loops-and-functions.html#cb312-1" tabindex="-1"></a>fortune <span class="ot">&lt;-</span> <span class="cf">function</span>(sign) {</span>
-<span id="cb312-2"><a href="loops-and-functions.html#cb312-2" tabindex="-1"></a>  </span>
-<span id="cb312-3"><a href="loops-and-functions.html#cb312-3" tabindex="-1"></a>  <span class="co">#Fortunes vector </span></span>
-<span id="cb312-4"><a href="loops-and-functions.html#cb312-4" tabindex="-1"></a>  fortunes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Exciting opportunities are on the horizon for you!&quot;</span>,</span>
-<span id="cb312-5"><a href="loops-and-functions.html#cb312-5" tabindex="-1"></a>              <span class="st">&quot;Your creative talents will shine brightly this month!&quot;</span>,</span>
-<span id="cb312-6"><a href="loops-and-functions.html#cb312-6" tabindex="-1"></a>              <span class="st">&quot;Financial abundance is heading your way!&quot;</span>,</span>
-<span id="cb312-7"><a href="loops-and-functions.html#cb312-7" tabindex="-1"></a>              <span class="st">&quot;You will experience a period of personal growth and</span></span>
-<span id="cb312-8"><a href="loops-and-functions.html#cb312-8" tabindex="-1"></a><span class="st">              self-discovery!&quot;</span>,</span>
-<span id="cb312-9"><a href="loops-and-functions.html#cb312-9" tabindex="-1"></a>              <span class="st">&quot;New friendships will bring joy and fulfillment into you</span></span>
-<span id="cb312-10"><a href="loops-and-functions.html#cb312-10" tabindex="-1"></a><span class="st">              life!&quot;</span>,</span>
-<span id="cb312-11"><a href="loops-and-functions.html#cb312-11" tabindex="-1"></a>              <span class="st">&quot;Your hard work and dedication will pay off in unexpected</span></span>
-<span id="cb312-12"><a href="loops-and-functions.html#cb312-12" tabindex="-1"></a><span class="st">              ways!&quot;</span>,</span>
-<span id="cb312-13"><a href="loops-and-functions.html#cb312-13" tabindex="-1"></a>              <span class="st">&quot;Travel plans will bring you exciting adventures and memorable</span></span>
-<span id="cb312-14"><a href="loops-and-functions.html#cb312-14" tabindex="-1"></a><span class="st">              experiences!&quot;</span>,</span>
-<span id="cb312-15"><a href="loops-and-functions.html#cb312-15" tabindex="-1"></a>              <span class="st">&quot;A long-awaited dream will finally become a reality!&quot;</span>,</span>
-<span id="cb312-16"><a href="loops-and-functions.html#cb312-16" tabindex="-1"></a>              <span class="st">&quot;Your positive attitude and optimism will attract great</span></span>
-<span id="cb312-17"><a href="loops-and-functions.html#cb312-17" tabindex="-1"></a><span class="st">              success!&quot;</span>,</span>
-<span id="cb312-18"><a href="loops-and-functions.html#cb312-18" tabindex="-1"></a>              <span class="st">&quot;Love and romance will blossom in your life!&quot;</span>,</span>
-<span id="cb312-19"><a href="loops-and-functions.html#cb312-19" tabindex="-1"></a>              <span class="st">&quot;Embrace change and seize new opportunities with confidence!&quot;</span>,</span>
-<span id="cb312-20"><a href="loops-and-functions.html#cb312-20" tabindex="-1"></a>              <span class="st">&quot;Your intuitive insights will guide you to make wise</span></span>
-<span id="cb312-21"><a href="loops-and-functions.html#cb312-21" tabindex="-1"></a><span class="st">              decisions!&quot;</span>,</span>
-<span id="cb312-22"><a href="loops-and-functions.html#cb312-22" tabindex="-1"></a>              <span class="st">&quot;A new career opportunity will open doors to success and</span></span>
-<span id="cb312-23"><a href="loops-and-functions.html#cb312-23" tabindex="-1"></a><span class="st">              fulfillment!&quot;</span>,</span>
-<span id="cb312-24"><a href="loops-and-functions.html#cb312-24" tabindex="-1"></a>              <span class="st">&quot;You have the power to overcome any challenges that come your</span></span>
-<span id="cb312-25"><a href="loops-and-functions.html#cb312-25" tabindex="-1"></a><span class="st">              way!&quot;</span>,</span>
-<span id="cb312-26"><a href="loops-and-functions.html#cb312-26" tabindex="-1"></a>              <span class="st">&quot;Your generosity and kindness will be rewarded abundantly!&quot;</span>,</span>
-<span id="cb312-27"><a href="loops-and-functions.html#cb312-27" tabindex="-1"></a>              <span class="st">&quot;Self-care and self-love will lead to inner peace and harmony!&quot;</span></span>
-<span id="cb312-28"><a href="loops-and-functions.html#cb312-28" tabindex="-1"></a>              )</span>
-<span id="cb312-29"><a href="loops-and-functions.html#cb312-29" tabindex="-1"></a>  </span>
-<span id="cb312-30"><a href="loops-and-functions.html#cb312-30" tabindex="-1"></a>  <span class="co">#Zodiac_sings vector </span></span>
-<span id="cb312-31"><a href="loops-and-functions.html#cb312-31" tabindex="-1"></a>  </span>
-<span id="cb312-32"><a href="loops-and-functions.html#cb312-32" tabindex="-1"></a>  zodiac_signs <span class="ot">&lt;-</span> </span>
-<span id="cb312-33"><a href="loops-and-functions.html#cb312-33" tabindex="-1"></a>  </span>
-<span id="cb312-34"><a href="loops-and-functions.html#cb312-34" tabindex="-1"></a>  <span class="co">#For loop </span></span>
-<span id="cb312-35"><a href="loops-and-functions.html#cb312-35" tabindex="-1"></a></span>
-<span id="cb312-36"><a href="loops-and-functions.html#cb312-36" tabindex="-1"></a>  </span>
-<span id="cb312-37"><a href="loops-and-functions.html#cb312-37" tabindex="-1"></a>  </span>
-<span id="cb312-38"><a href="loops-and-functions.html#cb312-38" tabindex="-1"></a>}</span></code></pre></div>
+<div id="section" class="section level3" number="5.4.4">
+<h3><span class="header-section-number">5.4.4</span> </h3>
 
 </div>
 </div>

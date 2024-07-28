@@ -23,7 +23,7 @@
 <meta name="author" content="Okan Sarioglu" />
 
 
-<meta name="date" content="2024-07-26" />
+<meta name="date" content="2024-07-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -189,11 +189,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2.6" data-path="fundamentals.html"><a href="fundamentals.html#matrices"><i class="fa fa-check"></i><b>2.2.6</b> Matrices</a></li>
 <li class="chapter" data-level="2.2.7" data-path="fundamentals.html"><a href="fundamentals.html#data-frames"><i class="fa fa-check"></i><b>2.2.7</b> Data Frames</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="fundamentals.html"><a href="fundamentals.html#the-ifelse-function-and-ifelse-conditions"><i class="fa fa-check"></i><b>2.3</b> The <code>ifelse()</code> function and <code>ifelse</code> conditions:</a>
+<li class="chapter" data-level="2.3" data-path="fundamentals.html"><a href="fundamentals.html#ifelse-statements-and-the-ifelse-function"><i class="fa fa-check"></i><b>2.3</b> <code>ifelse</code> statements and the <code>ifelse()</code> function</a>
 <ul>
-<li class="chapter" data-level="2.3.1" data-path="fundamentals.html"><a href="fundamentals.html#simple-if-command"><i class="fa fa-check"></i><b>2.3.1</b> Simple if command</a></li>
-<li class="chapter" data-level="2.3.2" data-path="fundamentals.html"><a href="fundamentals.html#ifelse-command"><i class="fa fa-check"></i><b>2.3.2</b> <code>ifelse()</code> command</a></li>
-<li class="chapter" data-level="2.3.3" data-path="fundamentals.html"><a href="fundamentals.html#if-else-ladders-if-else-with-multiple-conditions"><i class="fa fa-check"></i><b>2.3.3</b> if else ladders/ if else with multiple conditions</a></li>
+<li class="chapter" data-level="2.3.1" data-path="fundamentals.html"><a href="fundamentals.html#if-else-statement-with-only-one-condition"><i class="fa fa-check"></i><b>2.3.1</b> If else statement with only one condition</a></li>
+<li class="chapter" data-level="2.3.2" data-path="fundamentals.html"><a href="fundamentals.html#if-statements-with-else-condition"><i class="fa fa-check"></i><b>2.3.2</b> if statements with else condition</a></li>
+<li class="chapter" data-level="2.3.3" data-path="fundamentals.html"><a href="fundamentals.html#the-ifelse-command"><i class="fa fa-check"></i><b>2.3.3</b> The <code>ifelse()</code> command</a></li>
+<li class="chapter" data-level="2.3.4" data-path="fundamentals.html"><a href="fundamentals.html#if-else-ladders-if-else-with-multiple-conditions"><i class="fa fa-check"></i><b>2.3.4</b> if else ladders/ if else with multiple conditions</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="fundamentals.html"><a href="fundamentals.html#exercise-section"><i class="fa fa-check"></i><b>2.4</b> Exercise Section:</a>
 <ul>
@@ -236,7 +237,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.8.1" data-path="data-manipulation.html"><a href="data-manipulation.html#exercise-1-lets-wrangle-kid"><i class="fa fa-check"></i><b>3.8.1</b> Exercise 1: Let’s wrangle kid</a></li>
 <li class="chapter" data-level="3.8.2" data-path="data-manipulation.html"><a href="data-manipulation.html#exercise-2-merging-datasets"><i class="fa fa-check"></i><b>3.8.2</b> Exercise 2: Merging Datasets</a></li>
 </ul></li>
-<li class="chapter" data-level="3.9" data-path="data-manipulation.html"><a href="data-manipulation.html#section"><i class="fa fa-check"></i><b>3.9</b> </a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="data-visualisation.html"><a href="data-visualisation.html"><i class="fa fa-check"></i><b>4</b> Data Visualisation</a>
 <ul>
@@ -295,7 +295,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.4.1" data-path="loops-and-functions.html"><a href="loops-and-functions.html#exercise-1-1"><i class="fa fa-check"></i><b>5.4.1</b> Exercise 1:</a></li>
 <li class="chapter" data-level="5.4.2" data-path="loops-and-functions.html"><a href="loops-and-functions.html#exercise-2-1"><i class="fa fa-check"></i><b>5.4.2</b> Exercise 2:</a></li>
 <li class="chapter" data-level="5.4.3" data-path="loops-and-functions.html"><a href="loops-and-functions.html#exercise-3-1"><i class="fa fa-check"></i><b>5.4.3</b> Exercise 3:</a></li>
-<li class="chapter" data-level="5.4.4" data-path="loops-and-functions.html"><a href="loops-and-functions.html#exercise-4-zodiac-fortune-teller"><i class="fa fa-check"></i><b>5.4.4</b> Exercise 4: Zodiac Fortune Teller</a></li>
+<li class="chapter" data-level="5.4.4" data-path="loops-and-functions.html"><a href="loops-and-functions.html#section"><i class="fa fa-check"></i><b>5.4.4</b> </a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="data-analysis.html"><a href="data-analysis.html"><i class="fa fa-check"></i><b>6</b> Data Analysis</a>
@@ -373,8 +373,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Call the <code>install.packages()</code> command.</p></li>
 <li><p>You put the name of the package in quotation marks into the function.</p></li>
 </ul>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="data-manipulation.html#cb116-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;pacman&quot;</span>) <span class="co">#installing packages</span></span></code></pre></div>
-<pre><code>## Error in install.packages : Updating loaded packages</code></pre>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="data-manipulation.html#cb112-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;pacman&quot;</span>) <span class="co">#installing packages</span></span></code></pre></div>
+<pre><code>## Installiere Paket nach &#39;C:/Users/osari/AppData/Local/R/win-library/4.4&#39;
+## (da &#39;lib&#39; nicht spezifiziert)</code></pre>
+<pre><code>## Paket &#39;pacman&#39; erfolgreich ausgepackt und MD5 Summen abgeglichen
+## 
+## Die heruntergeladenen Binärpakete sind in 
+##  C:\Users\osari\AppData\Local\Temp\RtmpkpBTJ0\downloaded_packages</code></pre>
 </div>
 <div id="loading-your-packages" class="section level3 hasAnchor" number="3.2.2">
 <h3><span class="header-section-number">3.2.2</span> Loading your packages<a href="data-manipulation.html#loading-your-packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -383,14 +388,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Call the library() function.</p></li>
 <li><p>Put the name of</p></li>
 </ul>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="data-manipulation.html#cb118-1" tabindex="-1"></a><span class="fu">library</span>(pacman) <span class="co">#You run the code and voila you can use the package</span></span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="data-manipulation.html#cb115-1" tabindex="-1"></a><span class="fu">library</span>(pacman) <span class="co">#You run the code and voila you can use the package</span></span></code></pre></div>
 <p>It is always important to have an efficient workflow in R. Traditional R users, load all packages they need at the beginning of their page. Logically, so they just need to go back to the top of the script and need to load it every time they open the script. But there are way more elegant and pragmatic ways to do that.</p>
 <p>One way is the <code>pacman</code> package:</p>
 <ul>
 <li><p>First, if you use the name of package and put a “::” behind it you tell R to go into the package and to specifically get one command of the package, in our case the <code>p_load</code> command.</p></li>
 <li><p>Second, the p_load command, loads the packages in the brackets and checks if they are installed, if not, it automatically installs and loads them.</p></li>
 </ul>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="data-manipulation.html#cb119-1" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(<span class="st">&quot;tidyverse&quot;</span>, <span class="st">&quot;psych&quot;</span>, <span class="st">&quot;WDI&quot;</span>, <span class="st">&quot;gapminder&quot;</span>) <span class="co">#loading packages</span></span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="data-manipulation.html#cb116-1" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(<span class="st">&quot;tidyverse&quot;</span>, <span class="st">&quot;psych&quot;</span>, <span class="st">&quot;WDI&quot;</span>, <span class="st">&quot;gapminder&quot;</span>) <span class="co">#loading packages</span></span></code></pre></div>
 </div>
 </div>
 <div id="the-data-we-will-work-with-the-european-social-survey-ess" class="section level2 hasAnchor" number="3.3">
@@ -565,17 +570,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Then I take the mean, then the exponential and lastly the square root. I could just wrap the codes around each other like this: <code>sqrt(exp(mean(q)))</code>.</p></li>
 <li><p>But I could also use pipes, where I clearly see that first the mean, then the exponential and then the square root is taken: <code>q %&gt;% mean() %&gt;% exp() %&gt;% sqrt()</code>. Run both codes, they are producing the same result.</p></li>
 </ul>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="data-manipulation.html#cb120-1" tabindex="-1"></a><span class="co">#Making a vector with three random numbers</span></span>
-<span id="cb120-2"><a href="data-manipulation.html#cb120-2" tabindex="-1"></a>q <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">3</span>,<span class="dv">8</span>)</span>
-<span id="cb120-3"><a href="data-manipulation.html#cb120-3" tabindex="-1"></a></span>
-<span id="cb120-4"><a href="data-manipulation.html#cb120-4" tabindex="-1"></a><span class="co">#Taking first the mean, second the exponential and lastly the square root</span></span>
-<span id="cb120-5"><a href="data-manipulation.html#cb120-5" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">exp</span>(<span class="fu">mean</span>(q)))</span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="data-manipulation.html#cb117-1" tabindex="-1"></a><span class="co">#Making a vector with three random numbers</span></span>
+<span id="cb117-2"><a href="data-manipulation.html#cb117-2" tabindex="-1"></a>q <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">3</span>,<span class="dv">8</span>)</span>
+<span id="cb117-3"><a href="data-manipulation.html#cb117-3" tabindex="-1"></a></span>
+<span id="cb117-4"><a href="data-manipulation.html#cb117-4" tabindex="-1"></a><span class="co">#Taking first the mean, second the exponential and lastly the square root</span></span>
+<span id="cb117-5"><a href="data-manipulation.html#cb117-5" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">exp</span>(<span class="fu">mean</span>(q)))</span></code></pre></div>
 <pre><code>## [1] 17.00204</code></pre>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="data-manipulation.html#cb122-1" tabindex="-1"></a><span class="do">###With a Pipe </span></span>
-<span id="cb122-2"><a href="data-manipulation.html#cb122-2" tabindex="-1"></a>q <span class="sc">%&gt;%</span> </span>
-<span id="cb122-3"><a href="data-manipulation.html#cb122-3" tabindex="-1"></a>  <span class="fu">mean</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb122-4"><a href="data-manipulation.html#cb122-4" tabindex="-1"></a>  <span class="fu">exp</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb122-5"><a href="data-manipulation.html#cb122-5" tabindex="-1"></a>  <span class="fu">sqrt</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="data-manipulation.html#cb119-1" tabindex="-1"></a><span class="do">###With a Pipe </span></span>
+<span id="cb119-2"><a href="data-manipulation.html#cb119-2" tabindex="-1"></a>q <span class="sc">%&gt;%</span> </span>
+<span id="cb119-3"><a href="data-manipulation.html#cb119-3" tabindex="-1"></a>  <span class="fu">mean</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb119-4"><a href="data-manipulation.html#cb119-4" tabindex="-1"></a>  <span class="fu">exp</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb119-5"><a href="data-manipulation.html#cb119-5" tabindex="-1"></a>  <span class="fu">sqrt</span>()</span></code></pre></div>
 <pre><code>## [1] 17.00204</code></pre>
 <p>This was an easy and short example, but as you will see at the end of this chapter, the code can get really fast really messy and to have a clean code, we will use pipes. Furthermore, tidyverse users use pipes all the times, so even if you do not use them, you have to understand them.</p>
 </div>
@@ -649,66 +654,94 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>In the next code, we do the same and filter for cases that are equal or smaller than 40. Thus we get a dataset with observations who are 40 or younger.</p></li>
 </ul>
 <p><em>Note: Since the cntry variable is a character variable, we have to put the condition in square brackets. The variable agea is a numeric variable, therefore we only need the number.</em></p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="data-manipulation.html#cb124-1" tabindex="-1"></a><span class="co">#filtering for cases only in Hungary</span></span>
-<span id="cb124-2"><a href="data-manipulation.html#cb124-2" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span> </span>
-<span id="cb124-3"><a href="data-manipulation.html#cb124-3" tabindex="-1"></a>  <span class="fu">filter</span>(cntry <span class="sc">==</span> <span class="st">&quot;HU&quot;</span>)</span>
-<span id="cb124-4"><a href="data-manipulation.html#cb124-4" tabindex="-1"></a></span>
-<span id="cb124-5"><a href="data-manipulation.html#cb124-5" tabindex="-1"></a><span class="co">#checking it</span></span>
-<span id="cb124-6"><a href="data-manipulation.html#cb124-6" tabindex="-1"></a><span class="fu">head</span>(d1) </span></code></pre></div>
-<pre><code>##   idnt year cntry agea gndr happy eisced netusoft trstprl lrscale
-## 1 4501 2020    HU   21    2     3      6        4       3       2
-## 2 4502 2020    HU   48    1     5      5        3       5       3
-## 3 4503 2020    HU   80    1     6      3        4       4       1
-## 4 4504 2020    HU   38    1     6      3        2       1       3
-## 5 4505 2020    HU   40    2    10      3        3       9       7
-## 6 4506 2020    HU   40    1     1      7        2       2       3</code></pre>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="data-manipulation.html#cb126-1" tabindex="-1"></a><span class="co">#We only want participants younger than 40</span></span>
-<span id="cb126-2"><a href="data-manipulation.html#cb126-2" tabindex="-1"></a>d2 <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span>  </span>
-<span id="cb126-3"><a href="data-manipulation.html#cb126-3" tabindex="-1"></a>  <span class="fu">filter</span>(agea <span class="sc">&lt;=</span> <span class="dv">40</span>)</span>
-<span id="cb126-4"><a href="data-manipulation.html#cb126-4" tabindex="-1"></a></span>
-<span id="cb126-5"><a href="data-manipulation.html#cb126-5" tabindex="-1"></a><span class="co">#checking it</span></span>
-<span id="cb126-6"><a href="data-manipulation.html#cb126-6" tabindex="-1"></a><span class="fu">head</span>(d2) </span></code></pre></div>
-<pre><code>##   idnt year cntry agea gndr happy eisced netusoft trstprl lrscale
-## 1    3 2020    BE   28    2     3      4        5       4       7
-## 2    8 2020    BE   28    2     5      1        2       1       1
-## 3    9 2020    BE   39    2     8      3        1       4       6
-## 4   12 2020    BE   23    1    77      1        4       4       7
-## 5   14 2020    BE   40    2     3      5        2       3       2
-## 6   15 2020    BE   21    1     1      4        1       8       5</code></pre>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="data-manipulation.html#cb121-1" tabindex="-1"></a><span class="co">#filtering for cases only in Hungary</span></span>
+<span id="cb121-2"><a href="data-manipulation.html#cb121-2" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span> </span>
+<span id="cb121-3"><a href="data-manipulation.html#cb121-3" tabindex="-1"></a>  <span class="fu">filter</span>(cntry <span class="sc">==</span> <span class="st">&quot;HU&quot;</span>)</span>
+<span id="cb121-4"><a href="data-manipulation.html#cb121-4" tabindex="-1"></a></span>
+<span id="cb121-5"><a href="data-manipulation.html#cb121-5" tabindex="-1"></a><span class="co">#checking it</span></span>
+<span id="cb121-6"><a href="data-manipulation.html#cb121-6" tabindex="-1"></a><span class="fu">head</span>(d1) </span></code></pre></div>
+<pre><code>##   idnt year cntry agea gndr happy eisced netusoft
+## 1 4501 2020    HU   21    2     3      6        4
+## 2 4502 2020    HU   48    1     5      5        3
+## 3 4503 2020    HU   80    1     6      3        4
+## 4 4504 2020    HU   38    1     6      3        2
+## 5 4505 2020    HU   40    2    10      3        3
+## 6 4506 2020    HU   40    1     1      7        2
+##   trstprl lrscale
+## 1       3       2
+## 2       5       3
+## 3       4       1
+## 4       1       3
+## 5       9       7
+## 6       2       3</code></pre>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="data-manipulation.html#cb123-1" tabindex="-1"></a><span class="co">#We only want participants younger than 40</span></span>
+<span id="cb123-2"><a href="data-manipulation.html#cb123-2" tabindex="-1"></a>d2 <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span>  </span>
+<span id="cb123-3"><a href="data-manipulation.html#cb123-3" tabindex="-1"></a>  <span class="fu">filter</span>(agea <span class="sc">&lt;=</span> <span class="dv">40</span>)</span>
+<span id="cb123-4"><a href="data-manipulation.html#cb123-4" tabindex="-1"></a></span>
+<span id="cb123-5"><a href="data-manipulation.html#cb123-5" tabindex="-1"></a><span class="co">#checking it</span></span>
+<span id="cb123-6"><a href="data-manipulation.html#cb123-6" tabindex="-1"></a><span class="fu">head</span>(d2) </span></code></pre></div>
+<pre><code>##   idnt year cntry agea gndr happy eisced netusoft
+## 1    3 2020    BE   28    2     3      4        5
+## 2    8 2020    BE   28    2     5      1        2
+## 3    9 2020    BE   39    2     8      3        1
+## 4   12 2020    BE   23    1    77      1        4
+## 5   14 2020    BE   40    2     3      5        2
+## 6   15 2020    BE   21    1     1      4        1
+##   trstprl lrscale
+## 1       4       7
+## 2       1       1
+## 3       4       6
+## 4       4       7
+## 5       3       2
+## 6       8       5</code></pre>
 </div>
 <div id="filtering-for-multiple-condition" class="section level4 hasAnchor" number="3.5.1.2">
 <h4><span class="header-section-number">3.5.1.2</span> Filtering for multiple condition<a href="data-manipulation.html#filtering-for-multiple-condition" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="data-manipulation.html#cb128-1" tabindex="-1"></a><span class="co">#filtering for cases in Hungary and France</span></span>
-<span id="cb128-2"><a href="data-manipulation.html#cb128-2" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span> </span>
-<span id="cb128-3"><a href="data-manipulation.html#cb128-3" tabindex="-1"></a>  <span class="fu">filter</span>(cntry <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;HU&quot;</span>, <span class="st">&quot;FR&quot;</span>))</span>
-<span id="cb128-4"><a href="data-manipulation.html#cb128-4" tabindex="-1"></a></span>
-<span id="cb128-5"><a href="data-manipulation.html#cb128-5" tabindex="-1"></a><span class="co">#Checking it</span></span>
-<span id="cb128-6"><a href="data-manipulation.html#cb128-6" tabindex="-1"></a><span class="fu">head</span>(d2)  </span></code></pre></div>
-<pre><code>##   idnt year cntry agea gndr happy eisced netusoft trstprl lrscale
-## 1    3 2020    BE   28    2     3      4        5       4       7
-## 2    8 2020    BE   28    2     5      1        2       1       1
-## 3    9 2020    BE   39    2     8      3        1       4       6
-## 4   12 2020    BE   23    1    77      1        4       4       7
-## 5   14 2020    BE   40    2     3      5        2       3       2
-## 6   15 2020    BE   21    1     1      4        1       8       5</code></pre>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="data-manipulation.html#cb130-1" tabindex="-1"></a><span class="co">#filtering for cases under 40 in Hungary and France</span></span>
-<span id="cb130-2"><a href="data-manipulation.html#cb130-2" tabindex="-1"></a>d2 <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span></span>
-<span id="cb130-3"><a href="data-manipulation.html#cb130-3" tabindex="-1"></a>  <span class="fu">filter</span>(cntry <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;HU&quot;</span>, <span class="st">&quot;FR&quot;</span>) <span class="sc">&amp;</span></span>
-<span id="cb130-4"><a href="data-manipulation.html#cb130-4" tabindex="-1"></a>           agea <span class="sc">&lt;=</span> <span class="dv">40</span>)</span>
-<span id="cb130-5"><a href="data-manipulation.html#cb130-5" tabindex="-1"></a></span>
-<span id="cb130-6"><a href="data-manipulation.html#cb130-6" tabindex="-1"></a><span class="co">#Checking it</span></span>
-<span id="cb130-7"><a href="data-manipulation.html#cb130-7" tabindex="-1"></a><span class="fu">head</span>(d2)</span></code></pre></div>
-<pre><code>##   idnt year cntry agea gndr happy eisced netusoft trstprl lrscale
-## 1 2704 2020    FR   23    1     9      3        3       9       3
-## 2 2705 2020    FR   30    2     8      7        2       7       9
-## 3 2708 2020    FR   17    1     1      2        2       8       3
-## 4 2709 2020    FR   26    2    10      1        4       9       6
-## 5 2710 2020    FR   34    1     8      3        1       3       8
-## 6 2711 2020    FR   30    1     5      3        5       9      10</code></pre>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="data-manipulation.html#cb132-1" tabindex="-1"></a><span class="co">#d2 &lt;- ess %&gt;% #Our dataset</span></span>
-<span id="cb132-2"><a href="data-manipulation.html#cb132-2" tabindex="-1"></a><span class="co">#  filter(cntry %in% c(&quot;HU&quot;, &quot;FR&quot;), </span></span>
-<span id="cb132-3"><a href="data-manipulation.html#cb132-3" tabindex="-1"></a><span class="co">#           agea &lt;= 40) #filtering for cases under 40 in Hungary and France with a comma</span></span>
-<span id="cb132-4"><a href="data-manipulation.html#cb132-4" tabindex="-1"></a><span class="co">#head(d2)</span></span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="data-manipulation.html#cb125-1" tabindex="-1"></a><span class="co">#filtering for cases in Hungary and France</span></span>
+<span id="cb125-2"><a href="data-manipulation.html#cb125-2" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span> </span>
+<span id="cb125-3"><a href="data-manipulation.html#cb125-3" tabindex="-1"></a>  <span class="fu">filter</span>(cntry <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;HU&quot;</span>, <span class="st">&quot;FR&quot;</span>))</span>
+<span id="cb125-4"><a href="data-manipulation.html#cb125-4" tabindex="-1"></a></span>
+<span id="cb125-5"><a href="data-manipulation.html#cb125-5" tabindex="-1"></a><span class="co">#Checking it</span></span>
+<span id="cb125-6"><a href="data-manipulation.html#cb125-6" tabindex="-1"></a><span class="fu">head</span>(d2)  </span></code></pre></div>
+<pre><code>##   idnt year cntry agea gndr happy eisced netusoft
+## 1    3 2020    BE   28    2     3      4        5
+## 2    8 2020    BE   28    2     5      1        2
+## 3    9 2020    BE   39    2     8      3        1
+## 4   12 2020    BE   23    1    77      1        4
+## 5   14 2020    BE   40    2     3      5        2
+## 6   15 2020    BE   21    1     1      4        1
+##   trstprl lrscale
+## 1       4       7
+## 2       1       1
+## 3       4       6
+## 4       4       7
+## 5       3       2
+## 6       8       5</code></pre>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="data-manipulation.html#cb127-1" tabindex="-1"></a><span class="co">#filtering for cases under 40 in Hungary and France</span></span>
+<span id="cb127-2"><a href="data-manipulation.html#cb127-2" tabindex="-1"></a>d2 <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span></span>
+<span id="cb127-3"><a href="data-manipulation.html#cb127-3" tabindex="-1"></a>  <span class="fu">filter</span>(cntry <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;HU&quot;</span>, <span class="st">&quot;FR&quot;</span>) <span class="sc">&amp;</span></span>
+<span id="cb127-4"><a href="data-manipulation.html#cb127-4" tabindex="-1"></a>           agea <span class="sc">&lt;=</span> <span class="dv">40</span>)</span>
+<span id="cb127-5"><a href="data-manipulation.html#cb127-5" tabindex="-1"></a></span>
+<span id="cb127-6"><a href="data-manipulation.html#cb127-6" tabindex="-1"></a><span class="co">#Checking it</span></span>
+<span id="cb127-7"><a href="data-manipulation.html#cb127-7" tabindex="-1"></a><span class="fu">head</span>(d2)</span></code></pre></div>
+<pre><code>##   idnt year cntry agea gndr happy eisced netusoft
+## 1 2704 2020    FR   23    1     9      3        3
+## 2 2705 2020    FR   30    2     8      7        2
+## 3 2708 2020    FR   17    1     1      2        2
+## 4 2709 2020    FR   26    2    10      1        4
+## 5 2710 2020    FR   34    1     8      3        1
+## 6 2711 2020    FR   30    1     5      3        5
+##   trstprl lrscale
+## 1       9       3
+## 2       7       9
+## 3       8       3
+## 4       9       6
+## 5       3       8
+## 6       9      10</code></pre>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="data-manipulation.html#cb129-1" tabindex="-1"></a><span class="co">#d2 &lt;- ess %&gt;% #Our dataset</span></span>
+<span id="cb129-2"><a href="data-manipulation.html#cb129-2" tabindex="-1"></a><span class="co">#  filter(cntry %in% c(&quot;HU&quot;, &quot;FR&quot;), </span></span>
+<span id="cb129-3"><a href="data-manipulation.html#cb129-3" tabindex="-1"></a><span class="co">#           agea &lt;= 40) #filtering for cases under 40 in Hungary and France with a comma</span></span>
+<span id="cb129-4"><a href="data-manipulation.html#cb129-4" tabindex="-1"></a><span class="co">#head(d2)</span></span></code></pre></div>
 </div>
 </div>
 <div id="the-select-function" class="section level3 hasAnchor" number="3.5.2">
@@ -719,12 +752,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>We only have to pass their column names to <code>select()</code>. That’s it.</li>
 </ul>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="data-manipulation.html#cb133-1" tabindex="-1"></a><span class="co">#Selecting relevant variables</span></span>
-<span id="cb133-2"><a href="data-manipulation.html#cb133-2" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span></span>
-<span id="cb133-3"><a href="data-manipulation.html#cb133-3" tabindex="-1"></a>   <span class="fu">select</span>(year, cntry, happy, agea, gndr, eisced) </span>
-<span id="cb133-4"><a href="data-manipulation.html#cb133-4" tabindex="-1"></a></span>
-<span id="cb133-5"><a href="data-manipulation.html#cb133-5" tabindex="-1"></a><span class="co">#Checking it</span></span>
-<span id="cb133-6"><a href="data-manipulation.html#cb133-6" tabindex="-1"></a><span class="fu">head</span>(d1) </span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="data-manipulation.html#cb130-1" tabindex="-1"></a><span class="co">#Selecting relevant variables</span></span>
+<span id="cb130-2"><a href="data-manipulation.html#cb130-2" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span></span>
+<span id="cb130-3"><a href="data-manipulation.html#cb130-3" tabindex="-1"></a>   <span class="fu">select</span>(year, cntry, happy, agea, gndr, eisced) </span>
+<span id="cb130-4"><a href="data-manipulation.html#cb130-4" tabindex="-1"></a></span>
+<span id="cb130-5"><a href="data-manipulation.html#cb130-5" tabindex="-1"></a><span class="co">#Checking it</span></span>
+<span id="cb130-6"><a href="data-manipulation.html#cb130-6" tabindex="-1"></a><span class="fu">head</span>(d1) </span></code></pre></div>
 <pre><code>##   year cntry happy agea gndr eisced
 ## 1 2020    BE     1   45    1      6
 ## 2 2020    BE     3   65    1      5
@@ -738,12 +771,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>To delete row, you just put a minus in front of the column, you want to delete. That’s it, the rest stays the same.</li>
 </ul>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="data-manipulation.html#cb135-1" tabindex="-1"></a><span class="co">#We delete columns by simply putting a comma before it</span></span>
-<span id="cb135-2"><a href="data-manipulation.html#cb135-2" tabindex="-1"></a>d2 <span class="ot">&lt;-</span> d1 <span class="sc">%&gt;%</span> </span>
-<span id="cb135-3"><a href="data-manipulation.html#cb135-3" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>agea)</span>
-<span id="cb135-4"><a href="data-manipulation.html#cb135-4" tabindex="-1"></a></span>
-<span id="cb135-5"><a href="data-manipulation.html#cb135-5" tabindex="-1"></a><span class="co">#Checking it</span></span>
-<span id="cb135-6"><a href="data-manipulation.html#cb135-6" tabindex="-1"></a><span class="fu">head</span>(d2)</span></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="data-manipulation.html#cb132-1" tabindex="-1"></a><span class="co">#We delete columns by simply putting a comma before it</span></span>
+<span id="cb132-2"><a href="data-manipulation.html#cb132-2" tabindex="-1"></a>d2 <span class="ot">&lt;-</span> d1 <span class="sc">%&gt;%</span> </span>
+<span id="cb132-3"><a href="data-manipulation.html#cb132-3" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>agea)</span>
+<span id="cb132-4"><a href="data-manipulation.html#cb132-4" tabindex="-1"></a></span>
+<span id="cb132-5"><a href="data-manipulation.html#cb132-5" tabindex="-1"></a><span class="co">#Checking it</span></span>
+<span id="cb132-6"><a href="data-manipulation.html#cb132-6" tabindex="-1"></a><span class="fu">head</span>(d2)</span></code></pre></div>
 <pre><code>##   year cntry happy gndr eisced
 ## 1 2020    BE     1    1      6
 ## 2 2020    BE     3    1      5
@@ -759,13 +792,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>In this example, we select the 7 variables and then filter it for all observations under 40.</p></li>
 <li><p>The two commands are separated by a pipe.</p></li>
 </ul>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="data-manipulation.html#cb137-1" tabindex="-1"></a><span class="co">#Combining codes</span></span>
-<span id="cb137-2"><a href="data-manipulation.html#cb137-2" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span></span>
-<span id="cb137-3"><a href="data-manipulation.html#cb137-3" tabindex="-1"></a>  <span class="fu">filter</span>(agea <span class="sc">&lt;</span> <span class="dv">40</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb137-4"><a href="data-manipulation.html#cb137-4" tabindex="-1"></a>  <span class="fu">select</span>(year, cntry, happy, agea, gndr, eisced)</span>
-<span id="cb137-5"><a href="data-manipulation.html#cb137-5" tabindex="-1"></a></span>
-<span id="cb137-6"><a href="data-manipulation.html#cb137-6" tabindex="-1"></a><span class="co">#Checking it</span></span>
-<span id="cb137-7"><a href="data-manipulation.html#cb137-7" tabindex="-1"></a><span class="fu">head</span>(d1)</span></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="data-manipulation.html#cb134-1" tabindex="-1"></a><span class="co">#Combining codes</span></span>
+<span id="cb134-2"><a href="data-manipulation.html#cb134-2" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span></span>
+<span id="cb134-3"><a href="data-manipulation.html#cb134-3" tabindex="-1"></a>  <span class="fu">filter</span>(agea <span class="sc">&lt;</span> <span class="dv">40</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb134-4"><a href="data-manipulation.html#cb134-4" tabindex="-1"></a>  <span class="fu">select</span>(year, cntry, happy, agea, gndr, eisced)</span>
+<span id="cb134-5"><a href="data-manipulation.html#cb134-5" tabindex="-1"></a></span>
+<span id="cb134-6"><a href="data-manipulation.html#cb134-6" tabindex="-1"></a><span class="co">#Checking it</span></span>
+<span id="cb134-7"><a href="data-manipulation.html#cb134-7" tabindex="-1"></a><span class="fu">head</span>(d1)</span></code></pre></div>
 <pre><code>##   year cntry happy agea gndr eisced
 ## 1 2020    BE     3   28    2      4
 ## 2 2020    BE     5   28    2      1
@@ -783,14 +816,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>The arrange() function is called, and afterwards we call the variable we want to arrange based on. The default function of arrange, orders the data always in ascending order.</li>
 </ul>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="data-manipulation.html#cb139-1" tabindex="-1"></a><span class="co">#Adding arrange()</span></span>
-<span id="cb139-2"><a href="data-manipulation.html#cb139-2" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span></span>
-<span id="cb139-3"><a href="data-manipulation.html#cb139-3" tabindex="-1"></a>  <span class="fu">filter</span>(agea <span class="sc">&lt;</span> <span class="dv">40</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb139-4"><a href="data-manipulation.html#cb139-4" tabindex="-1"></a>  <span class="fu">select</span>(year, cntry, happy, agea, gndr, eisced) <span class="sc">%&gt;%</span> </span>
-<span id="cb139-5"><a href="data-manipulation.html#cb139-5" tabindex="-1"></a>  <span class="fu">arrange</span>(agea) </span>
-<span id="cb139-6"><a href="data-manipulation.html#cb139-6" tabindex="-1"></a></span>
-<span id="cb139-7"><a href="data-manipulation.html#cb139-7" tabindex="-1"></a><span class="co">#Checking it</span></span>
-<span id="cb139-8"><a href="data-manipulation.html#cb139-8" tabindex="-1"></a><span class="fu">head</span>(d1)</span></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="data-manipulation.html#cb136-1" tabindex="-1"></a><span class="co">#Adding arrange()</span></span>
+<span id="cb136-2"><a href="data-manipulation.html#cb136-2" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span></span>
+<span id="cb136-3"><a href="data-manipulation.html#cb136-3" tabindex="-1"></a>  <span class="fu">filter</span>(agea <span class="sc">&lt;</span> <span class="dv">40</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb136-4"><a href="data-manipulation.html#cb136-4" tabindex="-1"></a>  <span class="fu">select</span>(year, cntry, happy, agea, gndr, eisced) <span class="sc">%&gt;%</span> </span>
+<span id="cb136-5"><a href="data-manipulation.html#cb136-5" tabindex="-1"></a>  <span class="fu">arrange</span>(agea) </span>
+<span id="cb136-6"><a href="data-manipulation.html#cb136-6" tabindex="-1"></a></span>
+<span id="cb136-7"><a href="data-manipulation.html#cb136-7" tabindex="-1"></a><span class="co">#Checking it</span></span>
+<span id="cb136-8"><a href="data-manipulation.html#cb136-8" tabindex="-1"></a><span class="fu">head</span>(d1)</span></code></pre></div>
 <pre><code>##   year cntry happy agea gndr eisced
 ## 1 2020    BE     6   15    2      4
 ## 2 2020    BE     2   15    1      1
@@ -804,14 +837,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>If we want to order them in ascending order, we have to call <code>desc()</code> inside the <code>arrange()</code> and put the name of the variable inside <code>desc()</code>.</li>
 </ul>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="data-manipulation.html#cb141-1" tabindex="-1"></a><span class="co">#arranging in descending order </span></span>
-<span id="cb141-2"><a href="data-manipulation.html#cb141-2" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span></span>
-<span id="cb141-3"><a href="data-manipulation.html#cb141-3" tabindex="-1"></a>  <span class="fu">filter</span>(agea <span class="sc">&lt;</span> <span class="dv">40</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb141-4"><a href="data-manipulation.html#cb141-4" tabindex="-1"></a>  <span class="fu">select</span>(year, cntry, happy, agea, gndr, eisced) <span class="sc">%&gt;%</span> </span>
-<span id="cb141-5"><a href="data-manipulation.html#cb141-5" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(agea))</span>
-<span id="cb141-6"><a href="data-manipulation.html#cb141-6" tabindex="-1"></a></span>
-<span id="cb141-7"><a href="data-manipulation.html#cb141-7" tabindex="-1"></a><span class="co">#Checking it</span></span>
-<span id="cb141-8"><a href="data-manipulation.html#cb141-8" tabindex="-1"></a><span class="fu">head</span>(d1)</span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="data-manipulation.html#cb138-1" tabindex="-1"></a><span class="co">#arranging in descending order </span></span>
+<span id="cb138-2"><a href="data-manipulation.html#cb138-2" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span></span>
+<span id="cb138-3"><a href="data-manipulation.html#cb138-3" tabindex="-1"></a>  <span class="fu">filter</span>(agea <span class="sc">&lt;</span> <span class="dv">40</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb138-4"><a href="data-manipulation.html#cb138-4" tabindex="-1"></a>  <span class="fu">select</span>(year, cntry, happy, agea, gndr, eisced) <span class="sc">%&gt;%</span> </span>
+<span id="cb138-5"><a href="data-manipulation.html#cb138-5" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(agea))</span>
+<span id="cb138-6"><a href="data-manipulation.html#cb138-6" tabindex="-1"></a></span>
+<span id="cb138-7"><a href="data-manipulation.html#cb138-7" tabindex="-1"></a><span class="co">#Checking it</span></span>
+<span id="cb138-8"><a href="data-manipulation.html#cb138-8" tabindex="-1"></a><span class="fu">head</span>(d1)</span></code></pre></div>
 <pre><code>##   year cntry happy agea gndr eisced
 ## 1 2020    BE     8   39    2      3
 ## 2 2020    BE     1   39    1      2
@@ -830,18 +863,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Rename() follows a simple logic, you call the function and write down the new name, thus the name you want to assign, then you put an equal sign, and put in the old name, thus the current name of the column.</li>
 </ul>
 <p>Note: If you have a variable, which is binary, thus has two discrete categories, you name it after the category which corresponds to the higher value. If male is 0 and female is 1, you name it after the higher category 1, therefore the variable is named female.</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="data-manipulation.html#cb143-1" tabindex="-1"></a><span class="co">#Renaming variables</span></span>
-<span id="cb143-2"><a href="data-manipulation.html#cb143-2" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span></span>
-<span id="cb143-3"><a href="data-manipulation.html#cb143-3" tabindex="-1"></a>  <span class="fu">filter</span>(agea <span class="sc">&lt;</span> <span class="dv">40</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb143-4"><a href="data-manipulation.html#cb143-4" tabindex="-1"></a>  <span class="fu">select</span>(year, cntry, happy, agea, gndr, eisced) <span class="sc">%&gt;%</span> </span>
-<span id="cb143-5"><a href="data-manipulation.html#cb143-5" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(agea)) <span class="sc">%&gt;%</span></span>
-<span id="cb143-6"><a href="data-manipulation.html#cb143-6" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">county =</span> cntry, </span>
-<span id="cb143-7"><a href="data-manipulation.html#cb143-7" tabindex="-1"></a>         <span class="at">age =</span> agea, </span>
-<span id="cb143-8"><a href="data-manipulation.html#cb143-8" tabindex="-1"></a>         <span class="at">education =</span> eisced, </span>
-<span id="cb143-9"><a href="data-manipulation.html#cb143-9" tabindex="-1"></a>         <span class="at">female =</span> gndr) </span>
-<span id="cb143-10"><a href="data-manipulation.html#cb143-10" tabindex="-1"></a></span>
-<span id="cb143-11"><a href="data-manipulation.html#cb143-11" tabindex="-1"></a><span class="co">#Checking it</span></span>
-<span id="cb143-12"><a href="data-manipulation.html#cb143-12" tabindex="-1"></a><span class="fu">head</span>(d1)</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="data-manipulation.html#cb140-1" tabindex="-1"></a><span class="co">#Renaming variables</span></span>
+<span id="cb140-2"><a href="data-manipulation.html#cb140-2" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span></span>
+<span id="cb140-3"><a href="data-manipulation.html#cb140-3" tabindex="-1"></a>  <span class="fu">filter</span>(agea <span class="sc">&lt;</span> <span class="dv">40</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb140-4"><a href="data-manipulation.html#cb140-4" tabindex="-1"></a>  <span class="fu">select</span>(year, cntry, happy, agea, gndr, eisced) <span class="sc">%&gt;%</span> </span>
+<span id="cb140-5"><a href="data-manipulation.html#cb140-5" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(agea)) <span class="sc">%&gt;%</span></span>
+<span id="cb140-6"><a href="data-manipulation.html#cb140-6" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">county =</span> cntry, </span>
+<span id="cb140-7"><a href="data-manipulation.html#cb140-7" tabindex="-1"></a>         <span class="at">age =</span> agea, </span>
+<span id="cb140-8"><a href="data-manipulation.html#cb140-8" tabindex="-1"></a>         <span class="at">education =</span> eisced, </span>
+<span id="cb140-9"><a href="data-manipulation.html#cb140-9" tabindex="-1"></a>         <span class="at">female =</span> gndr) </span>
+<span id="cb140-10"><a href="data-manipulation.html#cb140-10" tabindex="-1"></a></span>
+<span id="cb140-11"><a href="data-manipulation.html#cb140-11" tabindex="-1"></a><span class="co">#Checking it</span></span>
+<span id="cb140-12"><a href="data-manipulation.html#cb140-12" tabindex="-1"></a><span class="fu">head</span>(d1)</span></code></pre></div>
 <pre><code>##   year county happy age female education
 ## 1 2020     BE     8  39      2         3
 ## 2 2020     BE     1  39      1         2
@@ -856,19 +889,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>You call relocate and determine the order of the columns.</p></li>
 <li><p>You can also rearrange single columns, you call the name of the column, which you want to rarrange. and then you either call .before and a column or .after and a column. And the column you want to rearrange is placed before or after the column you want to place. You separate both arguments with a comma.</p></li>
 </ul>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="data-manipulation.html#cb145-1" tabindex="-1"></a><span class="co">#relocating variables</span></span>
-<span id="cb145-2"><a href="data-manipulation.html#cb145-2" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span></span>
-<span id="cb145-3"><a href="data-manipulation.html#cb145-3" tabindex="-1"></a>  <span class="fu">filter</span>(agea <span class="sc">&lt;</span> <span class="dv">40</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb145-4"><a href="data-manipulation.html#cb145-4" tabindex="-1"></a>  <span class="fu">select</span>(year, cntry, happy, agea, gndr, eisced) <span class="sc">%&gt;%</span> </span>
-<span id="cb145-5"><a href="data-manipulation.html#cb145-5" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(agea)) <span class="sc">%&gt;%</span></span>
-<span id="cb145-6"><a href="data-manipulation.html#cb145-6" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">country =</span> cntry, </span>
-<span id="cb145-7"><a href="data-manipulation.html#cb145-7" tabindex="-1"></a>         <span class="at">age =</span> agea, </span>
-<span id="cb145-8"><a href="data-manipulation.html#cb145-8" tabindex="-1"></a>         <span class="at">education =</span> eisced, </span>
-<span id="cb145-9"><a href="data-manipulation.html#cb145-9" tabindex="-1"></a>         <span class="at">female =</span> gndr) <span class="sc">%&gt;%</span> </span>
-<span id="cb145-10"><a href="data-manipulation.html#cb145-10" tabindex="-1"></a>  <span class="fu">relocate</span>(education, age, female, country, happy, year) <span class="co">#determine the order</span></span>
-<span id="cb145-11"><a href="data-manipulation.html#cb145-11" tabindex="-1"></a></span>
-<span id="cb145-12"><a href="data-manipulation.html#cb145-12" tabindex="-1"></a><span class="co">#Checking it</span></span>
-<span id="cb145-13"><a href="data-manipulation.html#cb145-13" tabindex="-1"></a><span class="fu">head</span>(d1)</span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="data-manipulation.html#cb142-1" tabindex="-1"></a><span class="co">#relocating variables</span></span>
+<span id="cb142-2"><a href="data-manipulation.html#cb142-2" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span></span>
+<span id="cb142-3"><a href="data-manipulation.html#cb142-3" tabindex="-1"></a>  <span class="fu">filter</span>(agea <span class="sc">&lt;</span> <span class="dv">40</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb142-4"><a href="data-manipulation.html#cb142-4" tabindex="-1"></a>  <span class="fu">select</span>(year, cntry, happy, agea, gndr, eisced) <span class="sc">%&gt;%</span> </span>
+<span id="cb142-5"><a href="data-manipulation.html#cb142-5" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(agea)) <span class="sc">%&gt;%</span></span>
+<span id="cb142-6"><a href="data-manipulation.html#cb142-6" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">country =</span> cntry, </span>
+<span id="cb142-7"><a href="data-manipulation.html#cb142-7" tabindex="-1"></a>         <span class="at">age =</span> agea, </span>
+<span id="cb142-8"><a href="data-manipulation.html#cb142-8" tabindex="-1"></a>         <span class="at">education =</span> eisced, </span>
+<span id="cb142-9"><a href="data-manipulation.html#cb142-9" tabindex="-1"></a>         <span class="at">female =</span> gndr) <span class="sc">%&gt;%</span> </span>
+<span id="cb142-10"><a href="data-manipulation.html#cb142-10" tabindex="-1"></a>  <span class="fu">relocate</span>(education, age, female, country, happy, year) <span class="co">#determine the order</span></span>
+<span id="cb142-11"><a href="data-manipulation.html#cb142-11" tabindex="-1"></a></span>
+<span id="cb142-12"><a href="data-manipulation.html#cb142-12" tabindex="-1"></a><span class="co">#Checking it</span></span>
+<span id="cb142-13"><a href="data-manipulation.html#cb142-13" tabindex="-1"></a><span class="fu">head</span>(d1)</span></code></pre></div>
 <pre><code>##   education age female country happy year
 ## 1         3  39      2      BE     8 2020
 ## 2         2  39      1      BE     1 2020
@@ -876,19 +909,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4         3  39      1      BE     2 2020
 ## 5         7  39      2      BE     6 2020
 ## 6         1  39      1      BE     3 2020</code></pre>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="data-manipulation.html#cb147-1" tabindex="-1"></a><span class="co">#relocate after </span></span>
-<span id="cb147-2"><a href="data-manipulation.html#cb147-2" tabindex="-1"></a>d2 <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span></span>
-<span id="cb147-3"><a href="data-manipulation.html#cb147-3" tabindex="-1"></a>  <span class="fu">filter</span>(agea <span class="sc">&lt;</span> <span class="dv">40</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb147-4"><a href="data-manipulation.html#cb147-4" tabindex="-1"></a>  <span class="fu">select</span>(year, cntry, happy, agea, gndr, eisced) <span class="sc">%&gt;%</span> </span>
-<span id="cb147-5"><a href="data-manipulation.html#cb147-5" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(agea)) <span class="sc">%&gt;%</span></span>
-<span id="cb147-6"><a href="data-manipulation.html#cb147-6" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">country =</span> cntry, </span>
-<span id="cb147-7"><a href="data-manipulation.html#cb147-7" tabindex="-1"></a>         <span class="at">age =</span> agea, </span>
-<span id="cb147-8"><a href="data-manipulation.html#cb147-8" tabindex="-1"></a>         <span class="at">education =</span> eisced, </span>
-<span id="cb147-9"><a href="data-manipulation.html#cb147-9" tabindex="-1"></a>         <span class="at">female =</span> gndr) <span class="sc">%&gt;%</span></span>
-<span id="cb147-10"><a href="data-manipulation.html#cb147-10" tabindex="-1"></a>  <span class="fu">relocate</span>(country, <span class="at">.after =</span> age) </span>
-<span id="cb147-11"><a href="data-manipulation.html#cb147-11" tabindex="-1"></a></span>
-<span id="cb147-12"><a href="data-manipulation.html#cb147-12" tabindex="-1"></a><span class="co">#Checking it</span></span>
-<span id="cb147-13"><a href="data-manipulation.html#cb147-13" tabindex="-1"></a><span class="fu">head</span>(d2)</span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="data-manipulation.html#cb144-1" tabindex="-1"></a><span class="co">#relocate after </span></span>
+<span id="cb144-2"><a href="data-manipulation.html#cb144-2" tabindex="-1"></a>d2 <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span></span>
+<span id="cb144-3"><a href="data-manipulation.html#cb144-3" tabindex="-1"></a>  <span class="fu">filter</span>(agea <span class="sc">&lt;</span> <span class="dv">40</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb144-4"><a href="data-manipulation.html#cb144-4" tabindex="-1"></a>  <span class="fu">select</span>(year, cntry, happy, agea, gndr, eisced) <span class="sc">%&gt;%</span> </span>
+<span id="cb144-5"><a href="data-manipulation.html#cb144-5" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(agea)) <span class="sc">%&gt;%</span></span>
+<span id="cb144-6"><a href="data-manipulation.html#cb144-6" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">country =</span> cntry, </span>
+<span id="cb144-7"><a href="data-manipulation.html#cb144-7" tabindex="-1"></a>         <span class="at">age =</span> agea, </span>
+<span id="cb144-8"><a href="data-manipulation.html#cb144-8" tabindex="-1"></a>         <span class="at">education =</span> eisced, </span>
+<span id="cb144-9"><a href="data-manipulation.html#cb144-9" tabindex="-1"></a>         <span class="at">female =</span> gndr) <span class="sc">%&gt;%</span></span>
+<span id="cb144-10"><a href="data-manipulation.html#cb144-10" tabindex="-1"></a>  <span class="fu">relocate</span>(country, <span class="at">.after =</span> age) </span>
+<span id="cb144-11"><a href="data-manipulation.html#cb144-11" tabindex="-1"></a></span>
+<span id="cb144-12"><a href="data-manipulation.html#cb144-12" tabindex="-1"></a><span class="co">#Checking it</span></span>
+<span id="cb144-13"><a href="data-manipulation.html#cb144-13" tabindex="-1"></a><span class="fu">head</span>(d2)</span></code></pre></div>
 <pre><code>##   year happy age country female education
 ## 1 2020     8  39      BE      2         3
 ## 2 2020     1  39      BE      1         2
@@ -896,19 +929,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 2020     2  39      BE      1         3
 ## 5 2020     6  39      BE      2         7
 ## 6 2020     3  39      BE      1         1</code></pre>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="data-manipulation.html#cb149-1" tabindex="-1"></a><span class="co">#relocating before </span></span>
-<span id="cb149-2"><a href="data-manipulation.html#cb149-2" tabindex="-1"></a>d3 <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span></span>
-<span id="cb149-3"><a href="data-manipulation.html#cb149-3" tabindex="-1"></a>  <span class="fu">filter</span>(agea <span class="sc">&lt;</span> <span class="dv">40</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb149-4"><a href="data-manipulation.html#cb149-4" tabindex="-1"></a>  <span class="fu">select</span>(year, cntry, happy, agea, gndr, eisced) <span class="sc">%&gt;%</span> </span>
-<span id="cb149-5"><a href="data-manipulation.html#cb149-5" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(agea)) <span class="sc">%&gt;%</span></span>
-<span id="cb149-6"><a href="data-manipulation.html#cb149-6" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">country =</span> cntry, </span>
-<span id="cb149-7"><a href="data-manipulation.html#cb149-7" tabindex="-1"></a>         <span class="at">age =</span> agea, </span>
-<span id="cb149-8"><a href="data-manipulation.html#cb149-8" tabindex="-1"></a>         <span class="at">education =</span> eisced, </span>
-<span id="cb149-9"><a href="data-manipulation.html#cb149-9" tabindex="-1"></a>         <span class="at">female =</span> gndr) <span class="sc">%&gt;%</span></span>
-<span id="cb149-10"><a href="data-manipulation.html#cb149-10" tabindex="-1"></a>  <span class="fu">relocate</span>(country, <span class="at">.before =</span> age) </span>
-<span id="cb149-11"><a href="data-manipulation.html#cb149-11" tabindex="-1"></a></span>
-<span id="cb149-12"><a href="data-manipulation.html#cb149-12" tabindex="-1"></a><span class="co">#Checking it</span></span>
-<span id="cb149-13"><a href="data-manipulation.html#cb149-13" tabindex="-1"></a><span class="fu">head</span>(d3)</span></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="data-manipulation.html#cb146-1" tabindex="-1"></a><span class="co">#relocating before </span></span>
+<span id="cb146-2"><a href="data-manipulation.html#cb146-2" tabindex="-1"></a>d3 <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span></span>
+<span id="cb146-3"><a href="data-manipulation.html#cb146-3" tabindex="-1"></a>  <span class="fu">filter</span>(agea <span class="sc">&lt;</span> <span class="dv">40</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb146-4"><a href="data-manipulation.html#cb146-4" tabindex="-1"></a>  <span class="fu">select</span>(year, cntry, happy, agea, gndr, eisced) <span class="sc">%&gt;%</span> </span>
+<span id="cb146-5"><a href="data-manipulation.html#cb146-5" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(agea)) <span class="sc">%&gt;%</span></span>
+<span id="cb146-6"><a href="data-manipulation.html#cb146-6" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">country =</span> cntry, </span>
+<span id="cb146-7"><a href="data-manipulation.html#cb146-7" tabindex="-1"></a>         <span class="at">age =</span> agea, </span>
+<span id="cb146-8"><a href="data-manipulation.html#cb146-8" tabindex="-1"></a>         <span class="at">education =</span> eisced, </span>
+<span id="cb146-9"><a href="data-manipulation.html#cb146-9" tabindex="-1"></a>         <span class="at">female =</span> gndr) <span class="sc">%&gt;%</span></span>
+<span id="cb146-10"><a href="data-manipulation.html#cb146-10" tabindex="-1"></a>  <span class="fu">relocate</span>(country, <span class="at">.before =</span> age) </span>
+<span id="cb146-11"><a href="data-manipulation.html#cb146-11" tabindex="-1"></a></span>
+<span id="cb146-12"><a href="data-manipulation.html#cb146-12" tabindex="-1"></a><span class="co">#Checking it</span></span>
+<span id="cb146-13"><a href="data-manipulation.html#cb146-13" tabindex="-1"></a><span class="fu">head</span>(d3)</span></code></pre></div>
 <pre><code>##   year happy country age female education
 ## 1 2020     8      BE  39      2         3
 ## 2 2020     1      BE  39      1         2
@@ -925,27 +958,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>You call mutate() and first you define the name of a new column with a name that is not existent in your dataset. You could also use the name of an existing column, but be careful! Then the new values are overwriting the old ones and we do not want that necessarily, therefore I recommend to always define new columns.</p></li>
 <li><p>After defining the new name you put an equal sign after it and define the calculation. In our case we just multiply happy, so all values in the happy column by 10</p></li>
 </ul>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="data-manipulation.html#cb151-1" tabindex="-1"></a><span class="co">#mutating variables</span></span>
-<span id="cb151-2"><a href="data-manipulation.html#cb151-2" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span></span>
-<span id="cb151-3"><a href="data-manipulation.html#cb151-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">happy_10 =</span> happy<span class="sc">*</span><span class="dv">10</span>) </span>
-<span id="cb151-4"><a href="data-manipulation.html#cb151-4" tabindex="-1"></a></span>
-<span id="cb151-5"><a href="data-manipulation.html#cb151-5" tabindex="-1"></a><span class="co">#checking it</span></span>
-<span id="cb151-6"><a href="data-manipulation.html#cb151-6" tabindex="-1"></a><span class="fu">head</span>(d1)</span></code></pre></div>
-<pre><code>##   idnt year cntry agea gndr happy eisced netusoft trstprl lrscale happy_10
-## 1    1 2020    BE   45    1     1      6        2       2       3       10
-## 2    2 2020    BE   65    1     3      5        4       3       6       30
-## 3    3 2020    BE   28    2     3      4        5       4       7       30
-## 4    4 2020    BE   81    1     1      7        3       2       6       10
-## 5    5 2020    BE   56    2     4      7        5       6       4       40
-## 6    6 2020    BE   64    1     3      5        4       6      10       30</code></pre>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="data-manipulation.html#cb153-1" tabindex="-1"></a><span class="co">#mutating variables</span></span>
-<span id="cb153-2"><a href="data-manipulation.html#cb153-2" tabindex="-1"></a>d2 <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span> </span>
-<span id="cb153-3"><a href="data-manipulation.html#cb153-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">new_variable =</span> happy<span class="sc">*</span><span class="dv">10</span><span class="sc">/</span>eisced<span class="sc">+</span><span class="dv">67</span>, </span>
-<span id="cb153-4"><a href="data-manipulation.html#cb153-4" tabindex="-1"></a>         <span class="at">female_char =</span> <span class="fu">as.character</span>(gndr)) <span class="sc">%&gt;%</span> </span>
-<span id="cb153-5"><a href="data-manipulation.html#cb153-5" tabindex="-1"></a>  <span class="fu">select</span>(female_char, new_variable)</span>
-<span id="cb153-6"><a href="data-manipulation.html#cb153-6" tabindex="-1"></a></span>
-<span id="cb153-7"><a href="data-manipulation.html#cb153-7" tabindex="-1"></a><span class="co">#checking it</span></span>
-<span id="cb153-8"><a href="data-manipulation.html#cb153-8" tabindex="-1"></a><span class="fu">head</span>(d2)</span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="data-manipulation.html#cb148-1" tabindex="-1"></a><span class="co">#mutating variables</span></span>
+<span id="cb148-2"><a href="data-manipulation.html#cb148-2" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span></span>
+<span id="cb148-3"><a href="data-manipulation.html#cb148-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">happy_10 =</span> happy<span class="sc">*</span><span class="dv">10</span>) </span>
+<span id="cb148-4"><a href="data-manipulation.html#cb148-4" tabindex="-1"></a></span>
+<span id="cb148-5"><a href="data-manipulation.html#cb148-5" tabindex="-1"></a><span class="co">#checking it</span></span>
+<span id="cb148-6"><a href="data-manipulation.html#cb148-6" tabindex="-1"></a><span class="fu">head</span>(d1)</span></code></pre></div>
+<pre><code>##   idnt year cntry agea gndr happy eisced netusoft
+## 1    1 2020    BE   45    1     1      6        2
+## 2    2 2020    BE   65    1     3      5        4
+## 3    3 2020    BE   28    2     3      4        5
+## 4    4 2020    BE   81    1     1      7        3
+## 5    5 2020    BE   56    2     4      7        5
+## 6    6 2020    BE   64    1     3      5        4
+##   trstprl lrscale happy_10
+## 1       2       3       10
+## 2       3       6       30
+## 3       4       7       30
+## 4       2       6       10
+## 5       6       4       40
+## 6       6      10       30</code></pre>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="data-manipulation.html#cb150-1" tabindex="-1"></a><span class="co">#mutating variables</span></span>
+<span id="cb150-2"><a href="data-manipulation.html#cb150-2" tabindex="-1"></a>d2 <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span> </span>
+<span id="cb150-3"><a href="data-manipulation.html#cb150-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">new_variable =</span> happy<span class="sc">*</span><span class="dv">10</span><span class="sc">/</span>eisced<span class="sc">+</span><span class="dv">67</span>, </span>
+<span id="cb150-4"><a href="data-manipulation.html#cb150-4" tabindex="-1"></a>         <span class="at">female_char =</span> <span class="fu">as.character</span>(gndr)) <span class="sc">%&gt;%</span> </span>
+<span id="cb150-5"><a href="data-manipulation.html#cb150-5" tabindex="-1"></a>  <span class="fu">select</span>(female_char, new_variable)</span>
+<span id="cb150-6"><a href="data-manipulation.html#cb150-6" tabindex="-1"></a></span>
+<span id="cb150-7"><a href="data-manipulation.html#cb150-7" tabindex="-1"></a><span class="co">#checking it</span></span>
+<span id="cb150-8"><a href="data-manipulation.html#cb150-8" tabindex="-1"></a><span class="fu">head</span>(d2)</span></code></pre></div>
 <pre><code>##   female_char new_variable
 ## 1           1     68.66667
 ## 2           1     73.00000
@@ -958,14 +998,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>The variable new_variable is just a random mathematical operation including two variables.</p></li>
 <li><p>The second call in mutate() changes the class of the gndr variable to a character and saves it as such in the dataset.</p></li>
 </ul>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="data-manipulation.html#cb155-1" tabindex="-1"></a><span class="co">#more mutating</span></span>
-<span id="cb155-2"><a href="data-manipulation.html#cb155-2" tabindex="-1"></a>d2 <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span> </span>
-<span id="cb155-3"><a href="data-manipulation.html#cb155-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">new_variable =</span> happy<span class="sc">*</span><span class="dv">10</span><span class="sc">/</span>eisced<span class="sc">+</span><span class="dv">67</span>, </span>
-<span id="cb155-4"><a href="data-manipulation.html#cb155-4" tabindex="-1"></a>         <span class="at">female_char =</span> <span class="fu">as.character</span>(gndr)) <span class="sc">%&gt;%</span> </span>
-<span id="cb155-5"><a href="data-manipulation.html#cb155-5" tabindex="-1"></a>  <span class="fu">select</span>(female_char, new_variable)</span>
-<span id="cb155-6"><a href="data-manipulation.html#cb155-6" tabindex="-1"></a></span>
-<span id="cb155-7"><a href="data-manipulation.html#cb155-7" tabindex="-1"></a><span class="co">#Checking it</span></span>
-<span id="cb155-8"><a href="data-manipulation.html#cb155-8" tabindex="-1"></a><span class="fu">head</span>(d2)</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="data-manipulation.html#cb152-1" tabindex="-1"></a><span class="co">#more mutating</span></span>
+<span id="cb152-2"><a href="data-manipulation.html#cb152-2" tabindex="-1"></a>d2 <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span> </span>
+<span id="cb152-3"><a href="data-manipulation.html#cb152-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">new_variable =</span> happy<span class="sc">*</span><span class="dv">10</span><span class="sc">/</span>eisced<span class="sc">+</span><span class="dv">67</span>, </span>
+<span id="cb152-4"><a href="data-manipulation.html#cb152-4" tabindex="-1"></a>         <span class="at">female_char =</span> <span class="fu">as.character</span>(gndr)) <span class="sc">%&gt;%</span> </span>
+<span id="cb152-5"><a href="data-manipulation.html#cb152-5" tabindex="-1"></a>  <span class="fu">select</span>(female_char, new_variable)</span>
+<span id="cb152-6"><a href="data-manipulation.html#cb152-6" tabindex="-1"></a></span>
+<span id="cb152-7"><a href="data-manipulation.html#cb152-7" tabindex="-1"></a><span class="co">#Checking it</span></span>
+<span id="cb152-8"><a href="data-manipulation.html#cb152-8" tabindex="-1"></a><span class="fu">head</span>(d2)</span></code></pre></div>
 <pre><code>##   female_char new_variable
 ## 1           1     68.66667
 ## 2           1     73.00000
@@ -985,43 +1025,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>We put call the category we want to transform in these brackets <code>``</code>. We put an equal sign after it and define the new value we want to assign to the category.</p></li>
 </ul>
 <p><em>Note: We can assign different values, do not worry about the “NA_real_” value I will come back to that later</em></p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="data-manipulation.html#cb157-1" tabindex="-1"></a><span class="co">#Get an overview of the variable</span></span>
-<span id="cb157-2"><a href="data-manipulation.html#cb157-2" tabindex="-1"></a><span class="fu">table</span>(ess<span class="sc">$</span>happy)</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="data-manipulation.html#cb154-1" tabindex="-1"></a><span class="co">#Get an overview of the variable</span></span>
+<span id="cb154-2"><a href="data-manipulation.html#cb154-2" tabindex="-1"></a><span class="fu">table</span>(ess<span class="sc">$</span>happy)</span></code></pre></div>
 <pre><code>## 
 ##   1   2   3   4   5   6   7   8   9  10  77  88  99 
 ## 849 918 888 897 888 852 883 877 908 895  49  46  50</code></pre>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="data-manipulation.html#cb159-1" tabindex="-1"></a><span class="co">#recoding variables</span></span>
-<span id="cb159-2"><a href="data-manipulation.html#cb159-2" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span> </span>
-<span id="cb159-3"><a href="data-manipulation.html#cb159-3" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb159-4"><a href="data-manipulation.html#cb159-4" tabindex="-1"></a>    <span class="at">gndr_fac =</span> <span class="fu">as.factor</span>(gndr), <span class="co">#always check the class</span></span>
-<span id="cb159-5"><a href="data-manipulation.html#cb159-5" tabindex="-1"></a>    <span class="at">happy_cat =</span> dplyr<span class="sc">::</span><span class="fu">recode</span>(happy,</span>
-<span id="cb159-6"><a href="data-manipulation.html#cb159-6" tabindex="-1"></a>                    <span class="st">`</span><span class="at">1</span><span class="st">`</span> <span class="ot">=</span> <span class="dv">0</span>,</span>
-<span id="cb159-7"><a href="data-manipulation.html#cb159-7" tabindex="-1"></a>                    <span class="st">`</span><span class="at">2</span><span class="st">`</span> <span class="ot">=</span> <span class="dv">0</span>,</span>
-<span id="cb159-8"><a href="data-manipulation.html#cb159-8" tabindex="-1"></a>                    <span class="st">`</span><span class="at">3</span><span class="st">`</span> <span class="ot">=</span> <span class="dv">0</span>,</span>
-<span id="cb159-9"><a href="data-manipulation.html#cb159-9" tabindex="-1"></a>                    <span class="st">`</span><span class="at">4</span><span class="st">`</span> <span class="ot">=</span> <span class="dv">0</span>,</span>
-<span id="cb159-10"><a href="data-manipulation.html#cb159-10" tabindex="-1"></a>                    <span class="st">`</span><span class="at">5</span><span class="st">`</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
-<span id="cb159-11"><a href="data-manipulation.html#cb159-11" tabindex="-1"></a>                    <span class="st">`</span><span class="at">6</span><span class="st">`</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
-<span id="cb159-12"><a href="data-manipulation.html#cb159-12" tabindex="-1"></a>                    <span class="st">`</span><span class="at">7</span><span class="st">`</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
-<span id="cb159-13"><a href="data-manipulation.html#cb159-13" tabindex="-1"></a>                    <span class="st">`</span><span class="at">8</span><span class="st">`</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
-<span id="cb159-14"><a href="data-manipulation.html#cb159-14" tabindex="-1"></a>                    <span class="st">`</span><span class="at">9</span><span class="st">`</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
-<span id="cb159-15"><a href="data-manipulation.html#cb159-15" tabindex="-1"></a>                   <span class="st">`</span><span class="at">10</span><span class="st">`</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
-<span id="cb159-16"><a href="data-manipulation.html#cb159-16" tabindex="-1"></a>                   <span class="st">`</span><span class="at">77</span><span class="st">`</span> <span class="ot">=</span> <span class="cn">NA_real_</span>, </span>
-<span id="cb159-17"><a href="data-manipulation.html#cb159-17" tabindex="-1"></a>                   <span class="st">`</span><span class="at">88</span><span class="st">`</span> <span class="ot">=</span> <span class="cn">NA_real_</span>,</span>
-<span id="cb159-18"><a href="data-manipulation.html#cb159-18" tabindex="-1"></a>                   <span class="st">`</span><span class="at">99</span><span class="st">`</span> <span class="ot">=</span> <span class="cn">NA_real_</span>),</span>
-<span id="cb159-19"><a href="data-manipulation.html#cb159-19" tabindex="-1"></a>    <span class="at">female =</span> dplyr<span class="sc">::</span><span class="fu">recode</span>(gndr_fac, </span>
-<span id="cb159-20"><a href="data-manipulation.html#cb159-20" tabindex="-1"></a>                    <span class="st">`</span><span class="at">1</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;Male&quot;</span>, </span>
-<span id="cb159-21"><a href="data-manipulation.html#cb159-21" tabindex="-1"></a>                    <span class="st">`</span><span class="at">2</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;Female&quot;</span>))</span>
-<span id="cb159-22"><a href="data-manipulation.html#cb159-22" tabindex="-1"></a></span>
-<span id="cb159-23"><a href="data-manipulation.html#cb159-23" tabindex="-1"></a><span class="co">#Let us check how it worked out </span></span>
-<span id="cb159-24"><a href="data-manipulation.html#cb159-24" tabindex="-1"></a><span class="fu">table</span>(d1<span class="sc">$</span>happy)</span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="data-manipulation.html#cb156-1" tabindex="-1"></a><span class="co">#recoding variables</span></span>
+<span id="cb156-2"><a href="data-manipulation.html#cb156-2" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span> </span>
+<span id="cb156-3"><a href="data-manipulation.html#cb156-3" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb156-4"><a href="data-manipulation.html#cb156-4" tabindex="-1"></a>    <span class="at">gndr_fac =</span> <span class="fu">as.factor</span>(gndr), <span class="co">#always check the class</span></span>
+<span id="cb156-5"><a href="data-manipulation.html#cb156-5" tabindex="-1"></a>    <span class="at">happy_cat =</span> dplyr<span class="sc">::</span><span class="fu">recode</span>(happy,</span>
+<span id="cb156-6"><a href="data-manipulation.html#cb156-6" tabindex="-1"></a>                    <span class="st">`</span><span class="at">1</span><span class="st">`</span> <span class="ot">=</span> <span class="dv">0</span>,</span>
+<span id="cb156-7"><a href="data-manipulation.html#cb156-7" tabindex="-1"></a>                    <span class="st">`</span><span class="at">2</span><span class="st">`</span> <span class="ot">=</span> <span class="dv">0</span>,</span>
+<span id="cb156-8"><a href="data-manipulation.html#cb156-8" tabindex="-1"></a>                    <span class="st">`</span><span class="at">3</span><span class="st">`</span> <span class="ot">=</span> <span class="dv">0</span>,</span>
+<span id="cb156-9"><a href="data-manipulation.html#cb156-9" tabindex="-1"></a>                    <span class="st">`</span><span class="at">4</span><span class="st">`</span> <span class="ot">=</span> <span class="dv">0</span>,</span>
+<span id="cb156-10"><a href="data-manipulation.html#cb156-10" tabindex="-1"></a>                    <span class="st">`</span><span class="at">5</span><span class="st">`</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
+<span id="cb156-11"><a href="data-manipulation.html#cb156-11" tabindex="-1"></a>                    <span class="st">`</span><span class="at">6</span><span class="st">`</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
+<span id="cb156-12"><a href="data-manipulation.html#cb156-12" tabindex="-1"></a>                    <span class="st">`</span><span class="at">7</span><span class="st">`</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
+<span id="cb156-13"><a href="data-manipulation.html#cb156-13" tabindex="-1"></a>                    <span class="st">`</span><span class="at">8</span><span class="st">`</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
+<span id="cb156-14"><a href="data-manipulation.html#cb156-14" tabindex="-1"></a>                    <span class="st">`</span><span class="at">9</span><span class="st">`</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
+<span id="cb156-15"><a href="data-manipulation.html#cb156-15" tabindex="-1"></a>                   <span class="st">`</span><span class="at">10</span><span class="st">`</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
+<span id="cb156-16"><a href="data-manipulation.html#cb156-16" tabindex="-1"></a>                   <span class="st">`</span><span class="at">77</span><span class="st">`</span> <span class="ot">=</span> <span class="cn">NA_real_</span>, </span>
+<span id="cb156-17"><a href="data-manipulation.html#cb156-17" tabindex="-1"></a>                   <span class="st">`</span><span class="at">88</span><span class="st">`</span> <span class="ot">=</span> <span class="cn">NA_real_</span>,</span>
+<span id="cb156-18"><a href="data-manipulation.html#cb156-18" tabindex="-1"></a>                   <span class="st">`</span><span class="at">99</span><span class="st">`</span> <span class="ot">=</span> <span class="cn">NA_real_</span>),</span>
+<span id="cb156-19"><a href="data-manipulation.html#cb156-19" tabindex="-1"></a>    <span class="at">female =</span> dplyr<span class="sc">::</span><span class="fu">recode</span>(gndr_fac, </span>
+<span id="cb156-20"><a href="data-manipulation.html#cb156-20" tabindex="-1"></a>                    <span class="st">`</span><span class="at">1</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;Male&quot;</span>, </span>
+<span id="cb156-21"><a href="data-manipulation.html#cb156-21" tabindex="-1"></a>                    <span class="st">`</span><span class="at">2</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;Female&quot;</span>))</span>
+<span id="cb156-22"><a href="data-manipulation.html#cb156-22" tabindex="-1"></a></span>
+<span id="cb156-23"><a href="data-manipulation.html#cb156-23" tabindex="-1"></a><span class="co">#Let us check how it worked out </span></span>
+<span id="cb156-24"><a href="data-manipulation.html#cb156-24" tabindex="-1"></a><span class="fu">table</span>(d1<span class="sc">$</span>happy)</span></code></pre></div>
 <pre><code>## 
 ##   1   2   3   4   5   6   7   8   9  10  77  88  99 
 ## 849 918 888 897 888 852 883 877 908 895  49  46  50</code></pre>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="data-manipulation.html#cb161-1" tabindex="-1"></a><span class="fu">table</span>(d1<span class="sc">$</span>happy_cat)</span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="data-manipulation.html#cb158-1" tabindex="-1"></a><span class="fu">table</span>(d1<span class="sc">$</span>happy_cat)</span></code></pre></div>
 <pre><code>## 
 ##    0    1    2 
 ## 3552  888 4415</code></pre>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="data-manipulation.html#cb163-1" tabindex="-1"></a><span class="fu">table</span>(d1<span class="sc">$</span>gender)</span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="data-manipulation.html#cb160-1" tabindex="-1"></a><span class="fu">table</span>(d1<span class="sc">$</span>gender)</span></code></pre></div>
 <pre><code>## &lt; table of extent 0 &gt;</code></pre>
 </div>
 <div id="recoding-with-mutate-using-case_when" class="section level4 hasAnchor" number="3.5.5.2">
@@ -1034,24 +1074,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>We call the wave ~ and tell R what value should substitute all values which are TRUE for the logical statement.</p></li>
 </ul>
 <p><em>Note: What is not explicitly stated in the case_when() function will be coded as NA.</em></p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="data-manipulation.html#cb165-1" tabindex="-1"></a><span class="co">#recoding with case_when</span></span>
-<span id="cb165-2"><a href="data-manipulation.html#cb165-2" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span> </span>
-<span id="cb165-3"><a href="data-manipulation.html#cb165-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gndr_fac =</span> <span class="fu">as.factor</span>(gndr),</span>
-<span id="cb165-4"><a href="data-manipulation.html#cb165-4" tabindex="-1"></a>    <span class="at">happy_cat =</span> <span class="fu">case_when</span>(</span>
-<span id="cb165-5"><a href="data-manipulation.html#cb165-5" tabindex="-1"></a>    happy <span class="sc">&lt;</span> <span class="dv">5</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
-<span id="cb165-6"><a href="data-manipulation.html#cb165-6" tabindex="-1"></a>    happy <span class="sc">==</span> <span class="dv">5</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb165-7"><a href="data-manipulation.html#cb165-7" tabindex="-1"></a>    happy <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">~</span> <span class="dv">2</span>),</span>
-<span id="cb165-8"><a href="data-manipulation.html#cb165-8" tabindex="-1"></a>    <span class="at">female =</span> <span class="fu">case_when</span>(</span>
-<span id="cb165-9"><a href="data-manipulation.html#cb165-9" tabindex="-1"></a>    gndr <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;Male&quot;</span>,</span>
-<span id="cb165-10"><a href="data-manipulation.html#cb165-10" tabindex="-1"></a>    gndr <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">&quot;Female&quot;</span></span>
-<span id="cb165-11"><a href="data-manipulation.html#cb165-11" tabindex="-1"></a>    ))</span>
-<span id="cb165-12"><a href="data-manipulation.html#cb165-12" tabindex="-1"></a></span>
-<span id="cb165-13"><a href="data-manipulation.html#cb165-13" tabindex="-1"></a><span class="co">#Checking it</span></span>
-<span id="cb165-14"><a href="data-manipulation.html#cb165-14" tabindex="-1"></a><span class="fu">table</span>(d1<span class="sc">$</span>female)</span></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="data-manipulation.html#cb162-1" tabindex="-1"></a><span class="co">#recoding with case_when</span></span>
+<span id="cb162-2"><a href="data-manipulation.html#cb162-2" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span> </span>
+<span id="cb162-3"><a href="data-manipulation.html#cb162-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gndr_fac =</span> <span class="fu">as.factor</span>(gndr),</span>
+<span id="cb162-4"><a href="data-manipulation.html#cb162-4" tabindex="-1"></a>    <span class="at">happy_cat =</span> <span class="fu">case_when</span>(</span>
+<span id="cb162-5"><a href="data-manipulation.html#cb162-5" tabindex="-1"></a>    happy <span class="sc">&lt;</span> <span class="dv">5</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb162-6"><a href="data-manipulation.html#cb162-6" tabindex="-1"></a>    happy <span class="sc">==</span> <span class="dv">5</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb162-7"><a href="data-manipulation.html#cb162-7" tabindex="-1"></a>    happy <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">~</span> <span class="dv">2</span>),</span>
+<span id="cb162-8"><a href="data-manipulation.html#cb162-8" tabindex="-1"></a>    <span class="at">female =</span> <span class="fu">case_when</span>(</span>
+<span id="cb162-9"><a href="data-manipulation.html#cb162-9" tabindex="-1"></a>    gndr <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;Male&quot;</span>,</span>
+<span id="cb162-10"><a href="data-manipulation.html#cb162-10" tabindex="-1"></a>    gndr <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">&quot;Female&quot;</span></span>
+<span id="cb162-11"><a href="data-manipulation.html#cb162-11" tabindex="-1"></a>    ))</span>
+<span id="cb162-12"><a href="data-manipulation.html#cb162-12" tabindex="-1"></a></span>
+<span id="cb162-13"><a href="data-manipulation.html#cb162-13" tabindex="-1"></a><span class="co">#Checking it</span></span>
+<span id="cb162-14"><a href="data-manipulation.html#cb162-14" tabindex="-1"></a><span class="fu">table</span>(d1<span class="sc">$</span>female)</span></code></pre></div>
 <pre><code>## 
 ## Female   Male 
 ##   4404   4381</code></pre>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="data-manipulation.html#cb167-1" tabindex="-1"></a><span class="fu">table</span>(d1<span class="sc">$</span>happy_cat)</span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="data-manipulation.html#cb164-1" tabindex="-1"></a><span class="fu">table</span>(d1<span class="sc">$</span>happy_cat)</span></code></pre></div>
 <pre><code>## 
 ##    0    1    2 
 ## 3552  888 4560</code></pre>
@@ -1059,68 +1099,74 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="recoding-with-mutate-using-ifelse" class="section level4 hasAnchor" number="3.5.5.3">
 <h4><span class="header-section-number">3.5.5.3</span> Recoding with <code>mutate()</code> using <code>ifelse()</code><a href="data-manipulation.html#recoding-with-mutate-using-ifelse" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Do you remember the <code>ifelse()</code> function? As already mentioned, the <code>case_when()</code> command is a generalized <code>ifelse()</code> function. If you want to keep it old school, we can also recode with the <code>ifelse()</code> function:</p>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="data-manipulation.html#cb169-1" tabindex="-1"></a><span class="co">#recoding with ifelse function</span></span>
-<span id="cb169-2"><a href="data-manipulation.html#cb169-2" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span> </span>
-<span id="cb169-3"><a href="data-manipulation.html#cb169-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gndr_fac =</span> <span class="fu">as.factor</span>(gndr),</span>
-<span id="cb169-4"><a href="data-manipulation.html#cb169-4" tabindex="-1"></a>         <span class="at">happy_cat =</span> <span class="fu">ifelse</span>(happy <span class="sc">&lt;</span> <span class="dv">5</span>, <span class="dv">0</span>, </span>
-<span id="cb169-5"><a href="data-manipulation.html#cb169-5" tabindex="-1"></a>                            <span class="fu">ifelse</span>(happy <span class="sc">==</span> <span class="dv">5</span>, <span class="dv">1</span>, </span>
-<span id="cb169-6"><a href="data-manipulation.html#cb169-6" tabindex="-1"></a>                                   <span class="fu">ifelse</span>(happy <span class="sc">&gt;</span> <span class="dv">5</span>, <span class="dv">2</span>, <span class="cn">NA</span></span>
-<span id="cb169-7"><a href="data-manipulation.html#cb169-7" tabindex="-1"></a>                                          ))),</span>
-<span id="cb169-8"><a href="data-manipulation.html#cb169-8" tabindex="-1"></a>         <span class="at">female =</span> <span class="fu">ifelse</span>(gndr_fac <span class="sc">==</span> <span class="dv">1</span>, <span class="st">&quot;Male&quot;</span>,</span>
-<span id="cb169-9"><a href="data-manipulation.html#cb169-9" tabindex="-1"></a>                         <span class="fu">ifelse</span>(gndr_fac <span class="sc">==</span> <span class="dv">2</span>, <span class="st">&quot;Female&quot;</span>, <span class="cn">NA</span>))</span>
-<span id="cb169-10"><a href="data-manipulation.html#cb169-10" tabindex="-1"></a>  )</span>
-<span id="cb169-11"><a href="data-manipulation.html#cb169-11" tabindex="-1"></a></span>
-<span id="cb169-12"><a href="data-manipulation.html#cb169-12" tabindex="-1"></a><span class="co">#Check it</span></span>
-<span id="cb169-13"><a href="data-manipulation.html#cb169-13" tabindex="-1"></a><span class="fu">table</span>(d1<span class="sc">$</span>happy_cat)</span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="data-manipulation.html#cb166-1" tabindex="-1"></a><span class="co">#recoding with ifelse function</span></span>
+<span id="cb166-2"><a href="data-manipulation.html#cb166-2" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span> </span>
+<span id="cb166-3"><a href="data-manipulation.html#cb166-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gndr_fac =</span> <span class="fu">as.factor</span>(gndr),</span>
+<span id="cb166-4"><a href="data-manipulation.html#cb166-4" tabindex="-1"></a>         <span class="at">happy_cat =</span> <span class="fu">ifelse</span>(happy <span class="sc">&lt;</span> <span class="dv">5</span>, <span class="dv">0</span>, </span>
+<span id="cb166-5"><a href="data-manipulation.html#cb166-5" tabindex="-1"></a>                            <span class="fu">ifelse</span>(happy <span class="sc">==</span> <span class="dv">5</span>, <span class="dv">1</span>, </span>
+<span id="cb166-6"><a href="data-manipulation.html#cb166-6" tabindex="-1"></a>                                   <span class="fu">ifelse</span>(happy <span class="sc">&gt;</span> <span class="dv">5</span>, <span class="dv">2</span>, <span class="cn">NA</span></span>
+<span id="cb166-7"><a href="data-manipulation.html#cb166-7" tabindex="-1"></a>                                          ))),</span>
+<span id="cb166-8"><a href="data-manipulation.html#cb166-8" tabindex="-1"></a>         <span class="at">female =</span> <span class="fu">ifelse</span>(gndr_fac <span class="sc">==</span> <span class="dv">1</span>, <span class="st">&quot;Male&quot;</span>,</span>
+<span id="cb166-9"><a href="data-manipulation.html#cb166-9" tabindex="-1"></a>                         <span class="fu">ifelse</span>(gndr_fac <span class="sc">==</span> <span class="dv">2</span>, <span class="st">&quot;Female&quot;</span>, <span class="cn">NA</span>))</span>
+<span id="cb166-10"><a href="data-manipulation.html#cb166-10" tabindex="-1"></a>  )</span>
+<span id="cb166-11"><a href="data-manipulation.html#cb166-11" tabindex="-1"></a></span>
+<span id="cb166-12"><a href="data-manipulation.html#cb166-12" tabindex="-1"></a><span class="co">#Check it</span></span>
+<span id="cb166-13"><a href="data-manipulation.html#cb166-13" tabindex="-1"></a><span class="fu">table</span>(d1<span class="sc">$</span>happy_cat)</span></code></pre></div>
 <pre><code>## 
 ##    0    1    2 
 ## 3552  888 4560</code></pre>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="data-manipulation.html#cb171-1" tabindex="-1"></a><span class="fu">table</span>(d1<span class="sc">$</span>female)</span></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="data-manipulation.html#cb168-1" tabindex="-1"></a><span class="fu">table</span>(d1<span class="sc">$</span>female)</span></code></pre></div>
 <pre><code>## 
 ## Female   Male 
 ##   4404   4381</code></pre>
 </div>
 <div id="handling-missing-valuesincomplete-data" class="section level4 hasAnchor" number="3.5.5.4">
 <h4><span class="header-section-number">3.5.5.4</span> Handling Missing Values/Incomplete Data<a href="data-manipulation.html#handling-missing-valuesincomplete-data" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>As you saw right now, not all data in a dataset is complete. Of course not, there are several sources, which can lead to incomplete/missing data. Which means we need to deal with it directly. If we look into the codebook, the ESS declares different types of missing values with high numbers: 77 means “Refusal”, so the respondent refused to answer, 88 means “dont know”, and 99 “No answer”. Note that the ESS does so, since some researchers are interested in missing values, and why they happen, so they can investigate it.</p>
+<p>As you saw right now, not all data in a dataset is complete. Of course not, there are several sources, which can lead to incomplete/missing data. Can you think of reasons why?</p>
+<p>In Data Sciences we need to deal with missing values directly. If we look into the codebook, the ESS declares different types of missing values with high numbers: 7(7) means “Refusal”, so the respondent refused to answer, 8(8) means “dont know”, and 9(9) “No answer”.</p>
+<p><em>Note that the ESS does so, since some researchers are interested in missing values, and why they happen, so they can investigate it.</em></p>
 <p>For us, this is a problem, because we cannot run an analysis with missing values. There are two options:</p>
+<ol style="list-style-type: decimal">
+<li>Using statistics to artificially fill them out, this called multiple imputation techniques, but this requires advanced data science knowledge so I do not recommend that for beginners.</li>
+<li>Just delete incomplete observations to have a dataset without missing values</li>
+</ol>
+<p>The ESS assigns values to missing values. First, we have to tell R that we do want those values to be missing values otherwise it biases our analyses. In the following, we have to recode the variables and tell R, that the missing values are declared as such:</p>
 <ul>
-<li><p>Using statistics to artificially fill them out, this called multiple imputation techniques, but this requires advanced data science knowledge so I do not recommend that for beginners.</p></li>
-<li><p>Just delete incomplete observations to have a dataset without missing values</p></li>
+<li>I already showed you how to do so. In the following I will use <code>case_when()</code></li>
 </ul>
 <p>We will do the second one, and I already showed how to recode useless values to NAs so this should be clear by now. Remember, the <code>ifelse()</code> and <code>recode()</code> explicitly need input to turn values into NAs.</p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="data-manipulation.html#cb173-1" tabindex="-1"></a><span class="co">#Creating missing values and showing a mutating workflow</span></span>
-<span id="cb173-2"><a href="data-manipulation.html#cb173-2" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span></span>
-<span id="cb173-3"><a href="data-manipulation.html#cb173-3" tabindex="-1"></a>  <span class="fu">filter</span>(agea <span class="sc">&gt;=</span><span class="dv">40</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb173-4"><a href="data-manipulation.html#cb173-4" tabindex="-1"></a>  <span class="fu">select</span>(year, cntry, netusoft, agea, eisced, gndr, happy) <span class="sc">%&gt;%</span> </span>
-<span id="cb173-5"><a href="data-manipulation.html#cb173-5" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(agea)) <span class="sc">%&gt;%</span> </span>
-<span id="cb173-6"><a href="data-manipulation.html#cb173-6" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
-<span id="cb173-7"><a href="data-manipulation.html#cb173-7" tabindex="-1"></a>    <span class="at">internet_use =</span> netusoft,</span>
-<span id="cb173-8"><a href="data-manipulation.html#cb173-8" tabindex="-1"></a>    <span class="at">age =</span> agea, </span>
-<span id="cb173-9"><a href="data-manipulation.html#cb173-9" tabindex="-1"></a>    <span class="at">education =</span> eisced, </span>
-<span id="cb173-10"><a href="data-manipulation.html#cb173-10" tabindex="-1"></a>    <span class="at">female =</span> gndr) <span class="sc">%&gt;%</span> </span>
-<span id="cb173-11"><a href="data-manipulation.html#cb173-11" tabindex="-1"></a>  <span class="fu">mutate</span>( </span>
-<span id="cb173-12"><a href="data-manipulation.html#cb173-12" tabindex="-1"></a>    <span class="at">internet_use =</span> <span class="fu">case_when</span>( </span>
-<span id="cb173-13"><a href="data-manipulation.html#cb173-13" tabindex="-1"></a>      internet_use <span class="sc">&lt;</span> <span class="dv">5</span> <span class="sc">~</span> <span class="cn">NA_real_</span>, </span>
-<span id="cb173-14"><a href="data-manipulation.html#cb173-14" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> internet_use), </span>
-<span id="cb173-15"><a href="data-manipulation.html#cb173-15" tabindex="-1"></a>    <span class="at">age =</span> <span class="fu">case_when</span>(</span>
-<span id="cb173-16"><a href="data-manipulation.html#cb173-16" tabindex="-1"></a>      age <span class="sc">==</span> <span class="dv">999</span> <span class="sc">~</span> <span class="cn">NA_real_</span>,</span>
-<span id="cb173-17"><a href="data-manipulation.html#cb173-17" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> age), </span>
-<span id="cb173-18"><a href="data-manipulation.html#cb173-18" tabindex="-1"></a>    <span class="at">education =</span> <span class="fu">case_when</span>(</span>
-<span id="cb173-19"><a href="data-manipulation.html#cb173-19" tabindex="-1"></a>      education <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">55</span>, <span class="dv">77</span>, <span class="dv">88</span>, <span class="dv">99</span>) <span class="sc">~</span> <span class="cn">NA_real_</span>,</span>
-<span id="cb173-20"><a href="data-manipulation.html#cb173-20" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> education), </span>
-<span id="cb173-21"><a href="data-manipulation.html#cb173-21" tabindex="-1"></a>    <span class="at">female =</span> <span class="fu">case_when</span>(</span>
-<span id="cb173-22"><a href="data-manipulation.html#cb173-22" tabindex="-1"></a>      female <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">0</span>, </span>
-<span id="cb173-23"><a href="data-manipulation.html#cb173-23" tabindex="-1"></a>      female <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="dv">1</span>, </span>
-<span id="cb173-24"><a href="data-manipulation.html#cb173-24" tabindex="-1"></a>      female <span class="sc">==</span> <span class="dv">9</span> <span class="sc">~</span> <span class="cn">NA_real_</span>, </span>
-<span id="cb173-25"><a href="data-manipulation.html#cb173-25" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> female),</span>
-<span id="cb173-26"><a href="data-manipulation.html#cb173-26" tabindex="-1"></a>    <span class="at">happy =</span> <span class="fu">case_when</span>(</span>
-<span id="cb173-27"><a href="data-manipulation.html#cb173-27" tabindex="-1"></a>      happy <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">77</span>, <span class="dv">88</span>, <span class="dv">99</span>) <span class="sc">~</span> <span class="cn">NA_real_</span>,</span>
-<span id="cb173-28"><a href="data-manipulation.html#cb173-28" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> happy)</span>
-<span id="cb173-29"><a href="data-manipulation.html#cb173-29" tabindex="-1"></a>    )</span>
-<span id="cb173-30"><a href="data-manipulation.html#cb173-30" tabindex="-1"></a></span>
-<span id="cb173-31"><a href="data-manipulation.html#cb173-31" tabindex="-1"></a><span class="co">#Checking it</span></span>
-<span id="cb173-32"><a href="data-manipulation.html#cb173-32" tabindex="-1"></a><span class="fu">head</span>(d1) </span></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="data-manipulation.html#cb170-1" tabindex="-1"></a><span class="co">#Creating missing values and showing a mutating workflow</span></span>
+<span id="cb170-2"><a href="data-manipulation.html#cb170-2" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span></span>
+<span id="cb170-3"><a href="data-manipulation.html#cb170-3" tabindex="-1"></a>  <span class="fu">filter</span>(agea <span class="sc">&gt;=</span><span class="dv">40</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb170-4"><a href="data-manipulation.html#cb170-4" tabindex="-1"></a>  <span class="fu">select</span>(year, cntry, netusoft, agea, eisced, gndr, happy) <span class="sc">%&gt;%</span> </span>
+<span id="cb170-5"><a href="data-manipulation.html#cb170-5" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(agea)) <span class="sc">%&gt;%</span> </span>
+<span id="cb170-6"><a href="data-manipulation.html#cb170-6" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
+<span id="cb170-7"><a href="data-manipulation.html#cb170-7" tabindex="-1"></a>    <span class="at">internet_use =</span> netusoft,</span>
+<span id="cb170-8"><a href="data-manipulation.html#cb170-8" tabindex="-1"></a>    <span class="at">age =</span> agea, </span>
+<span id="cb170-9"><a href="data-manipulation.html#cb170-9" tabindex="-1"></a>    <span class="at">education =</span> eisced, </span>
+<span id="cb170-10"><a href="data-manipulation.html#cb170-10" tabindex="-1"></a>    <span class="at">female =</span> gndr) <span class="sc">%&gt;%</span> </span>
+<span id="cb170-11"><a href="data-manipulation.html#cb170-11" tabindex="-1"></a>  <span class="fu">mutate</span>( </span>
+<span id="cb170-12"><a href="data-manipulation.html#cb170-12" tabindex="-1"></a>    <span class="at">internet_use =</span> <span class="fu">case_when</span>( </span>
+<span id="cb170-13"><a href="data-manipulation.html#cb170-13" tabindex="-1"></a>      internet_use <span class="sc">&lt;</span> <span class="dv">5</span> <span class="sc">~</span> <span class="cn">NA_real_</span>, </span>
+<span id="cb170-14"><a href="data-manipulation.html#cb170-14" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> internet_use), </span>
+<span id="cb170-15"><a href="data-manipulation.html#cb170-15" tabindex="-1"></a>    <span class="at">age =</span> <span class="fu">case_when</span>(</span>
+<span id="cb170-16"><a href="data-manipulation.html#cb170-16" tabindex="-1"></a>      age <span class="sc">==</span> <span class="dv">999</span> <span class="sc">~</span> <span class="cn">NA_real_</span>,</span>
+<span id="cb170-17"><a href="data-manipulation.html#cb170-17" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> age), </span>
+<span id="cb170-18"><a href="data-manipulation.html#cb170-18" tabindex="-1"></a>    <span class="at">education =</span> <span class="fu">case_when</span>(</span>
+<span id="cb170-19"><a href="data-manipulation.html#cb170-19" tabindex="-1"></a>      education <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">55</span>, <span class="dv">77</span>, <span class="dv">88</span>, <span class="dv">99</span>) <span class="sc">~</span> <span class="cn">NA_real_</span>,</span>
+<span id="cb170-20"><a href="data-manipulation.html#cb170-20" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> education), </span>
+<span id="cb170-21"><a href="data-manipulation.html#cb170-21" tabindex="-1"></a>    <span class="at">female =</span> <span class="fu">case_when</span>(</span>
+<span id="cb170-22"><a href="data-manipulation.html#cb170-22" tabindex="-1"></a>      female <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">0</span>, </span>
+<span id="cb170-23"><a href="data-manipulation.html#cb170-23" tabindex="-1"></a>      female <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="dv">1</span>, </span>
+<span id="cb170-24"><a href="data-manipulation.html#cb170-24" tabindex="-1"></a>      female <span class="sc">==</span> <span class="dv">9</span> <span class="sc">~</span> <span class="cn">NA_real_</span>, </span>
+<span id="cb170-25"><a href="data-manipulation.html#cb170-25" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> female),</span>
+<span id="cb170-26"><a href="data-manipulation.html#cb170-26" tabindex="-1"></a>    <span class="at">happy =</span> <span class="fu">case_when</span>(</span>
+<span id="cb170-27"><a href="data-manipulation.html#cb170-27" tabindex="-1"></a>      happy <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">77</span>, <span class="dv">88</span>, <span class="dv">99</span>) <span class="sc">~</span> <span class="cn">NA_real_</span>,</span>
+<span id="cb170-28"><a href="data-manipulation.html#cb170-28" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> happy)</span>
+<span id="cb170-29"><a href="data-manipulation.html#cb170-29" tabindex="-1"></a>    )</span>
+<span id="cb170-30"><a href="data-manipulation.html#cb170-30" tabindex="-1"></a></span>
+<span id="cb170-31"><a href="data-manipulation.html#cb170-31" tabindex="-1"></a><span class="co">#Checking it</span></span>
+<span id="cb170-32"><a href="data-manipulation.html#cb170-32" tabindex="-1"></a><span class="fu">head</span>(d1) </span></code></pre></div>
 <pre><code>##   year cntry internet_use age education female happy
 ## 1 2020    BE           NA  NA         6      1    10
 ## 2 2020    BE           NA  NA         2      1     5
@@ -1128,12 +1174,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 2020    BG           NA  NA         2      0     3
 ## 5 2020    CH           NA  NA         1      1     5
 ## 6 2020    CH           NA  NA         5      0     1</code></pre>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="data-manipulation.html#cb175-1" tabindex="-1"></a><span class="co">#dropping NAs </span></span>
-<span id="cb175-2"><a href="data-manipulation.html#cb175-2" tabindex="-1"></a>d2 <span class="ot">&lt;-</span> d1 <span class="sc">%&gt;%</span> </span>
-<span id="cb175-3"><a href="data-manipulation.html#cb175-3" tabindex="-1"></a>  <span class="fu">drop_na</span>() </span>
-<span id="cb175-4"><a href="data-manipulation.html#cb175-4" tabindex="-1"></a></span>
-<span id="cb175-5"><a href="data-manipulation.html#cb175-5" tabindex="-1"></a><span class="co">#dropping NAs</span></span>
-<span id="cb175-6"><a href="data-manipulation.html#cb175-6" tabindex="-1"></a>d2 <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(d1) </span></code></pre></div>
+<p>When you print the dataset, you see that now there are some values named “NA”. That stands for not available.</p>
+<ul>
+<li><p>If we want to delete NAs, we can use the tidyverse way by simply piping to <code>drop_na()</code></p></li>
+<li><p>The base R way would be to put the dataset name <code>na.omit()</code>.</p></li>
+</ul>
+<p>We assign both to a new data frame. We will see in the result that all rows are deleted which include NAs. This is one of the reasons it is important to cut down to variables we only need, so that only incomplete observations of our variables we need are deleted. So always remember, first transforming, than dropping.</p>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="data-manipulation.html#cb172-1" tabindex="-1"></a><span class="co">#dropping NAs </span></span>
+<span id="cb172-2"><a href="data-manipulation.html#cb172-2" tabindex="-1"></a>d2 <span class="ot">&lt;-</span> d1 <span class="sc">%&gt;%</span> </span>
+<span id="cb172-3"><a href="data-manipulation.html#cb172-3" tabindex="-1"></a>  <span class="fu">drop_na</span>() </span>
+<span id="cb172-4"><a href="data-manipulation.html#cb172-4" tabindex="-1"></a></span>
+<span id="cb172-5"><a href="data-manipulation.html#cb172-5" tabindex="-1"></a><span class="co">#dropping NAs</span></span>
+<span id="cb172-6"><a href="data-manipulation.html#cb172-6" tabindex="-1"></a>d2 <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(d1) </span>
+<span id="cb172-7"><a href="data-manipulation.html#cb172-7" tabindex="-1"></a></span>
+<span id="cb172-8"><a href="data-manipulation.html#cb172-8" tabindex="-1"></a><span class="co">#Checking if there are NAs</span></span>
+<span id="cb172-9"><a href="data-manipulation.html#cb172-9" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(d2))</span></code></pre></div>
+<pre><code>##         year        cntry internet_use          age 
+##            0            0            0            0 
+##    education       female        happy 
+##            0            0            0</code></pre>
+<p>We see that there are no missing values left in our dataset, and our number of observations are reduced.</p>
 <p>Now we have all ingredients to make our dataset. Do you remember our research question? We want to find out if people, who tend to not trust science are less willing to get vaccinated. We want to do that for all people over 40.</p>
 </div>
 </div>
@@ -1148,21 +1208,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>First, we call the <code>group_by()</code> function and define the group we want to aggregate, thus the group we are interested in. In our example, we want to aggregate based on the sexes, therefore we need the to define that. Before that we have to delete NAs or transform the variable to the categories we are interested in, therefore we first call mutate() and transform the variable.</p></li>
 <li><p>Second, we call summarize() and define the name of the new column, let us call it average_happiness() and then we call the metric of the variable we are interested in. In our example, we were interested in the average happiness, so we have to call mean() and the happy variable:</p></li>
 </ul>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="data-manipulation.html#cb176-1" tabindex="-1"></a><span class="co">#group_by and summarize</span></span>
-<span id="cb176-2"><a href="data-manipulation.html#cb176-2" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span> </span>
-<span id="cb176-3"><a href="data-manipulation.html#cb176-3" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb176-4"><a href="data-manipulation.html#cb176-4" tabindex="-1"></a>    <span class="at">gndr_fac =</span> <span class="fu">as.factor</span>(gndr),</span>
-<span id="cb176-5"><a href="data-manipulation.html#cb176-5" tabindex="-1"></a>    <span class="at">female =</span> <span class="fu">case_when</span>(</span>
-<span id="cb176-6"><a href="data-manipulation.html#cb176-6" tabindex="-1"></a>    gndr_fac <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;Male&quot;</span>, </span>
-<span id="cb176-7"><a href="data-manipulation.html#cb176-7" tabindex="-1"></a>    gndr_fac <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">&quot;Female&quot;</span>,</span>
-<span id="cb176-8"><a href="data-manipulation.html#cb176-8" tabindex="-1"></a>    gndr_fac <span class="sc">==</span> <span class="dv">9</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
-<span id="cb176-9"><a href="data-manipulation.html#cb176-9" tabindex="-1"></a>  )) <span class="sc">%&gt;%</span></span>
-<span id="cb176-10"><a href="data-manipulation.html#cb176-10" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb176-11"><a href="data-manipulation.html#cb176-11" tabindex="-1"></a>  <span class="fu">group_by</span>(female) <span class="sc">%&gt;%</span> </span>
-<span id="cb176-12"><a href="data-manipulation.html#cb176-12" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">average_happiness =</span> <span class="fu">mean</span>(happy))</span>
-<span id="cb176-13"><a href="data-manipulation.html#cb176-13" tabindex="-1"></a></span>
-<span id="cb176-14"><a href="data-manipulation.html#cb176-14" tabindex="-1"></a><span class="co">#Checking it</span></span>
-<span id="cb176-15"><a href="data-manipulation.html#cb176-15" tabindex="-1"></a><span class="fu">head</span>(d1)</span></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="data-manipulation.html#cb174-1" tabindex="-1"></a><span class="co">#group_by and summarize</span></span>
+<span id="cb174-2"><a href="data-manipulation.html#cb174-2" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span> </span>
+<span id="cb174-3"><a href="data-manipulation.html#cb174-3" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb174-4"><a href="data-manipulation.html#cb174-4" tabindex="-1"></a>    <span class="at">gndr_fac =</span> <span class="fu">as.factor</span>(gndr),</span>
+<span id="cb174-5"><a href="data-manipulation.html#cb174-5" tabindex="-1"></a>    <span class="at">female =</span> <span class="fu">case_when</span>(</span>
+<span id="cb174-6"><a href="data-manipulation.html#cb174-6" tabindex="-1"></a>    gndr_fac <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;Male&quot;</span>, </span>
+<span id="cb174-7"><a href="data-manipulation.html#cb174-7" tabindex="-1"></a>    gndr_fac <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">&quot;Female&quot;</span>,</span>
+<span id="cb174-8"><a href="data-manipulation.html#cb174-8" tabindex="-1"></a>    gndr_fac <span class="sc">==</span> <span class="dv">9</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
+<span id="cb174-9"><a href="data-manipulation.html#cb174-9" tabindex="-1"></a>  )) <span class="sc">%&gt;%</span></span>
+<span id="cb174-10"><a href="data-manipulation.html#cb174-10" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb174-11"><a href="data-manipulation.html#cb174-11" tabindex="-1"></a>  <span class="fu">group_by</span>(female) <span class="sc">%&gt;%</span> </span>
+<span id="cb174-12"><a href="data-manipulation.html#cb174-12" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">average_happiness =</span> <span class="fu">mean</span>(happy))</span>
+<span id="cb174-13"><a href="data-manipulation.html#cb174-13" tabindex="-1"></a></span>
+<span id="cb174-14"><a href="data-manipulation.html#cb174-14" tabindex="-1"></a><span class="co">#Checking it</span></span>
+<span id="cb174-15"><a href="data-manipulation.html#cb174-15" tabindex="-1"></a><span class="fu">head</span>(d1)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 2
 ##   female average_happiness
 ##   &lt;chr&gt;              &lt;dbl&gt;
@@ -1173,39 +1233,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="with-more-grouping-variables-and-metrics" class="section level4 hasAnchor" number="3.5.6.2">
 <h4><span class="header-section-number">3.5.6.2</span> With more grouping variables and metrics<a href="data-manipulation.html#with-more-grouping-variables-and-metrics" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The <code>group_by()</code> and <code>summarize()</code> functions are of course way more flexible, for example, we can define more groups. What about that, you are interested in the level of happiness of females, and males in the countries conducted by the ESS. You just put the countries and then the gender variable in the <code>group_by()</code>. Further we might be interested in more metrics, no problem, let us just define more columns with <code>summarize()</code>. Again, you have to first clean the data by transforming the class and deleting missing values.</p>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="data-manipulation.html#cb178-1" tabindex="-1"></a><span class="co">#grouping and summarize</span></span>
-<span id="cb178-2"><a href="data-manipulation.html#cb178-2" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span> </span>
-<span id="cb178-3"><a href="data-manipulation.html#cb178-3" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb178-4"><a href="data-manipulation.html#cb178-4" tabindex="-1"></a>    <span class="at">country =</span> cntry,</span>
-<span id="cb178-5"><a href="data-manipulation.html#cb178-5" tabindex="-1"></a>    <span class="at">gndr_fac =</span> <span class="fu">as.factor</span>(gndr),</span>
-<span id="cb178-6"><a href="data-manipulation.html#cb178-6" tabindex="-1"></a>    <span class="at">female =</span> <span class="fu">case_when</span>(</span>
-<span id="cb178-7"><a href="data-manipulation.html#cb178-7" tabindex="-1"></a>    gndr_fac <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;Male&quot;</span>, </span>
-<span id="cb178-8"><a href="data-manipulation.html#cb178-8" tabindex="-1"></a>    gndr_fac <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">&quot;Female&quot;</span>,</span>
-<span id="cb178-9"><a href="data-manipulation.html#cb178-9" tabindex="-1"></a>    gndr_fac <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">77</span>, <span class="dv">88</span>, <span class="dv">99</span>) <span class="sc">~</span> <span class="cn">NA_character_</span>),</span>
-<span id="cb178-10"><a href="data-manipulation.html#cb178-10" tabindex="-1"></a>    <span class="at">age =</span> <span class="fu">case_when</span>(</span>
-<span id="cb178-11"><a href="data-manipulation.html#cb178-11" tabindex="-1"></a>      agea <span class="sc">==</span> <span class="dv">999</span> <span class="sc">~</span> <span class="cn">NA_real_</span>,</span>
-<span id="cb178-12"><a href="data-manipulation.html#cb178-12" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> agea)</span>
-<span id="cb178-13"><a href="data-manipulation.html#cb178-13" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
-<span id="cb178-14"><a href="data-manipulation.html#cb178-14" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb178-15"><a href="data-manipulation.html#cb178-15" tabindex="-1"></a>  <span class="fu">group_by</span>(country, female) <span class="sc">%&gt;%</span> </span>
-<span id="cb178-16"><a href="data-manipulation.html#cb178-16" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">average_happiness =</span> <span class="fu">mean</span>(happy), </span>
-<span id="cb178-17"><a href="data-manipulation.html#cb178-17" tabindex="-1"></a>            <span class="at">median_happiness =</span> <span class="fu">median</span>(happy), </span>
-<span id="cb178-18"><a href="data-manipulation.html#cb178-18" tabindex="-1"></a>            <span class="at">average_age =</span> <span class="fu">mean</span>(age), </span>
-<span id="cb178-19"><a href="data-manipulation.html#cb178-19" tabindex="-1"></a>            <span class="at">meadian_age =</span> <span class="fu">median</span>(age)</span>
-<span id="cb178-20"><a href="data-manipulation.html#cb178-20" tabindex="-1"></a>          )</span></code></pre></div>
-<pre><code>## `summarise()` has grouped output by &#39;country&#39;. You can override using the
-## `.groups` argument.</code></pre>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="data-manipulation.html#cb180-1" tabindex="-1"></a><span class="co">#Check it out</span></span>
-<span id="cb180-2"><a href="data-manipulation.html#cb180-2" tabindex="-1"></a><span class="fu">glimpse</span>(d1)</span></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="data-manipulation.html#cb176-1" tabindex="-1"></a><span class="co">#grouping and summarize</span></span>
+<span id="cb176-2"><a href="data-manipulation.html#cb176-2" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span> </span>
+<span id="cb176-3"><a href="data-manipulation.html#cb176-3" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb176-4"><a href="data-manipulation.html#cb176-4" tabindex="-1"></a>    <span class="at">country =</span> cntry,</span>
+<span id="cb176-5"><a href="data-manipulation.html#cb176-5" tabindex="-1"></a>    <span class="at">gndr_fac =</span> <span class="fu">as.factor</span>(gndr),</span>
+<span id="cb176-6"><a href="data-manipulation.html#cb176-6" tabindex="-1"></a>    <span class="at">female =</span> <span class="fu">case_when</span>(</span>
+<span id="cb176-7"><a href="data-manipulation.html#cb176-7" tabindex="-1"></a>    gndr_fac <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;Male&quot;</span>, </span>
+<span id="cb176-8"><a href="data-manipulation.html#cb176-8" tabindex="-1"></a>    gndr_fac <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">&quot;Female&quot;</span>,</span>
+<span id="cb176-9"><a href="data-manipulation.html#cb176-9" tabindex="-1"></a>    gndr_fac <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">77</span>, <span class="dv">88</span>, <span class="dv">99</span>) <span class="sc">~</span> <span class="cn">NA_character_</span>),</span>
+<span id="cb176-10"><a href="data-manipulation.html#cb176-10" tabindex="-1"></a>    <span class="at">age =</span> <span class="fu">case_when</span>(</span>
+<span id="cb176-11"><a href="data-manipulation.html#cb176-11" tabindex="-1"></a>      agea <span class="sc">==</span> <span class="dv">999</span> <span class="sc">~</span> <span class="cn">NA_real_</span>,</span>
+<span id="cb176-12"><a href="data-manipulation.html#cb176-12" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> agea)</span>
+<span id="cb176-13"><a href="data-manipulation.html#cb176-13" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb176-14"><a href="data-manipulation.html#cb176-14" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb176-15"><a href="data-manipulation.html#cb176-15" tabindex="-1"></a>  <span class="fu">group_by</span>(country, female) <span class="sc">%&gt;%</span> </span>
+<span id="cb176-16"><a href="data-manipulation.html#cb176-16" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">average_happiness =</span> <span class="fu">mean</span>(happy), </span>
+<span id="cb176-17"><a href="data-manipulation.html#cb176-17" tabindex="-1"></a>            <span class="at">median_happiness =</span> <span class="fu">median</span>(happy), </span>
+<span id="cb176-18"><a href="data-manipulation.html#cb176-18" tabindex="-1"></a>            <span class="at">average_age =</span> <span class="fu">mean</span>(age), </span>
+<span id="cb176-19"><a href="data-manipulation.html#cb176-19" tabindex="-1"></a>            <span class="at">meadian_age =</span> <span class="fu">median</span>(age)</span>
+<span id="cb176-20"><a href="data-manipulation.html#cb176-20" tabindex="-1"></a>          )</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;country&#39;. You
+## can override using the `.groups` argument.</code></pre>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="data-manipulation.html#cb178-1" tabindex="-1"></a><span class="co">#Check it out</span></span>
+<span id="cb178-2"><a href="data-manipulation.html#cb178-2" tabindex="-1"></a><span class="fu">glimpse</span>(d1)</span></code></pre></div>
 <pre><code>## Rows: 40
 ## Columns: 6
 ## Groups: country [20]
-## $ country           &lt;chr&gt; &quot;BE&quot;, &quot;BE&quot;, &quot;BG&quot;, &quot;BG&quot;, &quot;CH&quot;, &quot;CH&quot;, &quot;CZ&quot;, &quot;CZ&quot;, …
-## $ female            &lt;chr&gt; &quot;Female&quot;, &quot;Male&quot;, &quot;Female&quot;, &quot;Male&quot;, &quot;Female&quot;, &quot;M…
-## $ average_happiness &lt;dbl&gt; 6.142857, 7.793103, 6.262673, 8.686364, 7.173267…
-## $ median_happiness  &lt;dbl&gt; 6.0, 6.0, 6.0, 6.0, 5.0, 5.5, 6.0, 6.0, 6.0, 5.0…
-## $ average_age       &lt;dbl&gt; 53.42857, 53.00431, 51.90323, 53.10909, 55.54455…
-## $ meadian_age       &lt;dbl&gt; 53.0, 52.0, 50.0, 52.0, 55.0, 50.0, 55.0, 49.0, …</code></pre>
+## $ country           &lt;chr&gt; &quot;BE&quot;, &quot;BE&quot;, &quot;BG&quot;, &quot;BG&quot;, &quot;C…
+## $ female            &lt;chr&gt; &quot;Female&quot;, &quot;Male&quot;, &quot;Female&quot;…
+## $ average_happiness &lt;dbl&gt; 6.142857, 7.793103, 6.2626…
+## $ median_happiness  &lt;dbl&gt; 6.0, 6.0, 6.0, 6.0, 5.0, 5…
+## $ average_age       &lt;dbl&gt; 53.42857, 53.00431, 51.903…
+## $ meadian_age       &lt;dbl&gt; 53.0, 52.0, 50.0, 52.0, 55…</code></pre>
 </div>
 </div>
 </div>
@@ -1217,9 +1277,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>As an example, I will show how to do that with <strong>World Bank Data</strong>. From this data we can gather nearly all important economic indicators for countries since the 1970s. But mostly we need to merge them to datasets we are interested in. We will merge the <strong>World Bank Data</strong> with the <strong>ESS</strong> data. So we can analyze variables, which were not collected in the same dataset.</p>
 <p>There are several ways of getting World Bank Data, but I will show you the most efficient. There is the package <code>WDI</code> with which you can get data through an API (Application Programming Interface). Long story short, we do not need to download anything and get the data directly with code:</p>
 <p>First we define, which countries should be included:</p>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="data-manipulation.html#cb182-1" tabindex="-1"></a>countries <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;BE&quot;</span>, <span class="st">&quot;BG&quot;</span>, <span class="st">&quot;CH&quot;</span>, <span class="st">&quot;EE&quot;</span>, <span class="st">&quot;FR&quot;</span>,<span class="st">&quot;GB&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="data-manipulation.html#cb180-1" tabindex="-1"></a>countries <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;BE&quot;</span>, <span class="st">&quot;BG&quot;</span>, <span class="st">&quot;CH&quot;</span>, <span class="st">&quot;EE&quot;</span>, <span class="st">&quot;FR&quot;</span>,<span class="st">&quot;GB&quot;</span>) </span></code></pre></div>
 <p>Afterwards we define, which variables we want. You do that by using the official indicator, thus the variable you want. You can find the indicators on the website of the <a href="https://data.worldbank.org/indicator">world bank data</a>. Click on the variables you want, then click on the details, and there you find the indicator. I will use GDP per capita, Fuel exports, CO2 emissions (kt).</p>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="data-manipulation.html#cb183-1" tabindex="-1"></a>indicators <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;NY.GDP.PCAP.CD&quot;</span>, <span class="st">&quot;TX.VAL.FUEL.ZS.UN&quot;</span>, <span class="st">&quot;EN.ATM.CO2E.KT&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="data-manipulation.html#cb181-1" tabindex="-1"></a>indicators <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;NY.GDP.PCAP.CD&quot;</span>, <span class="st">&quot;TX.VAL.FUEL.ZS.UN&quot;</span>, <span class="st">&quot;EN.ATM.CO2E.KT&quot;</span>)</span></code></pre></div>
 <p>Now we are ready to use the API.</p>
 <ul>
 <li><p>To do so we call the WDI function.</p></li>
@@ -1227,43 +1287,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>We also define the indicators.</p></li>
 <li><p>Lastly, with the “<code>start =</code>” argument we define the starting year, so data which goes back to that date is loaded and with “<code>end =</code>” is analagos to define where the time should stop. Thus, both arguments define the time span we want to inspect</p></li>
 </ul>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="data-manipulation.html#cb184-1" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">WDI</span>( </span>
-<span id="cb184-2"><a href="data-manipulation.html#cb184-2" tabindex="-1"></a>  <span class="at">country =</span> countries, <span class="co">#We include our countries </span></span>
-<span id="cb184-3"><a href="data-manipulation.html#cb184-3" tabindex="-1"></a>  <span class="at">indicator =</span> indicators, <span class="co">#We include our variables </span></span>
-<span id="cb184-4"><a href="data-manipulation.html#cb184-4" tabindex="-1"></a>  <span class="at">start =</span> <span class="dv">2020</span>, <span class="co">#start date </span></span>
-<span id="cb184-5"><a href="data-manipulation.html#cb184-5" tabindex="-1"></a>  <span class="at">end =</span> <span class="dv">2020</span>) <span class="co">#end date </span></span>
-<span id="cb184-6"><a href="data-manipulation.html#cb184-6" tabindex="-1"></a></span>
-<span id="cb184-7"><a href="data-manipulation.html#cb184-7" tabindex="-1"></a><span class="co">#This takes some time, especially if you have more countries, more indicators and a longer time span.</span></span>
-<span id="cb184-8"><a href="data-manipulation.html#cb184-8" tabindex="-1"></a></span>
-<span id="cb184-9"><a href="data-manipulation.html#cb184-9" tabindex="-1"></a><span class="co">#Checking it</span></span>
-<span id="cb184-10"><a href="data-manipulation.html#cb184-10" tabindex="-1"></a><span class="fu">head</span>(wb)</span></code></pre></div>
-<pre><code>##          country iso2c iso3c year NY.GDP.PCAP.CD TX.VAL.FUEL.ZS.UN
-## 1        Belgium    BE   BEL 2020       45587.97         5.0182074
-## 2       Bulgaria    BG   BGR 2020       10148.34         4.6375716
-## 3        Estonia    EE   EST 2020       23565.18         4.8606100
-## 4         France    FR   FRA 2020       39179.74         1.8844347
-## 5    Switzerland    CH   CHE 2020       85897.78         0.6102448
-## 6 United Kingdom    GB   GBR 2020       40217.01         7.0642437
-##   EN.ATM.CO2E.KT
-## 1       85364.10
-## 2       34138.10
-## 3        7097.52
-## 4      267154.70
-## 5       34916.10
-## 6      308650.30</code></pre>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="data-manipulation.html#cb182-1" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">WDI</span>( </span>
+<span id="cb182-2"><a href="data-manipulation.html#cb182-2" tabindex="-1"></a>  <span class="at">country =</span> countries, <span class="co">#We include our countries </span></span>
+<span id="cb182-3"><a href="data-manipulation.html#cb182-3" tabindex="-1"></a>  <span class="at">indicator =</span> indicators, <span class="co">#We include our variables </span></span>
+<span id="cb182-4"><a href="data-manipulation.html#cb182-4" tabindex="-1"></a>  <span class="at">start =</span> <span class="dv">2020</span>, <span class="co">#start date </span></span>
+<span id="cb182-5"><a href="data-manipulation.html#cb182-5" tabindex="-1"></a>  <span class="at">end =</span> <span class="dv">2020</span>) <span class="co">#end date </span></span>
+<span id="cb182-6"><a href="data-manipulation.html#cb182-6" tabindex="-1"></a></span>
+<span id="cb182-7"><a href="data-manipulation.html#cb182-7" tabindex="-1"></a><span class="co">#This takes some time, especially if you have more countries, more indicators and a longer time span.</span></span>
+<span id="cb182-8"><a href="data-manipulation.html#cb182-8" tabindex="-1"></a></span>
+<span id="cb182-9"><a href="data-manipulation.html#cb182-9" tabindex="-1"></a><span class="co">#Checking it</span></span>
+<span id="cb182-10"><a href="data-manipulation.html#cb182-10" tabindex="-1"></a><span class="fu">head</span>(wb)</span></code></pre></div>
+<pre><code>##          country iso2c iso3c year NY.GDP.PCAP.CD
+## 1        Belgium    BE   BEL 2020       45587.97
+## 2       Bulgaria    BG   BGR 2020       10148.34
+## 3        Estonia    EE   EST 2020       23565.18
+## 4         France    FR   FRA 2020       39179.74
+## 5    Switzerland    CH   CHE 2020       85897.78
+## 6 United Kingdom    GB   GBR 2020       40217.01
+##   TX.VAL.FUEL.ZS.UN EN.ATM.CO2E.KT
+## 1         5.0182074       85364.10
+## 2         4.6375716       34138.10
+## 3         4.8606100        7097.52
+## 4         1.8844347      267154.70
+## 5         0.6102448       34916.10
+## 6         7.0642437      308650.30</code></pre>
 <p>Let us transform the dataset (Only variables we need, arranging it alphabetically, renaming it and rounding one variable to make the numbers more intuitive):</p>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="data-manipulation.html#cb186-1" tabindex="-1"></a><span class="co">#Cleaning the wb data</span></span>
-<span id="cb186-2"><a href="data-manipulation.html#cb186-2" tabindex="-1"></a>wb <span class="ot">&lt;-</span> wb <span class="sc">%&gt;%</span></span>
-<span id="cb186-3"><a href="data-manipulation.html#cb186-3" tabindex="-1"></a>  <span class="fu">select</span>(iso2c, NY.GDP.PCAP.CD, TX.VAL.FUEL.ZS.UN, EN.ATM.CO2E.KT) <span class="sc">%&gt;%</span></span>
-<span id="cb186-4"><a href="data-manipulation.html#cb186-4" tabindex="-1"></a>  <span class="fu">arrange</span>(iso2c) <span class="sc">%&gt;%</span></span>
-<span id="cb186-5"><a href="data-manipulation.html#cb186-5" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">gdp_per_cap =</span> NY.GDP.PCAP.CD,</span>
-<span id="cb186-6"><a href="data-manipulation.html#cb186-6" tabindex="-1"></a>         <span class="at">fuel_exp =</span> TX.VAL.FUEL.ZS.UN,</span>
-<span id="cb186-7"><a href="data-manipulation.html#cb186-7" tabindex="-1"></a>         <span class="at">co2 =</span> EN.ATM.CO2E.KT</span>
-<span id="cb186-8"><a href="data-manipulation.html#cb186-8" tabindex="-1"></a>         ) <span class="sc">%&gt;%</span> </span>
-<span id="cb186-9"><a href="data-manipulation.html#cb186-9" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">fuel_exp =</span> <span class="fu">round</span>(fuel_exp, <span class="dv">2</span>))</span>
-<span id="cb186-10"><a href="data-manipulation.html#cb186-10" tabindex="-1"></a></span>
-<span id="cb186-11"><a href="data-manipulation.html#cb186-11" tabindex="-1"></a><span class="co">#Checking it</span></span>
-<span id="cb186-12"><a href="data-manipulation.html#cb186-12" tabindex="-1"></a><span class="fu">head</span>(wb)</span></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="data-manipulation.html#cb184-1" tabindex="-1"></a><span class="co">#Cleaning the wb data</span></span>
+<span id="cb184-2"><a href="data-manipulation.html#cb184-2" tabindex="-1"></a>wb <span class="ot">&lt;-</span> wb <span class="sc">%&gt;%</span></span>
+<span id="cb184-3"><a href="data-manipulation.html#cb184-3" tabindex="-1"></a>  <span class="fu">select</span>(iso2c, NY.GDP.PCAP.CD, TX.VAL.FUEL.ZS.UN, EN.ATM.CO2E.KT) <span class="sc">%&gt;%</span></span>
+<span id="cb184-4"><a href="data-manipulation.html#cb184-4" tabindex="-1"></a>  <span class="fu">arrange</span>(iso2c) <span class="sc">%&gt;%</span></span>
+<span id="cb184-5"><a href="data-manipulation.html#cb184-5" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">gdp_per_cap =</span> NY.GDP.PCAP.CD,</span>
+<span id="cb184-6"><a href="data-manipulation.html#cb184-6" tabindex="-1"></a>         <span class="at">fuel_exp =</span> TX.VAL.FUEL.ZS.UN,</span>
+<span id="cb184-7"><a href="data-manipulation.html#cb184-7" tabindex="-1"></a>         <span class="at">co2 =</span> EN.ATM.CO2E.KT</span>
+<span id="cb184-8"><a href="data-manipulation.html#cb184-8" tabindex="-1"></a>         ) <span class="sc">%&gt;%</span> </span>
+<span id="cb184-9"><a href="data-manipulation.html#cb184-9" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">fuel_exp =</span> <span class="fu">round</span>(fuel_exp, <span class="dv">2</span>))</span>
+<span id="cb184-10"><a href="data-manipulation.html#cb184-10" tabindex="-1"></a></span>
+<span id="cb184-11"><a href="data-manipulation.html#cb184-11" tabindex="-1"></a><span class="co">#Checking it</span></span>
+<span id="cb184-12"><a href="data-manipulation.html#cb184-12" tabindex="-1"></a><span class="fu">head</span>(wb)</span></code></pre></div>
 <pre><code>##   iso2c gdp_per_cap fuel_exp       co2
 ## 1    BE    45587.97     5.02  85364.10
 ## 2    BG    10148.34     4.64  34138.10
@@ -1272,16 +1332,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5    FR    39179.74     1.88 267154.70
 ## 6    GB    40217.01     7.06 308650.30</code></pre>
 <p>Now, we cut down and prepare our ESS data by selecting the countries we are interested in, renaming the country variable (I’ll explain later why), we group by the country (iso2c) and the year (year) to get the average happiness by country. Lastly, we round the value to get only two decimals.</p>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="data-manipulation.html#cb188-1" tabindex="-1"></a><span class="co">#preparing ess</span></span>
-<span id="cb188-2"><a href="data-manipulation.html#cb188-2" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span></span>
-<span id="cb188-3"><a href="data-manipulation.html#cb188-3" tabindex="-1"></a>  <span class="fu">filter</span>(cntry <span class="sc">==</span> <span class="fu">c</span>(<span class="st">&quot;BE&quot;</span>, <span class="st">&quot;BG&quot;</span>, <span class="st">&quot;CZ&quot;</span>, <span class="st">&quot;EE&quot;</span>, <span class="st">&quot;FI&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb188-4"><a href="data-manipulation.html#cb188-4" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">iso2c =</span> cntry) <span class="sc">%&gt;%</span></span>
-<span id="cb188-5"><a href="data-manipulation.html#cb188-5" tabindex="-1"></a>  <span class="fu">group_by</span>(iso2c, year) <span class="sc">%&gt;%</span> </span>
-<span id="cb188-6"><a href="data-manipulation.html#cb188-6" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">happy_agg =</span> <span class="fu">round</span>(<span class="fu">mean</span>(happy), <span class="dv">2</span>))</span></code></pre></div>
-<pre><code>## `summarise()` has grouped output by &#39;iso2c&#39;. You can override using the
-## `.groups` argument.</code></pre>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="data-manipulation.html#cb190-1" tabindex="-1"></a><span class="co">#Checking it</span></span>
-<span id="cb190-2"><a href="data-manipulation.html#cb190-2" tabindex="-1"></a><span class="fu">head</span>(d1) </span></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="data-manipulation.html#cb186-1" tabindex="-1"></a><span class="co">#preparing ess</span></span>
+<span id="cb186-2"><a href="data-manipulation.html#cb186-2" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> ess <span class="sc">%&gt;%</span></span>
+<span id="cb186-3"><a href="data-manipulation.html#cb186-3" tabindex="-1"></a>  <span class="fu">filter</span>(cntry <span class="sc">==</span> <span class="fu">c</span>(<span class="st">&quot;BE&quot;</span>, <span class="st">&quot;BG&quot;</span>, <span class="st">&quot;CZ&quot;</span>, <span class="st">&quot;EE&quot;</span>, <span class="st">&quot;FI&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb186-4"><a href="data-manipulation.html#cb186-4" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">iso2c =</span> cntry) <span class="sc">%&gt;%</span></span>
+<span id="cb186-5"><a href="data-manipulation.html#cb186-5" tabindex="-1"></a>  <span class="fu">group_by</span>(iso2c, year) <span class="sc">%&gt;%</span> </span>
+<span id="cb186-6"><a href="data-manipulation.html#cb186-6" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">happy_agg =</span> <span class="fu">round</span>(<span class="fu">mean</span>(happy), <span class="dv">2</span>))</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;iso2c&#39;. You can
+## override using the `.groups` argument.</code></pre>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="data-manipulation.html#cb188-1" tabindex="-1"></a><span class="co">#Checking it</span></span>
+<span id="cb188-2"><a href="data-manipulation.html#cb188-2" tabindex="-1"></a><span class="fu">head</span>(d1) </span></code></pre></div>
 <pre><code>## # A tibble: 5 × 3
 ## # Groups:   iso2c [5]
 ##   iso2c  year happy_agg
@@ -1311,19 +1371,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Then we set our left table and our right table.</p></li>
 <li><p>We define the by = argument and put the unique identifier in quotation marks, meaning the variable name</p></li>
 </ul>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="data-manipulation.html#cb192-1" tabindex="-1"></a><span class="co">#left_join</span></span>
-<span id="cb192-2"><a href="data-manipulation.html#cb192-2" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> <span class="fu">left_join</span>(d1, wb, </span>
-<span id="cb192-3"><a href="data-manipulation.html#cb192-3" tabindex="-1"></a>                         <span class="at">by =</span> <span class="st">&quot;iso2c&quot;</span>)</span>
-<span id="cb192-4"><a href="data-manipulation.html#cb192-4" tabindex="-1"></a></span>
-<span id="cb192-5"><a href="data-manipulation.html#cb192-5" tabindex="-1"></a><span class="co">#Checking it</span></span>
-<span id="cb192-6"><a href="data-manipulation.html#cb192-6" tabindex="-1"></a><span class="fu">head</span>(merged_data)</span></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="data-manipulation.html#cb190-1" tabindex="-1"></a><span class="co">#left_join</span></span>
+<span id="cb190-2"><a href="data-manipulation.html#cb190-2" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> <span class="fu">left_join</span>(d1, wb, </span>
+<span id="cb190-3"><a href="data-manipulation.html#cb190-3" tabindex="-1"></a>                         <span class="at">by =</span> <span class="st">&quot;iso2c&quot;</span>)</span>
+<span id="cb190-4"><a href="data-manipulation.html#cb190-4" tabindex="-1"></a></span>
+<span id="cb190-5"><a href="data-manipulation.html#cb190-5" tabindex="-1"></a><span class="co">#Checking it</span></span>
+<span id="cb190-6"><a href="data-manipulation.html#cb190-6" tabindex="-1"></a><span class="fu">head</span>(merged_data)</span></code></pre></div>
 <p>For right_join() you do the exact same, but remember you get a different result.</p>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="data-manipulation.html#cb193-1" tabindex="-1"></a><span class="co">#right_join</span></span>
-<span id="cb193-2"><a href="data-manipulation.html#cb193-2" tabindex="-1"></a>merged_data2 <span class="ot">&lt;-</span> <span class="fu">right_join</span>(d1, wb, </span>
-<span id="cb193-3"><a href="data-manipulation.html#cb193-3" tabindex="-1"></a>                           <span class="at">by =</span> <span class="st">&quot;iso2c&quot;</span>)</span>
-<span id="cb193-4"><a href="data-manipulation.html#cb193-4" tabindex="-1"></a></span>
-<span id="cb193-5"><a href="data-manipulation.html#cb193-5" tabindex="-1"></a><span class="co">#Checking it</span></span>
-<span id="cb193-6"><a href="data-manipulation.html#cb193-6" tabindex="-1"></a><span class="fu">head</span>(merged_data2)</span></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="data-manipulation.html#cb191-1" tabindex="-1"></a><span class="co">#right_join</span></span>
+<span id="cb191-2"><a href="data-manipulation.html#cb191-2" tabindex="-1"></a>merged_data2 <span class="ot">&lt;-</span> <span class="fu">right_join</span>(d1, wb, </span>
+<span id="cb191-3"><a href="data-manipulation.html#cb191-3" tabindex="-1"></a>                           <span class="at">by =</span> <span class="st">&quot;iso2c&quot;</span>)</span>
+<span id="cb191-4"><a href="data-manipulation.html#cb191-4" tabindex="-1"></a></span>
+<span id="cb191-5"><a href="data-manipulation.html#cb191-5" tabindex="-1"></a><span class="co">#Checking it</span></span>
+<span id="cb191-6"><a href="data-manipulation.html#cb191-6" tabindex="-1"></a><span class="fu">head</span>(merged_data2)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 6
 ## # Groups:   iso2c [6]
 ##   iso2c  year happy_agg gdp_per_cap fuel_exp     co2
@@ -1339,40 +1399,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4><span class="header-section-number">3.6.0.3</span> <code>left_join()</code> and <code>right_join()</code> with two identifiers<a href="data-manipulation.html#left_join-and-right_join-with-two-identifiers" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Sometimes, you have multiple dimensions. For example, what if we also include the year? Then every country-year observation is our unique identifier. Why? Because one observation was collected in country X to time point Y. That is why you should always know your data and your research goal, because accordingly you have to write your code.</p>
 <p>Let us get again World Bank Data and clean it:</p>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="data-manipulation.html#cb195-1" tabindex="-1"></a><span class="co">#Getting the Data</span></span>
-<span id="cb195-2"><a href="data-manipulation.html#cb195-2" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">WDI</span>( </span>
-<span id="cb195-3"><a href="data-manipulation.html#cb195-3" tabindex="-1"></a>  <span class="at">country =</span> <span class="fu">c</span>(<span class="st">&quot;BE&quot;</span>, <span class="st">&quot;BG&quot;</span>), <span class="co">#We include our countries </span></span>
-<span id="cb195-4"><a href="data-manipulation.html#cb195-4" tabindex="-1"></a>  <span class="at">indicator =</span> indicators, <span class="co">#We include our variables </span></span>
-<span id="cb195-5"><a href="data-manipulation.html#cb195-5" tabindex="-1"></a>  <span class="at">start =</span> <span class="dv">2019</span>, <span class="co">#start date </span></span>
-<span id="cb195-6"><a href="data-manipulation.html#cb195-6" tabindex="-1"></a>  <span class="at">end =</span> <span class="dv">2020</span>) <span class="co">#end date </span></span>
-<span id="cb195-7"><a href="data-manipulation.html#cb195-7" tabindex="-1"></a></span>
-<span id="cb195-8"><a href="data-manipulation.html#cb195-8" tabindex="-1"></a><span class="co">#Cleaning the Data</span></span>
-<span id="cb195-9"><a href="data-manipulation.html#cb195-9" tabindex="-1"></a>wb <span class="ot">&lt;-</span> wb <span class="sc">%&gt;%</span> </span>
-<span id="cb195-10"><a href="data-manipulation.html#cb195-10" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>iso3c) <span class="sc">%&gt;%</span></span>
-<span id="cb195-11"><a href="data-manipulation.html#cb195-11" tabindex="-1"></a>  <span class="fu">arrange</span>(iso2c) <span class="sc">%&gt;%</span></span>
-<span id="cb195-12"><a href="data-manipulation.html#cb195-12" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">gdp_per_cap =</span> NY.GDP.PCAP.CD,</span>
-<span id="cb195-13"><a href="data-manipulation.html#cb195-13" tabindex="-1"></a>         <span class="at">fuel_exp =</span> TX.VAL.FUEL.ZS.UN,</span>
-<span id="cb195-14"><a href="data-manipulation.html#cb195-14" tabindex="-1"></a>         <span class="at">co2 =</span> EN.ATM.CO2E.KT</span>
-<span id="cb195-15"><a href="data-manipulation.html#cb195-15" tabindex="-1"></a>         ) <span class="sc">%&gt;%</span> </span>
-<span id="cb195-16"><a href="data-manipulation.html#cb195-16" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">fuel_exp =</span> <span class="fu">round</span>(fuel_exp, <span class="dv">2</span>))</span>
-<span id="cb195-17"><a href="data-manipulation.html#cb195-17" tabindex="-1"></a></span>
-<span id="cb195-18"><a href="data-manipulation.html#cb195-18" tabindex="-1"></a><span class="co">#Checking the Data</span></span>
-<span id="cb195-19"><a href="data-manipulation.html#cb195-19" tabindex="-1"></a><span class="fu">head</span>(wb)</span></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="data-manipulation.html#cb193-1" tabindex="-1"></a><span class="co">#Getting the Data</span></span>
+<span id="cb193-2"><a href="data-manipulation.html#cb193-2" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">WDI</span>( </span>
+<span id="cb193-3"><a href="data-manipulation.html#cb193-3" tabindex="-1"></a>  <span class="at">country =</span> <span class="fu">c</span>(<span class="st">&quot;BE&quot;</span>, <span class="st">&quot;BG&quot;</span>), <span class="co">#We include our countries </span></span>
+<span id="cb193-4"><a href="data-manipulation.html#cb193-4" tabindex="-1"></a>  <span class="at">indicator =</span> indicators, <span class="co">#We include our variables </span></span>
+<span id="cb193-5"><a href="data-manipulation.html#cb193-5" tabindex="-1"></a>  <span class="at">start =</span> <span class="dv">2019</span>, <span class="co">#start date </span></span>
+<span id="cb193-6"><a href="data-manipulation.html#cb193-6" tabindex="-1"></a>  <span class="at">end =</span> <span class="dv">2020</span>) <span class="co">#end date </span></span>
+<span id="cb193-7"><a href="data-manipulation.html#cb193-7" tabindex="-1"></a></span>
+<span id="cb193-8"><a href="data-manipulation.html#cb193-8" tabindex="-1"></a><span class="co">#Cleaning the Data</span></span>
+<span id="cb193-9"><a href="data-manipulation.html#cb193-9" tabindex="-1"></a>wb <span class="ot">&lt;-</span> wb <span class="sc">%&gt;%</span> </span>
+<span id="cb193-10"><a href="data-manipulation.html#cb193-10" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>iso3c) <span class="sc">%&gt;%</span></span>
+<span id="cb193-11"><a href="data-manipulation.html#cb193-11" tabindex="-1"></a>  <span class="fu">arrange</span>(iso2c) <span class="sc">%&gt;%</span></span>
+<span id="cb193-12"><a href="data-manipulation.html#cb193-12" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">gdp_per_cap =</span> NY.GDP.PCAP.CD,</span>
+<span id="cb193-13"><a href="data-manipulation.html#cb193-13" tabindex="-1"></a>         <span class="at">fuel_exp =</span> TX.VAL.FUEL.ZS.UN,</span>
+<span id="cb193-14"><a href="data-manipulation.html#cb193-14" tabindex="-1"></a>         <span class="at">co2 =</span> EN.ATM.CO2E.KT</span>
+<span id="cb193-15"><a href="data-manipulation.html#cb193-15" tabindex="-1"></a>         ) <span class="sc">%&gt;%</span> </span>
+<span id="cb193-16"><a href="data-manipulation.html#cb193-16" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">fuel_exp =</span> <span class="fu">round</span>(fuel_exp, <span class="dv">2</span>))</span>
+<span id="cb193-17"><a href="data-manipulation.html#cb193-17" tabindex="-1"></a></span>
+<span id="cb193-18"><a href="data-manipulation.html#cb193-18" tabindex="-1"></a><span class="co">#Checking the Data</span></span>
+<span id="cb193-19"><a href="data-manipulation.html#cb193-19" tabindex="-1"></a><span class="fu">head</span>(wb)</span></code></pre></div>
 <pre><code>##    country iso2c year gdp_per_cap fuel_exp     co2
 ## 1  Belgium    BE 2019   46641.721     7.38 92989.4
 ## 2  Belgium    BE 2020   45587.968     5.02 85364.1
 ## 3 Bulgaria    BG 2019    9874.336     9.53 39159.9
 ## 4 Bulgaria    BG 2020   10148.342     4.64 34138.1</code></pre>
 <p>Now we just simulate some data we want to merge:</p>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="data-manipulation.html#cb197-1" tabindex="-1"></a><span class="co">#Getting the Data</span></span>
-<span id="cb197-2"><a href="data-manipulation.html#cb197-2" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb197-3"><a href="data-manipulation.html#cb197-3" tabindex="-1"></a>  <span class="at">iso2c =</span> <span class="fu">c</span>(<span class="st">&quot;BE&quot;</span>, <span class="st">&quot;BE&quot;</span>, <span class="st">&quot;BG&quot;</span>, <span class="st">&quot;BG&quot;</span>, <span class="st">&quot;CZ&quot;</span>, <span class="st">&quot;CZ&quot;</span>), </span>
-<span id="cb197-4"><a href="data-manipulation.html#cb197-4" tabindex="-1"></a>  <span class="at">year =</span> <span class="fu">c</span>(<span class="dv">2019</span>, <span class="dv">2020</span>, <span class="dv">2019</span>, <span class="dv">2020</span>, <span class="dv">2019</span>, <span class="dv">2020</span>), </span>
-<span id="cb197-5"><a href="data-manipulation.html#cb197-5" tabindex="-1"></a>  <span class="at">happy_agg =</span> <span class="fu">c</span>(<span class="fl">5.95</span>, <span class="fl">6.76</span>, <span class="fl">6.56</span>, <span class="fl">7.54</span>, <span class="fl">6.27</span>, <span class="fl">6.88</span>)</span>
-<span id="cb197-6"><a href="data-manipulation.html#cb197-6" tabindex="-1"></a>)</span>
-<span id="cb197-7"><a href="data-manipulation.html#cb197-7" tabindex="-1"></a></span>
-<span id="cb197-8"><a href="data-manipulation.html#cb197-8" tabindex="-1"></a><span class="co">#Checking the Data</span></span>
-<span id="cb197-9"><a href="data-manipulation.html#cb197-9" tabindex="-1"></a><span class="fu">head</span>(d1)</span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="data-manipulation.html#cb195-1" tabindex="-1"></a><span class="co">#Getting the Data</span></span>
+<span id="cb195-2"><a href="data-manipulation.html#cb195-2" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb195-3"><a href="data-manipulation.html#cb195-3" tabindex="-1"></a>  <span class="at">iso2c =</span> <span class="fu">c</span>(<span class="st">&quot;BE&quot;</span>, <span class="st">&quot;BE&quot;</span>, <span class="st">&quot;BG&quot;</span>, <span class="st">&quot;BG&quot;</span>, <span class="st">&quot;CZ&quot;</span>, <span class="st">&quot;CZ&quot;</span>), </span>
+<span id="cb195-4"><a href="data-manipulation.html#cb195-4" tabindex="-1"></a>  <span class="at">year =</span> <span class="fu">c</span>(<span class="dv">2019</span>, <span class="dv">2020</span>, <span class="dv">2019</span>, <span class="dv">2020</span>, <span class="dv">2019</span>, <span class="dv">2020</span>), </span>
+<span id="cb195-5"><a href="data-manipulation.html#cb195-5" tabindex="-1"></a>  <span class="at">happy_agg =</span> <span class="fu">c</span>(<span class="fl">5.95</span>, <span class="fl">6.76</span>, <span class="fl">6.56</span>, <span class="fl">7.54</span>, <span class="fl">6.27</span>, <span class="fl">6.88</span>)</span>
+<span id="cb195-6"><a href="data-manipulation.html#cb195-6" tabindex="-1"></a>)</span>
+<span id="cb195-7"><a href="data-manipulation.html#cb195-7" tabindex="-1"></a></span>
+<span id="cb195-8"><a href="data-manipulation.html#cb195-8" tabindex="-1"></a><span class="co">#Checking the Data</span></span>
+<span id="cb195-9"><a href="data-manipulation.html#cb195-9" tabindex="-1"></a><span class="fu">head</span>(d1)</span></code></pre></div>
 <pre><code>##   iso2c year happy_agg
 ## 1    BE 2019      5.95
 ## 2    BE 2020      6.76
@@ -1389,18 +1449,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>As you can see the dataset again takes on the number of observations of our left table</li>
 <li>To implement it, we have to change by argument. We define a vector, where we put our two identifiers in quotation marks:</li>
 </ul>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="data-manipulation.html#cb199-1" tabindex="-1"></a><span class="co">#Merging the Data with left_join()</span></span>
-<span id="cb199-2"><a href="data-manipulation.html#cb199-2" tabindex="-1"></a>merged_data3 <span class="ot">&lt;-</span> <span class="fu">left_join</span>(d1, wb,</span>
-<span id="cb199-3"><a href="data-manipulation.html#cb199-3" tabindex="-1"></a>                          <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;iso2c&quot;</span>, <span class="st">&quot;year&quot;</span>))</span>
-<span id="cb199-4"><a href="data-manipulation.html#cb199-4" tabindex="-1"></a><span class="co">#Checking it</span></span>
-<span id="cb199-5"><a href="data-manipulation.html#cb199-5" tabindex="-1"></a><span class="fu">head</span>(merged_data3)</span></code></pre></div>
-<pre><code>##   iso2c year happy_agg  country gdp_per_cap fuel_exp     co2
-## 1    BE 2019      5.95  Belgium   46641.721     7.38 92989.4
-## 2    BE 2020      6.76  Belgium   45587.968     5.02 85364.1
-## 3    BG 2019      6.56 Bulgaria    9874.336     9.53 39159.9
-## 4    BG 2020      7.54 Bulgaria   10148.342     4.64 34138.1
-## 5    CZ 2019      6.27     &lt;NA&gt;          NA       NA      NA
-## 6    CZ 2020      6.88     &lt;NA&gt;          NA       NA      NA</code></pre>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="data-manipulation.html#cb197-1" tabindex="-1"></a><span class="co">#Merging the Data with left_join()</span></span>
+<span id="cb197-2"><a href="data-manipulation.html#cb197-2" tabindex="-1"></a>merged_data3 <span class="ot">&lt;-</span> <span class="fu">left_join</span>(d1, wb,</span>
+<span id="cb197-3"><a href="data-manipulation.html#cb197-3" tabindex="-1"></a>                          <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;iso2c&quot;</span>, <span class="st">&quot;year&quot;</span>))</span>
+<span id="cb197-4"><a href="data-manipulation.html#cb197-4" tabindex="-1"></a><span class="co">#Checking it</span></span>
+<span id="cb197-5"><a href="data-manipulation.html#cb197-5" tabindex="-1"></a><span class="fu">head</span>(merged_data3)</span></code></pre></div>
+<pre><code>##   iso2c year happy_agg  country gdp_per_cap fuel_exp
+## 1    BE 2019      5.95  Belgium   46641.721     7.38
+## 2    BE 2020      6.76  Belgium   45587.968     5.02
+## 3    BG 2019      6.56 Bulgaria    9874.336     9.53
+## 4    BG 2020      7.54 Bulgaria   10148.342     4.64
+## 5    CZ 2019      6.27     &lt;NA&gt;          NA       NA
+## 6    CZ 2020      6.88     &lt;NA&gt;          NA       NA
+##       co2
+## 1 92989.4
+## 2 85364.1
+## 3 39159.9
+## 4 34138.1
+## 5      NA
+## 6      NA</code></pre>
 <ul>
 <li><code>right_join()</code> with two identifiers:</li>
 </ul>
@@ -1408,14 +1475,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Again we do the same with <code>right_join()</code>:</li>
 </ul>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="data-manipulation.html#cb201-1" tabindex="-1"></a>merged_data4 <span class="ot">&lt;-</span> <span class="fu">right_join</span>(d1, wb,</span>
-<span id="cb201-2"><a href="data-manipulation.html#cb201-2" tabindex="-1"></a>                          <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;iso2c&quot;</span>, <span class="st">&quot;year&quot;</span>))</span>
-<span id="cb201-3"><a href="data-manipulation.html#cb201-3" tabindex="-1"></a><span class="fu">head</span>(merged_data4)</span></code></pre></div>
-<pre><code>##   iso2c year happy_agg  country gdp_per_cap fuel_exp     co2
-## 1    BE 2019      5.95  Belgium   46641.721     7.38 92989.4
-## 2    BE 2020      6.76  Belgium   45587.968     5.02 85364.1
-## 3    BG 2019      6.56 Bulgaria    9874.336     9.53 39159.9
-## 4    BG 2020      7.54 Bulgaria   10148.342     4.64 34138.1</code></pre>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="data-manipulation.html#cb199-1" tabindex="-1"></a>merged_data4 <span class="ot">&lt;-</span> <span class="fu">right_join</span>(d1, wb,</span>
+<span id="cb199-2"><a href="data-manipulation.html#cb199-2" tabindex="-1"></a>                          <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;iso2c&quot;</span>, <span class="st">&quot;year&quot;</span>))</span>
+<span id="cb199-3"><a href="data-manipulation.html#cb199-3" tabindex="-1"></a><span class="fu">head</span>(merged_data4)</span></code></pre></div>
+<pre><code>##   iso2c year happy_agg  country gdp_per_cap fuel_exp
+## 1    BE 2019      5.95  Belgium   46641.721     7.38
+## 2    BE 2020      6.76  Belgium   45587.968     5.02
+## 3    BG 2019      6.56 Bulgaria    9874.336     9.53
+## 4    BG 2020      7.54 Bulgaria   10148.342     4.64
+##       co2
+## 1 92989.4
+## 2 85364.1
+## 3 39159.9
+## 4 34138.1</code></pre>
 </div>
 </div>
 <div id="outlook" class="section level2 hasAnchor" number="3.7">
@@ -1534,11 +1606,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Merge the World Bank data to the gapminder data, so a dataset evolves with the number of observations of the gapminder data.</p></li>
 </ol>
 <p>d. Clean the data by dropping all missing values</p>
-</div>
-</div>
-<div id="section" class="section level2" number="3.9">
-<h2><span class="header-section-number">3.9</span> </h2>
 
+</div>
 </div>
 </div>
             </section>
