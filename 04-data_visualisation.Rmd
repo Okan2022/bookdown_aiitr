@@ -1,11 +1,13 @@
 # Data Visualisation
 
+In this chapter, I will introduce you to the most fun part in R, data visualisation (at least in my opinion). I will introduce you to the basic graphs and how to plot them in R. To do so, I introduce you the framework of `ggplot2`. This is a quite famous and powerful package and it became the standard package of data visualization in R. The goal of this chapter is to show you the basic plots everyone should know about, how you can program nice plots to include them in your papers and reports, and how to work with the `ggplot2` package.
+
 ```{r loading packages viz}
 pacman::p_load("tidyverse", "babynames", "sf", "ggridges",
                "rnaturalearth", "forcats" ,"tmap")
 ```
 
-## Introduction
+## Introduction to `ggplot2`
 
 The `tidyverse` includes the most popular package for data visualization in R, `ggplot2`. With its relative straight forward code and its huge flexibility, and I mean HUGE FLEXIBILTY, it became the standard form of Data Visualization. It is aims to simplify data visualization by utilizing the "Grammar of Graphics" defined by Leland Wilkinson. While it may appear complicated at first, it just creates a frame and adds elements to it.
 

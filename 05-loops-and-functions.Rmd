@@ -1,6 +1,6 @@
 # Loops and Functions
 
-For our last chapter I want to introduce to a way to work more efficient. R is a programming language for statistical analysis, but it also includes classical elements of programming. Two main operations are loops and functions. We can automate tasks and the earlier you learn about it the faster you can advance and understand the logic of R.
+In this chapter I want to introduce to a way to work more efficient. R is a programming language for statistical analysis, but it also includes classical elements of programming. Two main operations are loops and functions. We can automate tasks and the earlier you learn about it the faster you can advance and understand the logic of R. The goal of this chapter is to make you familiar with functions and loops so you know them when you see them.
 
 ## Loops
 

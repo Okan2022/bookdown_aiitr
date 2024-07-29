@@ -1,5 +1,7 @@
 # Data Manipulation
 
+In this chapter we load and transform data. That is a standard step and probably the step taking the most time, when analyzing data. Preparing data is necessary, since data analysis requires data in a certain format. Which format depends on the model. I will introduce you to dplyr, the standard package for manipulating data. At first, it seems a bit complicated, but I guarantee you, if you do data analyses in R, you will have to work with it a lot and you will become quite fluent in it. The goal of this chapter is to teach you how to manipulate data so that we can bring it into the format we need it to analyse it properly. Have fun!
+
 ![](images/meme2.jpg){fig-align="center" width="300"}
 
 ## Packages

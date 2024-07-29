@@ -4,8 +4,21 @@ bookdown::gitbook:
     toc:
       before: |
         <div style="text-align: center;">
-          <img src="images/AIITR.svg" alt="AIITR Logo" style="vertical-align: middle; margin-left: 5px; width: 150px; height: auto;">
+          <img src="images/AIITR.svg" alt="AIITR Logo" style="vertical-align: middle; margin-left: 5px; width: 125px; height: auto;">
           <li style="display: inline; list-style-type: none;"><a href="./">by Okan Sarioglu</a></li>
+        </div>
+        <div style="text-align: center; margin-top: 10px;">
+          <a href="https://github.com/Okan2022" target="_blank">
+            <img src="images/github-mark.svg" alt="GitHub" style="vertical-align: middle; width: 25px; height: auto;">
+          </a>
+          <a href="https://www.linkedin.com/in/osarioglu" target="_blank" style="margin-left: 10px;">
+            <img src="images/LinkedIn_icon.svg" alt="LinkedIn" style="vertical-align: middle; width: 25px; height: auto;">
+          </a>
+        </div>
+        <div style="text-align: center; margin-top: 10px;">
+          <form action="/search" method="get" style="display: inline;">
+            <input type="text" name="q" placeholder="Search..." style="padding: 5px; width: 200px;" onkeydown="if (event.key === 'Enter') this.form.submit();">
+          </form>
         </div>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>

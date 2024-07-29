@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&display=swap');
 
 .book .book-summary {
-  background: #d3d3d3;
+  background: #e2e2e2;
   font-family: 'IBM Plex Sans', sans-serif;
 }
 
@@ -10,7 +10,7 @@
 }
 
 p.caption {
-  color: #777;
+  color: #e2e2e2;
   margin-top: 10px;
 }
 

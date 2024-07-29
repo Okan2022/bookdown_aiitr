@@ -75,7 +75,7 @@ exercise-section-1
 exercise-1-lets-wrangle-kid
 exercise-2-merging-datasets
 data-visualisation
-introduction
+introduction-to-ggplot2
 distributions-histogram-density-plots-and-boxplots
 histograms
 basic-histogram
@@ -123,7 +123,6 @@ exercise-2-1
 exercise-3-1
 section
 data-analysis
-introduction-1
 linear-regression
 terminology
 estimating-the-ordinary-least-squares-estimator

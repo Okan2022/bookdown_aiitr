@@ -23,7 +23,7 @@
 <meta name="author" content="Okan Sarioglu" />
 
 
-<meta name="date" content="2024-07-28" />
+<meta name="date" content="2024-07-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -157,8 +157,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <ul class="summary">
 <div style="text-align: center;">
-  <img src="images/AIITR.svg" alt="AIITR Logo" style="vertical-align: middle; margin-left: 5px; width: 150px; height: auto;">
+  <img src="images/AIITR.svg" alt="AIITR Logo" style="vertical-align: middle; margin-left: 5px; width: 125px; height: auto;">
   <li style="display: inline; list-style-type: none;"><a href="./">by Okan Sarioglu</a></li>
+</div>
+<div style="text-align: center; margin-top: 10px;">
+  <a href="https://github.com/Okan2022" target="_blank">
+    <img src="images/github-mark.svg" alt="GitHub" style="vertical-align: middle; width: 25px; height: auto;">
+  </a>
+  <a href="https://www.linkedin.com/in/osarioglu" target="_blank" style="margin-left: 10px;">
+    <img src="images/LinkedIn_icon.svg" alt="LinkedIn" style="vertical-align: middle; width: 25px; height: auto;">
+  </a>
+</div>
+<div style="text-align: center; margin-top: 10px;">
+  <form action="/search" method="get" style="display: inline;">
+    <input type="text" name="q" placeholder="Search..." style="padding: 5px; width: 200px;" onkeydown="if (event.key === 'Enter') this.form.submit();">
+  </form>
 </div>
 
 <li class="divider"></li>
@@ -245,7 +258,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4" data-path="data-visualisation.html"><a href="data-visualisation.html"><i class="fa fa-check"></i><b>4</b> Data Visualisation</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="data-visualisation.html"><a href="data-visualisation.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.1" data-path="data-visualisation.html"><a href="data-visualisation.html#introduction-to-ggplot2"><i class="fa fa-check"></i><b>4.1</b> Introduction to <code>ggplot2</code></a></li>
 <li class="chapter" data-level="4.2" data-path="data-visualisation.html"><a href="data-visualisation.html#distributions-histogram-density-plots-and-boxplots"><i class="fa fa-check"></i><b>4.2</b> Distributions: Histogram, Density Plots, and Boxplots</a>
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="data-visualisation.html"><a href="data-visualisation.html#histograms"><i class="fa fa-check"></i><b>4.2.1</b> Histograms</a></li>
@@ -308,40 +321,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6" data-path="data-analysis.html"><a href="data-analysis.html"><i class="fa fa-check"></i><b>6</b> Data Analysis</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="data-analysis.html"><a href="data-analysis.html#introduction-1"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
-<li class="chapter" data-level="6.2" data-path="data-analysis.html"><a href="data-analysis.html#linear-regression"><i class="fa fa-check"></i><b>6.2</b> Linear Regression</a>
+<li class="chapter" data-level="6.1" data-path="data-analysis.html"><a href="data-analysis.html#linear-regression"><i class="fa fa-check"></i><b>6.1</b> Linear Regression</a>
 <ul>
-<li class="chapter" data-level="6.2.1" data-path="data-analysis.html"><a href="data-analysis.html#terminology"><i class="fa fa-check"></i><b>6.2.1</b> Terminology</a></li>
-<li class="chapter" data-level="6.2.2" data-path="data-analysis.html"><a href="data-analysis.html#estimating-the-ordinary-least-squares-estimator"><i class="fa fa-check"></i><b>6.2.2</b> Estimating the Ordinary Least Squares Estimator</a></li>
-<li class="chapter" data-level="6.2.3" data-path="data-analysis.html"><a href="data-analysis.html#predictions-with-linear-regression"><i class="fa fa-check"></i><b>6.2.3</b> Predictions with Linear Regression</a></li>
+<li class="chapter" data-level="6.1.1" data-path="data-analysis.html"><a href="data-analysis.html#terminology"><i class="fa fa-check"></i><b>6.1.1</b> Terminology</a></li>
+<li class="chapter" data-level="6.1.2" data-path="data-analysis.html"><a href="data-analysis.html#estimating-the-ordinary-least-squares-estimator"><i class="fa fa-check"></i><b>6.1.2</b> Estimating the Ordinary Least Squares Estimator</a></li>
+<li class="chapter" data-level="6.1.3" data-path="data-analysis.html"><a href="data-analysis.html#predictions-with-linear-regression"><i class="fa fa-check"></i><b>6.1.3</b> Predictions with Linear Regression</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="data-analysis.html"><a href="data-analysis.html#model-fit"><i class="fa fa-check"></i><b>6.3</b> Model Fit</a>
+<li class="chapter" data-level="6.2" data-path="data-analysis.html"><a href="data-analysis.html#model-fit"><i class="fa fa-check"></i><b>6.2</b> Model Fit</a>
 <ul>
-<li class="chapter" data-level="6.3.1" data-path="data-analysis.html"><a href="data-analysis.html#measures-of-fit"><i class="fa fa-check"></i><b>6.3.1</b> Measures of Fit</a></li>
-<li class="chapter" data-level="6.3.2" data-path="data-analysis.html"><a href="data-analysis.html#tss-ess-and-r2"><i class="fa fa-check"></i><b>6.3.2</b> TSS, ESS and <span class="math inline">\(R^2\)</span></a></li>
-<li class="chapter" data-level="6.3.3" data-path="data-analysis.html"><a href="data-analysis.html#influential-outliers"><i class="fa fa-check"></i><b>6.3.3</b> Influential Outliers</a></li>
-<li class="chapter" data-level="6.3.4" data-path="data-analysis.html"><a href="data-analysis.html#functional-form"><i class="fa fa-check"></i><b>6.3.4</b> Functional Form</a></li>
-<li class="chapter" data-level="6.3.5" data-path="data-analysis.html"><a href="data-analysis.html#independent-observation"><i class="fa fa-check"></i><b>6.3.5</b> Independent Observation</a></li>
+<li class="chapter" data-level="6.2.1" data-path="data-analysis.html"><a href="data-analysis.html#measures-of-fit"><i class="fa fa-check"></i><b>6.2.1</b> Measures of Fit</a></li>
+<li class="chapter" data-level="6.2.2" data-path="data-analysis.html"><a href="data-analysis.html#tss-ess-and-r2"><i class="fa fa-check"></i><b>6.2.2</b> TSS, ESS and <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="6.2.3" data-path="data-analysis.html"><a href="data-analysis.html#influential-outliers"><i class="fa fa-check"></i><b>6.2.3</b> Influential Outliers</a></li>
+<li class="chapter" data-level="6.2.4" data-path="data-analysis.html"><a href="data-analysis.html#functional-form"><i class="fa fa-check"></i><b>6.2.4</b> Functional Form</a></li>
+<li class="chapter" data-level="6.2.5" data-path="data-analysis.html"><a href="data-analysis.html#independent-observation"><i class="fa fa-check"></i><b>6.2.5</b> Independent Observation</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="data-analysis.html"><a href="data-analysis.html#hypothesis-testing-in-r"><i class="fa fa-check"></i><b>6.4</b> Hypothesis Testing in R</a>
+<li class="chapter" data-level="6.3" data-path="data-analysis.html"><a href="data-analysis.html#hypothesis-testing-in-r"><i class="fa fa-check"></i><b>6.3</b> Hypothesis Testing in R</a>
 <ul>
-<li class="chapter" data-level="6.4.1" data-path="data-analysis.html"><a href="data-analysis.html#standard-error"><i class="fa fa-check"></i><b>6.4.1</b> Standard Error</a></li>
-<li class="chapter" data-level="6.4.2" data-path="data-analysis.html"><a href="data-analysis.html#t-value-or-t-statistic"><i class="fa fa-check"></i><b>6.4.2</b> T-Value or T-Statistic</a></li>
-<li class="chapter" data-level="6.4.3" data-path="data-analysis.html"><a href="data-analysis.html#p-values"><i class="fa fa-check"></i><b>6.4.3</b> p-values</a></li>
-<li class="chapter" data-level="6.4.4" data-path="data-analysis.html"><a href="data-analysis.html#confidence-interval"><i class="fa fa-check"></i><b>6.4.4</b> Confidence Interval</a></li>
+<li class="chapter" data-level="6.3.1" data-path="data-analysis.html"><a href="data-analysis.html#standard-error"><i class="fa fa-check"></i><b>6.3.1</b> Standard Error</a></li>
+<li class="chapter" data-level="6.3.2" data-path="data-analysis.html"><a href="data-analysis.html#t-value-or-t-statistic"><i class="fa fa-check"></i><b>6.3.2</b> T-Value or T-Statistic</a></li>
+<li class="chapter" data-level="6.3.3" data-path="data-analysis.html"><a href="data-analysis.html#p-values"><i class="fa fa-check"></i><b>6.3.3</b> p-values</a></li>
+<li class="chapter" data-level="6.3.4" data-path="data-analysis.html"><a href="data-analysis.html#confidence-interval"><i class="fa fa-check"></i><b>6.3.4</b> Confidence Interval</a></li>
 </ul></li>
-<li class="chapter" data-level="6.5" data-path="data-analysis.html"><a href="data-analysis.html#multivariate-regression"><i class="fa fa-check"></i><b>6.5</b> Multivariate Regression</a>
+<li class="chapter" data-level="6.4" data-path="data-analysis.html"><a href="data-analysis.html#multivariate-regression"><i class="fa fa-check"></i><b>6.4</b> Multivariate Regression</a>
 <ul>
-<li class="chapter" data-level="6.5.1" data-path="data-analysis.html"><a href="data-analysis.html#model-fit-adjusted-r-squared"><i class="fa fa-check"></i><b>6.5.1</b> Model Fit: Adjusted R-squared</a></li>
-<li class="chapter" data-level="6.5.2" data-path="data-analysis.html"><a href="data-analysis.html#omitted-variable-bias"><i class="fa fa-check"></i><b>6.5.2</b> Omitted Variable Bias</a></li>
-<li class="chapter" data-level="6.5.3" data-path="data-analysis.html"><a href="data-analysis.html#multicollinearity"><i class="fa fa-check"></i><b>6.5.3</b> Multicollinearity</a></li>
+<li class="chapter" data-level="6.4.1" data-path="data-analysis.html"><a href="data-analysis.html#model-fit-adjusted-r-squared"><i class="fa fa-check"></i><b>6.4.1</b> Model Fit: Adjusted R-squared</a></li>
+<li class="chapter" data-level="6.4.2" data-path="data-analysis.html"><a href="data-analysis.html#omitted-variable-bias"><i class="fa fa-check"></i><b>6.4.2</b> Omitted Variable Bias</a></li>
+<li class="chapter" data-level="6.4.3" data-path="data-analysis.html"><a href="data-analysis.html#multicollinearity"><i class="fa fa-check"></i><b>6.4.3</b> Multicollinearity</a></li>
 </ul></li>
-<li class="chapter" data-level="6.6" data-path="data-analysis.html"><a href="data-analysis.html#categorical-variables"><i class="fa fa-check"></i><b>6.6</b> Categorical Variables</a>
+<li class="chapter" data-level="6.5" data-path="data-analysis.html"><a href="data-analysis.html#categorical-variables"><i class="fa fa-check"></i><b>6.5</b> Categorical Variables</a>
 <ul>
-<li class="chapter" data-level="6.6.1" data-path="data-analysis.html"><a href="data-analysis.html#interaction-effects"><i class="fa fa-check"></i><b>6.6.1</b> Interaction Effects</a></li>
+<li class="chapter" data-level="6.5.1" data-path="data-analysis.html"><a href="data-analysis.html#interaction-effects"><i class="fa fa-check"></i><b>6.5.1</b> Interaction Effects</a></li>
 </ul></li>
-<li class="chapter" data-level="6.7" data-path="data-analysis.html"><a href="data-analysis.html#outlook-5"><i class="fa fa-check"></i><b>6.7</b> Outlook</a></li>
-<li class="chapter" data-level="6.8" data-path="data-analysis.html"><a href="data-analysis.html#exercise-section-4"><i class="fa fa-check"></i><b>6.8</b> Exercise Section</a></li>
+<li class="chapter" data-level="6.6" data-path="data-analysis.html"><a href="data-analysis.html#outlook-5"><i class="fa fa-check"></i><b>6.6</b> Outlook</a></li>
+<li class="chapter" data-level="6.7" data-path="data-analysis.html"><a href="data-analysis.html#exercise-section-4"><i class="fa fa-check"></i><b>6.7</b> Exercise Section</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -364,6 +376,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="data-manipulation" class="section level1 hasAnchor" number="3">
 <h1><span class="header-section-number">Chapter 3</span> Data Manipulation<a href="data-manipulation.html#data-manipulation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In this chapter we load and transform data. That is a standard step and probably the step taking the most time, when analyzing data. Preparing data is necessary, since data analysis requires data in a certain format. Which format depends on the model. I will introduce you to dplyr, the standard package for manipulating data. At first, it seems a bit complicated, but I guarantee you, if you do data analyses in R, you will have to work with it a lot and you will become quite fluent in it. The goal of this chapter is to teach you how to manipulate data so that we can bring it into the format we need it to analyse it properly. Have fun!</p>
 <p><img src="images/meme2.jpg" fig-align="center" width="300" /></p>
 <div id="packages" class="section level2 hasAnchor" number="3.1">
 <h2><span class="header-section-number">3.1</span> Packages<a href="data-manipulation.html#packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>

@@ -1,8 +1,6 @@
 # Data Analysis
 
-## Introduction
-
-Hello, this is an introductory course to the central concepts of statistical analysis and hypothesis testing in R! The goal of this course is to provide you with the basic ideas of statistical analysis and hypothesis testing. For me, it is important that you get an intuition about what is going on rather than terrorizing you with complicated math. Although, I cannot and will not leave out central formulas, you will be fine with the maths. I wish you fun and please do not hesitate to help making that course better.
+In this chapter you I introduce you to the basic ideas of statistical analysis and hypothesis testing. For me, it is important that you get an intuition about what is going on rather than terrorizing you with complicated math. Although, I cannot and will not leave out central formulas, you will be fine with the maths. There extensively commented and in the end of the day not that hard to understand. You will notice that the programming in this chapter is quite easy compared to before. In the end, you only need formulas, who do everything you need to analyse data, that is also a strength of R. Please concentrate more on the concepts and get an idea what is going on. The goal of this chapter is that you get to know linear regression and how to check if the model fits and the results are robust and significant.
 
 ```{r loading packages}
 pacman::p_load("tidyverse", "ggpubr","gapminder", "sjPlot", "kableExtra", 
@@ -986,7 +984,7 @@ The rule is that if a value exceeds 10, it is considered critical. We should alw
 As I mentioned in the first chapter, there are different types of variables, let us reconsider them:
 
 |               |               |                                              |
-|---------------|---------------|----------------------------------------------|
+|----------------|----------------|----------------------------------------|
 | **Numeric**   | Numbers       | `c(1, 2.4, 3.14, 4)`                         |
 | **Character** | Text          | `c("1", "blue", "fun", "monster")`           |
 | **Logical**   | True or false | `c(TRUE, FALSE, TRUE, FALSE)`                |
