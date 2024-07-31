@@ -184,7 +184,7 @@ print(prices_combined) #printing it
 Objects can contain information of different *data types*:
 
 |               |               |                                              |
-|------------------|------------------|-------------------------------------|
+|------------------|------------------|------------------------------------|
 | **Numeric**   | Numbers       | `c(1, 2.4, 3.14, 4)`                         |
 | **Character** | Text          | `c("1", "blue", "fun", "monster")`           |
 | **Logical**   | True or false | `c(TRUE, FALSE, TRUE, FALSE)`                |
@@ -359,7 +359,7 @@ First, you define an if statement. The if statement is a logical statement for e
 
 ![***Figure 2: Logic of if-else statements***](images/r-if-else-statement_2.png){fig-align="center" width="350"}
 
-Figure \@ref(fig:2) shows the logic of an if else statement with one condition. We say that if the test expression is true something should happen. If not nothing happens, because nothing was defined.
+Figure 2 shows the logic of an if else statement with one condition. We say that if the test expression is true something should happen. If not nothing happens, because nothing was defined.
 
 -   We want R to judge our grades in school. For this reason we define an object called grade and assign 1.7 to it.
 

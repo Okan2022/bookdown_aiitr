@@ -984,7 +984,7 @@ The rule is that if a value exceeds 10, it is considered critical. We should alw
 As I mentioned in the first chapter, there are different types of variables, let us reconsider them:
 
 |               |               |                                              |
-|----------------|----------------|----------------------------------------|
+|-----------------|-----------------|--------------------------------------|
 | **Numeric**   | Numbers       | `c(1, 2.4, 3.14, 4)`                         |
 | **Character** | Text          | `c("1", "blue", "fun", "monster")`           |
 | **Logical**   | True or false | `c(TRUE, FALSE, TRUE, FALSE)`                |

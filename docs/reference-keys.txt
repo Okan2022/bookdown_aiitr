@@ -1,12 +1,3 @@
-an-intuitive-introduction-to-r
-welcome
-about-this-course
-prerequisities
-what-is-r-and-rstudio
-why-r
-what-expects-you-and-what-not
-overview-of-the-course-structure
-about-me
 fundamentals
 getting-familiar-with-rstudio-and-establishing-a-workflow
 the-user-interface

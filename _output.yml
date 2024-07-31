@@ -15,10 +15,5 @@ bookdown::gitbook:
             <img src="images/LinkedIn_icon.svg" alt="LinkedIn" style="vertical-align: middle; width: 25px; height: auto;">
           </a>
         </div>
-        <div style="text-align: center; margin-top: 10px;">
-          <form action="/search" method="get" style="display: inline;">
-            <input type="text" name="q" placeholder="Search..." style="padding: 5px; width: 200px;" onkeydown="if (event.key === 'Enter') this.form.submit();">
-          </form>
-        </div>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>

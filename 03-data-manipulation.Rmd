@@ -818,16 +818,24 @@ Now we are ready to use the API.
 -   Lastly, with the "`start =`" argument we define the starting year, so data which goes back to that date is loaded and with "`end =`" is analagos to define where the time should stop. Thus, both arguments define the time span we want to inspect
 
 ```{r world bank data}
-wb <- WDI( 
-  country = countries, #We include our countries 
-  indicator = indicators, #We include our variables 
-  start = 2020, #start date 
-  end = 2020) #end date 
+#wb <- WDI( 
+#  country = countries, #We include our countries 
+#  indicator = indicators, #We include our variables 
+#  start = 2020, #start date 
+#  end = 2020) #end date 
 
 #This takes some time, especially if you have more countries, more indicators and a longer time span.
 
 #Checking it
-head(wb)
+#head(wb)
+
+#Simulating the data 
+wb <- data.frame(
+  iso2c = c("BE", "BG", "CH", "EE", "FR", "GB"), 
+  NY.GDP.PCAP.CD = c(45587.97, 10148.34, 85897.78, 23565.18, 39179.74, 40217.01), 
+  TX.VAL.FUEL.ZS.UN = c(5.021, 4.644, 0.6111, 4.863, 1.886, 7.062), 
+  EN.ATM.CO2E.KT = c(85364.10, 34138.10, 34916.10, 7097.52, 267154.70, 308650.30)
+)
 ```
 
 Let us transform the dataset (Only variables we need, arranging it alphabetically, renaming it and rounding one variable to make the numbers more intuitive):
@@ -849,7 +857,7 @@ head(wb)
 
 Now, we cut down and prepare our ESS data by selecting the countries we are interested in, renaming the country variable (I'll explain later why), we group by the country (iso2c) and the year (year) to get the average happiness by country. Lastly, we round the value to get only two decimals.
 
-```{r making happy_agg}
+```{r making happy_agg, message=FALSE}
 #preparing ess
 d1 <- ess %>%
   filter(cntry == c("BE", "BG", "CZ", "EE", "FI")) %>%
@@ -913,11 +921,21 @@ Let us get again World Bank Data and clean it:
 
 ```{r,  world bank 2}
 #Getting the Data
-wb <- WDI( 
-  country = c("BE", "BG"), #We include our countries 
-  indicator = indicators, #We include our variables 
-  start = 2019, #start date 
-  end = 2020) #end date 
+#wb <- WDI( 
+#  country = c("BE", "BG"), #We include our countries 
+#  indicator = indicators, #We include our variables 
+#  start = 2019, #start date 
+#  end = 2020) #end date 
+
+#Simulating the data 
+wb <- data.frame(
+  iso3c = c("BEL", "BEL", "BGR", "BGR"),
+  iso2c = c("BE", "BE","BG", "BG"), 
+  year = c(2019, 2020, 2019, 2020),
+  NY.GDP.PCAP.CD = c(46641.72, 45587.97, 9874.336, 10148.34), 
+  TX.VAL.FUEL.ZS.UN = c(7.38, 5.02, 9.53, 4.64), 
+  EN.ATM.CO2E.KT = c(92989.4, 85364.10, 39159.9, 34138.10)
+)
 
 #Cleaning the Data
 wb <- wb %>% 

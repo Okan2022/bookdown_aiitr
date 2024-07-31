@@ -1,28 +1,33 @@
+
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&display=swap');
 
 .book .book-summary {
-  background: #e2e2e2;
-  font-family: 'IBM Plex Sans', sans-serif;
-}
+background: #ececec;
+font-family: 'IBM Plex Sans', sans-serif; }
 
-.book. font-family-1 {
-    font-family: 'IBM Plex Sans', sans-serif;
+.book.font-family-1 {
+font-family: 'IBM Plex Sans', sans-serif; }
+
+.book .book-body .page-wrapper .page-inner section.normal pre {
+background: #ececec;
+border-radius: 16px;
+
 }
 
 p.caption {
-  color: #e2e2e2;
-  margin-top: 10px;
+color: #ececec;
+margin-top: 10px;
 }
 
 p code {
-  white-space: inherit;
+white-space: inherit;
 }
 
 pre {
-  word-break: normal;
-  word-wrap: normal;
+word-break: normal;
+word-wrap: normal;
 }
 
 pre code {
-  white-space: inherit;
+white-space: inherit;
 }
