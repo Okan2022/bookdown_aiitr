@@ -1,7 +1,6 @@
 book_filename: "bookdownproj"
 output_dir: docs
 delete_merged_file: true
-view: https://github.com/Okan2022/bookdown_aiitr/blob/main/%s
 language:
   ui:
     chapter_name: "Chapter "

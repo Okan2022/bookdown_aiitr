@@ -1,6 +1,8 @@
 bookdown::gitbook:
   css: style.css
   config:
+    fontsettings: null
+    search: null
     toc:
       before: |
         <div style="text-align: center;">
@@ -14,6 +16,13 @@ bookdown::gitbook:
           <a href="https://www.linkedin.com/in/osarioglu" target="_blank" style="margin-left: 10px;">
             <img src="images/LinkedIn_icon.svg" alt="LinkedIn" style="vertical-align: middle; width: 25px; height: auto;">
           </a>
+        </div> 
+        <div style="text-align: center;margin-top: 10px;margin-bottom: 10px">
+        <a href="aiitr_script.R" download="aiitr_script.R" style="display: inline-block; padding: 10px 20px; font-size: 16px; color: #fff; background-color: #4169e1; text-decoration: none; border-radius: 8px;">Download R Script</a>
         </div>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+    sharing:
+      facebook: false
+      twitter: false
+      all: [ ]

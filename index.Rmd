@@ -2,6 +2,7 @@
 title: "An intuitive Introduction to R"
 author: "Okan Sarioglu"
 date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
 ---
 
 # Welcome ! {-}
