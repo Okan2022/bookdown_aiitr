@@ -1,403 +1,35 @@
-## Lets get started: R as a fancy calculator
+#----------------------------------------
+#Name: R Script An intuitive Introduction to R
+#Author: Okan Sarioglu
+#GitHub: Okan2022
+#E-Mail: o.sarioglu@gmx.de
+#LinkedIn: @osarioglu
+#----------------------------------------
 
-### Mathematical Operations in R
+#Link to the course website:
 
-```{r calculations}
+#This R Script corresponds to the course "An intuitive Introduction". It should
+#help you to not only read and see about the code, but also execute it to get 
+#familiar with R. This script only includes the code from the AIITR course. 
 
-#You can use hashtags to comment
+#-------------
+#Instructions
+#-------------
 
-1 + 1 #Addition
+#This R script from the beginning to the end, you only have to
+#follow two rules. 
 
-1 - 1 #Substraction
+#The Rules are simple:
 
-1 * 1 #Multiplication 
+#First, execute these lines are of codes, since they are necessary (loading 
+#packages and simulating data): 
 
-1 / 1 #Division
+#=====================RUN THESE LINES BEFORE CONTINUING========================#
 
-2^(1 / 2) #Mixed Terms
-
-```
-
-You can use R also for TRUE/FALSE statements for logical statements via the comparison operators:
-  
-  -   `>` greater than
--   `<` smaller than
--   `==` equal
--   `!=` not equal
--   `>=` greater than or equal to
--   `<=` less than or equal to
-
-```{r logical operators}
-
-1 < 3 #TRUE
-
-5 >= 8 #FALSE
-
-11 != 10 #TRUE
-
-22 == 22 #TRUE
-
-7 < 3 #FALSE
-
-5 <= 2+3 #TRUE
-
-```
-
-You can also use logical operators: - `&` element-wise AND operator. It returns TRUE if both elements are true - `|` element-wise OR operator. It returns TRUE if one of the statements is TRUE - `!` Logical NOT operator. It returns FALSE if statement is TRUE
-
-```{r logical statements}
-
-5 & 4 < 8 #TRUE
-
-5 | 4 < 8 #TRUE
-
-!5 > 2 #FALSE
-
-```
-
-### Using Commands
-
-For more advanced operations you can and should use functions. Functios are mostly a word with brackets. Within a function, there are so called arguments. These arguments specify the function and give it the information it needs + optional information.
-
-e.g.
-
--   `sqrt(x)` taking the square root, `x` is any number.
--   `exp(x)` the constant e, `x` is any number.
--   `mean(x)` for the mean, `x` is any number.
--   `median(x)` for the median, `x` is any number.
-
-```{r functions, eval=FALSE}
-sqrt(x = 36) #square root
-
-exp(x = 0) # exponential of 1
-
-print("U can stay under my umbrella") #with this command you can print what you want 
-```
-
-I explicitly choose easy examples, but sometimes commands can be complicated, because they demand special inputs. To get help, our first step should be to ask R itself:
-  
-  -   You can put a question mark in front of a function and execute it. In your output under the tab "Help" an explanation with examples will pop up and explain the function.
-
--   You can also call the help() function and put the function you want to learn about without brackets in the help() function.
-
-```{r help}
-?exp() #questionmark
-help(exp) #help command
-```
-
-### Assigning objects and printing them
-
-Most of the time you will store your results in objects.
-
--   You can do so by using the `<-` operator. Afterwards you can work with the objects. Let us assign numbers to out objects.
-
--   The objects will be saved and you can see them in your environment.
-
-```{r objects}
-Pizza <- 7.50 #pizza object
-
-Cola <- 3.50 #cola object
-
-Pizza + Cola #addition of objects
-```
-
-We can then go on work with the content of the objects.
-
--   For beginners, let us add the object Pizza and the object Cola together.
-
--   We can also save the result of those object in a new object and work with this object and this can go on forever technically.
-
-```{r}
-Offer <- Pizza + Cola #assigning addition 
-
-Offer #printing the object
-
-Offer^2 #square the term with ^2
-```
-
-### Vectors
-
-In R a vector contains more than one information.
-
--   You use the `c()` command, and divide the information with a `,`. Let us compare food prices:
-  
-  ```{r interacting objects}
-
-food <- c("Pizza", "Kebab", "Curry", 
-          "Fish", "Burrito") #food vector
-
-print(food) #printing it 
-
-prices <- c(7.50, 6.00, 8.50, 3.00, 11.00) #price vector
-
-print(prices) #printing it
-
-cola_prices <- c(3.50, 3, 4, 2.50, 3) #cola prices vector
-
-print(cola_prices) #printing it
-```
-
-Now we can calculate the prices for a decent meal in one step by adding the two vectors together. The vector prices_combined will give us the prices for a meal plus a cola:
-  
-  ```{r interacting objects 2}
-prices_combined <- prices + cola_prices #prices combined
-
-print(prices_combined) #printing it
-```
-
-### Object Classes
-
-Objects can contain information of different *data types*:
-  
-  |               |               |                                              |
-  |------------------|------------------|------------------------------------|
-  | **Numeric**   | Numbers       | `c(1, 2.4, 3.14, 4)`                         |
-  | **Character** | Text          | `c("1", "blue", "fun", "monster")`           |
-  | **Logical**   | True or false | `c(TRUE, FALSE, TRUE, FALSE)`                |
-  | **Factor**    | Category      | `c("Strongly disagree", "Agree", "Neutral")` |
-  
-  For data analysis commands sometimes require special object classes. With the `class()` command we can find out the class. And with `as.numeric` for example we can change classes by assigning it to itself, by it is common to assign it to a new object:
-  
-  ```{r classes}
-#Let us find out the classes 
-class(prices) #numeric
-class(food) #character
-class(cola_prices) #numeric
-```
-
-We can also change the classes of variables. To do so, we can use `as.factor()`, `as.numeric()`, `as.character()` and so forth. You can do that for every class. Let us change the cola_prices to a vector.
-
--   To do so, we change call `as.character()` and put the object in it. Then we assign it to another object called `cola_prices_character`. This object will have the class `"character"`.
-
-```{r changing classes}
-#We want the cola_prices vector to be a character 
-cola_prices_character <- as.character(cola_prices)
-
-#Checking it
-class(cola_prices_character)
-print(cola_prices_character)
-```
-
-### Matrices
-
-#### Making Matrices
-
-There are different ways of building a matrix. Let us start by just binding the vectors as columns together. You can do that `cbind()` if you want to bind columns together. `rbind()` is therefore the command to bind rows together.
-
--   You have to call `cbind()` and include the vectors you want to bind together
-
--   The same with `rbind()`
-
-```{r matrix}
-price_index <- cbind(food, 
-                     prices,
-                     cola_prices) #We bind it together
-
-print(price_index) #We print it 
-
-#Let's do the same by binding the rows together
-
-price_index2 <- rbind(food, 
-                      prices,
-                      cola_prices) #We bind it together
-
-print(price_index2) #We print it 
-```
-
-We can also generate a matrix by simulating it. There are a lot of things to care about, simply because a lot is possible:
-  
-  -   You first call the matrix() command.
-
--   The first argument is an interval of numbers. These are our total observations if you want.
-
--   The second and third argument are our number of rows `nrow()` and our number of columns `ncol()`. If you multiply them, they have to result in the number of observations you defined before. We have 20 numbers and 4 multiplied by 5 is 20, thus this is fine.
-
--   Lastly you have to define if the numbers should be included from left to right, thus by row or if they should be ordered from top to bottom. We go through both examples and then it should become clear.
-
--   The `dim()` command is helpful, because it shows us to inspect the dimensions.
-
-```{r simulating matrix}
-# Create a matrix
-matrix_example <- matrix(1:20, nrow = 4, ncol = 5, byrow = T) #
-
-# Checking it
-print(matrix_example)
-# Checking the dimensions
-dim(matrix_example)
-
-# What happens if byrow is set to FALSE?
-matrix_example2 <- matrix(1:20, nrow = 4, ncol = 5, byrow = F)
-
-# Checking it 
-print(matrix_example2)
-dim(matrix_example2)
-```
-
-#### Working with Matrices
-
-We want to work with matrices. The first tool to learn is how to inspect the matrices:
-  
-  -   First, you call the matrix. In our example, matrix_example with square brackets.
-
--   In these brackets you can call single rows by entering the number of the row you want to inspect, and then you put a comma behind it to signal R that you want to have the row.
-
--   If you put a number behind the comma, you tell R to give you the column with the number.
-
--   If you want a single number then you have to define a row and a column.
-
-```{r working with matrices}
-#Let us get used to work with objects
-row <- 1 
-column <- 1 
-
-#Printing it
-print(object1 <- matrix_example[row, ]) #printing the first row
-print(object2 <- matrix_example[, column]) #printing the first column 
-print(object3 <- matrix_example[row, column]) #printing first row and column
-
-print(matrix_example) #printing the matrix
-```
-
-```{r matrix info}
-#More Information 
-
-nrow(matrix_example) #How many rows
-
-ncol(matrix_example) #How many columns
-
-dim(matrix_example) #Overall dimensions
-```
-
-### Data Frames
-
-The next type of data storage are data frames. These are the standard storage objects for data in R. The reason is simple, matrices are only able to contain one type of variables (numeric, character, etc...).
-
--   In this example, we have a dataset with the variable country (character), the capital (character), the population in mio (numeric), and a if the country is in europe (logical)
-
-```{r dfs}
-# making an example df
-df_example <- data.frame(
-  country = c("Austria", "England", 
-              "Brazil", "Germany"), 
-  capital = c("Vienna", "London", 
-              "Brasilia", "Berlin"), 
-  pop = c(9.04, 55.98, 215.3, 83.8),
-  europe = c(TRUE, FALSE, TRUE, TRUE)
-)
-
-# Checking it
-print(df_example)
-```
-
--   If you want to work with data frames you can call columns by calling the name of the data frame putting a dollar sign behind it and then calling the name of the column, you want to inspect:
-  
-  ```{r getting columns}
-df_example$country  
-```
-
-You see that you get the vector of the column. We can go further and work more with data frames
-
--   Let us call a single observation in the data frame: You call the column you want to inspect the same way as before, this time you also put square brackets behind and call the number of the observation in the column.
-
--   We want to have "Brazil". "Brazil" is the third element of the `df_example$country`, thus we include 3 in the square brackets:
-  
-  ```{r inspect data frames}
-df_example$country[3]
-```
-
-The last thing to do with data frames is to get columns based on conditions. In the next part of this chapter we will get a method to do so, but we can do so as well with the data frame. Imagine you want to have a vector of `df$country`, but only with countries that have a `df$pop` bigger than 60. Meaning a population bigger than 60.
-
--   To do so we call the `df$country` column and put square brackets behind it
-
--   Further we need to call in the square brackets the condition. Thus, the variable `df_example$pop` and set it to bigger than 60. Et voila, we get the columns of `df_example$country` bigger than 60.
-
-```{r dfs conditions}
-df_example$country[df_example$pop > 60]
-```
-
-```{r installing pacman if needed, echo = FALSE}
-if (!require("pacman")) install.packages("pacman")
-```
-
-```{r pacman}
+if (!require("pacman")) install.packages("pacman") #installing pacman
 pacman::p_load("tidyverse", "psych", "WDI", "gapminder") #loading packages
-```
 
-## The Data we will work with: The European Social Survey (ESS)
-
-For the following Data Manipulation Part, we will use the European Social Survey Round 10 with the topic "Democracy, Digital social contacts". It is a high-quality survey conducted in 31 European countries. Round 10 was conducted in 2020 and is the most recent ESS. We will use it, since survey data is quite popular among students and further at some point everyone needs to work with it. But do not worry if you do not like survey data, we will also cover other prominent Datasets.
-
-You can freely download it via the [website](https://www.europeansocialsurvey.org/) of the ESS. From there you need to go to the Data Portal and than you can download the Round you want, in the format you want. As already mentioned, use the `.dta` or `.csv` format.
-
-+--------------+--------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
-  | **Variable** | **Description**                                        | Scales                                                                                                |
-  +:============:+:======================================================:+:=====================================================================================================:+
-  | **idnt**     | Respondent's identification number                     | unique number from 1-9000                                                                             |
-+--------------+--------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
-| **year**     | The year when the survey was conducted                 | only 2020                                                                                             |
-+--------------+--------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
-| **cntry**    | Country                                                | BE, BG, CH, CZ, EE, FI, FR,GB, GR, HR, HU, IE, IS, IT, LT,NL, NO, PT, SI, SK                          |
-+--------------+--------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
-| **agea**     | Age of the Respondent, calculated                      | Number of Age = 15-90                                                                                 |
-|              |                                                        |                                                                                                       |
-|              |                                                        | 999 = Not available                                                                                   |
-+--------------+--------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
-| **gndr**     | Gender                                                 | 1 = Male;                                                                                             |
-|              |                                                        |                                                                                                       |
-|              |                                                        | 2 = Female;                                                                                           |
-|              |                                                        |                                                                                                       |
-|              |                                                        | 9 = No answer                                                                                         |
-+--------------+--------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
-| **happy**    | How happy are you                                      | 0 (Extremly unhappy) - 10 (Extremly happy);                                                           |
-|              |                                                        |                                                                                                       |
-|              |                                                        | 77 = Refusal;                                                                                         |
-|              |                                                        |                                                                                                       |
-|              |                                                        | 88 = Don't Know;                                                                                      |
-  |              |                                                        |                                                                                                       |
-  |              |                                                        | 99 = No answer                                                                                        |
-  +--------------+--------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
-  | **eisced**   | Highest level of education, ES - ISCED                 | 0 = Not possible to harmonise into ES-ISCED;                                                          |
-  |              |                                                        |                                                                                                       |
-  |              |                                                        | 1 (ES-ISCED I , less than lower secondary) - 7 (ES-ISCED V2, higher tertiary education, =\> MA level; |
-                                                                                                                              |              |                                                        |                                                                                                       |
-                                                                                                                              |              |                                                        | 55 = Other;                                                                                           |
-                                                                                                                              |              |                                                        |                                                                                                       |
-                                                                                                                              |              |                                                        | 77 = Refusal;                                                                                         |
-                                                                                                                              |              |                                                        |                                                                                                       |
-                                                                                                                              |              |                                                        | 88 = Don't know;                                                                                      |
-|              |                                                        |                                                                                                       |
-|              |                                                        | 99 = No answer                                                                                        |
-+--------------+--------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
-| **netusoft** | Internet use, how often                                | 1 (Never) - 5 (Every day);                                                                            |
-|              |                                                        |                                                                                                       |
-|              |                                                        | 7 = Refusal;                                                                                          |
-|              |                                                        |                                                                                                       |
-|              |                                                        | 8 = Don't know;                                                                                       |
-                                                                                                                              |              |                                                        |                                                                                                       |
-                                                                                                                              |              |                                                        | 9 = No answer                                                                                         |
-                                                                                                                              +--------------+--------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
-                                                                                                                              | **trstprl**  | Most people can be trusted or you can't be too careful | 0 (You can't be too careful) - 10 (Most people can be trusted);                                       |
-  |              |                                                        |                                                                                                       |
-  |              |                                                        | 77 = Refusal;                                                                                         |
-  |              |                                                        |                                                                                                       |
-  |              |                                                        | 88 = Don't Know;                                                                                      |
-|              |                                                        |                                                                                                       |
-|              |                                                        | 99 = No answer                                                                                        |
-+--------------+--------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
-| **lrscale**  | Left-Right Placement                                   | 0 (Left) - 10 (Right);                                                                                |
-|              |                                                        |                                                                                                       |
-|              |                                                        | 77 = Refusal;                                                                                         |
-|              |                                                        |                                                                                                       |
-|              |                                                        | 88 = Don't know;                                                                                      |
-  |              |                                                        |                                                                                                       |
-  |              |                                                        | 99 = No answer                                                                                        |
-  +--------------+--------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
-  
-  *Note: In the following, I will simulate the ESS with the same names and same range values. Which means if you read in the actual ESS, you should be able to run the code as well without problems!*
-  
-  *I do so for reproducibility reasons. When downloading the script, users should be able to run the whole script with one click. This is because users, who are new to R might have problems with setting working directories, since working directories are prone to errors, especially at the beginning.*
-  
-  ```{r simulating ess, echo = FALSE}
+#Simulating European Election Survey (ESS)
 set.seed(123)
 
 ess <- data.frame(
@@ -444,71 +76,219 @@ missing_indices_lrscale <- sample(1:9000, 308)
 ess$lrscale[missing_indices_lrscale] <- sample(c(77, 88, 99),
                                                308, 
                                                replace = TRUE)
-```
 
-### Load the data
+#=====================RUN THESE LINES BEFORE CONTINUING========================#
 
-#### How to load data
+#Second, you can not just randomly execute some lines of code. That can result
+#in error messages. To have guaranteed success while executing a code you have
+#to execute code in everything between these lines: "#------". Only then the 
+#code will run without any mistakes. 
 
-The first thing to do, when cleaning data is to load the data into R. The first thing to ensure is to know, where R can take the data from and load it into its own environment. You can call data from your local devise or remote through e.g. an API:
-  
-  -   **Remote:** This means the dataset is laying around on some external Cloud or Server and you have the possibility to load it into R, without downloading it on your local devise. Depending on the dataset there are different ways, I will show you later how to get data from the World Bank.
+#And now I wish you fun with the course!
 
--   **Local:** To get data from your devise, you have to tell R, where to find it, meaning you tell him the path. Go to your file and click on it. The path will be shown in the address bar, just copy it and paste it in R with the responding command. The command is defined by the type of the file as you can see in the table below. Here is an example how it could look wit a .csv file
 
-`data <- read.csv("C:/Users/YourUsername/Documents/data.csv")`
+#----------------------
+#   1. Fundamentals
+#----------------------
 
-This table presents some of the most frequent data types, which you can download and load into R. There are of course more data types, and to find out if you can read them into R, you can just google the type and look for the command. Mostly you will find a package with a command. And mostly, those commands start with "read".
+#-------------------------------------------------------------------------------
 
-+---------------------------+----------------+----------------------------------------------+-------------------------+
-  | File                      | File Extension | Package                                      | Command                 |
-  +===========================+================+==============================================+=========================+
-  | **Stata**                 | .dta           | haven                                        | `read_dta()`            |
-  +---------------------------+----------------+----------------------------------------------+-------------------------+
-  | **CSV-Files**             | .csv           | readr (is included in the tidyverse package) | `read_csv()`            |
-  +---------------------------+----------------+----------------------------------------------+-------------------------+
-  | **Excel-Files**           | .xlsx; .xls    | readxl                                       | `read.rds()`            |
-  +---------------------------+----------------+----------------------------------------------+-------------------------+
-  | **RData (also RDS Data)** | .RData;.rds    | base R functions, no package required        | `load()` , `read.rds()` |
-  +---------------------------+----------------+----------------------------------------------+-------------------------+
-  
-  : Examples of Different Data Types and how to load them into R
+### Mathematical Operations in R
 
-#### Working Directories and R-Projects
+1 + 1 #Addition
 
-If you have more data and files you want to load into R, it is not recommended to copy always the path of every file. Instead it is common to work with working directories or R-Projects.
+1 - 1 #Substraction
 
--   There is always a working directory you can find out, in which working directory you are currently at by using the command `getwd()`, just run it in your console and R will give you the path it currently is working at. Let us assume you saved all your data in a folder called "Intro_to_R_course", then you can set the working directory separately with this command (do not forget to change the names in the paths):
-  
-  `setwd("C:/Users/YourUsername/Intro_to_R_course")`
+1 * 1 #Multiplication 
 
--   After you set the working directory you can run again `getwd()` and the path now has to be changed to the content of the `setwd()`. The advantage is now that if the working directory is set, you can load in the data without specifying the path. If your data is in the path of the working directory you can load like that:
-  
-  `data <- read.csv("data.csv")`
+1 / 1 #Division
 
--   You can also create an R-Project. If you click on `file > New Project > New Directory > New Project` you can determine the working directory and create a folder in it. In this folder, there will be an R-Project file, if you open this file, a blank R environment will appear. Now, you can create files in this folder. And every time you enter R through the R-Project file, you do not have to set any working directories. Because if the R-Projects opens R, it automatically sets the working directory to where you created the folder.
+2^(1 / 2) #Mixed Terms
 
--   I would not recommend to work with R-Projects in the beginning, but when you work with collaborators and want to make your code reproducible for others, then you will have to work with R-Projects one day. Again, this also the reason, I just simulate all the data, so you can work with the code without worrying about any working directories.
 
-### One last thing: Pipelines
 
-Sometimes codes have several dimensions, which could make it quite complicated
+1 < 3 #TRUE
 
-`leave_house(get_dressed(get_out_of_the_bed(wake_up(me))))`
+5 >= 8 #FALSE
 
-Well, as you can see there are too many dimensions and with tidyverse you can basically split it up into so-called **Pipelines**, for them you use a **Pipe** `%>%` :
-  
-  `me %>%` `wake_up() %>%` `get_out_of_the_bed() %>%` `get_dressed() %>%` `leave_house`
+11 != 10 #TRUE
 
-It is the same code, in R this code would do the same. But the advantage is that it is way more intuitive and makes the code clear. Here an example:
-  
-  -   First, I create a vector with three random numbers named `q`.
+22 == 22 #TRUE
 
--   Then I take the mean, then the exponential and lastly the square root. I could just wrap the codes around each other like this: `sqrt(exp(mean(q)))`.
+7 < 3 #FALSE
 
--   But I could also use pipes, where I clearly see that first the mean, then the exponential and then the square root is taken: `q %>% mean() %>% exp() %>% sqrt()`. Run both codes, they are producing the same result.
+5 <= 2+3 #TRUE
 
-```{r piping}
+
+5 & 4 < 8 #TRUE
+
+5 | 4 < 8 #TRUE
+
+!5 > 2 #FALSE
+
+
+#-------------------------------------------------------------------------------
+
+### Using Commands
+
+sqrt(x = 36) #square root
+
+exp(x = 0) # exponential of 1
+
+#with this command you can print what you want 
+print("U can stay under my umbrella") 
+
+?exp() #questionmark
+help(exp) #help command
+
+#-------------------------------------------------------------------------------
+
+### Assigning objects and printing them
+Pizza <- 7.50 #pizza object
+
+Cola <- 3.50 #cola object
+
+Pizza + Cola #addition of objects
+
+Offer <- Pizza + Cola #assigning addition 
+
+Offer #printing the object
+
+Offer^2 #square the term with ^2
+
+#-------------------------------------------------------------------------------
+
+### Vectors
+
+food <- c("Pizza", "Kebab", "Curry", 
+          "Fish", "Burrito") #food vector
+
+print(food) #printing it 
+
+prices <- c(7.50, 6.00, 8.50, 3.00, 11.00) #price vector
+
+print(prices) #printing it
+
+cola_prices <- c(3.50, 3, 4, 2.50, 3) #cola prices vector
+
+print(cola_prices) #printing it
+
+prices_combined <- prices + cola_prices #prices combined
+
+print(prices_combined) #printing it
+
+#-------------------------------------------------------------------------------
+
+### Object Classes
+
+#Let us find out the classes 
+class(prices) #numeric
+class(food) #character
+class(cola_prices) #numeric
+
+#We want the cola_prices vector to be a character 
+cola_prices_character <- as.character(cola_prices)
+
+#Checking it
+class(cola_prices_character)
+print(cola_prices_character)
+
+#-------------------------------------------------------------------------------
+
+### Matrices
+
+#### Making Matrices
+
+price_index <- cbind(food, 
+                     prices,
+                     cola_prices) #We bind it together
+
+print(price_index) #We print it 
+
+#Let's do the same by binding the rows together
+
+price_index2 <- rbind(food, 
+                      prices,
+                      cola_prices) #We bind it together
+
+print(price_index2) #We print it 
+
+#-------------------------------------------------------------------------------
+
+# Create a matrix
+matrix_example <- matrix(1:20, nrow = 4, ncol = 5, byrow = T) #
+
+# Checking it
+print(matrix_example)
+# Checking the dimensions
+dim(matrix_example)
+
+# What happens if byrow is set to FALSE?
+matrix_example2 <- matrix(1:20, nrow = 4, ncol = 5, byrow = F)
+
+# Checking it 
+print(matrix_example2)
+dim(matrix_example2)
+
+#-------------------------------------------------------------------------------
+
+#### Working with Matrices
+
+#Let us get used to work with objects
+row <- 1 
+column <- 1 
+
+#Printing it
+print(object1 <- matrix_example[row, ]) #printing the first row
+print(object2 <- matrix_example[, column]) #printing the first column 
+print(object3 <- matrix_example[row, column]) #printing first row and column
+
+print(matrix_example) #printing the matrix
+
+#-------------------------------------------------------------------------------
+
+#More Information 
+
+nrow(matrix_example) #How many rows
+
+ncol(matrix_example) #How many columns
+
+dim(matrix_example) #Overall dimensions
+
+#-------------------------------------------------------------------------------
+
+### Data Frames
+
+# making an example df
+df_example <- data.frame(
+  country = c("Austria", "England", 
+              "Brazil", "Germany"), 
+  capital = c("Vienna", "London", 
+              "Brasilia", "Berlin"), 
+  pop = c(9.04, 55.98, 215.3, 83.8),
+  europe = c(TRUE, FALSE, TRUE, TRUE)
+)
+
+# Checking it
+print(df_example)
+
+#getting columns
+df_example$country  
+
+#inspecting data frames
+df_example$country[3]
+
+#conditions
+df_example$country[df_example$pop > 60]
+
+#-------------------------------------------------------------------------------
+
+#--------------------------
+#   2.Data Manipulation
+#--------------------------
+
+#-------------------------------------------------------------------------------
+
 #Making a vector with three random numbers
 q <- c(6,3,8)
 
@@ -520,59 +300,9 @@ q %>%
   mean() %>%
   exp() %>%
   sqrt()
-```
 
-This was an easy and short example, but as you will see at the end of this chapter, the code can get really fast really messy and to have a clean code, we will use pipes. Furthermore, tidyverse users use pipes all the times, so even if you do not use them, you have to understand them.
+#-------------------------------------------------------------------------------
 
-## Let's wrangle the data
-
-![](images/meme3.jpg){fig-align="center" width="435"}
-
-## The `dplyr` package
-
-Dplyr is THE standard package, when it comes to data manipulation (next to Base R of course). It has essential functions, and helpful further functions. If you are able to understand the flexibility of these functions you can easily handle every data set.
-
-### The `filter()` command
-
-The first function I introduce you is the `filter()` function. Within the filter() function we can define certain conditions to cut our Data Set to.
-
--   We need the filter() function and then a variable we want to filter based on. In my example, I only want to keep all observations, which have "HU" in their cntry - variable. Substantially this means, I cut down to all observations from Hungary. I use the == operator since I want to have all observations where the condition is true.
-
-Here is a quick reminder of logical operators in R:
-  
-  +--------------------------+----------------------------------------------------------------------------+
-  | Logical Operator         | Meaning                                                                    |
-  +==========================+============================================================================+
-  | ==                       | equals                                                                     |
-  +--------------------------+----------------------------------------------------------------------------+
-  | \<                       | smaller than                                                               |
-  +--------------------------+----------------------------------------------------------------------------+
-  | \>                       | greater than                                                               |
-  +--------------------------+----------------------------------------------------------------------------+
-  | \<=                      | less than or equal to                                                      |
-  +--------------------------+----------------------------------------------------------------------------+
-  | \>=                      | greater than or equal to                                                   |
-  +--------------------------+----------------------------------------------------------------------------+
-  | ! (e.g. !=; \>!; \<!...) | not equal, not greater than, not smaller than                              |
-  +--------------------------+----------------------------------------------------------------------------+
-  | &                        | element-wise AND operator. It returns TRUE if both elements are true       |
-  +--------------------------+----------------------------------------------------------------------------+
-  | \|                       | element-wise OR operator. It returns TRUE if one of the statements is TRUE |
-  +--------------------------+----------------------------------------------------------------------------+
-  
-  #### Filtering for only one condition
-  
-  -   We start by defining a new object, let us call it `d1`.
-
--   Then we take the data we want to filter, in our case `ess`.
-
--   We define a pipe, write down filter and define a condition, in our case that only cases where `cntry` is equal to the iso2c code of Hungary, `"HU"`.
-
--   In the next code, we do the same and filter for cases that are equal or smaller than 40. Thus we get a dataset with observations who are 40 or younger.
-
-*Note: Since the cntry variable is a character variable, we have to put the condition in square brackets. The variable agea is a numeric variable, therefore we only need the number.*
-  
-  ```{r filter one condition}
 #filtering for cases only in Hungary
 d1 <- ess %>% 
   filter(cntry == "HU")
@@ -586,11 +316,11 @@ d2 <- ess %>%
 
 #checking it
 head(d2) 
-```
+
+#-------------------------------------------------------------------------------
 
 #### Filtering for multiple condition
 
-```{r filter multiple condition}
 #filtering for cases in Hungary and France
 d1 <- ess %>% 
   filter(cntry %in% c("HU", "FR"))
@@ -608,67 +338,47 @@ head(d2)
 
 #d2 <- ess %>% #Our dataset
 #  filter(cntry %in% c("HU", "FR"), 
-#           agea <= 40) #filtering for cases under 40 in Hungary and France with a comma
+#           agea <= 40) #filtering for cases under 40 in Hungary and France 
+#with a comma
 #head(d2)
-```
+
+#-------------------------------------------------------------------------------
 
 ### The `select()` function:
 
-We obviously do not care about all variables a dataset can offer (mostly). To select the variables we need, we can use the `select()` function. This of course depends on our research question. Let us say we want to select the year, the country, the happy variable, age, gender, income and education.
-
-#### Selecting and deleting single Rows
-
--   We only have to pass their column names to `select()`. That's it.
-
-```{r select}
 #Selecting relevant variables
 d1 <- ess %>%
    select(year, cntry, happy, agea, gndr, eisced) 
 
 #Checking it
 head(d1) 
-```
 
 #### Deleting Rows
 
--   To delete row, you just put a minus in front of the column, you want to delete. That's it, the rest stays the same.
-
-```{r minus select}
 #We delete columns by simply putting a comma before it
 d2 <- d1 %>% 
   select(-agea)
 
 #Checking it
 head(d2)
-```
+
+#-------------------------------------------------------------------------------
 
 #### Combining `select()` with the `filter()` function
 
-One huge advantage of piping is, that we can clear our data in one step or at least big steps. The only thing you have to be aware of is what you put there. Remember the last command, is always the first to be executed.
-
--   In this example, we select the 7 variables and then filter it for all observations under 40.
-
--   The two commands are separated by a pipe.
-
-```{r filter and select}
-#Combining codes
 d1 <- ess %>%
   filter(agea < 40) %>%
   select(year, cntry, happy, agea, gndr, eisced)
 
 #Checking it
 head(d1)
-```
+
+#-------------------------------------------------------------------------------
 
 ### The `arrange()` function
 
-If we want our data to be in a certain order, we arrange it with this function.
-
 #### Arranging in ascending order
 
--   The arrange() function is called, and afterwards we call the variable we want to arrange based on. The default function of arrange, orders the data always in ascending order.
-
-```{r arrange}
 #Adding arrange()
 d1 <- ess %>%
   filter(agea < 40) %>%
@@ -677,13 +387,11 @@ d1 <- ess %>%
 
 #Checking it
 head(d1)
-```
 
-#### Arranging in descending order
+#-------------------------------------------------------------------------------
 
--   If we want to order them in ascending order, we have to call `desc()` inside the `arrange()` and put the name of the variable inside `desc()`.
+### Arranging in descending order
 
-```{r arrange descending}
 #arranging in descending order 
 d1 <- ess %>%
   filter(agea < 40) %>%
@@ -692,19 +400,11 @@ d1 <- ess %>%
 
 #Checking it
 head(d1)
-```
+
+#-------------------------------------------------------------------------------
 
 ### The `rename()` and `relocate()` function
 
-Two functions to make our dataset structured more useful are `rename()` and `relocate()`, well they do what they basically named after:
-  
-  #### Renaming Variables: `rename()`
-  
-  -   Rename() follows a simple logic, you call the function and write down the new name, thus the name you want to assign, then you put an equal sign, and put in the old name, thus the current name of the column.
-
-Note: If you have a variable, which is binary, thus has two discrete categories, you name it after the category which corresponds to the higher value. If male is 0 and female is 1, you name it after the higher category 1, therefore the variable is named female.
-
-```{r rename}
 #Renaming variables
 d1 <- ess %>%
   filter(agea < 40) %>%
@@ -717,15 +417,9 @@ d1 <- ess %>%
 
 #Checking it
 head(d1)
-```
 
-#### Relocating Variables: `relocate()`
+#-------------------------------------------------------------------------------
 
--   You call relocate and determine the order of the columns.
-
--   You can also rearrange single columns, you call the name of the column, which you want to rarrange. and then you either call .before and a column or .after and a column. And the column you want to rearrange is placed before or after the column you want to place. You separate both arguments with a comma.
-
-```{r relocate}
 #relocating variables
 d1 <- ess %>%
   filter(agea < 40) %>%
@@ -767,17 +461,11 @@ d3 <- ess %>%
 
 #Checking it
 head(d3)
-```
+
+#-------------------------------------------------------------------------------
 
 ### The `mutate()` function
 
-The next function is the powerful `mutate()` command. For the start, just think about mutate as a Variable with which you can transform or mutate variables to other variables as you please.
-
--   You call mutate() and first you define the name of a new column with a name that is not existent in your dataset. You could also use the name of an existing column, but be careful! Then the new values are overwriting the old ones and we do not want that necessarily, therefore I recommend to always define new columns.
-
--   After defining the new name you put an equal sign after it and define the calculation. In our case we just multiply happy, so all values in the happy column by 10
-
-```{r mutate}
 #mutating variables
 d1 <- ess %>%
   mutate(happy_10 = happy*10) 
@@ -793,15 +481,9 @@ d2 <- ess %>%
 
 #checking it
 head(d2)
-```
 
-We can also use mutate for more than calculations. We can also define new columns by mutating existing columns into different classes:
-  
-  -   The variable new_variable is just a random mathematical operation including two variables.
+#-------------------------------------------------------------------------------
 
--   The second call in mutate() changes the class of the gndr variable to a character and saves it as such in the dataset.
-
-```{r mutate 2}
 #more mutating
 d2 <- ess %>% 
   mutate(new_variable = happy*10/eisced+67, 
@@ -810,27 +492,11 @@ d2 <- ess %>%
 
 #Checking it
 head(d2)
-```
 
-What makes mutate() so powerful is that you can use other functions in it to define your variables as you want. Image you have the happy variable. Quick reminder, this variable contains the answers to the question "How happy are you?" in the questionnaire of the European Social Survey. It is scaled on a 0 (not happy at all) to 10(very happy).
+#-------------------------------------------------------------------------------
 
-Let us say we want to change that. We want to make a variable with only three categories (unhappy, neutral, happy). We decide that all values from 0-4 should be classifies as unhappy, 5 should be classified as neutral and everything above 5 as happy. How can we do that in R?
-  
-  There are different ways and I will show you some of them:
-  
-  #### Recoding with `mutate()` using `recode().`
-  
-  You can use the `recode()` function:
-  
-  -   First, we define a new column name, in our example happy_cat.
+#### Recoding with `mutate()` using `recode().`
 
--   Then we call `recode()` and inside of it we call the variable we want to transform, in our case happy.
-
--   We put call the category we want to transform in these brackets ``` `` ```. We put an equal sign after it and define the new value we want to assign to the category.
-
-*Note: We can assign different values, do not worry about the "NA_real\_" value I will come back to that later*
-  
-  ```{r recode}
 #Get an overview of the variable
 table(ess$happy)
 
@@ -860,23 +526,11 @@ d1 <- ess %>%
 table(d1$happy)
 table(d1$happy_cat)
 table(d1$gender)
-```
+
+#-------------------------------------------------------------------------------
 
 #### Recoding with `mutate()` using `case_when()`
 
-As you see, the `recode()` command is quite extensive. The **tidyverse** offers a way more intuitive command, the `case_when()` function. The function case_when is a generalized ifelse function. Which means we can use logical operators. The recode() function is way too extensive, it gives you full control over the data, but we do not that much control:
-  
-  -   We again define happy_cat.
-
--   We call case_when() and inside we call our variable we want to transform.
-
--   We define a logical statements, in our case that happy smaller than 5, meaning that we tell R that all values under 5 should be transformed.
-
--   We call the wave \~ and tell R what value should substitute all values which are TRUE for the logical statement.
-
-*Note: What is not explicitly stated in the case_when() function will be coded as NA.*
-  
-  ```{r case_when}
 #recoding with case_when
 d1 <- ess %>% 
   mutate(gndr_fac = as.factor(gndr),
@@ -893,13 +547,10 @@ d1 <- ess %>%
 table(d1$female)
 table(d1$happy_cat)
 
-```
+#-------------------------------------------------------------------------------
 
 #### Recoding with `mutate()` using `ifelse()`
 
-Do you remember the `ifelse()` function? As already mentioned, the `case_when()` command is a generalized `ifelse()` function. If you want to keep it old school, we can also recode with the `ifelse()` function:
-  
-  ```{r ifelse}
 #recoding with ifelse function
 d1 <- ess %>% 
   mutate(gndr_fac = as.factor(gndr),
@@ -914,28 +565,11 @@ d1 <- ess %>%
 #Check it
 table(d1$happy_cat)
 table(d1$female)
-```
+
+#-------------------------------------------------------------------------------
 
 ### Handling Missing Values/Incomplete Data
 
-As you saw right now, not all data in a dataset is complete. Of course not, there are several sources, which can lead to incomplete/missing data. Can you think of reasons why?
-  
-  In Data Sciences we need to deal with missing values directly. If we look into the codebook, the ESS declares different types of missing values with high numbers: 7(7) means "Refusal", so the respondent refused to answer, 8(8) means "dont know", and 9(9) "No answer".
-
-*Note that the ESS does so, since some researchers are interested in missing values, and why they happen, so they can investigate it.*
-  
-  For us, this is a problem, because we cannot run an analysis with missing values. There are two options:
-  
-  1.  Using statistics to artificially fill them out, this called multiple imputation techniques, but this requires advanced data science knowledge so I do not recommend that for beginners.
-2.  Just delete incomplete observations to have a dataset without missing values
-
-The ESS assigns values to missing values. First, we have to tell R that we do want those values to be missing values otherwise it biases our analyses. In the following, we have to recode the variables and tell R, that the missing values are declared as such:
-  
-  -   I already showed you how to do so. In the following I will use `case_when()`
-
-We will do the second one, and I already showed how to recode useless values to NAs so this should be clear by now. Remember, the `ifelse()` and `recode()` explicitly need input to turn values into NAs.
-
-```{r workflow with drop_na}
 #Creating missing values and showing a mutating workflow
 d1 <- ess %>%
   filter(agea >=40) %>% 
@@ -968,17 +602,7 @@ d1 <- ess %>%
 
 #Checking it
 head(d1) 
-```
 
-When you print the dataset, you see that now there are some values named "NA". That stands for not available.
-
--   If we want to delete NAs, we can use the tidyverse way by simply piping to `drop_na()`
-
--   The base R way would be to put the dataset name `na.omit()`.
-
-We assign both to a new data frame. We will see in the result that all rows are deleted which include NAs. This is one of the reasons it is important to cut down to variables we only need, so that only incomplete observations of our variables we need are deleted. So always remember, first transforming, than dropping.
-
-```{r missing values}
 #dropping NAs 
 d2 <- d1 %>% 
   drop_na() 
@@ -988,27 +612,13 @@ d2 <- na.omit(d1)
 
 #Checking if there are NAs
 colSums(is.na(d2))
-```
 
-We see that there are no missing values left in our dataset, and our number of observations are reduced.
-
-Now we have all ingredients to make our dataset. Do you remember our research question? We want to find out if people, who tend to not trust science are less willing to get vaccinated. We want to do that for all people over 40.
+#-------------------------------------------------------------------------------
 
 ### The `group_by()` and `summarize()` functions
 
-Two of the most useful commands in R for summary statistics are `group_by()` and `summarize()`.
-
-`group_by()` helps us to, when we have categorical variables with several observations and we want to calculate a metric e.g. for this group. The dataset we have loaded, the ESS for example asked 9000 respondents about their level of happiness. Image you are interested in the average level of happiness of men and women. Here the `group_by()` functions defines the groups we want to aggregate e.g. gender.
-
 #### With one grouping variable and one metric
 
-`summarize()` defines the metric we want to search. For example we want to calculate the mean of the level of happiness of men and women. We also could just calculate the median for example. Let us have a look:
-  
-  -   First, we call the `group_by()` function and define the group we want to aggregate, thus the group we are interested in. In our example, we want to aggregate based on the sexes, therefore we need the to define that. Before that we have to delete NAs or transform the variable to the categories we are interested in, therefore we first call mutate() and transform the variable.
-
--   Second, we call summarize() and define the name of the new column, let us call it average_happiness() and then we call the metric of the variable we are interested in. In our example, we were interested in the average happiness, so we have to call mean() and the happy variable:
-  
-  ```{r group_by and summarise}
 #group_by and summarize
 d1 <- ess %>% 
   mutate(
@@ -1024,15 +634,11 @@ d1 <- ess %>%
 
 #Checking it
 head(d1)
-```
 
-Et voilà, we get a dataset with two observations, because we have only two groups. The second row is the average_happiness row we defined in the summarize() function.
+#-------------------------------------------------------------------------------
 
 #### With more grouping variables and metrics
 
-The `group_by()` and `summarize()` functions are of course way more flexible, for example, we can define more groups. What about that, you are interested in the level of happiness of females, and males in the countries conducted by the ESS. You just put the countries and then the gender variable in the `group_by()`. Further we might be interested in more metrics, no problem, let us just define more columns with `summarize()`. Again, you have to first clean the data by transforming the class and deleting missing values.
-
-```{r group_by and summarise 2}
 #grouping and summarize
 d1 <- ess %>% 
   mutate(
@@ -1056,41 +662,17 @@ d1 <- ess %>%
 
 #Check it out
 glimpse(d1)
-```
 
-## Merging Datasets
+#-------------------------------------------------------------------------------
+
+### Merging Datasets
 
 #### Introduction to merging with `dplyr` and preparing data
 
-Sometimes it could be the case that you need variables, which are not in one dataset *a priori* available, but in another dataset. For this case you load both datasets and **merge** them together. **This only works if there is a similiar data structure, so know your data !**
-  
-  As an example, I will show how to do that with **World Bank Data**. From this data we can gather nearly all important economic indicators for countries since the 1970s. But mostly we need to merge them to datasets we are interested in. We will merge the **World Bank Data** with the **ESS** data. So we can analyze variables, which were not collected in the same dataset.
-
-There are several ways of getting World Bank Data, but I will show you the most efficient. There is the package `WDI` with which you can get data through an API (Application Programming Interface). Long story short, we do not need to download anything and get the data directly with code:
-  
-  First we define, which countries should be included:
-  
-  ```{r getting countries}
 countries <- c("BE", "BG", "CH", "EE", "FR","GB") 
-```
 
-Afterwards we define, which variables we want. You do that by using the official indicator, thus the variable you want. You can find the indicators on the website of the [world bank data](https://data.worldbank.org/indicator). Click on the variables you want, then click on the details, and there you find the indicator. I will use GDP per capita, Fuel exports, CO2 emissions (kt).
-
-```{r getting indicators}
 indicators = c("NY.GDP.PCAP.CD", "TX.VAL.FUEL.ZS.UN", "EN.ATM.CO2E.KT")
-```
 
-Now we are ready to use the API.
-
--   To do so we call the WDI function.
-
--   We define the argument country to only get countries we are interested in.
-
--   We also define the indicators.
-
--   Lastly, with the "`start =`" argument we define the starting year, so data which goes back to that date is loaded and with "`end =`" is analagos to define where the time should stop. Thus, both arguments define the time span we want to inspect
-
-```{r world bank data}
 wb <- WDI( 
   country = countries, #We include our countries 
   indicator = indicators, #We include our variables 
@@ -1101,11 +683,9 @@ wb <- WDI(
 
 #Checking it
 head(wb)
-```
 
-Let us transform the dataset (Only variables we need, arranging it alphabetically, renaming it and rounding one variable to make the numbers more intuitive):
-  
-  ```{r cleaning wb}
+#-------------------------------------------------------------------------------
+
 #Cleaning the wb data
 wb <- wb %>%
   select(iso2c, NY.GDP.PCAP.CD, TX.VAL.FUEL.ZS.UN, EN.ATM.CO2E.KT) %>%
@@ -1118,11 +698,7 @@ wb <- wb %>%
 
 #Checking it
 head(wb)
-```
 
-Now, we cut down and prepare our ESS data by selecting the countries we are interested in, renaming the country variable (I'll explain later why), we group by the country (iso2c) and the year (year) to get the average happiness by country. Lastly, we round the value to get only two decimals.
-
-```{r making happy_agg}
 #preparing ess
 d1 <- ess %>%
   filter(cntry == c("BE", "BG", "CZ", "EE", "FI")) %>%
@@ -1132,59 +708,26 @@ d1 <- ess %>%
   
 #Checking it
 head(d1) 
-```
 
 #### `left_join()` and `right_join()` with one identifier
 
-To merge data there are important functions from the **dplyr** package: The `left_join()` and the `right_join()` function. Since they are a bit complicated to understand, we will go through them and in the end, you can choose the one you prefer.
-
--   `left_join()`: You want to keep all observations in the first table, including matching observations in the second table. You merging the data from the right table to left table and get a datset with the same number of rows as the left table:
-
-![](images/left_join_with_one_identifier.PNG){fig-align="center" width="800"}
-
--   `right_join()`: You want to keep all observations in the second table, including matching observations in the first table. You join from the left table to the right table, this time the table takes on the number of observations of the table which is right joined.
-
-![](images/right_join_with_one_identifier.PNG){fig-align="center" width="800"}
-
-Well, in the end of the day it is a matter of programming socialisation and taste, which one do you prefer. I will show you both.
-
-To merge two datasets, you need at least one common variable. One variable will be your unique identifier. Since every country is unique in the dataset that is our unique identifier i.e. the variable we give R to tell him how to merge the datasets:
-
--   First, we define a new object, where we will save the dataset called merged_data.
-
--   Second, we call left_join()
-
--   Then we set our left table and our right table.
-
--   We define the by = argument and put the unique identifier in quotation marks, meaning the variable name
-
-```{r left_join, eval = FALSE}
 #left_join
 merged_data <- left_join(d1, wb, 
                          by = "iso2c")
-
 #Checking it
 head(merged_data)
-```
 
-For right_join() you do the exact same, but remember you get a different result.
-
-```{r right_join}
 #right_join
 merged_data2 <- right_join(d1, wb, 
                            by = "iso2c")
 
 #Checking it
 head(merged_data2)
-```
+
+#-------------------------------------------------------------------------------
 
 #### `left_join()` and `right_join()` with two identifiers
 
-Sometimes, you have multiple dimensions. For example, what if we also include the year? Then every country-year observation is our unique identifier. Why? Because one observation was collected in country X to time point Y. That is why you should always know your data and your research goal, because accordingly you have to write your code.
-
-Let us get again World Bank Data and clean it:
-
-```{r,  world bank 2}
 #Getting the Data
 wb <- WDI( 
   country = c("BE", "BG"), #We include our countries 
@@ -1204,11 +747,7 @@ wb <- wb %>%
 
 #Checking the Data
 head(wb)
-```
 
-Now we just simulate some data we want to merge:
-
-```{r, happy_agg for two years}
 #Getting the Data
 d1 <- data.frame(
   iso2c = c("BE", "BE", "BG", "BG", "CZ", "CZ"), 
@@ -1218,38 +757,19 @@ d1 <- data.frame(
 
 #Checking the Data
 head(d1)
-```
 
-How does it look like when we have two variables and the combination out of those is our unique identifier?
-
--   `left_join()` with two identifiers:
-
-![](images/left_join_with_two_identifiers.PNG){fig-align="center" width="800"}
-
--   As you can see the dataset again takes on the number of observations of our left table
--   To implement it, we have to change by argument. We define a vector, where we put our two identifiers in quotation marks:
-
-```{r left_join multiple}
 #Merging the Data with left_join()
 merged_data3 <- left_join(d1, wb,
                           by = c("iso2c", "year"))
 #Checking it
 head(merged_data3)
-```
 
--   `right_join()` with two identifiers:
-
-![](images/right_join_with_two_identifier.PNG){fig-align="center" width="800"}
-
--   Again we do the same with `right_join()`:
-
-```{r, right_join multiple}
+#Merging the Data with right_join()
 merged_data4 <- right_join(d1, wb,
                           by = c("iso2c", "year"))
 head(merged_data4)
-```
 
-*Note: However, this chapter only touched the basics and for merging alone there are several further commands, like inner_join(), anti_join(), semi_join()...etc. But when you encounter problems with the two functions I showed you will run into them eventually.*
+#-------------------------------------------------------------------------------
 
 ## Outlook
 
