@@ -1,10 +1,10 @@
-#----------------------------------------
+#----------------------------------------------
 #Name: R Script An intuitive Introduction to R
 #Author: Okan Sarioglu
 #GitHub: Okan2022
 #E-Mail: o.sarioglu@gmx.de
 #LinkedIn: @osarioglu
-#----------------------------------------
+#----------------------------------------------
 
 #Link to the course website:
 
@@ -27,7 +27,8 @@
 #=====================RUN THESE LINES BEFORE CONTINUING========================#
 
 if (!require("pacman")) install.packages("pacman") #installing pacman
-pacman::p_load("tidyverse", "psych", "WDI", "gapminder") #loading packages
+pacman::p_load("tidyverse", "psych", "WDI", "gapminder", "babynames", "sf", 
+               "ggridges","rnaturalearth", "forcats" ,"tmap") #loading packages
 
 #Simulating European Election Survey (ESS)
 set.seed(123)
@@ -76,6 +77,68 @@ missing_indices_lrscale <- sample(1:9000, 308)
 ess$lrscale[missing_indices_lrscale] <- sample(c(77, 88, 99),
                                                308, 
                                                replace = TRUE)
+
+# Data for histograms, density plots and boxplots
+#Simulating data 
+data1 <- data.frame(
+  type = c(rep("Variable 1", 1000)),
+  value = c(rnorm(1000))
+)
+
+#Creating data
+data2 <- data.frame(
+  type = c(rep("Variable 2", 1000)), 
+  value = c(rnorm(1000, mean = 4))
+)
+
+#rowbinding it with data1
+data2 <- rbind(data1, data2)
+
+# Simulate income data
+income_18_24 <- rnorm(1000, mean = 40000, sd = 11000)
+income_25_34 <- rnorm(1000, mean = 55000, sd = 17500)
+income_35_59 <- rnorm(1000, mean = 70000, sd = 25000)
+
+# Combine into a data frame
+data3 <- data.frame(
+  income = c(income_18_24, income_25_34, income_35_59),
+  age = factor(rep(c("18-24", "25-34", "35-59"), 
+                   each = 1000))
+)
+
+# Create data
+data4 <- data.frame(
+  name=c("King Kong","Godzilla","Superman",
+         "Odin","Darth Vader") ,  
+  strength=c(10,15,45,61,22)
+)
+
+#simulating data
+data5 <- data.frame(
+  hero = c(rep("Superman", 10), 
+           rep("King Kong", 3), 
+           rep("Godzilla", 7)), 
+  id = c(seq(1:20)), 
+  female = c(rep("Female", 7), 
+             rep("Male", 5), 
+             rep("Female", 1), 
+             rep("Female", 3), 
+             rep("Male", 4))
+) 
+
+data6 <- data.frame(
+  female = c("Female", "Male", "Female", "Male"), 
+  age = c("Old", "Old", "Young", "Young"), 
+  value = c(5, 2, 8, 7)
+)
+
+# Setting Seed
+set.seed(500)
+# create data
+date <- 2000:2024
+y <- cumsum(rnorm(25))
+y2 <- cumsum(rnorm(25))
+data7 <- data.frame(date,y, y2)
 
 #=====================RUN THESE LINES BEFORE CONTINUING========================#
 
@@ -771,183 +834,90 @@ head(merged_data4)
 
 #-------------------------------------------------------------------------------
 
-## Outlook
-
-This Chapter introduced you to the basic functions of the dplyr package. You are now able to transform variables according to your needs. Further, you learned how to use pipes to work efficient code. Loading data, transforming data, and preparing datasets for the analysis. There are a lot of techniques, and in the end of the day data wrangling is the most extensive part, because every analysis is individual and requires an individual preparation. The more individual the analysis, the more individual the preparation.
-
--   I recommend the standard book for data science in R in this chapter, since it has a strong emphasis on data manipulation: ["R for Data Science"](https://r4ds.had.co.nz/) by Hadley Wickham & Garrett Grolemund.
-
 ## Exercise Section
 
 ### Exercise 1: Let's wrangle kid
+#a.  Wrangle the data, and assign it to an object called **ess**.
+#b.  Select the variables you need
+#c.  Filter for Austria, Belgium, Denmark, Georgia, Iceland and the Russian 
+#Federation
+#d.  Have a look at the codebook and code all irrelevant values as missing. 
+#If you have binary variables recode them from 1, 2 to 0 to 1\
+#e.  You want to build an extremism variable: You do so by subtracting 5 from 
+#the from the variable and squaring it afterwards. Call it extremism
+#f.  Rename the variables to more intuitive names, don't forget to name binary 
+#variables after the category which is on 1
+#g.  drop all missing values
+#h.  Check out your new dataset
 
-You are interested in discrimination and the perception of the judicial. More specifically, you want to know if people, who fell discriminated evaluate courts differently. Below you see a table with all variables you want to include in your analysis:
-  
-  +--------------+--------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
-  | **Variable** | **Description**                                        | Scales                                                                                                |
-  +:============:+========================================================+=======================================================================================================+
-  | **idnt**     | Respondent's identification number                     | unique number from 1-9000                                                                             |
-+--------------+--------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
-| **year**     | The year when the survey was conducted                 | only 2020                                                                                             |
-+--------------+--------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
-| **cntry**    | Country                                                | BE, BG, CH, CZ, EE, FI, FR,GB, GR, HR, HU, IE, IS, IT, LT,NL, NO, PT, SI, SK                          |
-+--------------+--------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
-| **agea**     | Age of the Respondent, calculated                      | Number of Age = 15-90                                                                                 |
-|              |                                                        |                                                                                                       |
-|              |                                                        | 999 = Not available                                                                                   |
-+--------------+--------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
-| **gndr**     | Gender                                                 | 1 = Male;                                                                                             |
-|              |                                                        |                                                                                                       |
-|              |                                                        | 2 = Female;                                                                                           |
-|              |                                                        |                                                                                                       |
-|              |                                                        | 9 = No answer                                                                                         |
-+--------------+--------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
-| **happy**    | How happy are you                                      | 0 (Extremly unhappy) - 10 (Extremly happy);                                                           |
-|              |                                                        |                                                                                                       |
-|              |                                                        | 77 = Refusal;                                                                                         |
-|              |                                                        |                                                                                                       |
-|              |                                                        | 88 = Don't Know;                                                                                      |
-  |              |                                                        |                                                                                                       |
-  |              |                                                        | 99 = No answer                                                                                        |
-  +--------------+--------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
-  | **eisced**   | Highest level of education, ES - ISCED                 | 0 = Not possible to harmonise into ES-ISCED;                                                          |
-  |              |                                                        |                                                                                                       |
-  |              |                                                        | 1 (ES-ISCED I , less than lower secondary) - 7 (ES-ISCED V2, higher tertiary education, =\> MA level; |
-                                                                                                                              |              |                                                        |                                                                                                       |
-                                                                                                                              |              |                                                        | 55 = Other;                                                                                           |
-                                                                                                                              |              |                                                        |                                                                                                       |
-                                                                                                                              |              |                                                        | 77 = Refusal;                                                                                         |
-                                                                                                                              |              |                                                        |                                                                                                       |
-                                                                                                                              |              |                                                        | 88 = Don't know;                                                                                      |
-|              |                                                        |                                                                                                       |
-|              |                                                        | 99 = No answer                                                                                        |
-+--------------+--------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
-| **netusoft** | Internet use, how often                                | 1 (Never) - 5 (Every day);                                                                            |
-|              |                                                        |                                                                                                       |
-|              |                                                        | 7 = Refusal;                                                                                          |
-|              |                                                        |                                                                                                       |
-|              |                                                        | 8 = Don't know;                                                                                       |
-                                                                                                                              |              |                                                        |                                                                                                       |
-                                                                                                                              |              |                                                        | 9 = No answer                                                                                         |
-                                                                                                                              +--------------+--------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
-                                                                                                                              | **trstprl**  | Most people can be trusted or you can't be too careful | 0 (You can't be too careful) - 10 (Most people can be trusted);                                       |
-  |              |                                                        |                                                                                                       |
-  |              |                                                        | 77 = Refusal;                                                                                         |
-  |              |                                                        |                                                                                                       |
-  |              |                                                        | 88 = Don't Know;                                                                                      |
-|              |                                                        |                                                                                                       |
-|              |                                                        | 99 = No answer                                                                                        |
-+--------------+--------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
-| **lrscale**  | Left-Right Placement                                   | 0 (Left) - 10 (Right);                                                                                |
-|              |                                                        |                                                                                                       |
-|              |                                                        | 77 = Refusal;                                                                                         |
-|              |                                                        |                                                                                                       |
-|              |                                                        | 88 = Don't know;                                                                                      |
-  |              |                                                        |                                                                                                       |
-  |              |                                                        | 99 = No answer                                                                                        |
-  +--------------+--------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
-  
-  a.  Wrangle the data, and assign it to an object called **ess**.
-b.  Select the variables you need
-c.  Filter for Austria, Belgium, Denmark, Georgia, Iceland and the Russian Federation
-d.  Have a look at the codebook and code all irrelevant values as missing. If you have binary variables recode them from 1, 2 to 0 to 1\
-e.  You want to build an extremism variable: You do so by subtracting 5 from the from the variable and squaring it afterwards. Call it extremism
-f.  Rename the variables to more intuitive names, don't forget to name binary varaibles after the category which is on 1
-g.  drop all missing values
-h.  Check out your new dataset
+#-------------------------------------------------------------------------------
 
-```{r exercise 2.1, eval=FALSE}
-
-```
+#-------------------------------------------------------------------------------
 
 ### Exercise 2: Merging Datasets
 
-The `gapminder` package in R loads automatically the gapminder dataset. The gapminder project is an independent educational non-profit fighting global misconceptions, check out their website: <https://www.gapminder.org/> The gapminder dataset is already loaded.
+#The `gapminder` package in R loads automatically the gapminder dataset. 
+#The gapminder project is an independent educational non-profit fighting global 
+#misconceptions, check out their website: <https://www.gapminder.org/> The 
+#gapminder dataset is already loaded.
 
-a.  Get an overview of the gapminder dataset. There are different ways to do so, you can choose by yourself
+#a. Get an overview of the gapminder dataset. There are different ways to do so,
+#you can choose by yourself
 
-```{r exercise 2.2, eval=FALSE}
+#-------------------------------------------------------------------------------
 
-```
+#-------------------------------------------------------------------------------
 
-b.  Load World Bank Data from 1972 to 2007 and load the variable "Exports and Goods (% of GDP)".
-c.  Merge the World Bank data to the gapminder data, so a dataset evolves with the number of observations of the gapminder data.
+#b.  Load World Bank Data from 1972 to 2007 and load the variable "Exports and 
+#Goods (% of GDP)".
+#c.  Merge the World Bank data to the gapminder data, so a dataset evolves with 
+#the number of observations of the gapminder data.
 
-```{r exercise 2.3, eval=FALSE}
-  
-```
+#-------------------------------------------------------------------------------
 
-d\. Clean the data by dropping all missing values
+#-------------------------------------------------------------------------------
 
-# Data Visualisation
+#d\. Clean the data by dropping all missing values
 
-In this chapter, I will introduce you to the most fun part in R, data visualisation (at least in my opinion). I will introduce you to the basic graphs and how to plot them in R. To do so, I introduce you the framework of `ggplot2`. This is a quite famous and powerful package and it became the standard package of data visualization in R. The goal of this chapter is to show you the basic plots everyone should know about, how you can program nice plots to include them in your papers and reports, and how to work with the `ggplot2` package.
+#-------------------------------------------------------------------------------
 
-```{r loading packages viz}
-pacman::p_load("tidyverse", "babynames", "sf", "ggridges",
-               "rnaturalearth", "forcats" ,"tmap")
-```
+#-------------------------------------------------------------------------------
+
+#-----------------------
+#  Data Visualisation
+#-----------------------
+
 
 ## Introduction to `ggplot2`
 
-The `tidyverse` includes the most popular package for data visualization in R, `ggplot2`. With its relative straight forward code and its huge flexibility, and I mean HUGE FLEXIBILTY, it became the standard form of Data Visualization. It is aims to simplify data visualization by utilizing the "Grammar of Graphics" defined by Leland Wilkinson. While it may appear complicated at first, it just creates a frame and adds elements to it.
-
-Let us start by looking at the code structure and creating the frame. The central code here is `ggplot()`:
-
-```{r basic ggplot}
+#-------------------------------------------------------------------------------
 ggplot()
-```
-
-As we can see, we get an empty frame and in the following we will go through the standard forms of data visualizations by simply adding elements to this empty frame. But this is only the Peak of what is possible with Data Visualization in R. I strongly recommend to further work on this topic for two reasons, especially R is the perfect language to dive deeply in this topic. R is known for beautiful data visualizations and it is a reason for its popularity.
+#-------------------------------------------------------------------------------
 
 ## Distributions: Histogram, Density Plots, and Boxplots
-
-The first type of visualizations are displaying distributions. We should always get an overview of how our variables are distributed, because the distributions gives us valuable information about the data structure. For example a lot of statistical models assume certain distributions and to identify if we can test data with those models, we have to make sure that it does not violate the distribution assumption. Further, distributions make it easy to detect outliers or biases, since they are easy to spot with such visualizations.
 
 ### Histograms
 
 #### Basic Histogram
 
-Let us start with a normal Histogram. A histogram is an accurate graphical representation of the distribution of a numeric variable. It takes as input numeric variables only. The variable is cut into several bins, and the number of observation per bin is represented by the height of the bar.
-
-Before making our first plot, let us simulate some data:
-
-```{r, simulating data distributions}
-#Setting Seed for reproducibility
-set.seed(123)
-
-#Simulating data 
-data1 <- data.frame(
-  type = c(rep("Variable 1", 1000)),
-  value = c(rnorm(1000))
-)
+#-------------------------------------------------------------------------------
 
 #Looking at the data 
 glimpse(data1)
 
-```
-
-We now have a dataset for a random variable called "Variable 1" and this variable has 500 values assigned to it. We now want to know the distribution of these values and decide to plot a histogram.
-
-Now we have data and we can go straight to business. For a histogram in `ggplot`, we need the `ggplot()` command. Afterward, we include our dataset, in our case `data`. We use a comma in the `ggplot()` command after the data and add a new command, called `aes()`. In this command we need to define **the x-axis** and **the y-axis**. Here we just need the x-axis, since a histogram logically plots the "count" thus how often one value appears in the dataset, `ggplot` does that automatically. Last thing remaining is to close the bracket of `aes()` and of the `ggplot()` command and to tell ggplot, what kind of visualization we want. Our answer comes with a "`+`" after the closed command and we add the command `geom_histogram()`.
-
-```{r basic histogram}
+#Basic histogram
 ggplot(data1, aes(x = value)) + 
   geom_histogram()
-```
 
-And you just made your first histogram. But as you can see, it does not look nice. The reason is that we have to tell ggplot2 what we specifically want to change. And we can do so by defining the inside of the `geom_histogram()` function. I guess the first step is to make the bins visible and to change the color from gray to something nicer. We can do so by the defining the color for the borders of the bins, and the fill command to change the color of the bins in the `geom_historgram()` function. Let us set it to white to make it visible.
+#-------------------------------------------------------------------------------
 
-*Note: I could have defined any color, the only condition is to put it in quotation marks. Some colors such as white can be just written down, but you can always use any hexcode inside the quotation marks and it will work fine.*
-
-```{r histogram with bins}
+#Histogram with colors
 ggplot(data1, aes(x = value)) + 
   geom_histogram(color = "white", fill = "#69b3a2")
-```
 
-Looks better! But still, we have to think about that we want to publish this in an article or report. And for this purpose it is not sufficient. Next we should change the names of the labs, we can do so by adding a plus + again after the `geom_histogram()` command and using the `labs()` function. In this function we define the name of our x-axis and the y-axis. While we are at it, we can define the title in this function as well. What I like to do next is to scale the x-axis and to have ggplot display the values of each of the horizontal grid lines. Here an important mechanic is needed. The code `scale_x_continous()` helps us to rescale the x-axis. In general, the family of `scale_*` functions are powerful, because re-scaling the axis can (must not necessarily) change the visualization, thus these are powerful tools we should be aware of:
+#-------------------------------------------------------------------------------
 
-```{r histogram with rescaled x-axis, warning=FALSE, message=FALSE}
+#Histogram with aesthetics 
 ggplot(data1, aes(x = value)) + 
   geom_histogram(color = "white", fill = "#69b3a2") + 
   labs( 
@@ -956,11 +926,10 @@ ggplot(data1, aes(x = value)) +
     title = "A Histogram") + 
   scale_x_continuous(breaks = seq(-4, 4, 1), 
                      limits = c(-4, 4))
-```
 
-I do not know about you, but I have a huge problem with the gray grid as a background. This is the default grid by ggplot2 and we can change that. Again, we need a "`+`", and then we can just add the function without any things in it. I decided for the `theme_bw()` function, which is my favorite theme, but I found a website, where you can have a look at the different themes, look [here](https://ggplot2.tidyverse.org/reference/ggtheme.html).
+#-------------------------------------------------------------------------------
 
-```{r histogram with theme, warning=FALSE}
+#Histogram with aesthetics with theme
 ggplot(data1, aes(x = value)) + 
   geom_histogram(color = "white", fill = "#69b3a2") + 
   labs( 
@@ -970,13 +939,9 @@ ggplot(data1, aes(x = value)) +
   scale_x_continuous(breaks = seq(-4, 4, 1), 
                      limits = c(-4, 4)) +
   theme_minimal()
-```
 
-Well, we did it. I think that this plot can be displayed in an article or report. Good job!
+#-------------------------------------------------------------------------------
 
-One elemental thing I want to talk about is the width of the size. Currently, the binwidth is at 0.3. We can adjust that by including binwidth in the geom_histogram() command:
-
-```{r histogram with different binwidth, warning=FALSE}
 #histogram bindwidth = 0.1
 ggplot(data1, aes(x = value)) + 
   geom_histogram(color = "white", fill = "#69b3a2", 
@@ -989,6 +954,8 @@ ggplot(data1, aes(x = value)) +
                      limits = c(-4, 4)) +
   theme_minimal()
 
+#-------------------------------------------------------------------------------
+
 #histogram with bindwidth = 0.6
 ggplot(data1, aes(x = value)) + 
   geom_histogram(color = "white", fill = "#69b3a2", 
@@ -1000,63 +967,37 @@ ggplot(data1, aes(x = value)) +
   scale_x_continuous(breaks = seq(-4, 4, 1), 
                      limits = c(-4, 4)) +
   theme_minimal()
-```
+
+#-------------------------------------------------------------------------------
 
 #### Multiple Histograms
-
-In this part, I want to show you variations of the Histogram visualization plot. We will start with multiple distributions we probably want to display. To do so, we need a new variable we will call "Variable 2", with its own observations and add it to our dataset:
-
-```{r adding Variable 2 to our dataset}
-#Creating data
-data2 <- data.frame(
-  type = c(rep("Variable 2", 1000)), 
-  value = c(rnorm(1000, mean = 4))
-)
-
-#rowbinding it with data1
-data2 <- rbind(data1, data2)
-```
-
-We have two variables, each with their own distribution. We have to tell ggplot2 to distinguish the numbers by the different variables. We do so by modifying the inside of the `aes()` function. Our x-axis stays the same, right? We still want the values to be on the x-axis, so that parts stays the same. We define the fill within the `aes()` command to tell ggplot to fill the values of the two variables. Additionally, I will specify position = "identity" in the plot, this specification helps to adjust the position, when two histograms are overlapping, which will be the case.
-
-*Note: I leave out the \`fill\` specification for the reason that the colors are defined by default for both graphs (but we can change that, I will show that later).*
-
-```{r, two histograms in one}
+#Multiple histograms
 ggplot(data2, aes(x=value, fill=type)) +
     geom_histogram(color="#e9ecef",
                    position = "identity") +
   theme_bw() 
-```
 
-As you can see, we get two plots colored by the type there are assigned to. We can now play around a bit. I want to introduce you the alpha specification. This makes colors more transparent. Again this a command should be used if objects are overlapping to have a clearer picture of the overlap.
+#-------------------------------------------------------------------------------
 
-Additionally, I will scale new colors, here the scale\_\* function family comes again into play. We will use the scale_fill_manual command, since we want to change the color of the fill specification in the aes() command:
-
-```{r histogram two groups}
+#Multiple histograms with other colors
 ggplot(data2, aes(x=value, fill=type)) +
   geom_histogram(color="#e9ecef", 
                  alpha = 0.6, 
                 position = "identity") +
   scale_fill_manual(values = c("#8AA4D6", "#E89149")) +
   theme_bw() 
-```
+
+#-------------------------------------------------------------------------------
 
 ### Density Plots
 
-A density plot is a representation of the distribution of a numeric variable. It uses a kernel density estimate to show the probability density function of the variable. It is basically a smoothed version of a histogram. Since the logic is the same, except that the `geom_histogram()` is changed with `geom_density()`.
-
-#### Basic Density Plot
-
-Let us start with a basic density plot:
-
-```{r basic density}
+# Basic Density Plot
 ggplot(data1, aes(x = value)) + 
   geom_density()
-```
 
-Well, we now can do the exact same things as we did above: Fill the density plot with a color with `fill()`, make the fill color more transparent with `alpha()` and change the color of the line with `color()` in the `geom_density()` function. We can rescale the x-axis with `scale_x_continous`, and we can change the labels of the axis with `labs()`, and change the theme to `theme_minimal()`.
+#-------------------------------------------------------------------------------
 
-```{r density color}
+# Density plot with colours
 ggplot(data1, aes(x = value, fill =)) + 
   geom_density(color = "lightgrey", 
                fill = "#F8E59A",
@@ -1068,15 +1009,10 @@ ggplot(data1, aes(x = value, fill =)) +
   scale_x_continuous(breaks = seq(-4, 4, 1), 
                      limits = c(-4, 4)) +
   theme_minimal()
-```
+
+#-------------------------------------------------------------------------------
 
 #### Multiple Density Plots
-
-We could also do this with multiple density plots, remember that we always need the data structure to plot a graph. For this reason we again need `data3`. The rest stays again the same as with histograms:
-
-*Note: I just copied the code from above, changed the geom_histogram() to geom_density() and then I just changed the colors, the alpha and the theme. That's it. And that is mostly how plotting works, just copy and paste from the internet, and adjust what you do not like.*
-  
-  ```{r density two groups}
 ggplot(data2, aes(x=value, fill=type)) +
   geom_density(color="#0a0a0a", 
                alpha = 0.9, 
@@ -1084,34 +1020,18 @@ ggplot(data2, aes(x=value, fill=type)) +
   scale_fill_manual(values = c("#FDE725FF", 
                                "#440154FF")) +
   theme_minimal() 
-```
+
+#-------------------------------------------------------------------------------
 
 ### Boxplots
 
 #### Basic Boxplots
-
-The last visualization form of distributions are Boxplots. Boxplots are a really interesting form of showing distributions with a lot of information. Let us have a look at their anatomy, before I show you how to program them:
-  
-  ![Anatomy of a Boxplot](images/Boxplot_graph.jpg){fig-align="center" width="647"}
-
--   **The black rectangle** represents the Interquartile Range (IQR), thus the difference between the 25th and 75th percentiles of the data
-
--   **The red line** in the black rectangle represents the median of the data.
-
--   **The end of the lines** show the value at the 0th percentile, respectively 100th percentile, thus the minimum and the maximum value of the IQR, not the data.
-
--   **The dots beyond the black lines** are potential outliers and the points at the ends are the minimum value, respectively maximum value in the data. We should be aware of them, because if we ignore them, they could bias our statistical models, but more to that in Chapter 6.
-
-Let us implement a boxplot in R. Again the only thing that changes is that we use the standard ggplot() function and go on with the function geom_boxplot():
-  
-  ```{r basic boxplot}
 ggplot(data1, aes(x = value)) + 
   geom_boxplot()
-```
 
-We can also make that graph pretty with the same techniques as above:
-  
-  ```{r boxplot example}
+#-------------------------------------------------------------------------------
+
+#boxplot with aesthetics
 ggplot(data1, aes(x = value)) + 
   geom_boxplot() + 
   labs( 
@@ -1121,40 +1041,18 @@ ggplot(data1, aes(x = value)) +
   scale_x_continuous(breaks = seq(-4, 4, 1), 
                      limits = c(-4, 4)) +
   theme_classic()
-```
+
+#-------------------------------------------------------------------------------
 
 #### Multiple Boxplots
 
-A huge advantage of Boxplots are that it is an easy way to compare the structure of distributions of different groups. Consider following example: We want to compare the income of people with migration background and people without migration background. Let us say we collected a sample of people with 2000 respondents, 1000 with and 1000 without migration background. We further collected the incomes of each respondent. Be aware that we now need to define the y-axis with income. Since we do not look anymore at the count of the distribution, but the distribution over another variable (here:income). Let us look at the plot:
-  
-  ```{r simulating data for second boxplot}
-# Set seed for reproducibility
-set.seed(123)
-
-# Simulate income data
-income_18_24 <- rnorm(1000, mean = 40000, sd = 11000)
-income_25_34 <- rnorm(1000, mean = 55000, sd = 17500)
-income_35_59 <- rnorm(1000, mean = 70000, sd = 25000)
-
-# Combine into a data frame
-data5 <- data.frame(
-  income = c(income_18_24, income_25_34, income_35_59),
-  age = factor(rep(c("18-24", "25-34", "35-59"), 
-                   each = 1000))
-)
-```
-
-```{r grouped boxplot}
-ggplot(data5, aes(x = age, 
+#basic grouped boxplot
+ggplot(data3, aes(x = age, 
                   y = income, fill = age)) +
   geom_boxplot()  
-```
 
-Before interpreting the plot, let us make it prettier: We change labels of the x-axis, y-axis and give the plot a title with the `labs()` function. I do not like the colors, we change them with the `scale_fill_manual()`. Again, we define `alpha = 0.5` and also `width = 0.5` of the boxes in `geom_boxplot()`. I also think, we do not need a legend, therefore we can remove it, and use the `theme()` function. This function is powerful, since its specification gives us a lot of possibilities to design the plot according to our wishes. We specify in the `theme()` function that `legend.position = "none"`, which means that we do not want the legend to be displayed at all:
-  
-  ```{r multiple boxplots}
-# Create boxplot
-ggplot(data5, aes(x = age, y = income, fill = age)) +
+# Create boxplot groups
+ggplot(data3, aes(x = age, y = income, fill = age)) +
   geom_boxplot(alpha = 0.5, width = 0.5) +
   scale_fill_manual(values = c("#acf6c8", "#ecec53" ,"#D1BC8A")) +
   labs(
@@ -1164,40 +1062,20 @@ ggplot(data5, aes(x = age, y = income, fill = age)) +
   ) +
   theme_minimal() +
   theme(legend.position = "none")
-```
 
-We have a lot of information here. First, we clearly see that the median of people with migration background is lower than the median income of people without migration background. But we further see, that the income distribution of respondents without migration background is more spread out over a higher range. We can see that by the longer lines of the boxplot of respondents without migration background. Also the IQR range of both variables are varying. The box of people without migration background is again smaller, which again is an indicator that respondents without migration background are more spread out. In comparison, we can see that respondents with migration background in the 50th -75th percentile earn as much as respondents without migration background in the 25th to 50th percentile.
+#-------------------------------------------------------------------------------
 
-I could go on the whole day, boxplots are very informative and a nice tool to inspect and compare distribution structures.
-
-*Note: I used simulated data, therefore this data is fictional.*
+## Ranking: Barplot
   
-  ## Ranking: Barplot
-  
-  ### Basic Barplot
-  
-  The most famous, and easiest way of showing values of different groups is the Barplot. A barplot (or barchart) is one of the most common types of graphic. It shows the relationship between a numeric and a categoric variable. Each entity of the categoric variable is represented as a bar. The size of the bar represents its numeric value.
-
--   In ggplot, we only have to define the x-axis, and y-axis inside the ggplot() function, and add the function geom_bar(). Inside geom_bar() you have to add stat = "identity", for the simple reason, that we have to tell ggplot2 to display the numbers of the column "strength", otherwise it will give us an error.
-
-```{r barplot data}
-# Create data
-data4 <- data.frame(
-  name=c("King Kong","Godzilla","Superman",
-         "Odin","Darth Vader") ,  
-  strength=c(10,15,45,61,22)
-)
+### Basic Barplot
 
 #Plotting it 
 ggplot(data4, aes(x = name, y = strength)) + 
   geom_bar(stat = "identity")
-```
 
-Again, we can change the look of our plot. We start by changing the color by setting color within the `geom_bar()` function, we set a theme, let us do `theme_test()` this time and we change the names of the columns with the `labs()` function.
+#-------------------------------------------------------------------------------
 
-*Note: I can disable the name of the x-lab by simply adding empty quotation marks in the `labs()` function*
-  
-  ```{r basic barplot}
+#Basic Barplot
 ggplot(data4, aes(x = name, y = strength)) + 
   geom_bar(stat = "identity", fill = "#AE388B") +
   labs(
@@ -1206,25 +1084,10 @@ ggplot(data4, aes(x = name, y = strength)) +
     title = "Strength of fictional Characters"
   ) + 
   theme_test()
-```
 
-There is also another possibility to use Barplots. We could use them to count categories. Like we would in a histogram with the difference that we now have not a range of numbers, where we count how many numbers for one variable. We have a groups and want to count how often those groups appear in our dataset. Let us assume we asked 20 kids what their favorite fictional character is among Superman, King Kong and Godzilla.
+#-------------------------------------------------------------------------------
 
-```{r barplot count data}
-data5 <- data.frame(
-  hero = c(rep("Superman", 10), 
-           rep("King Kong", 3), 
-           rep("Godzilla", 7)), 
-  id = c(seq(1:20)), 
-  female = c(rep("Female", 7), 
-             rep("Male", 5), 
-             rep("Female", 1), 
-             rep("Female", 3), 
-             rep("Male", 4))
-) 
-```
-
-```{r barplot count}
+#basic horizontal barplot
 ggplot(data5, aes(x = hero)) + 
   geom_bar(fill = "#AE388B") +
   labs(
@@ -1234,13 +1097,9 @@ ggplot(data5, aes(x = hero)) +
   ) + 
   scale_y_continuous(breaks = seq(0,10,1)) +
   theme_test()
-```
 
-We could also turn around both Barplots to have a vertical Barplot. That is quite easy, we just have to add the coord_flip() function. This function swaps the x-axis and the y-axis.
+#-------------------------------------------------------------------------------
 
-Let us look at the plots:
-  
-  ```{r barplot flipped}
 #Plot 1 
 ggplot(data4, aes(x = name, y = strength)) + 
   geom_bar(stat = "identity", fill = "#AE388B") +
@@ -1251,6 +1110,8 @@ ggplot(data4, aes(x = name, y = strength)) +
   ) + 
   theme_test() + 
   coord_flip()
+
+#-------------------------------------------------------------------------------
 
 #Plot 2 
 ggplot(data5, aes(x = hero)) + 
@@ -1263,19 +1124,11 @@ ggplot(data5, aes(x = hero)) +
   scale_y_continuous(breaks = seq(0,10,1)) +
   theme_test() + 
   coord_flip()
-```
+
+#-------------------------------------------------------------------------------
 
 ### Reordering them
 
-To make a Barplot more intuitive, we can order it so the bar with the highest x-value is at the beginning and then it decreases or vice versa.
-
--   To do so, we use the `forcats` package
-
--   We take the code from above and wrap the x-value in the `fct_reorder()` command and determine the value it should be reorder based on, in our case the x-value is the name of the fictional characters and the value is the strength or the count:
-  
-  Note: You could also do it in descending order by just wrapping a `desc()` around the value the variable should be reorder based on thus it would look like this: `fct_reorder(name, desc(strength))`.
-
-```{r barplot ordered}
 #Plot 1
 ggplot(data4, aes(x = fct_reorder(name, strength), y = strength)) + 
   geom_bar(stat = "identity", fill = "#AE388B") +
@@ -1285,6 +1138,8 @@ ggplot(data4, aes(x = fct_reorder(name, strength), y = strength)) +
     title = "Strength of fictional Characters"
   ) + 
   theme_test()
+
+#-------------------------------------------------------------------------------
 
 #Plot 2
 ggplot(data4, aes(x = fct_reorder(name, strength), y = strength)) + 
@@ -1296,41 +1151,24 @@ ggplot(data4, aes(x = fct_reorder(name, strength), y = strength)) +
   ) + 
   theme_test() + 
   coord_flip()
-```
+
+#-------------------------------------------------------------------------------
 
 ### Grouped and Stacked Barplots
 
-We can go a step further with barplots and group them. Let us assume we asked respondents to tell us how healthy they feel on a scale from 0-10. But we want to separate respondents older than 40 and younger than 40. And we again separate the group between female and male respondents. Therefore we look at the average answer of 4 groups: Female, older 40, Male, older 40, Female younger 40 and Male younger 40. To see if there are gender differences within these groups. Let us get the data:
-  
-  ```{r data grouped barplot}
-data6 <- data.frame(
-  female = c("Female", "Male", "Female", "Male"), 
-  age = c("Old", "Old", "Young", "Young"), 
-  value = c(5, 2, 8, 7)
-)
-```
-
-Now we got the data. We have to define 3 parameters within aes(). The x-axis is the age groups, the y-axis the average value, and we have to define fill = female, since this is our group we want to investigate within the age groups. Inside geom_bar(), we need two arguments stat = "identity" and position = dodge. Et voila we will get our first **grouped barplot.**
-  
-  ```{r grouped barplot dodged}
+#grouped bar plot dodged
 ggplot(data6, aes(x = age, y = value, fill = female)) + 
   geom_bar(position = "dodge", stat="identity") 
-```
 
-We could have also used the a **stacked barplot**. The difference is, that we have one bar for our x-axis group, in our example the age group, and then the amount of the second group, the gender, is stacked on top of each it other. You could also see that as a normal barplot, where the bar is colored depending on the percentual distribution of the other group. In the code the only thing changing is that we set the position argument in the geom_bar() code to position = "stack":
-  
-  ```{r grouped barplot stacked}
+#-------------------------------------------------------------------------------
+
+#grouped barplot stacked
 ggplot(data6, aes(x = age, y = value, fill = female)) + 
   geom_bar(position = "stack", stat="identity") 
-```
 
-Let us make them pretty with our well-known techniques, it is always the same story. But twonew thing are introduced
+#-------------------------------------------------------------------------------
 
--   The argument `width = 0.35` is included to the `geom_bar()` so we can determine the width of the bars
-
--   I introduce you so-called color palettes. Instead of manually scaling the color, you can use built-in color palettes for different types of plots. For Barplot you can use the scale_fill_brewer, which includes different palettes and colors, which are automatically displayed. Have a look at the palettes of the command [here](https://r-graph-gallery.com/38-rcolorbrewers-palettes.html). That can be really helpful, if you have a lot of groups, so you do not have to think about different colors, which look good together.
-
-```{r bar plot with color palettes}
+###bar plot with color palettes
 #Plot 1
 ggplot(data6, aes(x = age, y = value, fill = female)) + 
   geom_bar(position = "dodge", stat="identity", 
@@ -1346,6 +1184,8 @@ ggplot(data6, aes(x = age, y = value, fill = female)) +
   theme_minimal() + 
   theme(legend.title=element_blank())
 
+#-------------------------------------------------------------------------------
+
 #Plot 2
 ggplot(data6, aes(x = age, y = value, fill = female)) + 
   geom_bar(position = "stack", stat="identity", 
@@ -1359,41 +1199,17 @@ ggplot(data6, aes(x = age, y = value, fill = female)) +
   ) +
   theme_minimal() + 
   theme(legend.title=element_blank())
-```
+
+#-------------------------------------------------------------------------------
 
 ## Evolution: Line Chart
 
-A quite familiar plot is the line chart. A quite popular way of showing the evolution of a variable over a variable on the x-axis. We know them mostly from time series analyses, where a certain period is on the x-axis. Since such line charts with dates are well known, I will stick with them as an example. A line chart or line graph displays the evolution of one or several numeric variables. Data points are connected by straight line segments the measurement points are ordered (typically by their x-axis value) and joined with straight line segments.
-
 ### Basic Line Plot
-
-In ggplot, we stick with the ggplot() function, define our x-axis and our y-axis. We add the function geom_line() to it.
-
-```{r simulating data for line plot}
-# Setting Seed
-set.seed(500)
-# create data
-date <- 2000:2024
-y <- cumsum(rnorm(25))
-y2 <- cumsum(rnorm(25))
-data6 <- data.frame(date,y, y2)
-```
-
-```{r basic line plot}
-ggplot(data6, aes(x = date, y = y)) + 
+ggplot(data7, aes(x = date, y = y)) + 
   geom_line()
-```
 
-Normally we would go on and make the plot pretty. But there are additional aesthetics to a line plot.
-
--   First, we can change the line type. The line type can be straight as in the default layout, but I will change set it in the `geom_line()` command to line `type = "dashed"`. For an overview of all line types look [here](http://www.sthda.com/english/wiki/ggplot2-line-types-how-to-change-line-types-of-a-graph-in-r-software).
-
--   Second, I change the size of the line with setting `size = 1` in the `geom_line()` command.
-
--   The rest of the aesthetics are stay the same, re-scaling axes, coloring, and themes.
-
-```{r dashed line plot}
-ggplot(data6, aes(x = date, y = y)) + 
+#dashed line plot
+ggplot(data7, aes(x = date, y = y)) + 
   geom_line(color = "#0F52BA", linetype = "dashed",
             size = 1) + 
   scale_y_continuous(breaks = seq(-1, 6, 1), 
@@ -1405,30 +1221,16 @@ ggplot(data6, aes(x = date, y = y)) +
     title = "A Line Plot"
   ) +
   theme_bw()
-```
 
 ### Multiple Line Chart
 
-In the next step, we want to plot multiple lines in one plot. This is useful when we want to compare the evolution of variables for example over time. In `ggplot2` we only need to add another layer with a plus and add another `geom_line()` command. But now things get a bit complicated:
-  
-  -   Inside the ggplot() command we only add our dataset with our dataset, nothing more.
-
--   In the first geom_line() command we add the aes() function and define x and y. Until now, we only wrote the aes() function inside the ggplot() function, but now we have to write it in the `geom_line()` function, since we add another geom_line() layer.
-
--   In the second geom_line() command we define the our next layer. This time the x-axis stays the same logically. But now we change y and set it to the second variable we want to inspect.
-
-```{r multiple lines}
-ggplot(data6) + 
+#multiple lines
+ggplot(data7) + 
   geom_line(aes(x = date, y = y)) +
   geom_line(aes(x = date, y = y2))
-```
 
-As always, we make the plot pretty in the next step. I will use the same code as above. But regarding the lines itself, we can separate the aesthetics separately:
-  
-  -   We can set the line type, color and size differently for each layer. We just have to specify it inside the `geom_line()` command for the respective layer.
-
-```{r multiple colored lines}
-ggplot(data6) + 
+#multiple colored lines
+ggplot(data7) + 
   geom_line(aes(x = date, y = y), 
             linetype = "twodash", 
             size = 1, 
@@ -1446,41 +1248,24 @@ ggplot(data6) +
     title = "A Line Plot"
   ) +
   theme_bw()
-```
 
 ### Grouped Line Charts
 
-Another possibility of using line charts is to look at the evolution of groups separately. I introduce you to the `babynames` dataset, which is a package in R, which loads automatically the dataset about the most popular babynames in the US from 1880 until 2017. Let us have a look at it:
-  
-  ```{r babynames}
 ###Looking at the dataset
 head(babynames)
-```
 
-Well, let us say we are interested in the popularity of the names Michael, Abby, and Lisa. Let us cut down the dataset to these three names with the filter() function you learned in the previous chapter:
-  
-  ```{r cleaning babynames}
+#cleaning babynames
 babynames_cut <- babynames %>%
   filter(name %in% c("Emma", "Kimberly", "Ruth")) %>%
   filter(sex == "F")
-```
 
-In the next step, let us plot the popularity of these three names over time.
-
--   We have to specify the x and y-axis and further add a `geom_line()` layer. So far, so normal. The next thing we do, is to tell ggplot2 that we want groups. We do so, in the `ggplot()` function by setting `group = name`. We should also set the `colors = name`, otherwise all lines will be black and we cannot distinguish, which line belongs to which group.
-
-```{r basic line plot groups}
+#basic line plot groups
 ggplot(babynames_cut, aes(x = year, y = n,
                           group = name,
                           color = name)) + 
   geom_line()
-```
 
-Well, that looks good, we can see that Ruth had its peak in the 20s, Kimberly in the 60s and Emma is currently on the rise. Let us design the plot with a theme, remove the legend title, add some meaningful lab names and add a color palette with `scale_color_brewer()`.
-
--   Regarding the labs, I will introduce you a way of re-naming the legend, by simply setting `color = "New Name"` in the `labs()` function
-
-```{r colored line plot}
+#colored line plot
 ggplot(babynames_cut, aes(x = year, y = n,
                           group = name,
                           color = name)) + 
@@ -1493,7 +1278,6 @@ ggplot(babynames_cut, aes(x = year, y = n,
     color = "Name"
   ) +
   theme_minimal() 
-```
 
 ## Correlation: Scatterplots
 
