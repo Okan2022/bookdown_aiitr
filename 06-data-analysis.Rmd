@@ -182,7 +182,7 @@ beta_0
 Now we estimated our parameters and can display the for our model by simply putting it into the systematic component:
 
 $$
-Y_i = -0.33 + 0.68 * X_i
+Y_i = 1.68 + 1.54 * X_i
 $$
 
 #### Automated Calculation
@@ -205,7 +205,7 @@ When we check the results, we see that we did everything right and get the exact
 We could calculated predictions based on our OLS calculations, reconsider the systematic component we calculated:
 
 $$
-\hat{y_i} = -0.33 + 0.68x_i 
+\hat{y_i} = 1.68 + 1.54x_i 
 $$
 
 We just have to put in x-values and according to our model we would get a prediction of the respondents y-value $\hat{y_i}$. We can do that for all x-values in our dataset and get a column with all the predicted values, let us call it (`y_hat`) :
@@ -274,7 +274,7 @@ ggplot(df, aes(x, residuals_auto)) +
 
 One assumption of linear regression is that the variance of the error term is not correlated with our independent variable. Well, that is quite technocratic and means basically, that the residuals are distributed equally over the independent variables. Let us plot it to get a visual intuition:
 
-```{r homo and hetero plot, message=FALSE}
+```{r homo and hetero plot, message=FALSE, warning=FALSE}
 #setting seed for reproduciability
 set.seed(123)
 
@@ -984,7 +984,7 @@ The rule is that if a value exceeds 10, it is considered critical. We should alw
 As I mentioned in the first chapter, there are different types of variables, let us reconsider them:
 
 |               |               |                                              |
-|-----------------|-----------------|--------------------------------------|
+|------------------|------------------|-------------------------------------|
 | **Numeric**   | Numbers       | `c(1, 2.4, 3.14, 4)`                         |
 | **Character** | Text          | `c("1", "blue", "fun", "monster")`           |
 | **Logical**   | True or false | `c(TRUE, FALSE, TRUE, FALSE)`                |

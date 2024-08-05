@@ -4,6 +4,7 @@ bookdown::gitbook:
     fontsettings: null
     search: null
     toc:
+      collapse: subsection
       before: |
         <div style="text-align: center;">
           <img src="images/AIITR.svg" alt="AIITR Logo" style="vertical-align: middle; margin-left: 5px; width: 125px; height: auto;">

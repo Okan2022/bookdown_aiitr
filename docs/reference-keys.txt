@@ -34,8 +34,7 @@ load-the-data
 how-to-load-data
 working-directories-and-r-projects
 one-last-thing-pipelines
-lets-wrangle-the-data
-the-dplyr-package
+lets-wrangle-the-data-the-dplyr-package
 the-filter-command
 filtering-for-only-one-condition
 filtering-for-multiple-condition

@@ -177,8 +177,8 @@ Well, we now can do the exact same things as we did above: Fill the density plot
 
 ```{r density color}
 ggplot(data1, aes(x = value, fill =)) + 
-  geom_density(color = "lightgrey", 
-               fill = "#F8E59A",
+  geom_density(color = "white", 
+               fill = "orange",
                alpha = 0.6) + 
   labs( 
     x = "Value", 
@@ -256,7 +256,7 @@ income_25_34 <- rnorm(1000, mean = 55000, sd = 17500)
 income_35_59 <- rnorm(1000, mean = 70000, sd = 25000)
 
 # Combine into a data frame
-data5 <- data.frame(
+data3 <- data.frame(
   income = c(income_18_24, income_25_34, income_35_59),
   age = factor(rep(c("18-24", "25-34", "35-59"), 
                                 each = 1000))
@@ -264,7 +264,7 @@ data5 <- data.frame(
 ```
 
 ```{r grouped boxplot}
-ggplot(data5, aes(x = age, 
+ggplot(data3, aes(x = age, 
                  y = income, fill = age)) +
 geom_boxplot()  
 ```
@@ -273,7 +273,7 @@ Before interpreting the plot, let us make it prettier: We change labels of the x
 
 ```{r multiple boxplots}
 # Create boxplot
-ggplot(data5, aes(x = age, y = income, fill = age)) +
+ggplot(data3, aes(x = age, y = income, fill = age)) +
   geom_boxplot(alpha = 0.5, width = 0.5) +
   scale_fill_manual(values = c("#acf6c8", "#ecec53" ,"#D1BC8A")) +
   labs(
@@ -470,7 +470,7 @@ ggplot(data6, aes(x = age, y = value, fill = female)) +
     geom_bar(position = "stack", stat="identity", 
              width = 0.35) +
   scale_fill_brewer(palette = "Accent") +
-  scale_y_continuous(breaks = seq(0, 15, 1)) + 
+  scale_y_continuous(breaks = seq(0, 15, 2)) + 
   labs(
     x = "Age Cohort", 
     y = "Average Score Well-Being", 
@@ -495,11 +495,11 @@ set.seed(500)
 date <- 2000:2024
 y <- cumsum(rnorm(25))
 y2 <- cumsum(rnorm(25))
-data6 <- data.frame(date,y, y2)
+data7 <- data.frame(date,y, y2)
 ```
 
 ```{r basic line plot}
-ggplot(data6, aes(x = date, y = y)) + 
+ggplot(data7, aes(x = date, y = y)) + 
   geom_line()
 ```
 
@@ -512,9 +512,9 @@ Normally we would go on and make the plot pretty. But there are additional aesth
 -   The rest of the aesthetics are stay the same, re-scaling axes, coloring, and themes.
 
 ```{r dashed line plot}
-ggplot(data6, aes(x = date, y = y)) + 
+ggplot(data7, aes(x = date, y = y)) + 
   geom_line(color = "#0F52BA", linetype = "dashed",
-            size = 1) + 
+            linewidth = 1) + 
   scale_y_continuous(breaks = seq(-1, 6, 1), 
                      limits = c(-1, 6)) + 
   scale_x_continuous(breaks = seq(2000, 2024, 2)) + 
@@ -537,7 +537,7 @@ In the next step, we want to plot multiple lines in one plot. This is useful whe
 -   In the second geom_line() command we define the our next layer. This time the x-axis stays the same logically. But now we change y and set it to the second variable we want to inspect.
 
 ```{r multiple lines}
-ggplot(data6) + 
+ggplot(data7) + 
   geom_line(aes(x = date, y = y)) +
   geom_line(aes(x = date, y = y2))
 ```
@@ -547,7 +547,7 @@ As always, we make the plot pretty in the next step. I will use the same code as
 -   We can set the line type, color and size differently for each layer. We just have to specify it inside the `geom_line()` command for the respective layer.
 
 ```{r multiple colored lines}
-ggplot(data6) + 
+ggplot(data7) + 
   geom_line(aes(x = date, y = y), 
             linetype = "twodash", 
             size = 1, 
@@ -689,7 +689,7 @@ df_dark <- data.frame(marketing_budget, sales, quarters)
 df_dark$name <- "Dark Chocolate"
 
 #rowbind it with the other dataset 
-data_point <- rbind(data_point, df_dark)
+data8 <- rbind(data_point, df_dark)
 ```
 
 Now, we could run the same code as above, but we would not be able to distinguish, which dots belong to which chocolate.
@@ -698,12 +698,11 @@ Now, we could run the same code as above, but we would not be able to distinguis
 
 -   I will manually give the colors, since I have to use brown colors for this example.
 
-```{r chocolatevmilk and marketing}
-ggplot(data_point, aes(x = marketing_budget, 
+```{r chocolate milk and marketing}
+ggplot(data8, aes(x = marketing_budget, 
                        y = sales, 
                        color = name)) +
   geom_point() +
-  scale_color_brewer(palette = "BrBG") +
   scale_color_manual(values = c("#e71d36",
                                 "#260701"))+
   scale_x_continuous(breaks = seq(0, 10000, 2000)) + 
@@ -729,7 +728,7 @@ Using colors is one way to differentiate between groups in scatter plots.
 Let us have a look:
 
 ```{r scatterplots with shapes}
-ggplot(data_point, aes(x = marketing_budget, 
+ggplot(data8, aes(x = marketing_budget, 
                        y = sales, 
                        shape = name)) +
   geom_point(size = 2.5) +
@@ -752,7 +751,7 @@ There are different types of shapes and we can set them manually via numbers.
 -   In the `labs()` function we will set the argument to `color = ""` and `shape = ""`. So the legend shows the colored shape as the legend.
 
 ```{r colors and shapes}
-ggplot(data_point, aes(x = marketing_budget, 
+ggplot(data8, aes(x = marketing_budget, 
                        y = sales, 
                        shape = name,
                        color = name)) +
@@ -779,7 +778,7 @@ Sometimes we do not want to compare the elements in a plot (e.g. dots, lines), b
 That is rather abstract, let us stick with our chocolate company. We want to compare the effect of our marketing budget on sales for different quarters. We want to plot the same scatter plot as before, but this time for each quarter. We could of course split up the data set to each quarter and plot 4 plots. But that is not efficient. Let us copy the code from above for the basic plot, and just add the `facet_wrap()` function and inside this wave symbol `~` and add the variable we want separate for, in our case the quarters.
 
 ```{r basic facet_wrap}
-ggplot(data_point, aes(x = marketing_budget, 
+ggplot(data8, aes(x = marketing_budget, 
                        y = sales)) +
   geom_point() + 
   facet_wrap(~ quarters)
@@ -788,7 +787,7 @@ ggplot(data_point, aes(x = marketing_budget,
 As you can see ggplot2 plots 4 graphs for each quarter. Instead of plotting 4 graphs and writing unnecessary long code, we can use the handy facet_warp() function. If we want to make the graph pretty, it is quite easy, since it is identical as if we want to make a single plot pretty. Thus, we can just copy the code from above and include it:
 
 ```{r facet_wrap colors}
-ggplot(data_point, aes(x = marketing_budget, 
+ggplot(data8, aes(x = marketing_budget, 
                        y = sales)) +
   geom_point(color = "#99582a") +
   scale_x_continuous(breaks = seq(0, 10000, 2000)) + 
@@ -804,7 +803,7 @@ ggplot(data_point, aes(x = marketing_budget,
 We can also add a facet_wrap() function for our plot with different shapes and colors for chocolate milk and dark chocolate:
 
 ```{r facet_wrap with shape and colors}
-ggplot(data_point, aes(x = marketing_budget, 
+ggplot(data8, aes(x = marketing_budget, 
                        y = sales, 
                        shape = name,
                        color = name)) +
@@ -841,22 +840,22 @@ years <- 2018:2020
 months <- 1:4  # Only the first four months
 
 # Create a data frame with all combinations of City, Year, and Month
-data <- expand.grid(City = cities, Year = years, Month = months)
+data9 <- expand.grid(City = cities, Year = years, Month = months)
 
 # Simulate temperature data with some variation depending on the city
-data$Temperature <- round(rnorm(nrow(data), mean = 15, sd = 10), 1) + 
-  with(data, ifelse(City == "London", 0, ifelse(City == "Paris", 5, -5)))
+data9$Temperature <- round(rnorm(nrow(data9), mean = 15, sd = 10), 1) + 
+  with(data9, ifelse(City == "London", 0, ifelse(City == "Paris", 5, -5)))
 
 # Check the first few rows of the dataset
-head(data)
+head(data9)
 ```
 
 ```{r plot for temperatures}
 # Convert Month to a factor for better axis labeling
-data$Month <- factor(data$Month, levels = 1:4, labels = month.abb[1:4])
+data9$Month <- factor(data9$Month, levels = 1:4, labels = month.abb[1:4])
 
 # Basic ggplot object
-p <- ggplot(data, aes(x = Month, y = Temperature, group = Year, color = factor(Year))) +
+p <- ggplot(data9, aes(x = Month, y = Temperature, group = Year, color = factor(Year))) +
   geom_line() +
   labs(title = "Average Monthly Temperature (Jan-Apr, 2018-2020)",
        x = "Month",
@@ -882,7 +881,7 @@ You can also combine different types of graphs. But be careful! Too much in one 
 
 ```{r multiple graphs in one graph}
 # Simulating example data
-example_data <- data.frame(
+data10 <- data.frame(
   months = factor(1:12, levels = 1:12, labels = month.abb), 
   avg_temp = c(0.6, 1.8, 4.6, 6.1, 10.4, 19, 18.3, 
                17.9, 15.2, 9.6, 4.7, 2.6), 
@@ -891,11 +890,11 @@ example_data <- data.frame(
 )
 
 # Scaling factor to align avg_temp with n_deaths
-scale_factor <- max(example_data$n_deaths) / max(example_data$avg_temp)
+scale_factor <- max(data10$n_deaths) / max(data10$avg_temp)
 
 # Create the combined graph with dual y-axes
-ggplot(example_data, aes(x = months)) + 
-  geom_bar(aes(y = n_deaths), stat = "identity", fill = "skyblue", 
+ggplot(data10, aes(x = months)) + 
+  geom_bar(aes(y = n_deaths), stat = "identity", fill = "#FF8080", 
           alpha = 0.6) + 
   geom_line(aes(y = avg_temp * scale_factor, group = 1), 
             color = "#2c2c2c", linewidth = 1, linetype = "dashed") +
@@ -907,7 +906,7 @@ ggplot(example_data, aes(x = months)) +
        title = "Number of Traffic Deaths and Average Temperature per Month") + 
   theme_bw() +
   theme(
-    axis.title.y.left = element_text(color = "skyblue"),
+    axis.title.y.left = element_text(color = "#FF8080"),
     axis.title.y.right = element_text(color = "#2c2c2c")
   )
 ```

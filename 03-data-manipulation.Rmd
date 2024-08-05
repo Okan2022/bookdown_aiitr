@@ -251,13 +251,11 @@ q %>%
 
 This was an easy and short example, but as you will see at the end of this chapter, the code can get really fast really messy and to have a clean code, we will use pipes. Furthermore, tidyverse users use pipes all the times, so even if you do not use them, you have to understand them.
 
-## Let's wrangle the data
+## Let's wrangle the data: The `dplyr` package
 
 ![](images/meme3.jpg){fig-align="center" width="435"}
 
-## The `dplyr` package
-
-Dplyr is THE standard package, when it comes to data manipulation (next to Base R of course). It has essential functions, and helpful further functions. If you are able to understand the flexibility of these functions you can easily handle every data set.
+The `dplyr` package is THE standard package, when it comes to data manipulation (next to Base R of course). It has essential functions, and helpful further functions. If you are able to understand the flexibility of these functions you can easily handle every data set.
 
 ### The `filter()` command
 
@@ -323,7 +321,7 @@ d1 <- ess %>%
   filter(cntry %in% c("HU", "FR"))
 
 #Checking it
-head(d2)  
+head(d1)  
 
 #filtering for cases under 40 in Hungary and France
 d2 <- ess %>%
@@ -437,7 +435,7 @@ d1 <- ess %>%
   filter(agea < 40) %>%
   select(year, cntry, happy, agea, gndr, eisced) %>% 
   arrange(desc(agea)) %>%
-  rename(county = cntry, 
+  rename(country = cntry, 
          age = agea, 
          education = eisced, 
          female = gndr) 
@@ -511,15 +509,6 @@ d1 <- ess %>%
 
 #checking it
 head(d1)
-
-#mutating variables
-d2 <- ess %>% 
-  mutate(new_variable = happy*10/eisced+67, 
-         female_char = as.character(gndr)) %>% 
-  select(female_char, new_variable)
-
-#checking it
-head(d2)
 ```
 
 We can also use mutate for more than calculations. We can also define new columns by mutating existing columns into different classes:
@@ -581,12 +570,12 @@ d1 <- ess %>%
                    `99` = NA_real_),
     female = dplyr::recode(gndr_fac, 
                     `1` = "Male", 
-                    `2` = "Female"))
+                    `2` = "Female",
+                    `9` = NA_character_))
 
 #Let us check how it worked out 
-table(d1$happy)
 table(d1$happy_cat)
-table(d1$gender)
+table(d1$female)
 ```
 
 #### Recoding with `mutate()` using `case_when()`
@@ -691,7 +680,8 @@ d1 <- ess %>%
     happy = case_when(
       happy %in% c(77, 88, 99) ~ NA_real_,
       TRUE ~ happy)
-    )
+    ) %>%
+  arrange(age)
 
 #Checking it
 head(d1) 
@@ -706,12 +696,18 @@ When you print the dataset, you see that now there are some values named "NA". T
 We assign both to a new data frame. We will see in the result that all rows are deleted which include NAs. This is one of the reasons it is important to cut down to variables we only need, so that only incomplete observations of our variables we need are deleted. So always remember, first transforming, than dropping.
 
 ```{r missing values}
+#Checking it
+head(d1) 
+
 #dropping NAs 
 d2 <- d1 %>% 
   drop_na() 
 
+#Checking if there are NAs
+colSums(is.na(d2))
+
 #dropping NAs
-d2 <- na.omit(d1) 
+d3 <- na.omit(d1) 
 
 #Checking if there are NAs
 colSums(is.na(d2))
@@ -782,12 +778,12 @@ d1 <- ess %>%
           )
 
 #Check it out
-glimpse(d1)
+head(d1)
 ```
 
 ## Merging Datasets
 
-#### Introduction to merging with `dplyr` and preparing data
+### Introduction to merging with `dplyr` and preparing data
 
 Sometimes it could be the case that you need variables, which are not in one dataset *a priori* available, but in another dataset. For this case you load both datasets and **merge** them together. **This only works if there is a similiar data structure, so know your data !**
 
@@ -869,7 +865,7 @@ d1 <- ess %>%
 head(d1) 
 ```
 
-#### `left_join()` and `right_join()` with one identifier
+### `left_join()` and `right_join()` with one identifier
 
 To merge data there are important functions from the **dplyr** package: The `left_join()` and the `right_join()` function. Since they are a bit complicated to understand, we will go through them and in the end, you can choose the one you prefer.
 
@@ -913,7 +909,7 @@ merged_data2 <- right_join(d1, wb,
 head(merged_data2)
 ```
 
-#### `left_join()` and `right_join()` with two identifiers
+### `left_join()` and `right_join()` with two identifiers
 
 Sometimes, you have multiple dimensions. For example, what if we also include the year? Then every country-year observation is our unique identifier. Why? Because one observation was collected in country X to time point Y. That is why you should always know your data and your research goal, because accordingly you have to write your code.
 

@@ -235,6 +235,9 @@ ridgeline_data <- data.frame(
   distribution = factor(rep(c("Normal", "Left-Skewed", "Right-Skewed", "Bimodal"), each = 1000))
 )
 
+#Setting seed for reproducibility
+set.seed(123)
+
 n <- 30 
 
 x <- runif(n) * 10 
@@ -667,6 +670,122 @@ df_example$country[df_example$pop > 60]
 
 #-------------------------------------------------------------------------------
 
+grade <- 1.7 #assigning a Grade
+
+if(grade < 2) {
+  print("Good Job")
+} # You write down if(test expression), and then the {body expression}, 
+#thus the body expression in fancy brackets.
+
+grade <- 2.5 
+
+if(grade < 2) {
+  print("Good Job")
+} #Since the condition is not met, nothing happens
+
+#-------------------------------------------------------------------------------
+
+grade <- 3.3 #assigning a grade
+
+if (grade <= 2) {
+  print("Good Job")
+} else {
+  print("Life goes on")
+} 
+
+grade <- 1.3 #assigning a grade
+
+if (grade <= 2) {
+  print("Good Job")
+} else {
+  print("Life goes on")
+}
+
+#-------------------------------------------------------------------------------
+
+ifelse(grade <=2, "Good Job", "Life goes on") #ifelse command
+
+#-------------------------------------------------------------------------------
+
+grade <- 3.3 #Assigning a grade
+
+if (grade == 1.0) {
+  print("Amazing") 
+} else if (grade > 1.0 & grade <= 2.0) {
+  print("Good Job")
+} else if (grade > 2.0 & grade <= 3.0) {
+  print("OK")
+} else if (grade > 3.0 & grade <= 4.0) {
+  print("Life goes on")
+} else {
+  print("No expression found")
+}
+
+#-------------------------------------------------------------------------------
+
+grade <- 1.7 #Assigning a grade
+
+if (grade == 1.0) {
+  print("Amazing") 
+} else if (grade > 1.0 & grade <= 2.0) {
+  print("Good Job")
+} else if (grade > 2.0 & grade <= 3.0) {
+  print("OK")
+} else if (grade > 3.0 & grade <= 4.0) {
+  print("Life goes on")
+} else {
+  print("No expression found")
+}
+
+#-------------------------------------------------------------------------------
+
+grade <- 5.0 #Assigning a grade
+
+if (grade == 1.0) {
+  print("Amazing") 
+} else if (grade > 1.0 & grade <= 2.0) {
+  print("Good Job")
+} else if (grade > 2.0 & grade <= 3.0) {
+  print("OK")
+} else if (grade > 3.0 & grade <= 4.0) {
+  print("Life goes on")
+} else {
+  print("No expression found")
+}
+
+#-------------------------------------------------------------------------------
+
+grade <- 1.7 #Assigning a grade
+
+ifelse(grade == 1.0, "Amazing", 
+       ifelse(grade > 1 & grade <= 2, "Good Job", 
+              ifelse(grade > 2 & grade <= 3, "OK", 
+                     ifelse(grade > 3 & grade <=4, "Life goes on", 
+                            "No expression found"
+                     )
+              )
+       )
+)
+
+#-------------------------------------------------------------------------------
+
+grade <- 3.3 #Assigning a grade
+
+ifelse(grade == 1.0, "Amazing", 
+       ifelse(grade > 1 & grade <= 2, "Good Job", 
+              ifelse(grade > 2 & grade <= 3, "OK", 
+                     ifelse(grade > 3 &
+                              grade <=4, "Life goes on", 
+                            "No expression found")
+              )
+       )
+)
+
+# The same logic: ifelse(test expression, body expression if, 
+#ifelse(test expression 2, body expression if 2)) etc..
+
+#-------------------------------------------------------------------------------
+
 #--------------------------
 #   2.Data Manipulation
 #--------------------------
@@ -710,7 +829,7 @@ d1 <- ess %>%
   filter(cntry %in% c("HU", "FR"))
 
 #Checking it
-head(d2)  
+head(d1)  
 
 #filtering for cases under 40 in Hungary and France
 d2 <- ess %>%
@@ -794,7 +913,7 @@ d1 <- ess %>%
   filter(agea < 40) %>%
   select(year, cntry, happy, agea, gndr, eisced) %>% 
   arrange(desc(agea)) %>%
-  rename(county = cntry, 
+  rename(country = cntry, 
          age = agea, 
          education = eisced, 
          female = gndr) 
@@ -857,15 +976,6 @@ d1 <- ess %>%
 #checking it
 head(d1)
 
-#mutating variables
-d2 <- ess %>% 
-  mutate(new_variable = happy*10/eisced+67, 
-         female_char = as.character(gndr)) %>% 
-  select(female_char, new_variable)
-
-#checking it
-head(d2)
-
 #-------------------------------------------------------------------------------
 
 #more mutating
@@ -904,12 +1014,12 @@ d1 <- ess %>%
                               `99` = NA_real_),
     female = dplyr::recode(gndr_fac, 
                            `1` = "Male", 
-                           `2` = "Female"))
+                           `2` = "Female",
+                           `9` = NA_character_))
 
 #Let us check how it worked out 
-table(d1$happy)
 table(d1$happy_cat)
-table(d1$gender)
+table(d1$female)
 
 #-------------------------------------------------------------------------------
 
@@ -966,7 +1076,7 @@ d1 <- ess %>%
     female = gndr) %>% 
   mutate( 
     internet_use = case_when( 
-      internet_use < 5 ~ NA_real_, 
+      internet_use > 5 ~ NA_real_, 
       TRUE ~ internet_use), 
     age = case_when(
       age == 999 ~ NA_real_,
@@ -982,7 +1092,8 @@ d1 <- ess %>%
     happy = case_when(
       happy %in% c(77, 88, 99) ~ NA_real_,
       TRUE ~ happy)
-  )
+  ) %>%
+  arrange(age)
 
 #Checking it
 head(d1) 
@@ -991,8 +1102,11 @@ head(d1)
 d2 <- d1 %>% 
   drop_na() 
 
+#Checking if there are NAs
+colSums(is.na(d2))
+
 #dropping NAs
-d2 <- na.omit(d1) 
+d3 <- na.omit(d1) 
 
 #Checking if there are NAs
 colSums(is.na(d2))
@@ -1045,23 +1159,32 @@ d1 <- ess %>%
   )
 
 #Check it out
-glimpse(d1)
+head(d1)
 
 #-------------------------------------------------------------------------------
 
 ### Merging Datasets
 
 #### Introduction to merging with `dplyr` and preparing data
-
 countries <- c("BE", "BG", "CH", "EE", "FR","GB") 
 
 indicators = c("NY.GDP.PCAP.CD", "TX.VAL.FUEL.ZS.UN", "EN.ATM.CO2E.KT")
 
-wb <- WDI( 
-  country = countries, #We include our countries 
-  indicator = indicators, #We include our variables 
-  start = 2020, #start date 
-  end = 2020) #end date 
+#wb <- WDI( 
+#  country = countries, #We include our countries 
+#  indicator = indicators, #We include our variables 
+#  start = 2020, #start date 
+#  end = 2020) #end date 
+
+#Simulating the data 
+wb <- data.frame(
+  iso2c = c("BE", "BG", "CH", "EE", "FR", "GB"), 
+  NY.GDP.PCAP.CD = c(45587.97, 10148.34, 85897.78, 23565.18, 
+                     39179.74, 40217.01), 
+  TX.VAL.FUEL.ZS.UN = c(5.021, 4.644, 0.6111, 4.863, 1.886, 7.062), 
+  EN.ATM.CO2E.KT = c(85364.10, 34138.10, 34916.10, 7097.52, 
+                     267154.70, 308650.30)
+)
 
 #This takes some time, especially if you have more countries, more indicators and a longer time span.
 
@@ -1113,11 +1236,21 @@ head(merged_data2)
 #### `left_join()` and `right_join()` with two identifiers
 
 #Getting the Data
-wb <- WDI( 
-  country = c("BE", "BG"), #We include our countries 
-  indicator = indicators, #We include our variables 
-  start = 2019, #start date 
-  end = 2020) #end date 
+#wb <- WDI( 
+#  country = c("BE", "BG"), #We include our countries 
+#  indicator = indicators, #We include our variables 
+#  start = 2019, #start date 
+#  end = 2020) #end date 
+
+#Simulating the data 
+wb <- data.frame(
+  iso3c = c("BEL", "BEL", "BGR", "BGR"),
+  iso2c = c("BE", "BE","BG", "BG"), 
+  year = c(2019, 2020, 2019, 2020),
+  NY.GDP.PCAP.CD = c(46641.72, 45587.97, 9874.336, 10148.34), 
+  TX.VAL.FUEL.ZS.UN = c(7.38, 5.02, 9.53, 4.64), 
+  EN.ATM.CO2E.KT = c(92989.4, 85364.10, 39159.9, 34138.10)
+)
 
 #Cleaning the Data
 wb <- wb %>% 
@@ -1222,7 +1355,6 @@ ggplot()
 #### Basic Histogram
 
 #-------------------------------------------------------------------------------
-
 #Looking at the data 
 glimpse(data1)
 
@@ -1320,8 +1452,8 @@ ggplot(data1, aes(x = value)) +
 
 # Density plot with colours
 ggplot(data1, aes(x = value, fill =)) + 
-  geom_density(color = "lightgrey", 
-               fill = "#F8E59A",
+  geom_density(color = "white", 
+               fill = "orange",
                alpha = 0.6) + 
   labs( 
     x = "Value", 
@@ -1512,7 +1644,7 @@ ggplot(data6, aes(x = age, y = value, fill = female)) +
   geom_bar(position = "stack", stat="identity", 
            width = 0.35) +
   scale_fill_brewer(palette = "Accent") +
-  scale_y_continuous(breaks = seq(0, 15, 1)) + 
+  scale_y_continuous(breaks = seq(0, 15, 2)) + 
   labs(
     x = "Age Cohort", 
     y = "Average Score Well-Being", 
@@ -1532,7 +1664,7 @@ ggplot(data7, aes(x = date, y = y)) +
 #dashed line plot
 ggplot(data7, aes(x = date, y = y)) + 
   geom_line(color = "#0F52BA", linetype = "dashed",
-            size = 1) + 
+            linewidth = 1) + 
   scale_y_continuous(breaks = seq(-1, 6, 1), 
                      limits = c(-1, 6)) + 
   scale_x_continuous(breaks = seq(2000, 2024, 2)) + 
@@ -1631,7 +1763,6 @@ ggplot(data8, aes(x = marketing_budget,
                        y = sales, 
                        color = name)) +
   geom_point() +
-  scale_color_brewer(palette = "BrBG") +
   scale_color_manual(values = c("#e71d36",
                                 "#260701"))+
   scale_x_continuous(breaks = seq(0, 10000, 2000)) + 
@@ -1742,7 +1873,7 @@ p
 
 # Create the combined graph with dual y-axes
 ggplot(data10, aes(x = months)) + 
-  geom_bar(aes(y = n_deaths), stat = "identity", fill = "skyblue", 
+  geom_bar(aes(y = n_deaths), stat = "identity", fill = "#FF8080", 
            alpha = 0.6) + 
   geom_line(aes(y = avg_temp * scale_factor, group = 1), 
             color = "#2c2c2c", linewidth = 1, linetype = "dashed") +
@@ -1755,7 +1886,7 @@ ggplot(data10, aes(x = months)) +
        title = "Number of Traffic Deaths and Average Temperature per Month") + 
   theme_bw() +
   theme(
-    axis.title.y.left = element_text(color = "skyblue"),
+    axis.title.y.left = element_text(color = "#FF8080"),
     axis.title.y.right = element_text(color = "#2c2c2c")
   )
 
@@ -1857,7 +1988,6 @@ tm_shape(world) +
 #  Data Analysis
 #-------------------
 
-
 ## Linear Regression
 
 ggplot(df, aes(x, y)) + 
@@ -1880,7 +2010,6 @@ ggplot(df, aes(x, y)) +
 #-------------------------------------------------------------------------------
 
 #### Calculation per Hand
-
 cov <- sum((df$x - mean(df$x)) * (df$y - mean(df$y)))
 
 #Now we get the variance of x 
@@ -1914,7 +2043,7 @@ summary(model1)
 #-------------------------------------------------------------------------------
 
 #First, we calculate the predictions for y
-df$y_hat <- 1.6821 + 1.5394*df$x 
+df$y_hat <- model1$coefficients[1] + model1$coefficients[2]*df$x 
 
 #We could also do it automatically via the predict() function
 df$auto_y_hat <- predict(model1)
@@ -2391,7 +2520,7 @@ plot_model(model_interaction, type = "int") +
        x = "Hours spent", 
        y = "Coding Ability in R") +
   scale_color_manual(
-    values = c("red", "blue"),
+     values = c("red", "blue"),
     labels = c("Other Courses", "This Course")
   ) +
   theme_sjplot() +

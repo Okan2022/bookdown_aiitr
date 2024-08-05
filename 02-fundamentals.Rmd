@@ -508,7 +508,7 @@ grade <- 1.7 #Assigning a grade
 ifelse(grade == 1.0, "Amazing", 
        ifelse(grade > 1 & grade <= 2, "Good Job", 
               ifelse(grade > 2 & grade <= 3, "OK", 
-                     ifelse(grade < 3 & grade <=4, "Life goes on", 
+                     ifelse(grade > 3 & grade <=4, "Life goes on", 
                             "No expression found"
                             )
                      )
@@ -520,7 +520,7 @@ grade <- 3.3 #Assigning a grade
 ifelse(grade == 1.0, "Amazing", 
        ifelse(grade > 1 & grade <= 2, "Good Job", 
               ifelse(grade > 2 & grade <= 3, "OK", 
-                     ifelse(grade < 3 &
+                     ifelse(grade > 3 &
                             grade <=4, "Life goes on", 
                             "No expression found")
                      )
