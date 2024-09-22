@@ -1058,3 +1058,73 @@ This chapter was an introduction to one of the most fun part of R, making plots.
 -   There is only one book I have to recommend regarding data visualization and that is the ["R Gallery Book"](https://bookdown.org/content/b298e479-b1ab-49fa-b83d-a57c2b034d49/) by Kyle W. Brown. Also check out the [website](https://r-graph-gallery.com/) of this book, it is the standard website, where I search for code snippets for graphs, I can only recommend it.
 
 ## Exercise Section
+
+In this exercise Section, we will work with the `iris` package. This is a classic built-in package in R, which contains data from the Ronald Fisher's 1936 Study "*The use of multiple measurements in taxonomic problems".* It contains three plant species and four measured features for each species. Let us get an overview of the package:
+
+```{r inspect iris}
+summary(iris)
+```
+
+### Exercise 1: Distributions
+
+a\. Plot a Chart, which shows the distribution of `Sepal.Length` over the `setosa` Species. Choose the type of distribution chart for yourself. **HINT:** Prepare the data first and then plot it.
+
+```{r ch4 exercise 1a}
+
+```
+
+b\. Now I want you to add the two other Species to the Plot. Make Sure, that every Species has a unique color.
+
+```{r ch4 exercise 1b}
+
+```
+
+c\. Make a nice Plot! Give the Plot a meaningful title, meaningful labels for the x-axis and the y-axis and play around with the colors.
+
+```{r ch4 exercise 1c}
+
+```
+
+d\. Interpret the Plot!
+
+### Exercise 2: Rankings
+
+a\. Calculate the average `Petal.Length` for every Species in a nice Barplot. HINT: You have to prepare the data again before you plot it
+
+```{r ch4 exercise 2a}
+
+```
+
+b\. Add the Means of the `Petal.Width` variable to the plot, so you get a nice grouped Barplot.
+
+```{r ch4 exercise 2b}
+
+```
+
+c\. Make a nice Plot! Give the Plot a meaningful title, meaningful labels for the x-axis and the y-axis and play around with the colors.
+
+```{r ch4 exercise 2c}
+
+```
+
+d\. Interpret the Plot!
+
+### Exercise 3: Correlation
+
+a\. Make a scatter plot where you plot `sepal.length` on the x-axis and `sepal.width` on the y-axis. Make the plot for the species `virginica`
+
+```{r ch4 exercise 3a}
+
+```
+
+b\. Now I want you to add the species `versicolor` to the plot. The dots of this species should have a different color AND a different form.
+
+```{r ch4 exercise 3b}
+
+```
+
+c\. Make a nice plot! Add a theme, labels, and a nice title
+
+```{r ch4 exercise 3c}
+
+```

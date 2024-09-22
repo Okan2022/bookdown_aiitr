@@ -184,7 +184,7 @@ print(prices_combined) #printing it
 Objects can contain information of different *data types*:
 
 |               |               |                                              |
-|------------------|------------------|------------------------------------|
+|-----------------|-----------------|--------------------------------------|
 | **Numeric**   | Numbers       | `c(1, 2.4, 3.14, 4)`                         |
 | **Character** | Text          | `c("1", "blue", "fun", "monster")`           |
 | **Logical**   | True or false | `c(TRUE, FALSE, TRUE, FALSE)`                |
@@ -536,11 +536,11 @@ This section was a brief introduction to the fundamentals of R. It was kept simp
 
 ## Exercise Section
 
-### Exercise 1:
+### Exercise 1: Making your first Vector
 
 Create a vector called `my_vector` with the values 1,2,3 and check is class.
 
-```{r exercise 1, eval=FALSE}
+```{r ch1 exercise 1, eval=FALSE}
 #create the vector 
 my_vector <- 
 
@@ -548,11 +548,11 @@ my_vector <-
 
 ```
 
-### Exercise 2:
+### Exercise 2: Making your first matrix
 
 Create a Matrix called `student`. This should contain information about the `name`, `age` and `major`. Make three vectors wiht three entries and bind them together to a the matrix `student`. Print the matrix.
 
-```{r exercise 2, eval = FALSE}
+```{r ch2 exercise 2, eval = FALSE}
 #Create the vectors 
 
 name <- 
@@ -566,11 +566,11 @@ student <-
 
 ```
 
-### Exercise 3:
+### Exercise 3: `ifelse` function
 
-Write an if-else statement that checks if a given number is positive or negative. If the number is positive, print "Number is positive", otherwise print "Number is negative". Feel free to decide if you want to use the ifelse function or the ifelse condition.
+Write an `ifelse` statement that checks if a given number is positive or negative. If the number is positive, print "Number is positive", otherwise print "Number is negative". Feel free to decide if you want to use the `ifelse` function or the `ifelse` condition.
 
-```{r exercise 3}
+```{r ch3 exercise 3, eval = FALSE}
 
 #Assigning the number to the object "number"
 number <- -4
@@ -579,12 +579,12 @@ number <- -4
 
 ```
 
-### Exercise 4:
+### Exercise 4: `ifelse` ladders
 
 Write an if-else ladder that categorizes a student's grade based on their score. The grading criteria are as follows:
 
 Score \>= 90: "A" Score \>= 80 and \< 90: "B" Score \>= 70 and \< 80: "C" Score \>= 60 and \< 70: "D" Score \< 60: "F"
 
-```{r exercise 4}
+```{r ch4 exercise 4, eval = FALSE}
 
 ```

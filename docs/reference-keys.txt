@@ -19,10 +19,10 @@ the-ifelse-command
 if-else-ladders-if-else-with-multiple-conditions
 outlook
 exercise-section
-exercise-1
-exercise-2
-exercise-3
-exercise-4
+exercise-1-making-your-first-vector
+exercise-2-making-your-first-matrix
+exercise-3-ifelse-function
+exercise-4-ifelse-ladders
 data-manipulation
 packages
 the-tidyverse-package
@@ -98,6 +98,9 @@ lollipop-charts
 maps
 outlook-3
 exercise-section-2
+exercise-1-distributions
+exercise-2-rankings
+exercise-3-correlation
 loops-and-functions
 loops
 for-loops
@@ -108,10 +111,9 @@ notes
 writing-your-own-functions
 outlook-4
 exercise-section-3
-exercise-1-1
-exercise-2-1
-exercise-3-1
-section
+exercise-1-writing-a-loop
+exercise-2-writing-a-function
+exercise-3-the-midnight-formula
 data-analysis
 linear-regression
 terminology
@@ -145,3 +147,5 @@ categorical-variables
 interaction-effects
 outlook-5
 exercise-section-4
+exercise-1-linear-regression-with-two-variables
+exercise-2-multivariate-regression

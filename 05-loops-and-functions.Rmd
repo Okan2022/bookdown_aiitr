@@ -269,11 +269,11 @@ This course was a short introduction to automatize work and write efficient code
 
 ## Exercise Section
 
-### Exercise 1:
+### Exercise 1: Writing a loop
 
 Write a `for` loop that prints the square of each number from 1 to 10
 
-```{r exercise 5.1}
+```{r ch5 exercise 1}
 
 #Assigning an object for a better workflow
 number <- 10
@@ -285,11 +285,11 @@ number <- 10
 
 ```
 
-### Exercise 2:
+### Exercise 2: Writing a function
 
-Do the same, but this time defining a function that squares numbers.
+Write a function that takes the input x and squares it:
 
-```{r exercise 5.2, eval=FALSE}
+```{r ch5 exercise 2, eval=FALSE}
 
 #Defining a function for squaring
 
@@ -307,7 +307,7 @@ sq(numbers)
 
 ```
 
-### Exercise 3:
+### Exercise 3: The midnight Formula
 
 This is the midnight formula separated in two equations:
 
@@ -317,16 +317,14 @@ x\_{1,2} = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
 
 \$\$
 
-Make **one function** for the midnight formula, so the output are both. Test it with a = 2, b = -6, c = -8
+Make **one function** for the midnight formula, so the output are $x_1$ a d $x_2$. Test it with a = 2, b = -6, c = -8
 
 **Hint**: You need two split up the formula into two equations with two outputs.
 
-```{r exercise 5.3, eval=FALSE}
+```{r ch5 exercise 3, eval=FALSE}
 
 mnf <- 
 
 
 mnf(2, 6, 8)
 ```
-
-### 
