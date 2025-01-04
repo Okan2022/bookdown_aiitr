@@ -1,0 +1,640 @@
+# Solutions Exercises
+
+```{r loading packages for Exercises}
+pacman::p_load("tidyverse", "gapminder", "babynames", "sjPlot")
+```
+
+## Chapter 1: Fundamentals
+
+### Exercise 1: Making your first Vector
+
+Create a vector called `my_vector` with the values 1,2,3 and check is class.
+
+```{r chapter 1 exercise 1, eval=FALSE}
+#create the vector  
+my_vector <- c(1,2,3)
+
+#check the class 
+class(my_vector)
+```
+
+### Exercise 2: Making your first matrix
+
+Create a Matrix called `student`. This should contain information about the `name`, `age` and `major`. Make three vectors with three entries and bind them together to a the matrix `student`. Print the matrix. Choose the three names, age, and major by yourself:
+
+```{r chapter 2 exercise 2, eval = FALSE}
+#Create the vectors   
+name <- c("James", "Elif", "Jonas")
+age <- c("19", "17", "24")
+major <- c("Political Science", "Data Science", "Physics")
+  
+#Create the matrix 
+student <- cbind(name, age, major)
+
+#Or with the matrix command
+student <- matrix(name, age, major)
+  
+#Print the matrix 
+print(student)
+```
+
+### Exercise 3: `ifelse` function
+
+Write an `ifelse` statement that checks if a given number is positive or negative. If the number is positive or 0, print "Number is positive", otherwise print "Number is negative". Feel free to decide if you want to use the `ifelse` function or the `ifelse` condition.
+
+```{r chapter 3 exercise 3, eval = FALSE}
+#Assigning the number to the object "number" 
+number <- 0
+
+#With ifelse() function
+ifelse(number >= 0, "Number is positive", "Number is negative")
+
+#With ifelse condition
+
+if (number > 0) {
+  print("Positive Number")
+} else {
+  print("Negative Number")
+}
+```
+
+### Exercise 4: `ifelse` ladders
+
+Write an if-else ladder that categorizes a student's grade based on their score. The grading criteria are as follows:
+
+Score \>= 90: "A" Score \>= 80 and \< 90: "B" Score \>= 70 and \< 80: "C" Score \>= 60 and \< 70: "D" Score \< 60: "F".
+
+```{r chapter 4 exercise 4, eval = FALSE}
+#Defining the vector score 
+Score <- 90
+
+#Defing ifelse ladder with ifelse() function
+ifelse(Score >= 90, "A", 
+       ifelse(Score >= 80 & Score < 90, "B",
+              ifelse(Score >= 70 & Score < 80, "C",
+                     ifelse(Score >= 60 & Score < 70, "D", 
+                            ifelse(Score < 60, "F")))))
+
+#Defining it with a ifelse condition
+if (score >= 90) {
+  print("A") 
+} else if (score >= 80 & score < 90) {
+  print("B")
+} else if (score >= 70 & score < 80) {
+  print("C")
+} else if (score >= 60 & score < 70) {
+  print("D") 
+} else if (score < 60) {
+  print("F")
+}
+```
+
+## Chapter 2: Data Manipulation
+
+```{r loading packages for Data Manipualtion}
+pacman::p_load("tidyverse")
+```
+
+### Exercise 1: Let's wrangle kid
+
+You are interested in discrimination and the perception of the judicial. More specifically, you want to know if people, who fell discriminated evaluate courts differently. Below you see a table with all variables you want to include in your analysis:
+
++--------------+--------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
+| **Variable** | **Description**                                        | Scales                                                                                                |
++:============:+========================================================+=======================================================================================================+
+| **idnt**     | Respondent's identification number                     | unique number from 1-9000                                                                             |
++--------------+--------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
+| **year**     | The year when the survey was conducted                 | only 2020                                                                                             |
++--------------+--------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
+| **cntry**    | Country                                                | BE, BG, CH, CZ, EE, FI, FR,GB, GR, HR, HU, IE, IS, IT, LT,NL, NO, PT, SI, SK                          |
++--------------+--------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
+| **agea**     | Age of the Respondent, calculated                      | Number of Age = 15-90                                                                                 |
+|              |                                                        |                                                                                                       |
+|              |                                                        | 999 = Not available                                                                                   |
++--------------+--------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
+| **gndr**     | Gender                                                 | 1 = Male;                                                                                             |
+|              |                                                        |                                                                                                       |
+|              |                                                        | 2 = Female;                                                                                           |
+|              |                                                        |                                                                                                       |
+|              |                                                        | 9 = No answer                                                                                         |
++--------------+--------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
+| **happy**    | How happy are you                                      | 0 (Extremly unhappy) - 10 (Extremly happy);                                                           |
+|              |                                                        |                                                                                                       |
+|              |                                                        | 77 = Refusal;                                                                                         |
+|              |                                                        |                                                                                                       |
+|              |                                                        | 88 = Don't Know;                                                                                      |
+|              |                                                        |                                                                                                       |
+|              |                                                        | 99 = No answer                                                                                        |
++--------------+--------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
+| **eisced**   | Highest level of education, ES - ISCED                 | 0 = Not possible to harmonise into ES-ISCED;                                                          |
+|              |                                                        |                                                                                                       |
+|              |                                                        | 1 (ES-ISCED I , less than lower secondary) - 7 (ES-ISCED V2, higher tertiary education, =\> MA level; |
+|              |                                                        |                                                                                                       |
+|              |                                                        | 55 = Other;                                                                                           |
+|              |                                                        |                                                                                                       |
+|              |                                                        | 77 = Refusal;                                                                                         |
+|              |                                                        |                                                                                                       |
+|              |                                                        | 88 = Don't know;                                                                                      |
+|              |                                                        |                                                                                                       |
+|              |                                                        | 99 = No answer                                                                                        |
++--------------+--------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
+| **netusoft** | Internet use, how often                                | 1 (Never) - 5 (Every day);                                                                            |
+|              |                                                        |                                                                                                       |
+|              |                                                        | 7 = Refusal;                                                                                          |
+|              |                                                        |                                                                                                       |
+|              |                                                        | 8 = Don't know;                                                                                       |
+|              |                                                        |                                                                                                       |
+|              |                                                        | 9 = No answer                                                                                         |
++--------------+--------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
+| **trstprl**  | Most people can be trusted or you can't be too careful | 0 (You can't be too careful) - 10 (Most people can be trusted);                                       |
+|              |                                                        |                                                                                                       |
+|              |                                                        | 77 = Refusal;                                                                                         |
+|              |                                                        |                                                                                                       |
+|              |                                                        | 88 = Don't Know;                                                                                      |
+|              |                                                        |                                                                                                       |
+|              |                                                        | 99 = No answer                                                                                        |
++--------------+--------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
+| **lrscale**  | Left-Right Placement                                   | 0 (Left) - 10 (Right);                                                                                |
+|              |                                                        |                                                                                                       |
+|              |                                                        | 77 = Refusal;                                                                                         |
+|              |                                                        |                                                                                                       |
+|              |                                                        | 88 = Don't know;                                                                                      |
+|              |                                                        |                                                                                                       |
+|              |                                                        | 99 = No answer                                                                                        |
++--------------+--------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
+
+a.  Wrangle the data, and assign it to an object called **ess**.
+b.  Select the variables you need
+c.  Filter for Austria, Belgium, Denmark, Georgia, Iceland and the Russian Federation
+d.  Have a look at the codebook and code all irrelevant values as missing. If you have binary variables recode them from 1, 2 to 0 to 1
+e.  You want to build an extremism variable: You do so by subtracting 5 from the from the variable and squaring it afterwards. Call it extremism
+f.  Rename the variables to more intuitive names, don't forget to name binary varaibles after the category which is on 1
+g.  drop all missing values
+h.  Check out your new dataset
+
+```{r chapter3 exercise 1a, eval=FALSE}
+ess <- d1 %>% 
+  select(cntry, dscrgrp, cttresa, agea, gndr, eisced, lrscale) %>% #a
+  filter(cntry %in% c("AT", "BE", "DK", "GE", "IS","RU")) %>% #b
+  mutate(dscrgrp = case_when( #c
+    dscrgrp == 1 ~ 0, 
+    dscrgrp == 2 ~ 1,
+    dscrgrp %in% c(7, 8, 9) ~ NA_real_, 
+    TRUE ~ dscrgrp),
+    cttresa = case_when( 
+    cttresa %in% c(77, 88, 99) ~ NA_real_, 
+    TRUE ~ cttresa),
+    agea = case_when(
+    agea == 999 ~ NA_real_, 
+    TRUE ~ agea),
+    gndr = case_when(
+      gndr == 1 ~ 0, 
+      gndr == 2 ~ 1,
+      gndr == 9 ~ NA_real_
+    ),
+    eisced = case_when( 
+      eisced %in% c(55, 77, 88, 99) ~ NA_real_,
+      TRUE ~ eisced),
+    lrscale = case_when(
+      lrscale %in% c(77, 88, 99) ~ NA_real_,
+      TRUE ~ lrscale) #d, you could do this step also in a separate mutate function if you think that is more intuitive 
+  ) %>% 
+  mutate(extremism = (lrscale - 5)^2) %>% 
+  rename(discriminated = dscrgrp,  
+         court = cttresa,
+         age = agea, 
+         female = gndr, 
+         education = eisced, 
+         lrscale = lrscale, 
+         extremism = extremism
+         ) %>% 
+  drop_na()
+
+#Checking the dataset 
+head(ess)
+```
+
+## Chapter 3: Data Visualisation
+
+In this exercise Section, we will work with the `babynames` and the `iris` package. This is a classic built-in package in R, which contains data from the Ronald Fisher's 1936 Study "*The use of multiple measurements in taxonomic problems".* It contains three plant species and four measured features for each species. Let us get an overview of the package:
+
+```{r inspect iris dataset}
+summary(iris)
+```
+
+### Exercise 1: Distributions
+
+a\. Plot a Chart, which shows the distribution of `Sepal.Length` over the `setosa` Species. Choose the type of distribution chart for yourself. **HINT:** Prepare the data first and then plot it.
+
+```{r chapter 4 exercise 1a}
+
+#Filtering for setosa
+d1 <- iris %>%
+  filter(Species == "setosa")
+
+#Histogram
+ggplot(iris, aes(x = Sepal.Length)) +
+  geom_histogram()
+
+#Density Plot
+ggplot(iris, aes(x = Sepal.Length)) +
+  geom_density()
+
+#Boxplot
+ggplot(iris, aes(x = Sepal.Length)) +
+  geom_boxplot()
+
+###EDIT: You could also do everythin in one step as shown below
+
+#Histogram
+#iris %>%
+#  filter(Species == "setosa") %>%
+#  ggplot(aes(x = Sepal.Length)) +
+#  geom_histogram()
+
+#Density Plot
+#iris %>%
+#  filter(Species == "setosa") %>%
+#  ggplot(aes(x = Sepal.Length)) +
+#  geom_density()
+
+#Boxplot
+#iris %>%
+#  filter(Species == "setosa") %>%
+#  ggplot(aes(x = Sepal.Length)) +
+#  geom_boxplot()
+```
+
+b\. Now I want you to add the two other Species to the Plot. Make Sure, that every Species has a unique color.
+
+```{r chapter 4 exercise 1b}
+#Histogram
+ggplot(iris, aes(x = Sepal.Length, fill = Species)) +
+  geom_histogram()
+
+#Density Plot
+ggplot(iris, aes(x = Sepal.Length, fill = Species)) +
+  geom_density()
+
+#Boxplot
+ggplot(iris, aes(x = Sepal.Length, fill = Species)) +
+  geom_boxplot()
+
+#Violin Plot
+ggplot(iris, aes(x = Species, y = Sepal.Length, fill = Species)) +
+  geom_violin()
+
+#Ridgeline Plot
+ggplot(iris, aes(x = Sepal.Length, y = Species, fill = Species)) +
+  geom_density_ridges()
+```
+
+c\. Make a nice Plot! Give the Plot a meaningful title, meaningful labels for the x-axis and the y-axis and play around with the colors.
+
+```{r chapter 4 exercise 1c}
+#Histogram
+ggplot(iris, aes(x = Sepal.Length, fill = Species)) +
+  geom_histogram() +
+  labs(
+    x = "Species",
+    y = "Sepal Length",
+    title = "Distribution of Sepal Length across Species"
+  ) +
+  theme_bw() +
+  theme(
+    legend.position = "none"
+  ) +
+  scale_fill_brewer(palette = "Dark2")
+
+#Density Plot
+ggplot(iris, aes(x = Sepal.Length, fill = Species)) +
+  geom_density() +
+  labs(
+    x = "Species",
+    y = "Sepal Length",
+    title = "Distribution of Sepal Length across Species"
+  ) +
+  theme_bw() +
+  theme(
+    legend.position = "none"
+  ) +
+  scale_fill_brewer(palette = "Dark2")
+
+#Boxplot
+ggplot(iris, aes(x = Sepal.Length, fill = Species)) +
+  geom_boxplot() +
+  labs(
+    x = "Species",
+    y = "Sepal Length",
+    title = "Distribution of Sepal Length across Species"
+  ) +
+  theme_bw() +
+  theme(
+    legend.position = "none"
+  ) +
+  scale_fill_brewer(palette = "Dark2")
+
+#Ridgeline Plot
+ggplot(iris, aes(x = Species, y = Sepal.Length, fill = Species)) +
+  geom_violin() +
+  labs(
+    x = "Species",
+    y = "Sepal Length",
+    title = "Distribution of Sepal Length across Species"
+  ) +
+  theme_bw() +
+  theme(
+    legend.position = "none"
+  ) +
+  scale_fill_brewer(palette = "Dark2")
+
+#Ridgeline Plot
+ggplot(iris, aes(x = Sepal.Length, y = Species, fill = Species)) +
+  geom_density_ridges() +
+  labs(
+    x = "Species",
+    y = "Sepal Length",
+    title = "Distribution of Sepal Length across Species"
+  ) +
+  theme_bw() +
+  theme(
+    legend.position = "none"
+  ) +
+  scale_fill_brewer(palette = "Dark2")
+```
+
+d\. Interpret the Plot!
+
+### Exercise 2: Rankings
+
+a\. Calculate the average `Petal.Length` and plot it for every Species in a nice Barplot. **HINT:** You have to prepare the data again before you plot it. Decide for yourself if you want to do it vertically or horizontally.
+
+```{r chapter 4 exercise 2a}
+#Prepare the data 
+d1 <- iris %>%
+  group_by(Species) %>%
+  summarize(PL_average = mean(Petal.Length))
+
+#Check it
+head(d1)  
+  
+#Plotting a horizontal barplot
+ggplot(d1, aes(x = Species, y = PL_average, fill  = Species)) +
+  geom_bar(stat = "identity")
+
+#Plotting a vertical barplot
+ggplot(d1, aes(x = PL_average, y = Species, fill = Species)) +
+  geom_bar(stat = "identity") 
+```
+
+b\. Make a nice Plot! Give the Plot a meaningful title, meaningful labels for the x-axis and the y-axis and play around with the colors.
+
+```{r chapter 4 exercise 2c}
+#Plotting a horizontal barplot
+ggplot(d1, aes(x = Species, y = PL_average, fill  = Species)) +
+  geom_bar(stat = "identity") +
+  labs(
+    x = "Species",
+    y = "Average Sepal Length",
+    title = "Average Sepal Length across Species"
+  ) +
+  theme_bw() +
+  theme(
+    legend.position = "none"
+  ) +
+  scale_fill_brewer(palette = "Set1")
+
+#Plotting a vertical barplot
+ggplot(d1, aes(x = PL_average, y = Species, fill = Species)) +
+  geom_bar(stat = "identity") +
+    labs(
+    x = "Average Sepal Length",
+    y = "Species",
+    title = "Average Sepal Length across Species"
+  ) +
+  theme_bw() +
+  theme(
+    legend.position = "none"
+  ) +
+  scale_fill_brewer(palette = "Accent")
+```
+
+### Exercise 3: Correlation
+
+a\. Make a scatter plot where you plot `Sepal.length` on the x-axis and `Sepal.width` on the y-axis. Make the plot for the species `virginica`
+
+```{r chapter 4 exercise 3a}
+#Preparing the data
+d1 <- iris %>%
+  filter(Species == "virginica")
+
+#Making the plot
+ggplot(d1, aes(x = Sepal.Length, y = Sepal.Width)) +
+  geom_point()
+```
+
+b\. Now I want you to add the species `versicolor` to the plot. The dots of this species should have a different color AND a different form.
+
+```{r chapter 4 exercise 3b}
+#Preparing the Data 
+d1 <- iris %>%
+  filter(Species %in% c("virginica", "versicolor")) 
+
+#Making the Plot
+ggplot(d1, aes(x = Sepal.Length, y = Sepal.Width, 
+               shape = Species, color = Species)) +
+  geom_point() 
+```
+
+c\. Make a nice plot! Add a theme, labels, and a nice title, increase the size of the forms and make play around with the colors.
+
+```{r chapter 4 exercise 3c}
+#Making the Plot
+ggplot(d1, aes(x = Sepal.Length, y = Sepal.Width, 
+               shape = Species, color = Species)) +
+  geom_point() +
+  labs(
+    title = "Relationship between Sepal Length and Sepal Width",
+    x = "Sepal Length", 
+    y = "Sepal Width"
+  ) + 
+  scale_color_brewer(palette = "Set1") +
+  theme_classic()
+  
+```
+
+## Chapter 4: Loops and Functions
+
+### Exercise 1: Writing a loop
+
+Write a `for` loop that prints the square of each number from 1 to 10
+
+```{r chapter 5 exercise 1}
+#Assigning an object for a better workflow 
+number <- 10
+```
+
+### Exercise 2: Writing a function
+
+Write a function that takes the input x and squares it:
+
+```{r chapter 5 exercise 2, eval=FALSE}
+#Defining a function for squaring  
+sq <- function (x) {          
+  x_squared <- x^2
+  return(x_squared)
+}  
+
+#Defining a vector containing a vector from 1 to 10  
+numbers <- c(1:10)   
+
+#Applying the number  
+sq(numbers)
+```
+
+### Exercise 3: The midnight Formula
+
+This is the midnight formula separated in two equations:
+
+$x_{1,2} = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$
+
+Make **one function** for the midnight formula, so the output are $x_1$ a d $x_2$. Test it with a = 2, b = -6, c = -8
+
+**Hint**: You need two split up the formula into two equations with two outputs.
+
+```{r chapter 5 exercise 3, eval=FALSE}
+mnf <- function(a, b, c) {
+  
+  x_1 <- (-b + sqrt(b^2 - 4*a*c))/(2*a)
+  
+  print(x_1)
+  
+  x_2 <- (-b - sqrt(b^2 - 4*a*c))/(2*a)
+  
+  print(x_2)
+  
+}   
+  
+#Test it with these numbers (other numbers might throw an error if the number under the square root is negative)
+mnf(2, 20, 8)
+```
+
+## Chapter 5: Data Analysis
+
+To understand linear regression, we do not have to load any complicated data. Let us assume, you are a market analyst and your customer is the production company of a series called "Breaking Thrones". The production company wants to know how the viewers of the series judge the final episode. You conduct a survey and ask people on how satisfied they were with the season final and some social demographics. Here is your codebook:
+
++--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Variable     | Description                                                                                                                                                    |
++==============+================================================================================================================================================================+
+| id           | The id of the respondent                                                                                                                                       |
++--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| satisfaction | The answer to the question "How satisfied were you with the final episode of Breaking Throne?", where 0 is completely dissatisfied and 10 completely satisfied |
++--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| age          | The age of the respondent                                                                                                                                      |
++--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| female       | The Gender of the respondent, where 0 = Male, 1 = Female                                                                                                       |
++--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Let us generate the data:
+
+```{r generating data for DA exercises}
+#setting seed for reproduciability 
+set.seed(123)  
+
+#Generating the data 
+final_BT <- data.frame(
+  id = c(1:10),    
+  satisfaction = round(rnorm(10, mean = 6, sd = 2.5)),    
+  age = round(rnorm(10, mean = 25, sd = 5)),    
+  female = rbinom(10, 1, 0.5)
+  )  
+
+#Print the Data Frame
+print(final_BT)
+```
+
+### Exercise 1: Linear Regression with two variables
+
+You want to know if age has an impact on the satisfaction with the last episode. You want to conduct a linear regression.
+
+a\. Calculate $\beta_0$ and $\beta_1$ by hand
+
+```{r chapter 6 exercise 1a}
+#Calculating Covariance
+cov <- sum((final_BT$age - mean(final_BT$age)) * (final_BT$satisfaction - mean(final_BT$satisfaction)))
+  
+#Calculating Variance
+var <- (sum((final_BT$age - mean(final_BT$age))^2))
+
+#Calculating beta_1
+beta_1 <- cov/var
+
+#printing beta_1
+print(beta_1)
+
+#calculating beta 1
+beta_0 <- mean(final_BT$satisfaction) - (beta_1 * mean(final_BT$age))
+
+#Print both
+print(beta_0)
+print(beta_1)
+```
+
+b\. Calculate $\beta_0$ and $\beta_1$ automatically with R
+
+```{r chapter 6 exercise 1b}
+#Calculating it automatically
+summary(m1 <- lm(satisfaction ~ age, 
+                 data = final_BT))
+```
+
+c\. Interpret all quantities of your result: Standard Error, t-statistic, p-value, confidence intervals and the $R^2$.
+
+d\. Check for influential outliers
+
+```{r chapter 6 exercise 1d}
+#Cooks Distance can be calculated with a built-in function
+final_BT$cooks_distance <- cooks.distance(m1) 
+
+#Plotting it
+ggplot(final_BT, aes(x = x1, y = cooks_distance)) + 
+  geom_point(colour = "darkgreen", size = 3, alpha = 0.5) + 
+  labs(y = "Cook's Distance", x = "Independent Variables") + 
+  geom_hline(yintercept = 1, linetype = "dashed") + 
+  theme_bw()
+```
+
+### Exercise 2: Multivariate Regression
+
+a\. Add the variable `female` to your regression
+
+```{r chapter 6 exercise 2a}
+summary(m1 <- lm(satisfaction ~ age + female, 
+                 data = final_BT))
+```
+
+b\. Interpret the Output. What has changed? What stood the same?
+
+c\. Make an interaction effect between age and female and interpret it!
+
+```{r chapter 6 exercise 2c}
+summary(m2 <- lm(satisfaction ~ age + female + age:female, 
+                 data = final_BT))
+```
+
+d\. Plot the interaction and make the plot nice
+
+```{r chapter 6 exercise 2d}
+plot_model(m2, type = "int") +
+  scale_x_continuous(breaks = seq(0,60, 1)) + 
+  labs(title = "Relationship of Age and Gender on Satisfaction with BT.",
+       x = "Age", 
+       y = "Satisfaction") +
+  scale_color_manual(
+    values = c("red", "blue"),
+    labels = c("Female", "Male")
+  ) +
+  theme_sjplot() +
+  theme(legend.position = "bottom", 
+        legend.title = element_blank())
+```

@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Solutions Exercises | An intuitive Introduction to R</title>
+  <meta name="description" content="Chapter 6 Solutions Exercises | An intuitive Introduction to R" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Solutions Exercises | An intuitive Introduction to R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Solutions Exercises | An intuitive Introduction to R" />
+  
+  
+  
+
+<meta name="author" content="Okan Sarioglu" />
+
+
+<meta name="date" content="2025-01-04" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="data-analysis.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.2.2/leaflet.js"></script>
+<script src="libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.2.2/leaflet-providers-plugin.js"></script>
+<script src="libs/plotly-binding-4.10.4/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<div style="text-align: center;">
+  <img src="images/AIITR.svg" alt="AIITR Logo" style="vertical-align: middle; margin-left: 5px; width: 125px; height: auto;">
+  <li style="display: inline; list-style-type: none;"><a href="./">by Okan Sarioglu</a></li>
+</div>
+<div style="text-align: center; margin-top: 10px;">
+  <a href="https://github.com/Okan2022" target="_blank">
+    <img src="images/github-mark.svg" alt="GitHub" style="vertical-align: middle; width: 25px; height: auto;">
+  </a>
+  <a href="https://www.linkedin.com/in/osarioglu" target="_blank" style="margin-left: 10px;">
+    <img src="images/LinkedIn_icon.svg" alt="LinkedIn" style="vertical-align: middle; width: 25px; height: auto;">
+  </a>
+</div> 
+<div style="text-align: center;margin-top: 10px;margin-bottom: 10px">
+<a href="aiitr_script.R" download="aiitr_script.R" style="display: inline-block; padding: 10px 20px; font-size: 16px; color: #fff; background-color: #4169e1; text-decoration: none; border-radius: 8px;">Download R Script</a>
+</div>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome !</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#about-this-course"><i class="fa fa-check"></i>About this Course</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#prerequisities"><i class="fa fa-check"></i>Prerequisities</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#what-is-r-and-rstudio"><i class="fa fa-check"></i>What is <code>R</code> and <code>RStudio</code> ?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#why-r"><i class="fa fa-check"></i>Why <code>R</code> ?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#what-expects-you-and-what-not"><i class="fa fa-check"></i>What expects you and what not</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#overview-of-the-course-structure"><i class="fa fa-check"></i>Overview of the course structure:</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#about-me"><i class="fa fa-check"></i>About Me</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="fundamentals.html"><a href="fundamentals.html"><i class="fa fa-check"></i><b>1</b> Fundamentals</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="fundamentals.html"><a href="fundamentals.html#getting-familiar-with-rstudio-and-establishing-a-workflow"><i class="fa fa-check"></i><b>1.1</b> Getting familiar with RStudio and establishing a Workflow</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="fundamentals.html"><a href="fundamentals.html#the-user-interface"><i class="fa fa-check"></i><b>1.1.1</b> The user interface</a></li>
+<li class="chapter" data-level="1.1.2" data-path="fundamentals.html"><a href="fundamentals.html#how-to-design-it-according-to-your-preferences-optional"><i class="fa fa-check"></i><b>1.1.2</b> How to design it according to your preferences (optional)</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="fundamentals.html"><a href="fundamentals.html#lets-get-started-r-as-a-fancy-calculator"><i class="fa fa-check"></i><b>1.2</b> Lets get started: R as a fancy calculator</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="fundamentals.html"><a href="fundamentals.html#mathmetical-operations-in-r"><i class="fa fa-check"></i><b>1.2.1</b> Mathmetical Operations in R</a></li>
+<li class="chapter" data-level="1.2.2" data-path="fundamentals.html"><a href="fundamentals.html#using-commands"><i class="fa fa-check"></i><b>1.2.2</b> Using Commands</a></li>
+<li class="chapter" data-level="1.2.3" data-path="fundamentals.html"><a href="fundamentals.html#assigning-objects-and-printing-them"><i class="fa fa-check"></i><b>1.2.3</b> Assigning objects and printing them</a></li>
+<li class="chapter" data-level="1.2.4" data-path="fundamentals.html"><a href="fundamentals.html#vectors"><i class="fa fa-check"></i><b>1.2.4</b> Vectors</a></li>
+<li class="chapter" data-level="1.2.5" data-path="fundamentals.html"><a href="fundamentals.html#object-classes"><i class="fa fa-check"></i><b>1.2.5</b> Object Classes</a></li>
+<li class="chapter" data-level="1.2.6" data-path="fundamentals.html"><a href="fundamentals.html#matrices"><i class="fa fa-check"></i><b>1.2.6</b> Matrices</a></li>
+<li class="chapter" data-level="1.2.7" data-path="fundamentals.html"><a href="fundamentals.html#data-frames"><i class="fa fa-check"></i><b>1.2.7</b> Data Frames</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="fundamentals.html"><a href="fundamentals.html#ifelse-statements-and-the-ifelse-function"><i class="fa fa-check"></i><b>1.3</b> <code>ifelse</code> statements and the <code>ifelse()</code> function</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="fundamentals.html"><a href="fundamentals.html#if-else-statement-with-only-one-condition"><i class="fa fa-check"></i><b>1.3.1</b> If else statement with only one condition</a></li>
+<li class="chapter" data-level="1.3.2" data-path="fundamentals.html"><a href="fundamentals.html#if-statements-with-else-condition"><i class="fa fa-check"></i><b>1.3.2</b> if statements with else condition</a></li>
+<li class="chapter" data-level="1.3.3" data-path="fundamentals.html"><a href="fundamentals.html#the-ifelse-command"><i class="fa fa-check"></i><b>1.3.3</b> The <code>ifelse()</code> command</a></li>
+<li class="chapter" data-level="1.3.4" data-path="fundamentals.html"><a href="fundamentals.html#if-else-ladders-if-else-with-multiple-conditions"><i class="fa fa-check"></i><b>1.3.4</b> if else ladders/ if else with multiple conditions</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="fundamentals.html"><a href="fundamentals.html#outlook"><i class="fa fa-check"></i><b>1.4</b> Outlook</a></li>
+<li class="chapter" data-level="1.5" data-path="fundamentals.html"><a href="fundamentals.html#exercise-section"><i class="fa fa-check"></i><b>1.5</b> Exercise Section</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="fundamentals.html"><a href="fundamentals.html#exercise-1-making-your-first-vector"><i class="fa fa-check"></i><b>1.5.1</b> Exercise 1: Making your first Vector</a></li>
+<li class="chapter" data-level="1.5.2" data-path="fundamentals.html"><a href="fundamentals.html#exercise-2-making-your-first-matrix"><i class="fa fa-check"></i><b>1.5.2</b> Exercise 2: Making your first matrix</a></li>
+<li class="chapter" data-level="1.5.3" data-path="fundamentals.html"><a href="fundamentals.html#exercise-3-ifelse-function"><i class="fa fa-check"></i><b>1.5.3</b> Exercise 3: <code>ifelse</code> function</a></li>
+<li class="chapter" data-level="1.5.4" data-path="fundamentals.html"><a href="fundamentals.html#exercise-4-ifelse-ladders"><i class="fa fa-check"></i><b>1.5.4</b> Exercise 4: <code>ifelse</code> ladders</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-manipulation.html"><a href="data-manipulation.html"><i class="fa fa-check"></i><b>2</b> Data Manipulation</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data-manipulation.html"><a href="data-manipulation.html#packages"><i class="fa fa-check"></i><b>2.1</b> Packages</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="data-manipulation.html"><a href="data-manipulation.html#the-tidyverse-package"><i class="fa fa-check"></i><b>2.1.1</b> The <code>tidyverse</code> package</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="data-manipulation.html"><a href="data-manipulation.html#working-with-packages"><i class="fa fa-check"></i><b>2.2</b> Working with packages</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="data-manipulation.html"><a href="data-manipulation.html#installing-packages"><i class="fa fa-check"></i><b>2.2.1</b> Installing packages</a></li>
+<li class="chapter" data-level="2.2.2" data-path="data-manipulation.html"><a href="data-manipulation.html#loading-your-packages"><i class="fa fa-check"></i><b>2.2.2</b> Loading your packages</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="data-manipulation.html"><a href="data-manipulation.html#the-data-we-will-work-with-the-european-social-survey-ess"><i class="fa fa-check"></i><b>2.3</b> The Data we will work with: The European Social Survey (ESS)</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="data-manipulation.html"><a href="data-manipulation.html#load-the-data"><i class="fa fa-check"></i><b>2.3.1</b> Load the data</a></li>
+<li class="chapter" data-level="2.3.2" data-path="data-manipulation.html"><a href="data-manipulation.html#one-last-thing-pipelines"><i class="fa fa-check"></i><b>2.3.2</b> One last thing: Pipelines</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="data-manipulation.html"><a href="data-manipulation.html#lets-wrangle-the-data-the-dplyr-package"><i class="fa fa-check"></i><b>2.4</b> Let’s wrangle the data: The <code>dplyr</code> package</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="data-manipulation.html"><a href="data-manipulation.html#the-filter-command"><i class="fa fa-check"></i><b>2.4.1</b> The <code>filter()</code> command</a></li>
+<li class="chapter" data-level="2.4.2" data-path="data-manipulation.html"><a href="data-manipulation.html#the-select-function"><i class="fa fa-check"></i><b>2.4.2</b> The <code>select()</code> function:</a></li>
+<li class="chapter" data-level="2.4.3" data-path="data-manipulation.html"><a href="data-manipulation.html#the-arrange-function"><i class="fa fa-check"></i><b>2.4.3</b> The <code>arrange()</code> function</a></li>
+<li class="chapter" data-level="2.4.4" data-path="data-manipulation.html"><a href="data-manipulation.html#the-rename-and-relocate-function"><i class="fa fa-check"></i><b>2.4.4</b> The <code>rename()</code> and <code>relocate()</code> function</a></li>
+<li class="chapter" data-level="2.4.5" data-path="data-manipulation.html"><a href="data-manipulation.html#the-mutate-function"><i class="fa fa-check"></i><b>2.4.5</b> The <code>mutate()</code> function</a></li>
+<li class="chapter" data-level="2.4.6" data-path="data-manipulation.html"><a href="data-manipulation.html#handling-missing-valuesincomplete-data"><i class="fa fa-check"></i><b>2.4.6</b> Handling Missing Values/Incomplete Data</a></li>
+<li class="chapter" data-level="2.4.7" data-path="data-manipulation.html"><a href="data-manipulation.html#the-group_by-and-summarize-functions"><i class="fa fa-check"></i><b>2.4.7</b> The <code>group_by()</code> and <code>summarize()</code> functions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="data-manipulation.html"><a href="data-manipulation.html#merging-datasets"><i class="fa fa-check"></i><b>2.5</b> Merging Datasets</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="data-manipulation.html"><a href="data-manipulation.html#introduction-to-merging-with-dplyr-and-preparing-data"><i class="fa fa-check"></i><b>2.5.1</b> Introduction to merging with <code>dplyr</code> and preparing data</a></li>
+<li class="chapter" data-level="2.5.2" data-path="data-manipulation.html"><a href="data-manipulation.html#left_join-and-right_join-with-one-identifier"><i class="fa fa-check"></i><b>2.5.2</b> <code>left_join()</code> and <code>right_join()</code> with one identifier</a></li>
+<li class="chapter" data-level="2.5.3" data-path="data-manipulation.html"><a href="data-manipulation.html#left_join-and-right_join-with-two-identifiers"><i class="fa fa-check"></i><b>2.5.3</b> <code>left_join()</code> and <code>right_join()</code> with two identifiers</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="data-manipulation.html"><a href="data-manipulation.html#outlook-1"><i class="fa fa-check"></i><b>2.6</b> Outlook</a></li>
+<li class="chapter" data-level="2.7" data-path="data-manipulation.html"><a href="data-manipulation.html#exercise-section-1"><i class="fa fa-check"></i><b>2.7</b> Exercise Section</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="data-manipulation.html"><a href="data-manipulation.html#exercise-1-lets-wrangle-kid"><i class="fa fa-check"></i><b>2.7.1</b> Exercise 1: Let’s wrangle kid</a></li>
+<li class="chapter" data-level="2.7.2" data-path="data-manipulation.html"><a href="data-manipulation.html#exercise-2-merging-datasets"><i class="fa fa-check"></i><b>2.7.2</b> Exercise 2: Merging Datasets</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-visualisation.html"><a href="data-visualisation.html"><i class="fa fa-check"></i><b>3</b> Data Visualisation</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-visualisation.html"><a href="data-visualisation.html#introduction-to-ggplot2"><i class="fa fa-check"></i><b>3.1</b> Introduction to <code>ggplot2</code></a></li>
+<li class="chapter" data-level="3.2" data-path="data-visualisation.html"><a href="data-visualisation.html#distributions-histogram-density-plots-and-boxplots"><i class="fa fa-check"></i><b>3.2</b> Distributions: Histogram, Density Plots, and Boxplots</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="data-visualisation.html"><a href="data-visualisation.html#histograms"><i class="fa fa-check"></i><b>3.2.1</b> Histograms</a></li>
+<li class="chapter" data-level="3.2.2" data-path="data-visualisation.html"><a href="data-visualisation.html#density-plots"><i class="fa fa-check"></i><b>3.2.2</b> Density Plots</a></li>
+<li class="chapter" data-level="3.2.3" data-path="data-visualisation.html"><a href="data-visualisation.html#boxplots"><i class="fa fa-check"></i><b>3.2.3</b> Boxplots</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="data-visualisation.html"><a href="data-visualisation.html#ranking-barplot"><i class="fa fa-check"></i><b>3.3</b> Ranking: Barplot</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="data-visualisation.html"><a href="data-visualisation.html#basic-barplot"><i class="fa fa-check"></i><b>3.3.1</b> Basic Barplot</a></li>
+<li class="chapter" data-level="3.3.2" data-path="data-visualisation.html"><a href="data-visualisation.html#reordering-them"><i class="fa fa-check"></i><b>3.3.2</b> Reordering them</a></li>
+<li class="chapter" data-level="3.3.3" data-path="data-visualisation.html"><a href="data-visualisation.html#grouped-and-stacked-barplots"><i class="fa fa-check"></i><b>3.3.3</b> Grouped and Stacked Barplots</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="data-visualisation.html"><a href="data-visualisation.html#evolution-line-chart"><i class="fa fa-check"></i><b>3.4</b> Evolution: Line Chart</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="data-visualisation.html"><a href="data-visualisation.html#basic-line-plot"><i class="fa fa-check"></i><b>3.4.1</b> Basic Line Plot</a></li>
+<li class="chapter" data-level="3.4.2" data-path="data-visualisation.html"><a href="data-visualisation.html#multiple-line-chart"><i class="fa fa-check"></i><b>3.4.2</b> Multiple Line Chart</a></li>
+<li class="chapter" data-level="3.4.3" data-path="data-visualisation.html"><a href="data-visualisation.html#grouped-line-charts"><i class="fa fa-check"></i><b>3.4.3</b> Grouped Line Charts</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="data-visualisation.html"><a href="data-visualisation.html#correlation-scatterplots"><i class="fa fa-check"></i><b>3.5</b> Correlation: Scatterplots</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="data-visualisation.html"><a href="data-visualisation.html#basic-scatterplot"><i class="fa fa-check"></i><b>3.5.1</b> Basic Scatterplot</a></li>
+<li class="chapter" data-level="3.5.2" data-path="data-visualisation.html"><a href="data-visualisation.html#scatter-plots-with-multiple-groups"><i class="fa fa-check"></i><b>3.5.2</b> Scatter Plots with multiple Groups</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="data-visualisation.html"><a href="data-visualisation.html#making-plots-with-facet_wrap-and-facet_grid"><i class="fa fa-check"></i><b>3.6</b> Making Plots with <code>facet_wrap()</code> and <code>facet_grid()</code></a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="data-visualisation.html"><a href="data-visualisation.html#the-facet_wrap-function"><i class="fa fa-check"></i><b>3.6.1</b> The <code>facet_wrap()</code> function</a></li>
+<li class="chapter" data-level="3.6.2" data-path="data-visualisation.html"><a href="data-visualisation.html#the-facet_grid-function"><i class="fa fa-check"></i><b>3.6.2</b> The <code>facet_grid()</code> function</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="data-visualisation.html"><a href="data-visualisation.html#outlook-2"><i class="fa fa-check"></i><b>3.7</b> Outlook</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="data-visualisation.html"><a href="data-visualisation.html#combining-different-types-of-graphs"><i class="fa fa-check"></i><b>3.7.1</b> Combining different types of Graphs</a></li>
+<li class="chapter" data-level="3.7.2" data-path="data-visualisation.html"><a href="data-visualisation.html#distributions-ridgeline-chart-and-violin-chart"><i class="fa fa-check"></i><b>3.7.2</b> Distributions: Ridgeline Chart and Violin Chart</a></li>
+<li class="chapter" data-level="3.7.3" data-path="data-visualisation.html"><a href="data-visualisation.html#ranking-lollipop-charts-and-radar-charts"><i class="fa fa-check"></i><b>3.7.3</b> Ranking: Lollipop Charts and Radar Charts</a></li>
+<li class="chapter" data-level="3.7.4" data-path="data-visualisation.html"><a href="data-visualisation.html#maps"><i class="fa fa-check"></i><b>3.7.4</b> Maps</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="data-visualisation.html"><a href="data-visualisation.html#outlook-3"><i class="fa fa-check"></i><b>3.8</b> Outlook</a></li>
+<li class="chapter" data-level="3.9" data-path="data-visualisation.html"><a href="data-visualisation.html#exercise-section-2"><i class="fa fa-check"></i><b>3.9</b> Exercise Section</a>
+<ul>
+<li class="chapter" data-level="3.9.1" data-path="data-visualisation.html"><a href="data-visualisation.html#exercise-1-distributions"><i class="fa fa-check"></i><b>3.9.1</b> Exercise 1: Distributions</a></li>
+<li class="chapter" data-level="3.9.2" data-path="data-visualisation.html"><a href="data-visualisation.html#exercise-2-rankings"><i class="fa fa-check"></i><b>3.9.2</b> Exercise 2: Rankings</a></li>
+<li class="chapter" data-level="3.9.3" data-path="data-visualisation.html"><a href="data-visualisation.html#exercise-3-correlation"><i class="fa fa-check"></i><b>3.9.3</b> Exercise 3: Correlation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="loops-and-functions.html"><a href="loops-and-functions.html"><i class="fa fa-check"></i><b>4</b> Loops and Functions</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="loops-and-functions.html"><a href="loops-and-functions.html#loops"><i class="fa fa-check"></i><b>4.1</b> Loops</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="loops-and-functions.html"><a href="loops-and-functions.html#for-loops"><i class="fa fa-check"></i><b>4.1.1</b> <code>For</code> loops</a></li>
+<li class="chapter" data-level="4.1.2" data-path="loops-and-functions.html"><a href="loops-and-functions.html#nested-loops"><i class="fa fa-check"></i><b>4.1.2</b> Nested Loops</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="loops-and-functions.html"><a href="loops-and-functions.html#apply-function-family"><i class="fa fa-check"></i><b>4.2</b> <code>apply()</code> Function Family</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="loops-and-functions.html"><a href="loops-and-functions.html#apply"><i class="fa fa-check"></i><b>4.2.1</b> <code>apply()</code></a></li>
+<li class="chapter" data-level="4.2.2" data-path="loops-and-functions.html"><a href="loops-and-functions.html#notes"><i class="fa fa-check"></i><b>4.2.2</b> Notes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="loops-and-functions.html"><a href="loops-and-functions.html#writing-your-own-functions"><i class="fa fa-check"></i><b>4.3</b> Writing your own functions</a></li>
+<li class="chapter" data-level="4.4" data-path="loops-and-functions.html"><a href="loops-and-functions.html#outlook-4"><i class="fa fa-check"></i><b>4.4</b> Outlook</a></li>
+<li class="chapter" data-level="4.5" data-path="loops-and-functions.html"><a href="loops-and-functions.html#exercise-section-3"><i class="fa fa-check"></i><b>4.5</b> Exercise Section</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="loops-and-functions.html"><a href="loops-and-functions.html#exercise-1-writing-a-loop"><i class="fa fa-check"></i><b>4.5.1</b> Exercise 1: Writing a loop</a></li>
+<li class="chapter" data-level="4.5.2" data-path="loops-and-functions.html"><a href="loops-and-functions.html#exercise-2-writing-a-function"><i class="fa fa-check"></i><b>4.5.2</b> Exercise 2: Writing a function</a></li>
+<li class="chapter" data-level="4.5.3" data-path="loops-and-functions.html"><a href="loops-and-functions.html#exercise-3-the-midnight-formula"><i class="fa fa-check"></i><b>4.5.3</b> Exercise 3: The midnight Formula</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-analysis.html"><a href="data-analysis.html"><i class="fa fa-check"></i><b>5</b> Data Analysis</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="data-analysis.html"><a href="data-analysis.html#linear-regression"><i class="fa fa-check"></i><b>5.1</b> Linear Regression</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="data-analysis.html"><a href="data-analysis.html#terminology"><i class="fa fa-check"></i><b>5.1.1</b> Terminology</a></li>
+<li class="chapter" data-level="5.1.2" data-path="data-analysis.html"><a href="data-analysis.html#estimating-the-ordinary-least-squares-estimator"><i class="fa fa-check"></i><b>5.1.2</b> Estimating the Ordinary Least Squares Estimator</a></li>
+<li class="chapter" data-level="5.1.3" data-path="data-analysis.html"><a href="data-analysis.html#predictions-with-linear-regression"><i class="fa fa-check"></i><b>5.1.3</b> Predictions with Linear Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="data-analysis.html"><a href="data-analysis.html#model-fit"><i class="fa fa-check"></i><b>5.2</b> Model Fit</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="data-analysis.html"><a href="data-analysis.html#measures-of-fit"><i class="fa fa-check"></i><b>5.2.1</b> Measures of Fit</a></li>
+<li class="chapter" data-level="5.2.2" data-path="data-analysis.html"><a href="data-analysis.html#tss-ess-and-r2"><i class="fa fa-check"></i><b>5.2.2</b> TSS, ESS and <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="5.2.3" data-path="data-analysis.html"><a href="data-analysis.html#influential-outliers"><i class="fa fa-check"></i><b>5.2.3</b> Influential Outliers</a></li>
+<li class="chapter" data-level="5.2.4" data-path="data-analysis.html"><a href="data-analysis.html#functional-form"><i class="fa fa-check"></i><b>5.2.4</b> Functional Form</a></li>
+<li class="chapter" data-level="5.2.5" data-path="data-analysis.html"><a href="data-analysis.html#independent-observation"><i class="fa fa-check"></i><b>5.2.5</b> Independent Observation</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="data-analysis.html"><a href="data-analysis.html#hypothesis-testing-in-r"><i class="fa fa-check"></i><b>5.3</b> Hypothesis Testing in R</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="data-analysis.html"><a href="data-analysis.html#standard-error"><i class="fa fa-check"></i><b>5.3.1</b> Standard Error</a></li>
+<li class="chapter" data-level="5.3.2" data-path="data-analysis.html"><a href="data-analysis.html#t-value-or-t-statistic"><i class="fa fa-check"></i><b>5.3.2</b> T-Value or T-Statistic</a></li>
+<li class="chapter" data-level="5.3.3" data-path="data-analysis.html"><a href="data-analysis.html#p-values"><i class="fa fa-check"></i><b>5.3.3</b> p-values</a></li>
+<li class="chapter" data-level="5.3.4" data-path="data-analysis.html"><a href="data-analysis.html#confidence-interval"><i class="fa fa-check"></i><b>5.3.4</b> Confidence Interval</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="data-analysis.html"><a href="data-analysis.html#multivariate-regression"><i class="fa fa-check"></i><b>5.4</b> Multivariate Regression</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="data-analysis.html"><a href="data-analysis.html#model-fit-adjusted-r-squared"><i class="fa fa-check"></i><b>5.4.1</b> Model Fit: Adjusted R-squared</a></li>
+<li class="chapter" data-level="5.4.2" data-path="data-analysis.html"><a href="data-analysis.html#omitted-variable-bias"><i class="fa fa-check"></i><b>5.4.2</b> Omitted Variable Bias</a></li>
+<li class="chapter" data-level="5.4.3" data-path="data-analysis.html"><a href="data-analysis.html#multicollinearity"><i class="fa fa-check"></i><b>5.4.3</b> Multicollinearity</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="data-analysis.html"><a href="data-analysis.html#categorical-variables"><i class="fa fa-check"></i><b>5.5</b> Categorical Variables</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="data-analysis.html"><a href="data-analysis.html#interaction-effects"><i class="fa fa-check"></i><b>5.5.1</b> Interaction Effects</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="data-analysis.html"><a href="data-analysis.html#outlook-5"><i class="fa fa-check"></i><b>5.6</b> Outlook</a></li>
+<li class="chapter" data-level="5.7" data-path="data-analysis.html"><a href="data-analysis.html#exercise-section-4"><i class="fa fa-check"></i><b>5.7</b> Exercise Section</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="data-analysis.html"><a href="data-analysis.html#exercise-1-linear-regression-with-two-variables"><i class="fa fa-check"></i><b>5.7.1</b> Exercise 1: Linear Regression with two variables</a></li>
+<li class="chapter" data-level="5.7.2" data-path="data-analysis.html"><a href="data-analysis.html#exercise-2-multivariate-regression"><i class="fa fa-check"></i><b>5.7.2</b> Exercise 2: Multivariate Regression</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="solutions-exercises.html"><a href="solutions-exercises.html"><i class="fa fa-check"></i><b>6</b> Solutions Exercises</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="solutions-exercises.html"><a href="solutions-exercises.html#chapter-1-fundamentals"><i class="fa fa-check"></i><b>6.1</b> Chapter 1: Fundamentals</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="solutions-exercises.html"><a href="solutions-exercises.html#exercise-1-making-your-first-vector-1"><i class="fa fa-check"></i><b>6.1.1</b> Exercise 1: Making your first Vector</a></li>
+<li class="chapter" data-level="6.1.2" data-path="solutions-exercises.html"><a href="solutions-exercises.html#exercise-2-making-your-first-matrix-1"><i class="fa fa-check"></i><b>6.1.2</b> Exercise 2: Making your first matrix</a></li>
+<li class="chapter" data-level="6.1.3" data-path="solutions-exercises.html"><a href="solutions-exercises.html#exercise-3-ifelse-function-1"><i class="fa fa-check"></i><b>6.1.3</b> Exercise 3: <code>ifelse</code> function</a></li>
+<li class="chapter" data-level="6.1.4" data-path="solutions-exercises.html"><a href="solutions-exercises.html#exercise-4-ifelse-ladders-1"><i class="fa fa-check"></i><b>6.1.4</b> Exercise 4: <code>ifelse</code> ladders</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="solutions-exercises.html"><a href="solutions-exercises.html#chapter-2-data-manipulation"><i class="fa fa-check"></i><b>6.2</b> Chapter 2: Data Manipulation</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="solutions-exercises.html"><a href="solutions-exercises.html#exercise-1-lets-wrangle-kid-1"><i class="fa fa-check"></i><b>6.2.1</b> Exercise 1: Let’s wrangle kid</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="solutions-exercises.html"><a href="solutions-exercises.html#chapter-3-data-visualisation"><i class="fa fa-check"></i><b>6.3</b> Chapter 3: Data Visualisation</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="solutions-exercises.html"><a href="solutions-exercises.html#exercise-1-distributions-1"><i class="fa fa-check"></i><b>6.3.1</b> Exercise 1: Distributions</a></li>
+<li class="chapter" data-level="6.3.2" data-path="solutions-exercises.html"><a href="solutions-exercises.html#exercise-2-rankings-1"><i class="fa fa-check"></i><b>6.3.2</b> Exercise 2: Rankings</a></li>
+<li class="chapter" data-level="6.3.3" data-path="solutions-exercises.html"><a href="solutions-exercises.html#exercise-3-correlation-1"><i class="fa fa-check"></i><b>6.3.3</b> Exercise 3: Correlation</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="solutions-exercises.html"><a href="solutions-exercises.html#chapter-4-loops-and-functions"><i class="fa fa-check"></i><b>6.4</b> Chapter 4: Loops and Functions</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="solutions-exercises.html"><a href="solutions-exercises.html#exercise-1-writing-a-loop-1"><i class="fa fa-check"></i><b>6.4.1</b> Exercise 1: Writing a loop</a></li>
+<li class="chapter" data-level="6.4.2" data-path="solutions-exercises.html"><a href="solutions-exercises.html#exercise-2-writing-a-function-1"><i class="fa fa-check"></i><b>6.4.2</b> Exercise 2: Writing a function</a></li>
+<li class="chapter" data-level="6.4.3" data-path="solutions-exercises.html"><a href="solutions-exercises.html#exercise-3-the-midnight-formula-1"><i class="fa fa-check"></i><b>6.4.3</b> Exercise 3: The midnight Formula</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="solutions-exercises.html"><a href="solutions-exercises.html#chapter-5-data-analysis"><i class="fa fa-check"></i><b>6.5</b> Chapter 5: Data Analysis</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="solutions-exercises.html"><a href="solutions-exercises.html#exercise-1-linear-regression-with-two-variables-1"><i class="fa fa-check"></i><b>6.5.1</b> Exercise 1: Linear Regression with two variables</a></li>
+<li class="chapter" data-level="6.5.2" data-path="solutions-exercises.html"><a href="solutions-exercises.html#exercise-2-multivariate-regression-1"><i class="fa fa-check"></i><b>6.5.2</b> Exercise 2: Multivariate Regression</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">An intuitive Introduction to R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="solutions-exercises" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Solutions Exercises<a href="solutions-exercises.html#solutions-exercises" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="solutions-exercises.html#cb406-1" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(<span class="st">&quot;tidyverse&quot;</span>, <span class="st">&quot;gapminder&quot;</span>, <span class="st">&quot;babynames&quot;</span>, <span class="st">&quot;sjPlot&quot;</span>)</span></code></pre></div>
+<div id="chapter-1-fundamentals" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Chapter 1: Fundamentals<a href="solutions-exercises.html#chapter-1-fundamentals" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="exercise-1-making-your-first-vector-1" class="section level3 hasAnchor" number="6.1.1">
+<h3><span class="header-section-number">6.1.1</span> Exercise 1: Making your first Vector<a href="solutions-exercises.html#exercise-1-making-your-first-vector-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Create a vector called <code>my_vector</code> with the values 1,2,3 and check is class.</p>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="solutions-exercises.html#cb407-1" tabindex="-1"></a><span class="co">#create the vector  </span></span>
+<span id="cb407-2"><a href="solutions-exercises.html#cb407-2" tabindex="-1"></a>my_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
+<span id="cb407-3"><a href="solutions-exercises.html#cb407-3" tabindex="-1"></a></span>
+<span id="cb407-4"><a href="solutions-exercises.html#cb407-4" tabindex="-1"></a><span class="co">#check the class </span></span>
+<span id="cb407-5"><a href="solutions-exercises.html#cb407-5" tabindex="-1"></a><span class="fu">class</span>(my_vector)</span></code></pre></div>
+</div>
+<div id="exercise-2-making-your-first-matrix-1" class="section level3 hasAnchor" number="6.1.2">
+<h3><span class="header-section-number">6.1.2</span> Exercise 2: Making your first matrix<a href="solutions-exercises.html#exercise-2-making-your-first-matrix-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Create a Matrix called <code>student</code>. This should contain information about the <code>name</code>, <code>age</code> and <code>major</code>. Make three vectors with three entries and bind them together to a the matrix <code>student</code>. Print the matrix. Choose the three names, age, and major by yourself:</p>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="solutions-exercises.html#cb408-1" tabindex="-1"></a><span class="co">#Create the vectors   </span></span>
+<span id="cb408-2"><a href="solutions-exercises.html#cb408-2" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;James&quot;</span>, <span class="st">&quot;Elif&quot;</span>, <span class="st">&quot;Jonas&quot;</span>)</span>
+<span id="cb408-3"><a href="solutions-exercises.html#cb408-3" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;19&quot;</span>, <span class="st">&quot;17&quot;</span>, <span class="st">&quot;24&quot;</span>)</span>
+<span id="cb408-4"><a href="solutions-exercises.html#cb408-4" tabindex="-1"></a>major <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Political Science&quot;</span>, <span class="st">&quot;Data Science&quot;</span>, <span class="st">&quot;Physics&quot;</span>)</span>
+<span id="cb408-5"><a href="solutions-exercises.html#cb408-5" tabindex="-1"></a>  </span>
+<span id="cb408-6"><a href="solutions-exercises.html#cb408-6" tabindex="-1"></a><span class="co">#Create the matrix </span></span>
+<span id="cb408-7"><a href="solutions-exercises.html#cb408-7" tabindex="-1"></a>student <span class="ot">&lt;-</span> <span class="fu">cbind</span>(name, age, major)</span>
+<span id="cb408-8"><a href="solutions-exercises.html#cb408-8" tabindex="-1"></a></span>
+<span id="cb408-9"><a href="solutions-exercises.html#cb408-9" tabindex="-1"></a><span class="co">#Or with the matrix command</span></span>
+<span id="cb408-10"><a href="solutions-exercises.html#cb408-10" tabindex="-1"></a>student <span class="ot">&lt;-</span> <span class="fu">matrix</span>(name, age, major)</span>
+<span id="cb408-11"><a href="solutions-exercises.html#cb408-11" tabindex="-1"></a>  </span>
+<span id="cb408-12"><a href="solutions-exercises.html#cb408-12" tabindex="-1"></a><span class="co">#Print the matrix </span></span>
+<span id="cb408-13"><a href="solutions-exercises.html#cb408-13" tabindex="-1"></a><span class="fu">print</span>(student)</span></code></pre></div>
+</div>
+<div id="exercise-3-ifelse-function-1" class="section level3 hasAnchor" number="6.1.3">
+<h3><span class="header-section-number">6.1.3</span> Exercise 3: <code>ifelse</code> function<a href="solutions-exercises.html#exercise-3-ifelse-function-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Write an <code>ifelse</code> statement that checks if a given number is positive or negative. If the number is positive or 0, print “Number is positive”, otherwise print “Number is negative”. Feel free to decide if you want to use the <code>ifelse</code> function or the <code>ifelse</code> condition.</p>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="solutions-exercises.html#cb409-1" tabindex="-1"></a><span class="co">#Assigning the number to the object &quot;number&quot; </span></span>
+<span id="cb409-2"><a href="solutions-exercises.html#cb409-2" tabindex="-1"></a>number <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb409-3"><a href="solutions-exercises.html#cb409-3" tabindex="-1"></a></span>
+<span id="cb409-4"><a href="solutions-exercises.html#cb409-4" tabindex="-1"></a><span class="co">#With ifelse() function</span></span>
+<span id="cb409-5"><a href="solutions-exercises.html#cb409-5" tabindex="-1"></a><span class="fu">ifelse</span>(number <span class="sc">&gt;=</span> <span class="dv">0</span>, <span class="st">&quot;Number is positive&quot;</span>, <span class="st">&quot;Number is negative&quot;</span>)</span>
+<span id="cb409-6"><a href="solutions-exercises.html#cb409-6" tabindex="-1"></a></span>
+<span id="cb409-7"><a href="solutions-exercises.html#cb409-7" tabindex="-1"></a><span class="co">#With ifelse condition</span></span>
+<span id="cb409-8"><a href="solutions-exercises.html#cb409-8" tabindex="-1"></a></span>
+<span id="cb409-9"><a href="solutions-exercises.html#cb409-9" tabindex="-1"></a><span class="cf">if</span> (number <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb409-10"><a href="solutions-exercises.html#cb409-10" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Positive Number&quot;</span>)</span>
+<span id="cb409-11"><a href="solutions-exercises.html#cb409-11" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb409-12"><a href="solutions-exercises.html#cb409-12" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Negative Number&quot;</span>)</span>
+<span id="cb409-13"><a href="solutions-exercises.html#cb409-13" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="exercise-4-ifelse-ladders-1" class="section level3 hasAnchor" number="6.1.4">
+<h3><span class="header-section-number">6.1.4</span> Exercise 4: <code>ifelse</code> ladders<a href="solutions-exercises.html#exercise-4-ifelse-ladders-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Write an if-else ladder that categorizes a student’s grade based on their score. The grading criteria are as follows:</p>
+<p>Score &gt;= 90: “A” Score &gt;= 80 and &lt; 90: “B” Score &gt;= 70 and &lt; 80: “C” Score &gt;= 60 and &lt; 70: “D” Score &lt; 60: “F”.</p>
+<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="solutions-exercises.html#cb410-1" tabindex="-1"></a><span class="co">#Defining the vector score </span></span>
+<span id="cb410-2"><a href="solutions-exercises.html#cb410-2" tabindex="-1"></a>Score <span class="ot">&lt;-</span> <span class="dv">90</span></span>
+<span id="cb410-3"><a href="solutions-exercises.html#cb410-3" tabindex="-1"></a></span>
+<span id="cb410-4"><a href="solutions-exercises.html#cb410-4" tabindex="-1"></a><span class="co">#Defing ifelse ladder with ifelse() function</span></span>
+<span id="cb410-5"><a href="solutions-exercises.html#cb410-5" tabindex="-1"></a><span class="fu">ifelse</span>(Score <span class="sc">&gt;=</span> <span class="dv">90</span>, <span class="st">&quot;A&quot;</span>, </span>
+<span id="cb410-6"><a href="solutions-exercises.html#cb410-6" tabindex="-1"></a>       <span class="fu">ifelse</span>(Score <span class="sc">&gt;=</span> <span class="dv">80</span> <span class="sc">&amp;</span> Score <span class="sc">&lt;</span> <span class="dv">90</span>, <span class="st">&quot;B&quot;</span>,</span>
+<span id="cb410-7"><a href="solutions-exercises.html#cb410-7" tabindex="-1"></a>              <span class="fu">ifelse</span>(Score <span class="sc">&gt;=</span> <span class="dv">70</span> <span class="sc">&amp;</span> Score <span class="sc">&lt;</span> <span class="dv">80</span>, <span class="st">&quot;C&quot;</span>,</span>
+<span id="cb410-8"><a href="solutions-exercises.html#cb410-8" tabindex="-1"></a>                     <span class="fu">ifelse</span>(Score <span class="sc">&gt;=</span> <span class="dv">60</span> <span class="sc">&amp;</span> Score <span class="sc">&lt;</span> <span class="dv">70</span>, <span class="st">&quot;D&quot;</span>, </span>
+<span id="cb410-9"><a href="solutions-exercises.html#cb410-9" tabindex="-1"></a>                            <span class="fu">ifelse</span>(Score <span class="sc">&lt;</span> <span class="dv">60</span>, <span class="st">&quot;F&quot;</span>)))))</span>
+<span id="cb410-10"><a href="solutions-exercises.html#cb410-10" tabindex="-1"></a></span>
+<span id="cb410-11"><a href="solutions-exercises.html#cb410-11" tabindex="-1"></a><span class="co">#Defining it with a ifelse condition</span></span>
+<span id="cb410-12"><a href="solutions-exercises.html#cb410-12" tabindex="-1"></a><span class="cf">if</span> (score <span class="sc">&gt;=</span> <span class="dv">90</span>) {</span>
+<span id="cb410-13"><a href="solutions-exercises.html#cb410-13" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;A&quot;</span>) </span>
+<span id="cb410-14"><a href="solutions-exercises.html#cb410-14" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (score <span class="sc">&gt;=</span> <span class="dv">80</span> <span class="sc">&amp;</span> score <span class="sc">&lt;</span> <span class="dv">90</span>) {</span>
+<span id="cb410-15"><a href="solutions-exercises.html#cb410-15" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;B&quot;</span>)</span>
+<span id="cb410-16"><a href="solutions-exercises.html#cb410-16" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (score <span class="sc">&gt;=</span> <span class="dv">70</span> <span class="sc">&amp;</span> score <span class="sc">&lt;</span> <span class="dv">80</span>) {</span>
+<span id="cb410-17"><a href="solutions-exercises.html#cb410-17" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;C&quot;</span>)</span>
+<span id="cb410-18"><a href="solutions-exercises.html#cb410-18" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (score <span class="sc">&gt;=</span> <span class="dv">60</span> <span class="sc">&amp;</span> score <span class="sc">&lt;</span> <span class="dv">70</span>) {</span>
+<span id="cb410-19"><a href="solutions-exercises.html#cb410-19" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;D&quot;</span>) </span>
+<span id="cb410-20"><a href="solutions-exercises.html#cb410-20" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (score <span class="sc">&lt;</span> <span class="dv">60</span>) {</span>
+<span id="cb410-21"><a href="solutions-exercises.html#cb410-21" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;F&quot;</span>)</span>
+<span id="cb410-22"><a href="solutions-exercises.html#cb410-22" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+</div>
+<div id="chapter-2-data-manipulation" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Chapter 2: Data Manipulation<a href="solutions-exercises.html#chapter-2-data-manipulation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="solutions-exercises.html#cb411-1" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
+<div id="exercise-1-lets-wrangle-kid-1" class="section level3 hasAnchor" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> Exercise 1: Let’s wrangle kid<a href="solutions-exercises.html#exercise-1-lets-wrangle-kid-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You are interested in discrimination and the perception of the judicial. More specifically, you want to know if people, who fell discriminated evaluate courts differently. Below you see a table with all variables you want to include in your analysis:</p>
+<table style="width:99%;">
+<colgroup>
+<col width="8%" />
+<col width="32%" />
+<col width="58%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"><strong>Variable</strong></th>
+<th><strong>Description</strong></th>
+<th>Scales</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>idnt</strong></td>
+<td>Respondent’s identification number</td>
+<td>unique number from 1-9000</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>year</strong></td>
+<td>The year when the survey was conducted</td>
+<td>only 2020</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>cntry</strong></td>
+<td>Country</td>
+<td>BE, BG, CH, CZ, EE, FI, FR,GB, GR, HR, HU, IE, IS, IT, LT,NL, NO, PT, SI, SK</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>agea</strong></td>
+<td>Age of the Respondent, calculated</td>
+<td><p>Number of Age = 15-90</p>
+<p>999 = Not available</p></td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>gndr</strong></td>
+<td>Gender</td>
+<td><p>1 = Male;</p>
+<p>2 = Female;</p>
+<p>9 = No answer</p></td>
+</tr>
+<tr class="even">
+<td align="center"><strong>happy</strong></td>
+<td>How happy are you</td>
+<td><p>0 (Extremly unhappy) - 10 (Extremly happy);</p>
+<p>77 = Refusal;</p>
+<p>88 = Don’t Know;</p>
+<p>99 = No answer</p></td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>eisced</strong></td>
+<td>Highest level of education, ES - ISCED</td>
+<td><p>0 = Not possible to harmonise into ES-ISCED;</p>
+<p>1 (ES-ISCED I , less than lower secondary) - 7 (ES-ISCED V2, higher tertiary education, =&gt; MA level;</p>
+<p>55 = Other;</p>
+<p>77 = Refusal;</p>
+<p>88 = Don’t know;</p>
+<p>99 = No answer</p></td>
+</tr>
+<tr class="even">
+<td align="center"><strong>netusoft</strong></td>
+<td>Internet use, how often</td>
+<td><p>1 (Never) - 5 (Every day);</p>
+<p>7 = Refusal;</p>
+<p>8 = Don’t know;</p>
+<p>9 = No answer</p></td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>trstprl</strong></td>
+<td>Most people can be trusted or you can’t be too careful</td>
+<td><p>0 (You can’t be too careful) - 10 (Most people can be trusted);</p>
+<p>77 = Refusal;</p>
+<p>88 = Don’t Know;</p>
+<p>99 = No answer</p></td>
+</tr>
+<tr class="even">
+<td align="center"><strong>lrscale</strong></td>
+<td>Left-Right Placement</td>
+<td><p>0 (Left) - 10 (Right);</p>
+<p>77 = Refusal;</p>
+<p>88 = Don’t know;</p>
+<p>99 = No answer</p></td>
+</tr>
+</tbody>
+</table>
+<ol style="list-style-type: lower-alpha">
+<li>Wrangle the data, and assign it to an object called <strong>ess</strong>.</li>
+<li>Select the variables you need</li>
+<li>Filter for Austria, Belgium, Denmark, Georgia, Iceland and the Russian Federation</li>
+<li>Have a look at the codebook and code all irrelevant values as missing. If you have binary variables recode them from 1, 2 to 0 to 1</li>
+<li>You want to build an extremism variable: You do so by subtracting 5 from the from the variable and squaring it afterwards. Call it extremism</li>
+<li>Rename the variables to more intuitive names, don’t forget to name binary varaibles after the category which is on 1</li>
+<li>drop all missing values</li>
+<li>Check out your new dataset</li>
+</ol>
+<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="solutions-exercises.html#cb412-1" tabindex="-1"></a>ess <span class="ot">&lt;-</span> d1 <span class="sc">%&gt;%</span> </span>
+<span id="cb412-2"><a href="solutions-exercises.html#cb412-2" tabindex="-1"></a>  <span class="fu">select</span>(cntry, dscrgrp, cttresa, agea, gndr, eisced, lrscale) <span class="sc">%&gt;%</span> <span class="co">#a</span></span>
+<span id="cb412-3"><a href="solutions-exercises.html#cb412-3" tabindex="-1"></a>  <span class="fu">filter</span>(cntry <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;AT&quot;</span>, <span class="st">&quot;BE&quot;</span>, <span class="st">&quot;DK&quot;</span>, <span class="st">&quot;GE&quot;</span>, <span class="st">&quot;IS&quot;</span>,<span class="st">&quot;RU&quot;</span>)) <span class="sc">%&gt;%</span> <span class="co">#b</span></span>
+<span id="cb412-4"><a href="solutions-exercises.html#cb412-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dscrgrp =</span> <span class="fu">case_when</span>( <span class="co">#c</span></span>
+<span id="cb412-5"><a href="solutions-exercises.html#cb412-5" tabindex="-1"></a>    dscrgrp <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">0</span>, </span>
+<span id="cb412-6"><a href="solutions-exercises.html#cb412-6" tabindex="-1"></a>    dscrgrp <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb412-7"><a href="solutions-exercises.html#cb412-7" tabindex="-1"></a>    dscrgrp <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>) <span class="sc">~</span> <span class="cn">NA_real_</span>, </span>
+<span id="cb412-8"><a href="solutions-exercises.html#cb412-8" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> dscrgrp),</span>
+<span id="cb412-9"><a href="solutions-exercises.html#cb412-9" tabindex="-1"></a>    <span class="at">cttresa =</span> <span class="fu">case_when</span>( </span>
+<span id="cb412-10"><a href="solutions-exercises.html#cb412-10" tabindex="-1"></a>    cttresa <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">77</span>, <span class="dv">88</span>, <span class="dv">99</span>) <span class="sc">~</span> <span class="cn">NA_real_</span>, </span>
+<span id="cb412-11"><a href="solutions-exercises.html#cb412-11" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> cttresa),</span>
+<span id="cb412-12"><a href="solutions-exercises.html#cb412-12" tabindex="-1"></a>    <span class="at">agea =</span> <span class="fu">case_when</span>(</span>
+<span id="cb412-13"><a href="solutions-exercises.html#cb412-13" tabindex="-1"></a>    agea <span class="sc">==</span> <span class="dv">999</span> <span class="sc">~</span> <span class="cn">NA_real_</span>, </span>
+<span id="cb412-14"><a href="solutions-exercises.html#cb412-14" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> agea),</span>
+<span id="cb412-15"><a href="solutions-exercises.html#cb412-15" tabindex="-1"></a>    <span class="at">gndr =</span> <span class="fu">case_when</span>(</span>
+<span id="cb412-16"><a href="solutions-exercises.html#cb412-16" tabindex="-1"></a>      gndr <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">0</span>, </span>
+<span id="cb412-17"><a href="solutions-exercises.html#cb412-17" tabindex="-1"></a>      gndr <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb412-18"><a href="solutions-exercises.html#cb412-18" tabindex="-1"></a>      gndr <span class="sc">==</span> <span class="dv">9</span> <span class="sc">~</span> <span class="cn">NA_real_</span></span>
+<span id="cb412-19"><a href="solutions-exercises.html#cb412-19" tabindex="-1"></a>    ),</span>
+<span id="cb412-20"><a href="solutions-exercises.html#cb412-20" tabindex="-1"></a>    <span class="at">eisced =</span> <span class="fu">case_when</span>( </span>
+<span id="cb412-21"><a href="solutions-exercises.html#cb412-21" tabindex="-1"></a>      eisced <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">55</span>, <span class="dv">77</span>, <span class="dv">88</span>, <span class="dv">99</span>) <span class="sc">~</span> <span class="cn">NA_real_</span>,</span>
+<span id="cb412-22"><a href="solutions-exercises.html#cb412-22" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> eisced),</span>
+<span id="cb412-23"><a href="solutions-exercises.html#cb412-23" tabindex="-1"></a>    <span class="at">lrscale =</span> <span class="fu">case_when</span>(</span>
+<span id="cb412-24"><a href="solutions-exercises.html#cb412-24" tabindex="-1"></a>      lrscale <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">77</span>, <span class="dv">88</span>, <span class="dv">99</span>) <span class="sc">~</span> <span class="cn">NA_real_</span>,</span>
+<span id="cb412-25"><a href="solutions-exercises.html#cb412-25" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> lrscale) <span class="co">#d, you could do this step also in a separate mutate function if you think that is more intuitive </span></span>
+<span id="cb412-26"><a href="solutions-exercises.html#cb412-26" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb412-27"><a href="solutions-exercises.html#cb412-27" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">extremism =</span> (lrscale <span class="sc">-</span> <span class="dv">5</span>)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb412-28"><a href="solutions-exercises.html#cb412-28" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">discriminated =</span> dscrgrp,  </span>
+<span id="cb412-29"><a href="solutions-exercises.html#cb412-29" tabindex="-1"></a>         <span class="at">court =</span> cttresa,</span>
+<span id="cb412-30"><a href="solutions-exercises.html#cb412-30" tabindex="-1"></a>         <span class="at">age =</span> agea, </span>
+<span id="cb412-31"><a href="solutions-exercises.html#cb412-31" tabindex="-1"></a>         <span class="at">female =</span> gndr, </span>
+<span id="cb412-32"><a href="solutions-exercises.html#cb412-32" tabindex="-1"></a>         <span class="at">education =</span> eisced, </span>
+<span id="cb412-33"><a href="solutions-exercises.html#cb412-33" tabindex="-1"></a>         <span class="at">lrscale =</span> lrscale, </span>
+<span id="cb412-34"><a href="solutions-exercises.html#cb412-34" tabindex="-1"></a>         <span class="at">extremism =</span> extremism</span>
+<span id="cb412-35"><a href="solutions-exercises.html#cb412-35" tabindex="-1"></a>         ) <span class="sc">%&gt;%</span> </span>
+<span id="cb412-36"><a href="solutions-exercises.html#cb412-36" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span>
+<span id="cb412-37"><a href="solutions-exercises.html#cb412-37" tabindex="-1"></a></span>
+<span id="cb412-38"><a href="solutions-exercises.html#cb412-38" tabindex="-1"></a><span class="co">#Checking the dataset </span></span>
+<span id="cb412-39"><a href="solutions-exercises.html#cb412-39" tabindex="-1"></a><span class="fu">head</span>(ess)</span></code></pre></div>
+</div>
+</div>
+<div id="chapter-3-data-visualisation" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> Chapter 3: Data Visualisation<a href="solutions-exercises.html#chapter-3-data-visualisation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this exercise Section, we will work with the <code>babynames</code> and the <code>iris</code> package. This is a classic built-in package in R, which contains data from the Ronald Fisher’s 1936 Study “<em>The use of multiple measurements in taxonomic problems”.</em> It contains three plant species and four measured features for each species. Let us get an overview of the package:</p>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="solutions-exercises.html#cb413-1" tabindex="-1"></a><span class="fu">summary</span>(iris)</span></code></pre></div>
+<pre><code>##   Sepal.Length    Sepal.Width     Petal.Length  
+##  Min.   :4.300   Min.   :2.000   Min.   :1.000  
+##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600  
+##  Median :5.800   Median :3.000   Median :4.350  
+##  Mean   :5.843   Mean   :3.057   Mean   :3.758  
+##  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100  
+##  Max.   :7.900   Max.   :4.400   Max.   :6.900  
+##   Petal.Width          Species  
+##  Min.   :0.100   setosa    :50  
+##  1st Qu.:0.300   versicolor:50  
+##  Median :1.300   virginica :50  
+##  Mean   :1.199                  
+##  3rd Qu.:1.800                  
+##  Max.   :2.500</code></pre>
+<div id="exercise-1-distributions-1" class="section level3 hasAnchor" number="6.3.1">
+<h3><span class="header-section-number">6.3.1</span> Exercise 1: Distributions<a href="solutions-exercises.html#exercise-1-distributions-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>a. Plot a Chart, which shows the distribution of <code>Sepal.Length</code> over the <code>setosa</code> Species. Choose the type of distribution chart for yourself. <strong>HINT:</strong> Prepare the data first and then plot it.</p>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="solutions-exercises.html#cb415-1" tabindex="-1"></a><span class="co">#Filtering for setosa</span></span>
+<span id="cb415-2"><a href="solutions-exercises.html#cb415-2" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span></span>
+<span id="cb415-3"><a href="solutions-exercises.html#cb415-3" tabindex="-1"></a>  <span class="fu">filter</span>(Species <span class="sc">==</span> <span class="st">&quot;setosa&quot;</span>)</span>
+<span id="cb415-4"><a href="solutions-exercises.html#cb415-4" tabindex="-1"></a></span>
+<span id="cb415-5"><a href="solutions-exercises.html#cb415-5" tabindex="-1"></a><span class="co">#Histogram</span></span>
+<span id="cb415-6"><a href="solutions-exercises.html#cb415-6" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length)) <span class="sc">+</span></span>
+<span id="cb415-7"><a href="solutions-exercises.html#cb415-7" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value
+## with `binwidth`.</code></pre>
+<p><img src="bookdownproj_files/figure-html/chapter%204%20exercise%201a-1.png" width="672" /></p>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="solutions-exercises.html#cb417-1" tabindex="-1"></a><span class="co">#Density Plot</span></span>
+<span id="cb417-2"><a href="solutions-exercises.html#cb417-2" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length)) <span class="sc">+</span></span>
+<span id="cb417-3"><a href="solutions-exercises.html#cb417-3" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/chapter%204%20exercise%201a-2.png" width="672" /></p>
+<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="solutions-exercises.html#cb418-1" tabindex="-1"></a><span class="co">#Boxplot</span></span>
+<span id="cb418-2"><a href="solutions-exercises.html#cb418-2" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length)) <span class="sc">+</span></span>
+<span id="cb418-3"><a href="solutions-exercises.html#cb418-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/chapter%204%20exercise%201a-3.png" width="672" /></p>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="solutions-exercises.html#cb419-1" tabindex="-1"></a><span class="do">###EDIT: You could also do everythin in one step as shown below</span></span>
+<span id="cb419-2"><a href="solutions-exercises.html#cb419-2" tabindex="-1"></a></span>
+<span id="cb419-3"><a href="solutions-exercises.html#cb419-3" tabindex="-1"></a><span class="co">#Histogram</span></span>
+<span id="cb419-4"><a href="solutions-exercises.html#cb419-4" tabindex="-1"></a><span class="co">#iris %&gt;%</span></span>
+<span id="cb419-5"><a href="solutions-exercises.html#cb419-5" tabindex="-1"></a><span class="co">#  filter(Species == &quot;setosa&quot;) %&gt;%</span></span>
+<span id="cb419-6"><a href="solutions-exercises.html#cb419-6" tabindex="-1"></a><span class="co">#  ggplot(aes(x = Sepal.Length)) +</span></span>
+<span id="cb419-7"><a href="solutions-exercises.html#cb419-7" tabindex="-1"></a><span class="co">#  geom_histogram()</span></span>
+<span id="cb419-8"><a href="solutions-exercises.html#cb419-8" tabindex="-1"></a></span>
+<span id="cb419-9"><a href="solutions-exercises.html#cb419-9" tabindex="-1"></a><span class="co">#Density Plot</span></span>
+<span id="cb419-10"><a href="solutions-exercises.html#cb419-10" tabindex="-1"></a><span class="co">#iris %&gt;%</span></span>
+<span id="cb419-11"><a href="solutions-exercises.html#cb419-11" tabindex="-1"></a><span class="co">#  filter(Species == &quot;setosa&quot;) %&gt;%</span></span>
+<span id="cb419-12"><a href="solutions-exercises.html#cb419-12" tabindex="-1"></a><span class="co">#  ggplot(aes(x = Sepal.Length)) +</span></span>
+<span id="cb419-13"><a href="solutions-exercises.html#cb419-13" tabindex="-1"></a><span class="co">#  geom_density()</span></span>
+<span id="cb419-14"><a href="solutions-exercises.html#cb419-14" tabindex="-1"></a></span>
+<span id="cb419-15"><a href="solutions-exercises.html#cb419-15" tabindex="-1"></a><span class="co">#Boxplot</span></span>
+<span id="cb419-16"><a href="solutions-exercises.html#cb419-16" tabindex="-1"></a><span class="co">#iris %&gt;%</span></span>
+<span id="cb419-17"><a href="solutions-exercises.html#cb419-17" tabindex="-1"></a><span class="co">#  filter(Species == &quot;setosa&quot;) %&gt;%</span></span>
+<span id="cb419-18"><a href="solutions-exercises.html#cb419-18" tabindex="-1"></a><span class="co">#  ggplot(aes(x = Sepal.Length)) +</span></span>
+<span id="cb419-19"><a href="solutions-exercises.html#cb419-19" tabindex="-1"></a><span class="co">#  geom_boxplot()</span></span></code></pre></div>
+<p>b. Now I want you to add the two other Species to the Plot. Make Sure, that every Species has a unique color.</p>
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="solutions-exercises.html#cb420-1" tabindex="-1"></a><span class="co">#Histogram</span></span>
+<span id="cb420-2"><a href="solutions-exercises.html#cb420-2" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">fill =</span> Species)) <span class="sc">+</span></span>
+<span id="cb420-3"><a href="solutions-exercises.html#cb420-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value
+## with `binwidth`.</code></pre>
+<p><img src="bookdownproj_files/figure-html/chapter%204%20exercise%201b-1.png" width="672" /></p>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="solutions-exercises.html#cb422-1" tabindex="-1"></a><span class="co">#Density Plot</span></span>
+<span id="cb422-2"><a href="solutions-exercises.html#cb422-2" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">fill =</span> Species)) <span class="sc">+</span></span>
+<span id="cb422-3"><a href="solutions-exercises.html#cb422-3" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/chapter%204%20exercise%201b-2.png" width="672" /></p>
+<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="solutions-exercises.html#cb423-1" tabindex="-1"></a><span class="co">#Boxplot</span></span>
+<span id="cb423-2"><a href="solutions-exercises.html#cb423-2" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">fill =</span> Species)) <span class="sc">+</span></span>
+<span id="cb423-3"><a href="solutions-exercises.html#cb423-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/chapter%204%20exercise%201b-3.png" width="672" /></p>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="solutions-exercises.html#cb424-1" tabindex="-1"></a><span class="co">#Violin Plot</span></span>
+<span id="cb424-2"><a href="solutions-exercises.html#cb424-2" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x =</span> Species, <span class="at">y =</span> Sepal.Length, <span class="at">fill =</span> Species)) <span class="sc">+</span></span>
+<span id="cb424-3"><a href="solutions-exercises.html#cb424-3" tabindex="-1"></a>  <span class="fu">geom_violin</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/chapter%204%20exercise%201b-4.png" width="672" /></p>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="solutions-exercises.html#cb425-1" tabindex="-1"></a><span class="co">#Ridgeline Plot</span></span>
+<span id="cb425-2"><a href="solutions-exercises.html#cb425-2" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">y =</span> Species, <span class="at">fill =</span> Species)) <span class="sc">+</span></span>
+<span id="cb425-3"><a href="solutions-exercises.html#cb425-3" tabindex="-1"></a>  <span class="fu">geom_density_ridges</span>()</span></code></pre></div>
+<pre><code>## Picking joint bandwidth of 0.181</code></pre>
+<p><img src="bookdownproj_files/figure-html/chapter%204%20exercise%201b-5.png" width="672" /></p>
+<p>c. Make a nice Plot! Give the Plot a meaningful title, meaningful labels for the x-axis and the y-axis and play around with the colors.</p>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="solutions-exercises.html#cb427-1" tabindex="-1"></a><span class="co">#Histogram</span></span>
+<span id="cb427-2"><a href="solutions-exercises.html#cb427-2" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">fill =</span> Species)) <span class="sc">+</span></span>
+<span id="cb427-3"><a href="solutions-exercises.html#cb427-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb427-4"><a href="solutions-exercises.html#cb427-4" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb427-5"><a href="solutions-exercises.html#cb427-5" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Species&quot;</span>,</span>
+<span id="cb427-6"><a href="solutions-exercises.html#cb427-6" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Sepal Length&quot;</span>,</span>
+<span id="cb427-7"><a href="solutions-exercises.html#cb427-7" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribution of Sepal Length across Species&quot;</span></span>
+<span id="cb427-8"><a href="solutions-exercises.html#cb427-8" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb427-9"><a href="solutions-exercises.html#cb427-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb427-10"><a href="solutions-exercises.html#cb427-10" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb427-11"><a href="solutions-exercises.html#cb427-11" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span></span>
+<span id="cb427-12"><a href="solutions-exercises.html#cb427-12" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb427-13"><a href="solutions-exercises.html#cb427-13" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>)</span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value
+## with `binwidth`.</code></pre>
+<p><img src="bookdownproj_files/figure-html/chapter%204%20exercise%201c-1.png" width="672" /></p>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="solutions-exercises.html#cb429-1" tabindex="-1"></a><span class="co">#Density Plot</span></span>
+<span id="cb429-2"><a href="solutions-exercises.html#cb429-2" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">fill =</span> Species)) <span class="sc">+</span></span>
+<span id="cb429-3"><a href="solutions-exercises.html#cb429-3" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
+<span id="cb429-4"><a href="solutions-exercises.html#cb429-4" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb429-5"><a href="solutions-exercises.html#cb429-5" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Species&quot;</span>,</span>
+<span id="cb429-6"><a href="solutions-exercises.html#cb429-6" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Sepal Length&quot;</span>,</span>
+<span id="cb429-7"><a href="solutions-exercises.html#cb429-7" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribution of Sepal Length across Species&quot;</span></span>
+<span id="cb429-8"><a href="solutions-exercises.html#cb429-8" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb429-9"><a href="solutions-exercises.html#cb429-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb429-10"><a href="solutions-exercises.html#cb429-10" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb429-11"><a href="solutions-exercises.html#cb429-11" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span></span>
+<span id="cb429-12"><a href="solutions-exercises.html#cb429-12" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb429-13"><a href="solutions-exercises.html#cb429-13" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/chapter%204%20exercise%201c-2.png" width="672" /></p>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="solutions-exercises.html#cb430-1" tabindex="-1"></a><span class="co">#Boxplot</span></span>
+<span id="cb430-2"><a href="solutions-exercises.html#cb430-2" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">fill =</span> Species)) <span class="sc">+</span></span>
+<span id="cb430-3"><a href="solutions-exercises.html#cb430-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb430-4"><a href="solutions-exercises.html#cb430-4" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb430-5"><a href="solutions-exercises.html#cb430-5" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Species&quot;</span>,</span>
+<span id="cb430-6"><a href="solutions-exercises.html#cb430-6" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Sepal Length&quot;</span>,</span>
+<span id="cb430-7"><a href="solutions-exercises.html#cb430-7" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribution of Sepal Length across Species&quot;</span></span>
+<span id="cb430-8"><a href="solutions-exercises.html#cb430-8" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb430-9"><a href="solutions-exercises.html#cb430-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb430-10"><a href="solutions-exercises.html#cb430-10" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb430-11"><a href="solutions-exercises.html#cb430-11" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span></span>
+<span id="cb430-12"><a href="solutions-exercises.html#cb430-12" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb430-13"><a href="solutions-exercises.html#cb430-13" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/chapter%204%20exercise%201c-3.png" width="672" /></p>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="solutions-exercises.html#cb431-1" tabindex="-1"></a><span class="co">#Ridgeline Plot</span></span>
+<span id="cb431-2"><a href="solutions-exercises.html#cb431-2" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x =</span> Species, <span class="at">y =</span> Sepal.Length, <span class="at">fill =</span> Species)) <span class="sc">+</span></span>
+<span id="cb431-3"><a href="solutions-exercises.html#cb431-3" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
+<span id="cb431-4"><a href="solutions-exercises.html#cb431-4" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb431-5"><a href="solutions-exercises.html#cb431-5" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Species&quot;</span>,</span>
+<span id="cb431-6"><a href="solutions-exercises.html#cb431-6" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Sepal Length&quot;</span>,</span>
+<span id="cb431-7"><a href="solutions-exercises.html#cb431-7" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribution of Sepal Length across Species&quot;</span></span>
+<span id="cb431-8"><a href="solutions-exercises.html#cb431-8" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb431-9"><a href="solutions-exercises.html#cb431-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb431-10"><a href="solutions-exercises.html#cb431-10" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb431-11"><a href="solutions-exercises.html#cb431-11" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span></span>
+<span id="cb431-12"><a href="solutions-exercises.html#cb431-12" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb431-13"><a href="solutions-exercises.html#cb431-13" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/chapter%204%20exercise%201c-4.png" width="672" /></p>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="solutions-exercises.html#cb432-1" tabindex="-1"></a><span class="co">#Ridgeline Plot</span></span>
+<span id="cb432-2"><a href="solutions-exercises.html#cb432-2" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">y =</span> Species, <span class="at">fill =</span> Species)) <span class="sc">+</span></span>
+<span id="cb432-3"><a href="solutions-exercises.html#cb432-3" tabindex="-1"></a>  <span class="fu">geom_density_ridges</span>() <span class="sc">+</span></span>
+<span id="cb432-4"><a href="solutions-exercises.html#cb432-4" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb432-5"><a href="solutions-exercises.html#cb432-5" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Species&quot;</span>,</span>
+<span id="cb432-6"><a href="solutions-exercises.html#cb432-6" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Sepal Length&quot;</span>,</span>
+<span id="cb432-7"><a href="solutions-exercises.html#cb432-7" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribution of Sepal Length across Species&quot;</span></span>
+<span id="cb432-8"><a href="solutions-exercises.html#cb432-8" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb432-9"><a href="solutions-exercises.html#cb432-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb432-10"><a href="solutions-exercises.html#cb432-10" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb432-11"><a href="solutions-exercises.html#cb432-11" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span></span>
+<span id="cb432-12"><a href="solutions-exercises.html#cb432-12" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb432-13"><a href="solutions-exercises.html#cb432-13" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>)</span></code></pre></div>
+<pre><code>## Picking joint bandwidth of 0.181</code></pre>
+<p><img src="bookdownproj_files/figure-html/chapter%204%20exercise%201c-5.png" width="672" /></p>
+<p>d. Interpret the Plot!</p>
+</div>
+<div id="exercise-2-rankings-1" class="section level3 hasAnchor" number="6.3.2">
+<h3><span class="header-section-number">6.3.2</span> Exercise 2: Rankings<a href="solutions-exercises.html#exercise-2-rankings-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>a. Calculate the average <code>Petal.Length</code> and plot it for every Species in a nice Barplot. <strong>HINT:</strong> You have to prepare the data again before you plot it. Decide for yourself if you want to do it vertically or horizontally.</p>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="solutions-exercises.html#cb434-1" tabindex="-1"></a><span class="co">#Prepare the data </span></span>
+<span id="cb434-2"><a href="solutions-exercises.html#cb434-2" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span></span>
+<span id="cb434-3"><a href="solutions-exercises.html#cb434-3" tabindex="-1"></a>  <span class="fu">group_by</span>(Species) <span class="sc">%&gt;%</span></span>
+<span id="cb434-4"><a href="solutions-exercises.html#cb434-4" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">PL_average =</span> <span class="fu">mean</span>(Petal.Length))</span>
+<span id="cb434-5"><a href="solutions-exercises.html#cb434-5" tabindex="-1"></a></span>
+<span id="cb434-6"><a href="solutions-exercises.html#cb434-6" tabindex="-1"></a><span class="co">#Check it</span></span>
+<span id="cb434-7"><a href="solutions-exercises.html#cb434-7" tabindex="-1"></a><span class="fu">head</span>(d1)  </span></code></pre></div>
+<pre><code>## # A tibble: 3 × 2
+##   Species    PL_average
+##   &lt;fct&gt;           &lt;dbl&gt;
+## 1 setosa           1.46
+## 2 versicolor       4.26
+## 3 virginica        5.55</code></pre>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="solutions-exercises.html#cb436-1" tabindex="-1"></a><span class="co">#Plotting a horizontal barplot</span></span>
+<span id="cb436-2"><a href="solutions-exercises.html#cb436-2" tabindex="-1"></a><span class="fu">ggplot</span>(d1, <span class="fu">aes</span>(<span class="at">x =</span> Species, <span class="at">y =</span> PL_average, <span class="at">fill  =</span> Species)) <span class="sc">+</span></span>
+<span id="cb436-3"><a href="solutions-exercises.html#cb436-3" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/chapter%204%20exercise%202a-1.png" width="672" /></p>
+<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="solutions-exercises.html#cb437-1" tabindex="-1"></a><span class="co">#Plotting a vertical barplot</span></span>
+<span id="cb437-2"><a href="solutions-exercises.html#cb437-2" tabindex="-1"></a><span class="fu">ggplot</span>(d1, <span class="fu">aes</span>(<span class="at">x =</span> PL_average, <span class="at">y =</span> Species, <span class="at">fill =</span> Species)) <span class="sc">+</span></span>
+<span id="cb437-3"><a href="solutions-exercises.html#cb437-3" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) </span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/chapter%204%20exercise%202a-2.png" width="672" /></p>
+<p>b. Make a nice Plot! Give the Plot a meaningful title, meaningful labels for the x-axis and the y-axis and play around with the colors.</p>
+<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="solutions-exercises.html#cb438-1" tabindex="-1"></a><span class="co">#Plotting a horizontal barplot</span></span>
+<span id="cb438-2"><a href="solutions-exercises.html#cb438-2" tabindex="-1"></a><span class="fu">ggplot</span>(d1, <span class="fu">aes</span>(<span class="at">x =</span> Species, <span class="at">y =</span> PL_average, <span class="at">fill  =</span> Species)) <span class="sc">+</span></span>
+<span id="cb438-3"><a href="solutions-exercises.html#cb438-3" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb438-4"><a href="solutions-exercises.html#cb438-4" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb438-5"><a href="solutions-exercises.html#cb438-5" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Species&quot;</span>,</span>
+<span id="cb438-6"><a href="solutions-exercises.html#cb438-6" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Average Sepal Length&quot;</span>,</span>
+<span id="cb438-7"><a href="solutions-exercises.html#cb438-7" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Average Sepal Length across Species&quot;</span></span>
+<span id="cb438-8"><a href="solutions-exercises.html#cb438-8" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb438-9"><a href="solutions-exercises.html#cb438-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb438-10"><a href="solutions-exercises.html#cb438-10" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb438-11"><a href="solutions-exercises.html#cb438-11" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span></span>
+<span id="cb438-12"><a href="solutions-exercises.html#cb438-12" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb438-13"><a href="solutions-exercises.html#cb438-13" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/chapter%204%20exercise%202c-1.png" width="672" /></p>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="solutions-exercises.html#cb439-1" tabindex="-1"></a><span class="co">#Plotting a vertical barplot</span></span>
+<span id="cb439-2"><a href="solutions-exercises.html#cb439-2" tabindex="-1"></a><span class="fu">ggplot</span>(d1, <span class="fu">aes</span>(<span class="at">x =</span> PL_average, <span class="at">y =</span> Species, <span class="at">fill =</span> Species)) <span class="sc">+</span></span>
+<span id="cb439-3"><a href="solutions-exercises.html#cb439-3" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb439-4"><a href="solutions-exercises.html#cb439-4" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb439-5"><a href="solutions-exercises.html#cb439-5" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Average Sepal Length&quot;</span>,</span>
+<span id="cb439-6"><a href="solutions-exercises.html#cb439-6" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Species&quot;</span>,</span>
+<span id="cb439-7"><a href="solutions-exercises.html#cb439-7" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Average Sepal Length across Species&quot;</span></span>
+<span id="cb439-8"><a href="solutions-exercises.html#cb439-8" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb439-9"><a href="solutions-exercises.html#cb439-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb439-10"><a href="solutions-exercises.html#cb439-10" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb439-11"><a href="solutions-exercises.html#cb439-11" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span></span>
+<span id="cb439-12"><a href="solutions-exercises.html#cb439-12" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb439-13"><a href="solutions-exercises.html#cb439-13" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Accent&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/chapter%204%20exercise%202c-2.png" width="672" /></p>
+</div>
+<div id="exercise-3-correlation-1" class="section level3 hasAnchor" number="6.3.3">
+<h3><span class="header-section-number">6.3.3</span> Exercise 3: Correlation<a href="solutions-exercises.html#exercise-3-correlation-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>a. Make a scatter plot where you plot <code>Sepal.length</code> on the x-axis and <code>Sepal.width</code> on the y-axis. Make the plot for the species <code>virginica</code></p>
+<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="solutions-exercises.html#cb440-1" tabindex="-1"></a><span class="co">#Preparing the data</span></span>
+<span id="cb440-2"><a href="solutions-exercises.html#cb440-2" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span></span>
+<span id="cb440-3"><a href="solutions-exercises.html#cb440-3" tabindex="-1"></a>  <span class="fu">filter</span>(Species <span class="sc">==</span> <span class="st">&quot;virginica&quot;</span>)</span>
+<span id="cb440-4"><a href="solutions-exercises.html#cb440-4" tabindex="-1"></a></span>
+<span id="cb440-5"><a href="solutions-exercises.html#cb440-5" tabindex="-1"></a><span class="co">#Making the plot</span></span>
+<span id="cb440-6"><a href="solutions-exercises.html#cb440-6" tabindex="-1"></a><span class="fu">ggplot</span>(d1, <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">y =</span> Sepal.Width)) <span class="sc">+</span></span>
+<span id="cb440-7"><a href="solutions-exercises.html#cb440-7" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/chapter%204%20exercise%203a-1.png" width="672" /></p>
+<p>b. Now I want you to add the species <code>versicolor</code> to the plot. The dots of this species should have a different color AND a different form.</p>
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="solutions-exercises.html#cb441-1" tabindex="-1"></a><span class="co">#Preparing the Data </span></span>
+<span id="cb441-2"><a href="solutions-exercises.html#cb441-2" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span></span>
+<span id="cb441-3"><a href="solutions-exercises.html#cb441-3" tabindex="-1"></a>  <span class="fu">filter</span>(Species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;virginica&quot;</span>, <span class="st">&quot;versicolor&quot;</span>)) </span>
+<span id="cb441-4"><a href="solutions-exercises.html#cb441-4" tabindex="-1"></a></span>
+<span id="cb441-5"><a href="solutions-exercises.html#cb441-5" tabindex="-1"></a><span class="co">#Making the Plot</span></span>
+<span id="cb441-6"><a href="solutions-exercises.html#cb441-6" tabindex="-1"></a><span class="fu">ggplot</span>(d1, <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">y =</span> Sepal.Width, </span>
+<span id="cb441-7"><a href="solutions-exercises.html#cb441-7" tabindex="-1"></a>               <span class="at">shape =</span> Species, <span class="at">color =</span> Species)) <span class="sc">+</span></span>
+<span id="cb441-8"><a href="solutions-exercises.html#cb441-8" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/chapter%204%20exercise%203b-1.png" width="672" /></p>
+<p>c. Make a nice plot! Add a theme, labels, and a nice title, increase the size of the forms and make play around with the colors.</p>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="solutions-exercises.html#cb442-1" tabindex="-1"></a><span class="co">#Making the Plot</span></span>
+<span id="cb442-2"><a href="solutions-exercises.html#cb442-2" tabindex="-1"></a><span class="fu">ggplot</span>(d1, <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">y =</span> Sepal.Width, </span>
+<span id="cb442-3"><a href="solutions-exercises.html#cb442-3" tabindex="-1"></a>               <span class="at">shape =</span> Species, <span class="at">color =</span> Species)) <span class="sc">+</span></span>
+<span id="cb442-4"><a href="solutions-exercises.html#cb442-4" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb442-5"><a href="solutions-exercises.html#cb442-5" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb442-6"><a href="solutions-exercises.html#cb442-6" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Relationship between Sepal Length and Sepal Width&quot;</span>,</span>
+<span id="cb442-7"><a href="solutions-exercises.html#cb442-7" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Sepal Length&quot;</span>, </span>
+<span id="cb442-8"><a href="solutions-exercises.html#cb442-8" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Sepal Width&quot;</span></span>
+<span id="cb442-9"><a href="solutions-exercises.html#cb442-9" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb442-10"><a href="solutions-exercises.html#cb442-10" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>) <span class="sc">+</span></span>
+<span id="cb442-11"><a href="solutions-exercises.html#cb442-11" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/chapter%204%20exercise%203c-1.png" width="672" /></p>
+</div>
+</div>
+<div id="chapter-4-loops-and-functions" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> Chapter 4: Loops and Functions<a href="solutions-exercises.html#chapter-4-loops-and-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="exercise-1-writing-a-loop-1" class="section level3 hasAnchor" number="6.4.1">
+<h3><span class="header-section-number">6.4.1</span> Exercise 1: Writing a loop<a href="solutions-exercises.html#exercise-1-writing-a-loop-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Write a <code>for</code> loop that prints the square of each number from 1 to 10</p>
+<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="solutions-exercises.html#cb443-1" tabindex="-1"></a><span class="co">#Assigning an object for a better workflow </span></span>
+<span id="cb443-2"><a href="solutions-exercises.html#cb443-2" tabindex="-1"></a>number <span class="ot">&lt;-</span> <span class="dv">10</span></span></code></pre></div>
+</div>
+<div id="exercise-2-writing-a-function-1" class="section level3 hasAnchor" number="6.4.2">
+<h3><span class="header-section-number">6.4.2</span> Exercise 2: Writing a function<a href="solutions-exercises.html#exercise-2-writing-a-function-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Write a function that takes the input x and squares it:</p>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="solutions-exercises.html#cb444-1" tabindex="-1"></a><span class="co">#Defining a function for squaring  </span></span>
+<span id="cb444-2"><a href="solutions-exercises.html#cb444-2" tabindex="-1"></a>sq <span class="ot">&lt;-</span> <span class="cf">function</span> (x) {          </span>
+<span id="cb444-3"><a href="solutions-exercises.html#cb444-3" tabindex="-1"></a>  x_squared <span class="ot">&lt;-</span> x<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb444-4"><a href="solutions-exercises.html#cb444-4" tabindex="-1"></a>  <span class="fu">return</span>(x_squared)</span>
+<span id="cb444-5"><a href="solutions-exercises.html#cb444-5" tabindex="-1"></a>}  </span>
+<span id="cb444-6"><a href="solutions-exercises.html#cb444-6" tabindex="-1"></a></span>
+<span id="cb444-7"><a href="solutions-exercises.html#cb444-7" tabindex="-1"></a><span class="co">#Defining a vector containing a vector from 1 to 10  </span></span>
+<span id="cb444-8"><a href="solutions-exercises.html#cb444-8" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)   </span>
+<span id="cb444-9"><a href="solutions-exercises.html#cb444-9" tabindex="-1"></a></span>
+<span id="cb444-10"><a href="solutions-exercises.html#cb444-10" tabindex="-1"></a><span class="co">#Applying the number  </span></span>
+<span id="cb444-11"><a href="solutions-exercises.html#cb444-11" tabindex="-1"></a><span class="fu">sq</span>(numbers)</span></code></pre></div>
+</div>
+<div id="exercise-3-the-midnight-formula-1" class="section level3 hasAnchor" number="6.4.3">
+<h3><span class="header-section-number">6.4.3</span> Exercise 3: The midnight Formula<a href="solutions-exercises.html#exercise-3-the-midnight-formula-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This is the midnight formula separated in two equations:</p>
+<p><span class="math inline">\(x_{1,2} = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}\)</span></p>
+<p>Make <strong>one function</strong> for the midnight formula, so the output are <span class="math inline">\(x_1\)</span> a d <span class="math inline">\(x_2\)</span>. Test it with a = 2, b = -6, c = -8</p>
+<p><strong>Hint</strong>: You need two split up the formula into two equations with two outputs.</p>
+<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="solutions-exercises.html#cb445-1" tabindex="-1"></a>mnf <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b, c) {</span>
+<span id="cb445-2"><a href="solutions-exercises.html#cb445-2" tabindex="-1"></a>  </span>
+<span id="cb445-3"><a href="solutions-exercises.html#cb445-3" tabindex="-1"></a>  x_1 <span class="ot">&lt;-</span> (<span class="sc">-</span>b <span class="sc">+</span> <span class="fu">sqrt</span>(b<span class="sc">^</span><span class="dv">2</span> <span class="sc">-</span> <span class="dv">4</span><span class="sc">*</span>a<span class="sc">*</span>c))<span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span>a)</span>
+<span id="cb445-4"><a href="solutions-exercises.html#cb445-4" tabindex="-1"></a>  </span>
+<span id="cb445-5"><a href="solutions-exercises.html#cb445-5" tabindex="-1"></a>  <span class="fu">print</span>(x_1)</span>
+<span id="cb445-6"><a href="solutions-exercises.html#cb445-6" tabindex="-1"></a>  </span>
+<span id="cb445-7"><a href="solutions-exercises.html#cb445-7" tabindex="-1"></a>  x_2 <span class="ot">&lt;-</span> (<span class="sc">-</span>b <span class="sc">-</span> <span class="fu">sqrt</span>(b<span class="sc">^</span><span class="dv">2</span> <span class="sc">-</span> <span class="dv">4</span><span class="sc">*</span>a<span class="sc">*</span>c))<span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span>a)</span>
+<span id="cb445-8"><a href="solutions-exercises.html#cb445-8" tabindex="-1"></a>  </span>
+<span id="cb445-9"><a href="solutions-exercises.html#cb445-9" tabindex="-1"></a>  <span class="fu">print</span>(x_2)</span>
+<span id="cb445-10"><a href="solutions-exercises.html#cb445-10" tabindex="-1"></a>  </span>
+<span id="cb445-11"><a href="solutions-exercises.html#cb445-11" tabindex="-1"></a>}   </span>
+<span id="cb445-12"><a href="solutions-exercises.html#cb445-12" tabindex="-1"></a>  </span>
+<span id="cb445-13"><a href="solutions-exercises.html#cb445-13" tabindex="-1"></a><span class="co">#Test it with these numbers (other numbers might throw an error if the number under the square root is negative)</span></span>
+<span id="cb445-14"><a href="solutions-exercises.html#cb445-14" tabindex="-1"></a><span class="fu">mnf</span>(<span class="dv">2</span>, <span class="dv">20</span>, <span class="dv">8</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="chapter-5-data-analysis" class="section level2 hasAnchor" number="6.5">
+<h2><span class="header-section-number">6.5</span> Chapter 5: Data Analysis<a href="solutions-exercises.html#chapter-5-data-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To understand linear regression, we do not have to load any complicated data. Let us assume, you are a market analyst and your customer is the production company of a series called “Breaking Thrones”. The production company wants to know how the viewers of the series judge the final episode. You conduct a survey and ask people on how satisfied they were with the season final and some social demographics. Here is your codebook:</p>
+<table>
+<colgroup>
+<col width="8%" />
+<col width="91%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>id</td>
+<td>The id of the respondent</td>
+</tr>
+<tr class="even">
+<td>satisfaction</td>
+<td>The answer to the question “How satisfied were you with the final episode of Breaking Throne?”, where 0 is completely dissatisfied and 10 completely satisfied</td>
+</tr>
+<tr class="odd">
+<td>age</td>
+<td>The age of the respondent</td>
+</tr>
+<tr class="even">
+<td>female</td>
+<td>The Gender of the respondent, where 0 = Male, 1 = Female</td>
+</tr>
+</tbody>
+</table>
+<p>Let us generate the data:</p>
+<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="solutions-exercises.html#cb446-1" tabindex="-1"></a><span class="co">#setting seed for reproduciability </span></span>
+<span id="cb446-2"><a href="solutions-exercises.html#cb446-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)  </span>
+<span id="cb446-3"><a href="solutions-exercises.html#cb446-3" tabindex="-1"></a></span>
+<span id="cb446-4"><a href="solutions-exercises.html#cb446-4" tabindex="-1"></a><span class="co">#Generating the data </span></span>
+<span id="cb446-5"><a href="solutions-exercises.html#cb446-5" tabindex="-1"></a>final_BT <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb446-6"><a href="solutions-exercises.html#cb446-6" tabindex="-1"></a>  <span class="at">id =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>),    </span>
+<span id="cb446-7"><a href="solutions-exercises.html#cb446-7" tabindex="-1"></a>  <span class="at">satisfaction =</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="at">mean =</span> <span class="dv">6</span>, <span class="at">sd =</span> <span class="fl">2.5</span>)),    </span>
+<span id="cb446-8"><a href="solutions-exercises.html#cb446-8" tabindex="-1"></a>  <span class="at">age =</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="at">mean =</span> <span class="dv">25</span>, <span class="at">sd =</span> <span class="dv">5</span>)),    </span>
+<span id="cb446-9"><a href="solutions-exercises.html#cb446-9" tabindex="-1"></a>  <span class="at">female =</span> <span class="fu">rbinom</span>(<span class="dv">10</span>, <span class="dv">1</span>, <span class="fl">0.5</span>)</span>
+<span id="cb446-10"><a href="solutions-exercises.html#cb446-10" tabindex="-1"></a>  )  </span>
+<span id="cb446-11"><a href="solutions-exercises.html#cb446-11" tabindex="-1"></a></span>
+<span id="cb446-12"><a href="solutions-exercises.html#cb446-12" tabindex="-1"></a><span class="co">#Print the Data Frame</span></span>
+<span id="cb446-13"><a href="solutions-exercises.html#cb446-13" tabindex="-1"></a><span class="fu">print</span>(final_BT)</span></code></pre></div>
+<pre><code>##    id satisfaction age female
+## 1   1            5  31      0
+## 2   2            5  27      0
+## 3   3           10  27      0
+## 4   4            6  26      0
+## 5   5            6  22      0
+## 6   6           10  34      0
+## 7   7            7  27      0
+## 8   8            3  15      0
+## 9   9            4  29      0
+## 10 10            5  23      1</code></pre>
+<div id="exercise-1-linear-regression-with-two-variables-1" class="section level3 hasAnchor" number="6.5.1">
+<h3><span class="header-section-number">6.5.1</span> Exercise 1: Linear Regression with two variables<a href="solutions-exercises.html#exercise-1-linear-regression-with-two-variables-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You want to know if age has an impact on the satisfaction with the last episode. You want to conduct a linear regression.</p>
+<p>a. Calculate <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> by hand</p>
+<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="solutions-exercises.html#cb448-1" tabindex="-1"></a><span class="co">#Calculating Covariance</span></span>
+<span id="cb448-2"><a href="solutions-exercises.html#cb448-2" tabindex="-1"></a>cov <span class="ot">&lt;-</span> <span class="fu">sum</span>((final_BT<span class="sc">$</span>age <span class="sc">-</span> <span class="fu">mean</span>(final_BT<span class="sc">$</span>age)) <span class="sc">*</span> (final_BT<span class="sc">$</span>satisfaction <span class="sc">-</span> <span class="fu">mean</span>(final_BT<span class="sc">$</span>satisfaction)))</span>
+<span id="cb448-3"><a href="solutions-exercises.html#cb448-3" tabindex="-1"></a>  </span>
+<span id="cb448-4"><a href="solutions-exercises.html#cb448-4" tabindex="-1"></a><span class="co">#Calculating Variance</span></span>
+<span id="cb448-5"><a href="solutions-exercises.html#cb448-5" tabindex="-1"></a>var <span class="ot">&lt;-</span> (<span class="fu">sum</span>((final_BT<span class="sc">$</span>age <span class="sc">-</span> <span class="fu">mean</span>(final_BT<span class="sc">$</span>age))<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb448-6"><a href="solutions-exercises.html#cb448-6" tabindex="-1"></a></span>
+<span id="cb448-7"><a href="solutions-exercises.html#cb448-7" tabindex="-1"></a><span class="co">#Calculating beta_1</span></span>
+<span id="cb448-8"><a href="solutions-exercises.html#cb448-8" tabindex="-1"></a>beta_1 <span class="ot">&lt;-</span> cov<span class="sc">/</span>var</span>
+<span id="cb448-9"><a href="solutions-exercises.html#cb448-9" tabindex="-1"></a></span>
+<span id="cb448-10"><a href="solutions-exercises.html#cb448-10" tabindex="-1"></a><span class="co">#printing beta_1</span></span>
+<span id="cb448-11"><a href="solutions-exercises.html#cb448-11" tabindex="-1"></a><span class="fu">print</span>(beta_1)</span></code></pre></div>
+<pre><code>## [1] 0.2466586</code></pre>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="solutions-exercises.html#cb450-1" tabindex="-1"></a><span class="co">#calculating beta 1</span></span>
+<span id="cb450-2"><a href="solutions-exercises.html#cb450-2" tabindex="-1"></a>beta_0 <span class="ot">&lt;-</span> <span class="fu">mean</span>(final_BT<span class="sc">$</span>satisfaction) <span class="sc">-</span> (beta_1 <span class="sc">*</span> <span class="fu">mean</span>(final_BT<span class="sc">$</span>age))</span>
+<span id="cb450-3"><a href="solutions-exercises.html#cb450-3" tabindex="-1"></a></span>
+<span id="cb450-4"><a href="solutions-exercises.html#cb450-4" tabindex="-1"></a><span class="co">#Print both</span></span>
+<span id="cb450-5"><a href="solutions-exercises.html#cb450-5" tabindex="-1"></a><span class="fu">print</span>(beta_0)</span></code></pre></div>
+<pre><code>## [1] -0.3377886</code></pre>
+<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="solutions-exercises.html#cb452-1" tabindex="-1"></a><span class="fu">print</span>(beta_1)</span></code></pre></div>
+<pre><code>## [1] 0.2466586</code></pre>
+<p>b. Calculate <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> automatically with R</p>
+<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="solutions-exercises.html#cb454-1" tabindex="-1"></a><span class="co">#Calculating it automatically</span></span>
+<span id="cb454-2"><a href="solutions-exercises.html#cb454-2" tabindex="-1"></a><span class="fu">summary</span>(m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(satisfaction <span class="sc">~</span> age, </span>
+<span id="cb454-3"><a href="solutions-exercises.html#cb454-3" tabindex="-1"></a>                 <span class="at">data =</span> final_BT))</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = satisfaction ~ age, data = final_BT)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.8153 -1.0820 -0.2053  0.8530  3.6780 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)  
+## (Intercept)  -0.3378     3.4796  -0.097   0.9251  
+## age           0.2467     0.1310   1.883   0.0964 .
+## ---
+## Signif. codes:  
+## 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.058 on 8 degrees of freedom
+## Multiple R-squared:  0.3072, Adjusted R-squared:  0.2206 
+## F-statistic: 3.547 on 1 and 8 DF,  p-value: 0.0964</code></pre>
+<p>c. Interpret all quantities of your result: Standard Error, t-statistic, p-value, confidence intervals and the <span class="math inline">\(R^2\)</span>.</p>
+<p>d. Check for influential outliers</p>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="solutions-exercises.html#cb456-1" tabindex="-1"></a><span class="co">#Cooks Distance can be calculated with a built-in function</span></span>
+<span id="cb456-2"><a href="solutions-exercises.html#cb456-2" tabindex="-1"></a>final_BT<span class="sc">$</span>cooks_distance <span class="ot">&lt;-</span> <span class="fu">cooks.distance</span>(m1) </span>
+<span id="cb456-3"><a href="solutions-exercises.html#cb456-3" tabindex="-1"></a></span>
+<span id="cb456-4"><a href="solutions-exercises.html#cb456-4" tabindex="-1"></a><span class="co">#Plotting it</span></span>
+<span id="cb456-5"><a href="solutions-exercises.html#cb456-5" tabindex="-1"></a><span class="fu">ggplot</span>(final_BT, <span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">y =</span> cooks_distance)) <span class="sc">+</span> </span>
+<span id="cb456-6"><a href="solutions-exercises.html#cb456-6" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">colour =</span> <span class="st">&quot;darkgreen&quot;</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span> </span>
+<span id="cb456-7"><a href="solutions-exercises.html#cb456-7" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Cook&#39;s Distance&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Independent Variables&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb456-8"><a href="solutions-exercises.html#cb456-8" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">1</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb456-9"><a href="solutions-exercises.html#cb456-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/chapter%206%20exercise%201d-1.png" width="672" /></p>
+</div>
+<div id="exercise-2-multivariate-regression-1" class="section level3 hasAnchor" number="6.5.2">
+<h3><span class="header-section-number">6.5.2</span> Exercise 2: Multivariate Regression<a href="solutions-exercises.html#exercise-2-multivariate-regression-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>a. Add the variable <code>female</code> to your regression</p>
+<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="solutions-exercises.html#cb457-1" tabindex="-1"></a><span class="fu">summary</span>(m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(satisfaction <span class="sc">~</span> age <span class="sc">+</span> female, </span>
+<span id="cb457-2"><a href="solutions-exercises.html#cb457-2" tabindex="-1"></a>                 <span class="at">data =</span> final_BT))</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = satisfaction ~ age + female, data = final_BT)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.8401 -1.1312 -0.0574  0.8001  3.6435 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept)  -0.1712     3.8481  -0.044    0.966
+## age           0.2418     0.1429   1.692    0.134
+## female       -0.3895     2.3662  -0.165    0.874
+## 
+## Residual standard error: 2.196 on 7 degrees of freedom
+## Multiple R-squared:  0.3099, Adjusted R-squared:  0.1127 
+## F-statistic: 1.571 on 2 and 7 DF,  p-value: 0.2731</code></pre>
+<p>b. Interpret the Output. What has changed? What stood the same?</p>
+<p>c. Make an interaction effect between age and female and interpret it!</p>
+<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="solutions-exercises.html#cb459-1" tabindex="-1"></a><span class="fu">summary</span>(m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(satisfaction <span class="sc">~</span> age <span class="sc">+</span> female <span class="sc">+</span> age<span class="sc">:</span>female, </span>
+<span id="cb459-2"><a href="solutions-exercises.html#cb459-2" tabindex="-1"></a>                 <span class="at">data =</span> final_BT))</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = satisfaction ~ age + female + age:female, data = final_BT)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.8401 -1.1312 -0.0574  0.8001  3.6435 
+## 
+## Coefficients: (1 not defined because of singularities)
+##             Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept)  -0.1712     3.8481  -0.044    0.966
+## age           0.2418     0.1429   1.692    0.134
+## female       -0.3895     2.3662  -0.165    0.874
+## age:female        NA         NA      NA       NA
+## 
+## Residual standard error: 2.196 on 7 degrees of freedom
+## Multiple R-squared:  0.3099, Adjusted R-squared:  0.1127 
+## F-statistic: 1.571 on 2 and 7 DF,  p-value: 0.2731</code></pre>
+<p>d. Plot the interaction and make the plot nice</p>
+<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="solutions-exercises.html#cb461-1" tabindex="-1"></a><span class="fu">plot_model</span>(m2, <span class="at">type =</span> <span class="st">&quot;int&quot;</span>) <span class="sc">+</span></span>
+<span id="cb461-2"><a href="solutions-exercises.html#cb461-2" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">60</span>, <span class="dv">1</span>)) <span class="sc">+</span> </span>
+<span id="cb461-3"><a href="solutions-exercises.html#cb461-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Relationship of Age and Gender on Satisfaction with BT.&quot;</span>,</span>
+<span id="cb461-4"><a href="solutions-exercises.html#cb461-4" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Age&quot;</span>, </span>
+<span id="cb461-5"><a href="solutions-exercises.html#cb461-5" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Satisfaction&quot;</span>) <span class="sc">+</span></span>
+<span id="cb461-6"><a href="solutions-exercises.html#cb461-6" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(</span>
+<span id="cb461-7"><a href="solutions-exercises.html#cb461-7" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>),</span>
+<span id="cb461-8"><a href="solutions-exercises.html#cb461-8" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Male&quot;</span>)</span>
+<span id="cb461-9"><a href="solutions-exercises.html#cb461-9" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb461-10"><a href="solutions-exercises.html#cb461-10" tabindex="-1"></a>  <span class="fu">theme_sjplot</span>() <span class="sc">+</span></span>
+<span id="cb461-11"><a href="solutions-exercises.html#cb461-11" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>, </span>
+<span id="cb461-12"><a href="solutions-exercises.html#cb461-12" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
+<pre><code>## Warning in predict.lm(model, newdata = data_grid,
+## type = &quot;response&quot;, se.fit = se, : prediction from
+## rank-deficient fit; attr(*, &quot;non-estim&quot;) has
+## doubtful cases</code></pre>
+<pre><code>## Scale for colour is already present.
+## Adding another scale for colour, which will replace
+## the existing scale.</code></pre>
+<p><img src="bookdownproj_files/figure-html/chapter%206%20exercise%202d-1.png" width="672" /></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-analysis.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": {}
+},
+"fontsettings": null,
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

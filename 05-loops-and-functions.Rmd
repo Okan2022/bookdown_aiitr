@@ -311,11 +311,7 @@ sq(numbers)
 
 This is the midnight formula separated in two equations:
 
-\$\$
-
-x\_{1,2} = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
-
-\$\$
+$x_{1,2} = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$
 
 Make **one function** for the midnight formula, so the output are $x_1$ a d $x_2$. Test it with a = 2, b = -6, c = -8
 

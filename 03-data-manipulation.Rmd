@@ -187,12 +187,17 @@ The first thing to do, when cleaning data is to load the data into R. The first 
 
 This table presents some of the most frequent data types, which you can download and load into R. There are of course more data types, and to find out if you can read them into R, you can just google the type and look for the command. Mostly you will find a package with a command. And mostly, those commands start with "read".
 
++---------------------------+----------------+----------------------------------------------+-------------------------+
 | File                      | File Extension | Package                                      | Command                 |
-|---------------------------|----------------|----------------------------------------------|-------------------------|
++===========================+================+==============================================+=========================+
 | **Stata**                 | .dta           | haven                                        | `read_dta()`            |
++---------------------------+----------------+----------------------------------------------+-------------------------+
 | **CSV-Files**             | .csv           | readr (is included in the tidyverse package) | `read_csv()`            |
++---------------------------+----------------+----------------------------------------------+-------------------------+
 | **Excel-Files**           | .xlsx; .xls    | readxl                                       | `read.rds()`            |
++---------------------------+----------------+----------------------------------------------+-------------------------+
 | **RData (also RDS Data)** | .RData;.rds    | base R functions, no package required        | `load()` , `read.rds()` |
++---------------------------+----------------+----------------------------------------------+-------------------------+
 
 : Examples of Different Data Types and how to load them into R
 
@@ -260,16 +265,25 @@ The first function I introduce you is the `filter()` function. Within the filter
 
     Here is a quick reminder of logical operators in R:
 
+    +--------------------------+----------------------------------------------------------------------------+
     | Logical Operator         | Meaning                                                                    |
-    |--------------------------|----------------------------------------------------------------------------|
+    +==========================+============================================================================+
     | ==                       | equals                                                                     |
+    +--------------------------+----------------------------------------------------------------------------+
     | \<                       | smaller than                                                               |
+    +--------------------------+----------------------------------------------------------------------------+
     | \>                       | greater than                                                               |
+    +--------------------------+----------------------------------------------------------------------------+
     | \<=                      | less than or equal to                                                      |
+    +--------------------------+----------------------------------------------------------------------------+
     | \>=                      | greater than or equal to                                                   |
+    +--------------------------+----------------------------------------------------------------------------+
     | ! (e.g. !=; \>!; \<!...) | not equal, not greater than, not smaller than                              |
+    +--------------------------+----------------------------------------------------------------------------+
     | &                        | element-wise AND operator. It returns TRUE if both elements are true       |
+    +--------------------------+----------------------------------------------------------------------------+
     | \|                       | element-wise OR operator. It returns TRUE if one of the statements is TRUE |
+    +--------------------------+----------------------------------------------------------------------------+
 
 #### Filtering for only one condition
 
@@ -1063,7 +1077,7 @@ f.  Rename the variables to more intuitive names, don't forget to name binary va
 g.  drop all missing values
 h.  Check out your new dataset
 
-```{r exercise 2.1, eval=FALSE}
+```{r ch3 exercise 1a, eval=FALSE}
 
 ```
 
@@ -1073,15 +1087,19 @@ The `gapminder` package in R loads automatically the gapminder dataset. The gapm
 
 a.  Get an overview of the gapminder dataset. There are different ways to do so, you can choose by yourself
 
-```{r exercise 2.2, eval=FALSE}
+```{r ch3 exercise 1b, eval=FALSE}
 
 ```
 
 b.  Load World Bank Data from 1972 to 2007 and load the variable "Exports and Goods (% of GDP)".
 c.  Merge the World Bank data to the gapminder data, so a dataset evolves with the number of observations of the gapminder data.
 
-```{r exercise 2.3, eval=FALSE}
+```{r ch3 exercise 1c, eval=FALSE}
   
 ```
 
 d\. Clean the data by dropping all missing values
+
+```{r ch3 exercise 1d, eval=FALSE}
+
+```

@@ -1,6 +1,6 @@
 # Fundamentals
 
-In this Chapter you will learn the user interface and basic functionalities in R. The user interface, as well as the basic functions for mathematical calculations. Further, you will be introduced to one of the most important logical operations: the if else function. The goal of this chapter is to give you an overview of RStudio and to give you a feeling and intuition for R by introducing you to mathematical concepts you already know. Do not forget, nobody is perfect, everyone has problems in the beginning and they can be frustrating, but that is most normal thing, when learning a new programming language. Have fun!
+In this Chapter you will learn the user interface and basic functions in R. The user interface, as well as the basic functions for mathematical calculations. Further, you will be introduced to one of the most important logical operations: the if else function. The goal of this chapter is to give you an overview of RStudio and to give you a feeling and intuition for R by introducing you to mathematical concepts you already know. Do not forget, nobody is perfect, everyone has problems in the beginning and they can be frustrating, but that is most normal thing, when learning a new programming language. Have fun!
 
 ## Getting familiar with RStudio and establishing a Workflow
 
@@ -184,7 +184,7 @@ print(prices_combined) #printing it
 Objects can contain information of different *data types*:
 
 |               |               |                                              |
-|-----------------|-----------------|--------------------------------------|
+|---------------|---------------|----------------------------------------------|
 | **Numeric**   | Numbers       | `c(1, 2.4, 3.14, 4)`                         |
 | **Character** | Text          | `c("1", "blue", "fun", "monster")`           |
 | **Logical**   | True or false | `c(TRUE, FALSE, TRUE, FALSE)`                |
