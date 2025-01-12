@@ -1,16 +1,143 @@
-# Exploratory Data Analysis (EDa)
+---
+editor_options: 
+  markdown: 
+    wrap: 72
+---
 
-In this Chapter we start into the main strength of R: Data Analysis. After 
-cleaning our data we are ready to analyze it, but it is always recommend to get
-an overview of our data with exploratory data analysis. This yields the 
-advantage that we can detect first trends and potential problems with our data.
-Furthermore, we will 
+# Exploratory Data Analysis (EDA)
 
-summarytools
-smartEDA
-skimr
-naniar
-Hmisc
-gtsummary
-dlookr
-DataExplorer
+In this Chapter we start into the main strength of R: Data Analysis.
+After cleaning our data we are ready to analyze it, but it is always
+recommend to get an overview of our data with exploratory data analysis.
+This yields the advantage that we can detect first trends and potential
+problems with our data. Furthermore, we will get a better understand of
+the Data Generating Process and how data is generated.
+
+Let us tart with loading packages and you will see, that we are loading
+a lot of packages due to the fact, that R is a statistical analysis
+software and therefore it is only natural that Statisticians and Data
+Scientists, who use R, are also writing packages to (1) make their own
+life easier, but also (2) further developing R.
+
+```{r loading packages eda}
+pacman::p_load("summarytools", "smartEDA", "skimr", 
+               "naniar", "Hmisc", "gtsummary", "dlookr",
+               "DataExplorer", "psych", "ggplot2")
+```
+
+## Descriptive Statistics Fundamentals
+
+The absolute Basics of EDA are metrics like mean, median and standard
+deviation, but efore we look at them it is crucial to understand, where
+these metrics come from. And to understand that we have to understand
+how Data is generated.
+
+### Random Variable
+
+We are interested in Data! And Data is nothing more than a bunch of
+**Random Variables.** Technically speaking, a Random Variable is a
+numerical outcome of a random process or experiment. Informally, let us
+say you want to collect Data about your family, just image all of them
+and now randomly pick some information about them, their height, their
+age, gender, glasses or not, cooking abilities, anything, and now you
+just need to find a system of assigning a number (e.g. height in cm, age
+in years,...) and et violà you collected a random variable.
+
+Let us say we collect the age of my mum, and if she wears glasses or not
+(1 = yes, 0 = No)
+
+```{r random variable}
+#creating a random variable
+age_mum <- 47
+glasses_mum <- 1
+
+#Print it
+print(age_mum)
+print(glasses_mum)
+```
+
+Well, my mum is 47 and she wears glasses. Both information, numerically
+expressed in random variables (age_mum, and glasses_mum).
+
+### Probability Distributions
+
+This data about my mom gives us information about one person, but
+working with quantitative methods means, to (guess what?) collect data
+quantitatively. Thus, we are mostly interested in a so-called
+**population.**
+
+In statistics, a **population** refers to the entire set of individuals,
+items, or data points that are of interest in a particular study. It
+represents the complete group about which you want to draw conclusions
+or make inferences.
+
+In my example, the population I would be interested in could not only be
+my mum, but all mums living in Germany. I want to know their heights and
+if they wear glasses or not.
+
+To get all the heights and if they wearing glasses of all mums in
+Germany would be a lot. According to the public statistic there are 20
+million mothers in Germany. But that is no problem, we can take smaller
+subset of the population, selected for analysis. This is called a
+**sample**. Let us simulate 1000 mothers, their heights and if they wear
+glasses and simulate it in R, put it in a data frame and visualize it:
+
+```{r simulating sample}
+
+#Simulating sample
+sample_mum <- data.frame(
+  name = rep("mum", 1000),
+  height = rnorm(1000, mean = 165.8, sd = 9),
+  glasses = as.factor(rbinom(1000, 1, 0.33))
+)
+
+#print it
+head(sample_mum)
+
+#Making a histogram for the heights
+ggplot(sample_mum, aes(x = height)) +
+  geom_histogram(binwidth = 2, color = "white", fill = "#FC4E2A") +
+  labs(
+    x = "Height (in cm)",
+    y = "Count"
+  ) +
+  theme_bw()
+
+#Making a bar plot for glasses
+ggplot(sample_mum, aes(x = glasses)) +
+  geom_bar(fill = "#FC4E2A", width = 0.5) +
+  labs(
+    x = "",
+    y = ""
+  ) +
+  scale_x_discrete(labels = c("0" = "No Glasses", "1" = "Wearing Glasses")) +
+  theme_bw()
+
+```
+
+Random variable and Sampling PDFs and CDFs Median, Mean, Mode Variance
+and Standard Deviation Quantiles & IQR
+
+summarytools: Showcase descr() to display summary statistics with
+additional formatting. skimr: Use skim() to summarize a dataset and its
+variables. Hmisc: Show functions like describe() for comprehensive
+descriptive statistics.
+
+## Summarizing Categorical Data
+
+Frequency Tables & Proportional Tables Package Focus: gtsummary:
+Demonstrate how to generate detailed summary tables for categorical data
+with tbl_summary(). smartEDA: Show how to use smartEDA() to generate
+statistics and visualizations for categorical variables. dlookr:
+Highlight its automatic analysis and visual presentation of categorical
+variables.
+
+## Correlation
+
+Cross-Tabulations Correlational Analysis
+
+## Conclusion
+
+Key Take aways
+
+## Exercises
