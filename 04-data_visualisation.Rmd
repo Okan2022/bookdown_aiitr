@@ -4,7 +4,7 @@ In this chapter, I will introduce you to the most fun part in R, data visualisat
 
 ```{r loading packages viz}
 pacman::p_load("tidyverse", "babynames", "sf", "ggridges",
-               "rnaturalearth", "forcats" ,"tmap")
+               "rnaturalearth", "rnaturalearthdata" ,"forcats" ,"tmap")
 ```
 
 ## Introduction to `ggplot2`

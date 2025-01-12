@@ -47,7 +47,7 @@ if (!require("pacman")) install.packages("pacman")
 ```
 
 ```{r pacman}
-pacman::p_load("tidyverse", "psych", "WDI", "gapminder") #loading packages
+pacman::p_load("tidyverse", "psych", "gapminder") #loading packages
 ```
 
 ## The Data we will work with: The European Social Survey (ESS)
