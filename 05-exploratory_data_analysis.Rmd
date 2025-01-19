@@ -1,23 +1,8 @@
----
-editor_options: 
-  markdown: 
-    wrap: 72
----
-
 # Exploratory Data Analysis (EDA)
 
-In this Chapter we start into the main strength of R: Data Analysis.
-After cleaning our data we are ready to analyze it, but it is always
-recommend to get an overview of our data with exploratory data analysis.
-This yields the advantage that we can detect first trends and potential
-problems with our data. Furthermore, we will get a better understand of
-the Data Generating Process and how data is generated.
+In this Chapter we start into the main strength of R: Data Analysis. After cleaning our data we are ready to analyze it, but it is always recommend to get an overview of our data with exploratory data analysis. This yields the advantage that we can detect first trends and potential problems with our data. Furthermore, we will get a better understand of the Data Generating Process and how data is generated.
 
-Let us tart with loading packages and you will see, that we are loading
-a lot of packages due to the fact, that R is a statistical analysis
-software and therefore it is only natural that Statisticians and Data
-Scientists, who use R, are also writing packages to (1) make their own
-life easier, but also (2) further developing R.
+Let us tart with loading packages and you will see, that we are loading a lot of packages due to the fact, that R is a statistical analysis software and therefore it is only natural that Statisticians and Data Scientists, who use R, are also writing packages to (1) make their own life easier, but also (2) further developing R.
 
 ```{r loading packages eda}
 pacman::p_load("summarytools", "smartEDA", "skimr", 
@@ -27,62 +12,40 @@ pacman::p_load("summarytools", "smartEDA", "skimr",
 
 ## Descriptive Statistics Fundamentals
 
-The absolute Basics of EDA are metrics like mean, median and standard
-deviation, but efore we look at them it is crucial to understand, where
-these metrics come from. And to understand that we have to understand
-how Data is generated.
+The absolute Basics of EDA are metrics like mean, median and standard deviation, but efore we look at them it is crucial to understand, where these metrics come from. And to understand that we have to understand how Data is generated.
 
 ### Random Variable
 
-We are interested in Data! And Data is nothing more than a bunch of
-**Random Variables.** Technically speaking, a Random Variable is a
-numerical outcome of a random process or experiment. Informally, let us
-say you want to collect Data about your family, just image all of them
-and now randomly pick some information about them, their height, their
-age, gender, glasses or not, cooking abilities, anything, and now you
-just need to find a system of assigning a number (e.g. height in cm, age
-in years,...) and et violà you collected a random variable.
+We are interested in Data! And Data is nothing more than a bunch of **Random Variables.** Technically speaking, a Random Variable is a numerical outcome of a random process or experiment. Informally, let us say you want to collect Data about your family, just image all of them and now randomly pick some information about them, their height, their age, gender, glasses or not, cooking abilities, anything, and now you just need to find a system of assigning a number (e.g. height in cm, age in years,...) and et violà you collected a random variable.
 
-Let us say we collect the age of my mum, and if she wears glasses or not
-(1 = yes, 0 = No)
+Let us say we collect the age of my mum, and if she wears glasses or not (1 = yes, 0 = No)
 
 ```{r random variable}
 #creating a random variable
-age_mum <- 47
+height_mum <- 1.57
 glasses_mum <- 1
 
 #Print it
-print(age_mum)
+print(paste0(height_mum, "m"))
 print(glasses_mum)
 ```
 
-Well, my mum is 47 and she wears glasses. Both information, numerically
-expressed in random variables (age_mum, and glasses_mum).
+Well, my mum is 1.57 m and she wears glasses. Both information, numerically expressed in random variables (age_mum, and glasses_mum).
 
 ### Probability Distributions
 
-This data about my mom gives us information about one person, but
-working with quantitative methods means, to (guess what?) collect data
-quantitatively. Thus, we are mostly interested in a so-called
-**population.**
+This data about my mom gives us information about one person, but working with quantitative methods means, to (guess what?) collect data quantitatively. Thus, we are mostly interested in a so-called **population.**
 
-In statistics, a **population** refers to the entire set of individuals,
-items, or data points that are of interest in a particular study. It
-represents the complete group about which you want to draw conclusions
-or make inferences.
+In statistics, a **population** refers to the entire set of individuals, items, or data points that are of interest in a particular study. It represents the complete group about which you want to draw conclusions or make inferences.
 
-In my example, the population I would be interested in could not only be
-my mum, but all mums living in Germany. I want to know their heights and
-if they wear glasses or not.
+In my example, the population I would be interested in could not only be my mum, but all mums living in Germany. I want to know their heights and if they wear glasses or not.
 
-To get all the heights and if they wearing glasses of all mums in
-Germany would be a lot. According to the public statistic there are 20
-million mothers in Germany. But that is no problem, we can take smaller
-subset of the population, selected for analysis. This is called a
-**sample**. Let us simulate 1000 mothers, their heights and if they wear
-glasses and simulate it in R, put it in a data frame and visualize it:
+To get all the heights and if they wearing glasses of all mums in Germany would be a lot. According to the public statistic there are 20 million mothers in Germany. But that is no problem, we can take smaller subset of the population, selected for analysis. This is called a **sample**. Let us simulate 1000 mothers, their heights and if they wear glasses and simulate it in R, put it in a data frame and visualize it:
 
 ```{r simulating sample}
+
+#Setting seed for reproduciability
+set.seed(123)
 
 #Simulating sample
 sample_mum <- data.frame(
@@ -115,22 +78,49 @@ ggplot(sample_mum, aes(x = glasses)) +
 
 ```
 
-Random variable and Sampling PDFs and CDFs Median, Mean, Mode Variance
-and Standard Deviation Quantiles & IQR
+Now, we have sampled the information we need! We know how the heights of our representative sample is distributed, as well as the distribution of mums with or without glasses.
 
-summarytools: Showcase descr() to display summary statistics with
-additional formatting. skimr: Use skim() to summarize a dataset and its
-variables. Hmisc: Show functions like describe() for comprehensive
-descriptive statistics.
+Let us now calculate some properties of these two distributions and get more information about them. We start by asking the question: What is the average height of a mum in Germany? We can simply calculate that by calling the respective column in our dataset `sample_mum$height` and wrap it into the built-in function of `R`: `mean()`
+
+```{r mean sample mum}
+mean_mum <- mean(sample_mum$height)
+print(mean_mum)
+```
+
+Alright, the average height of a mum in Germany is 165 cm. But the PDF contains more information. For example, we could be interested in the dispersion and spread of the distribution, and could be interested in the Variance of the Distribution. The Variance tells us how much the data points are deviate from the average value. A low variance indicates that data points are close to the mean, while a high variance indicates more spread. In R, we can calculate the variance by wrapping our data (df\$height) into the var() function:
+
+```{r}
+#Calculate Variance
+var_mum <- var(sample_mum$height)
+print(var_mum)
+```
+
+The variance is around 80, the problem with variance is, that it is a squared unit, but to make the interpretation more intuitive, we can take the square root and thus calculate the **standard deviation**. As the name suggests the standard deviation tells us that the data points typically deviate from the mean. We can calculate it by calling the sd() function (of course it would also work if we take the square root of the var_mum object:
+
+```{r}
+sd_mum <- sd(sample_mum$height)
+print(sd_mum)
+```
+
+So, the height of mums in Germany typically deviates by 8.9 cm from the average height of mums 165cm, meaning that typically a mum in Germany is between 156.1 cm (165 cm  - 8.9 cm) and 164.9 cm (165 cm + 8.9 cm).
+
+#### Calculating Probabilities with Probability Functions 
+
+The distribution of the heights of our sample is a so-called Probability Density Function (PDF) and the Probability Mass Function (PMF). A **Probability Density Function (PDF)** describes the likelihood of a continuous random variable (the height of a random German mum) taking on a particular value or falling within a specific range of values.
+
+Let us start working with the PDF and find out the answer to the question: How likely is it to meet a mum in Germany who has the same height as my mum (1.57m)?
+
+We could solve this problem mathematically, which the built-in R function
+
+To do so, we simple have to look, where my mum is located in the distribution
+
+Random variable and Sampling PDFs and CDFs Median, Mean, Mode Variance and Standard Deviation Quantiles & IQR
+
+summarytools: Showcase descr() to display summary statistics with additional formatting. skimr: Use skim() to summarize a dataset and its variables. Hmisc: Show functions like describe() for comprehensive descriptive statistics.
 
 ## Summarizing Categorical Data
 
-Frequency Tables & Proportional Tables Package Focus: gtsummary:
-Demonstrate how to generate detailed summary tables for categorical data
-with tbl_summary(). smartEDA: Show how to use smartEDA() to generate
-statistics and visualizations for categorical variables. dlookr:
-Highlight its automatic analysis and visual presentation of categorical
-variables.
+Frequency Tables & Proportional Tables Package Focus: gtsummary: Demonstrate how to generate detailed summary tables for categorical data with tbl_summary(). smartEDA: Show how to use smartEDA() to generate statistics and visualizations for categorical variables. dlookr: Highlight its automatic analysis and visual presentation of categorical variables.
 
 ## Correlation
 
