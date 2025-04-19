@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Exploratory Data Analysis (EDa) | An intuitive Introduction to R</title>
-  <meta name="description" content="Chapter 4 Exploratory Data Analysis (EDa) | An intuitive Introduction to R" />
+  <title>Chapter 4 Exploratory Data Analysis (EDA) | An intuitive Introduction to R</title>
+  <meta name="description" content="Chapter 4 Exploratory Data Analysis (EDA) | An intuitive Introduction to R" />
   <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Exploratory Data Analysis (EDa) | An intuitive Introduction to R" />
+  <meta property="og:title" content="Chapter 4 Exploratory Data Analysis (EDA) | An intuitive Introduction to R" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Exploratory Data Analysis (EDa) | An intuitive Introduction to R" />
+  <meta name="twitter:title" content="Chapter 4 Exploratory Data Analysis (EDA) | An intuitive Introduction to R" />
   
   
   
@@ -23,7 +23,7 @@
 <meta name="author" content="Okan Sarioglu" />
 
 
-<meta name="date" content="2025-01-12" />
+<meta name="date" content="2025-04-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -208,7 +208,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.8" data-path="data-visualisation.html"><a href="data-visualisation.html#outlook-3"><i class="fa fa-check"></i><b>3.8</b> Outlook</a></li>
 <li class="chapter" data-level="3.9" data-path="data-visualisation.html"><a href="data-visualisation.html#exercise-section-2"><i class="fa fa-check"></i><b>3.9</b> Exercise Section</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="exploratory-data-analysis-eda.html"><a href="exploratory-data-analysis-eda.html"><i class="fa fa-check"></i><b>4</b> Exploratory Data Analysis (EDa)</a></li>
+<li class="chapter" data-level="4" data-path="exploratory-data-analysis-eda.html"><a href="exploratory-data-analysis-eda.html"><i class="fa fa-check"></i><b>4</b> Exploratory Data Analysis (EDA)</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="exploratory-data-analysis-eda.html"><a href="exploratory-data-analysis-eda.html#standard-descriptive-statistics"><i class="fa fa-check"></i><b>4.1</b> Standard Descriptive Statistics</a></li>
+<li class="chapter" data-level="4.2" data-path="exploratory-data-analysis-eda.html"><a href="exploratory-data-analysis-eda.html#working-with-eda-packages"><i class="fa fa-check"></i><b>4.2</b> Working with EDA packages</a></li>
+<li class="chapter" data-level="4.3" data-path="exploratory-data-analysis-eda.html"><a href="exploratory-data-analysis-eda.html#conclusion"><i class="fa fa-check"></i><b>4.3</b> Conclusion</a></li>
+</ul></li>
 <li class="chapter" data-level="5" data-path="data-analysis.html"><a href="data-analysis.html"><i class="fa fa-check"></i><b>5</b> Data Analysis</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="data-analysis.html"><a href="data-analysis.html#linear-regression"><i class="fa fa-check"></i><b>5.1</b> Linear Regression</a></li>
@@ -256,21 +261,2897 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="exploratory-data-analysis-eda" class="section level1 hasAnchor" number="4">
-<h1><span class="header-section-number">Chapter 4</span> Exploratory Data Analysis (EDa)<a href="exploratory-data-analysis-eda.html#exploratory-data-analysis-eda" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>In this Chapter we start into the main strength of R: Data Analysis. After
-cleaning our data we are ready to analyze it, but it is always recommend to get
-an overview of our data with exploratory data analysis. This yields the
-advantage that we can detect first trends and potential problems with our data.
-Furthermore, we will</p>
-<p>summarytools
-smartEDA
-skimr
-naniar
-Hmisc
-gtsummary
-dlookr
-DataExplorer</p>
+<h1><span class="header-section-number">Chapter 4</span> Exploratory Data Analysis (EDA)<a href="exploratory-data-analysis-eda.html#exploratory-data-analysis-eda" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In this chapter, we will start with data analysis. One crucial step when analyzing data is Exploratory Data Analysis. It describes the process of analyzing data sets to summarize their main characteristics. This step can help understanding the data, checking its quality, early detecting patterns and trends and gain first insights!</p>
+<p>Since R is a software specifically designed for statistics, we have a lot of high value libraries to perform EDA. The dataset we will use for this part is called <code>palmerpenguins</code>. This is a dataset about penguin species and their attributes.</p>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="exploratory-data-analysis-eda.html#cb267-1" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(<span class="st">&quot;summarytools&quot;</span>, <span class="st">&quot;SmartEDA&quot;</span>, <span class="st">&quot;skimr&quot;</span>, </span>
+<span id="cb267-2"><a href="exploratory-data-analysis-eda.html#cb267-2" tabindex="-1"></a>               <span class="st">&quot;naniar&quot;</span>, <span class="st">&quot;gtsummary&quot;</span>, <span class="st">&quot;dlookr&quot;</span>,</span>
+<span id="cb267-3"><a href="exploratory-data-analysis-eda.html#cb267-3" tabindex="-1"></a>               <span class="st">&quot;DataExplorer&quot;</span>, <span class="st">&quot;psych&quot;</span>, <span class="st">&quot;ggplot2&quot;</span>,</span>
+<span id="cb267-4"><a href="exploratory-data-analysis-eda.html#cb267-4" tabindex="-1"></a>               <span class="st">&quot;palmerpenguins&quot;</span>, <span class="st">&quot;dplyr&quot;</span>, <span class="st">&quot;tidyr&quot;</span>, <span class="st">&quot;corrplot&quot;</span>)</span>
+<span id="cb267-5"><a href="exploratory-data-analysis-eda.html#cb267-5" tabindex="-1"></a></span>
+<span id="cb267-6"><a href="exploratory-data-analysis-eda.html#cb267-6" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(penguins)</span>
+<span id="cb267-7"><a href="exploratory-data-analysis-eda.html#cb267-7" tabindex="-1"></a>penguins_raw <span class="ot">&lt;-</span> penguins_raw</span></code></pre></div>
+<div id="standard-descriptive-statistics" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Standard Descriptive Statistics<a href="exploratory-data-analysis-eda.html#standard-descriptive-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="measures-of-central-tendency" class="section level3 hasAnchor" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Measures of Central Tendency<a href="exploratory-data-analysis-eda.html#measures-of-central-tendency" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As the name suggests, measures of central tendency are helping us to understand the probability distribution of the data, its center and typical values. The three most common measures of central tendency are the arithmetic mean, the median and the mode.</p>
+<ul>
+<li><p><strong>Mode:</strong> The most frequent number</p></li>
+<li><p><strong>Mean:</strong> The sum of all values divided by the total number of values</p></li>
+<li><p><strong>Median:</strong> The middle number in an ordered dataset</p></li>
+</ul>
+<div id="mode" class="section level4 hasAnchor" number="4.1.1.1">
+<h4><span class="header-section-number">4.1.1.1</span> Mode<a href="exploratory-data-analysis-eda.html#mode" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The mode is probably the easiest measure out of all measures: It is defined as the most frequent number of all observations. We cannot directly calculate the mode, but there is a way to it. First we look at all unique values of or observations with the <code>unique()</code> function, then we count the occurrences of each unique value with <code>tabulate()</code>, and lastly we use the <code>which.max()</code> function to get the most frequent unique value:</p>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="exploratory-data-analysis-eda.html#cb268-1" tabindex="-1"></a>uniq_vals <span class="ot">&lt;-</span> <span class="fu">unique</span>(penguins<span class="sc">$</span>bill_length_mm)  <span class="co"># Get unique values</span></span>
+<span id="cb268-2"><a href="exploratory-data-analysis-eda.html#cb268-2" tabindex="-1"></a>freqs <span class="ot">&lt;-</span> <span class="fu">tabulate</span>(<span class="fu">match</span>(penguins<span class="sc">$</span>bill_length_mm, uniq_vals))  <span class="co"># Count occurrences</span></span>
+<span id="cb268-3"><a href="exploratory-data-analysis-eda.html#cb268-3" tabindex="-1"></a>uniq_vals[<span class="fu">which.max</span>(freqs)] <span class="co"># Getting the unique value with the most occurrences</span></span></code></pre></div>
+<pre><code>## [1] 41.1</code></pre>
+</div>
+<div id="mean" class="section level4 hasAnchor" number="4.1.1.2">
+<h4><span class="header-section-number">4.1.1.2</span> Mean<a href="exploratory-data-analysis-eda.html#mean" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Let us start by looking at the formula to calculate a mean:</p>
+<p><span class="math display">\[
+\bar{x} = \frac{\sum{x_i}}{n}
+\]</span></p>
+<p>whereas:</p>
+<ul>
+<li><p><span class="math inline">\(\bar{x}\)</span> is our mean</p></li>
+<li><p><span class="math inline">\(\sum{x_i}\)</span> is the sum of all our observations.</p></li>
+<li><p><span class="math inline">\(n\)</span> is the number of all our observations</p></li>
+</ul>
+<p>We could do that by hand or we just use the built-in <code>mean()</code> function:</p>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="exploratory-data-analysis-eda.html#cb270-1" tabindex="-1"></a><span class="fu">mean</span>(penguins<span class="sc">$</span>bill_length_mm)</span></code></pre></div>
+<pre><code>## [1] 43.99279</code></pre>
+</div>
+<div id="median" class="section level4 hasAnchor" number="4.1.1.3">
+<h4><span class="header-section-number">4.1.1.3</span> Median<a href="exploratory-data-analysis-eda.html#median" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Image sorting all your data from the lowest to highest and then pointing at the value, which has exactly 50% of all values to its left and the other 50% to its right, this would be the median value. Well, at least you will point at a value if your distribution has an yeven number of observations. But you can also calculate the value for an uneven number of observations, let us have a look at both formulas:</p>
+<ul>
+<li><p>$ X_{()} $ for an even number of <em>n</em></p></li>
+<li><p>$ X_{()} + X_{( + 1)} $</p>
+<p>for an uneven number of <em>n</em></p></li>
+</ul>
+<p>Again we could calculate that by hand or we just use the <code>median()</code> function:</p>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="exploratory-data-analysis-eda.html#cb272-1" tabindex="-1"></a><span class="fu">median</span>(penguins<span class="sc">$</span>bill_length_mm)</span></code></pre></div>
+<pre><code>## [1] 44.5</code></pre>
+</div>
+</div>
+<div id="measures-of-dispersion" class="section level3 hasAnchor" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> Measures of Dispersion<a href="exploratory-data-analysis-eda.html#measures-of-dispersion" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In statistics, measures of dispersion describe the extent to which a distribution of a variable is stretched or squeezed. In other words, they help to gauge the spread of our distributions.</p>
+<div id="interquartile-range-iqr" class="section level4 hasAnchor" number="4.1.2.1">
+<h4><span class="header-section-number">4.1.2.1</span> Interquartile Range (IQR)<a href="exploratory-data-analysis-eda.html#interquartile-range-iqr" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>You remember the boxplot from the data visualization chapter? It is supposed to show the so-called interquartile range (IQR). It is defined as the difference between the 75th percentile (or third quartile) and the 25th percentile (or the first quartile). Basically the distribution is spread into four equally big areas, which are separated by three points, the first quartile denoted by <span class="math inline">\(Q_1\)</span> (also called the lower quartile), the second quartile is the median and denoted as <span class="math inline">\(Q_2\)</span>, and the third quartile is measures of dispersiondenoted by <span class="math inline">\(Q_3\)</span> (also called the upper quartile), thus the formula is:</p>
+<p><span class="math display">\[
+IQR = Q_3 - Q_1
+\]</span></p>
+<p>In R, we can calculate the <strong>Interquartile Range (IQR)</strong> using the <code>IQR()</code> function. By hand, we would:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Sort the data</strong> in ascending order.</p></li>
+<li><p><strong>Split the data into four equal parts</strong> (quartiles).</p></li>
+<li><p>Identify <strong>Q1 (first quartile, 25th percentile)</strong> and <strong>Q3 (third quartile, 75th percentile)</strong>.</p></li>
+</ol>
+<p>Note that in some cases the data cannot be divided into four even parts ddue to their size. In such cases, different statistical methods (e.g. Tukey’s Hinges) approximate quartiles in such cases.</p>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="exploratory-data-analysis-eda.html#cb274-1" tabindex="-1"></a><span class="fu">IQR</span>(penguins<span class="sc">$</span>bill_length_mm)</span></code></pre></div>
+<pre><code>## [1] 9.1</code></pre>
+</div>
+<div id="variance" class="section level4 hasAnchor" number="4.1.2.2">
+<h4><span class="header-section-number">4.1.2.2</span> Variance<a href="exploratory-data-analysis-eda.html#variance" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>In statistics, the variance is the expected value of the squared deviation from the mean of our random variable. The concept of the mean gets clear if we break down its formula:</p>
+<p><span class="math display">\[
+s² = \frac{\sum(x_i - \bar{x})²}{n-1}
+\]</span></p>
+<p>where</p>
+<ul>
+<li><p>the index <em>i</em> runs over the observations (Respondents, Countries,…), <em>i</em> = 1,…,<em>n</em></p></li>
+<li><p><span class="math inline">\(x_i\)</span> are our observations</p></li>
+<li><p><span class="math inline">\(\bar{x}\)</span> is the mean of our distribution</p></li>
+<li><p><span class="math inline">\(n\)</span> is the number of observations</p></li>
+</ul>
+<p>Especially the nominator of the formula <span class="math inline">\(\sum(x_i - \bar{x})²\)</span> is quite interesting because it uses an interesting technique:</p>
+<p>Image our data is aligned on one dimension and somewhere in the middle there is our mean:</p>
+<p>Now, image we would calculate the differences and sum them up without squaring.</p>
+<p>You see that distance 1 would be -3 and distance 2 would be 4 an in sum that makes 0,8, but that is for sure not the distance between those two points. Here comes the squared part into action, every squared number is positive, this ensures that -3 becomes 9 and 4 becomes 16, thus the differences can be summed and result in 24.</p>
+<p>In R, we can implement this by simply calling the var() function:</p>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="exploratory-data-analysis-eda.html#cb276-1" tabindex="-1"></a><span class="fu">var</span>(penguins<span class="sc">$</span>bill_length_mm)</span></code></pre></div>
+<pre><code>## [1] 29.90633</code></pre>
+<p>Well we get 29.9 and the problem with variance is, that the squaring technique I showed you earlier leads to a problem: We cannot really interpret the data because it loses its unit, for example if our data is in meter, the variance would be in square meters. But we can solve this problem with the next measure: standard deviation.</p>
+</div>
+<div id="standard-deviation" class="section level4 hasAnchor" number="4.1.2.3">
+<h4><span class="header-section-number">4.1.2.3</span> Standard Deviation<a href="exploratory-data-analysis-eda.html#standard-deviation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The standard deviation is the square root of the variance. It describes the amount of variation of the values of a variables about its mean. A low standard deviation indicate closeness of the values to the mean, and a high standard deviation indicates that the values are spread out over a wider range.</p>
+<p>The standard deviation is the square root of the variance:</p>
+<p><span class="math display">\[
+s = \sqrt{s²} = \sqrt\frac{\sum(x_i - \bar{x})}{n-1}
+\]</span></p>
+<p>Remember our example?:</p>
+<p>We calculated the variance the distance of the squared sums to be 24 (9 + 16). However, what happens if we take the square root of the squared values before adding them? Well, we get 3 for distance 1 and 4 for distance 2. For distance 2 nothing changed, it came back to its original value 4, but distance 1 has become positive from -3 to 3. Now we can add it together and get the distance 7.</p>
+<p>Let us apply it in R, with the function <code>sd()</code>:</p>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="exploratory-data-analysis-eda.html#cb278-1" tabindex="-1"></a><span class="fu">sd</span>(penguins<span class="sc">$</span>bill_length_mm)</span></code></pre></div>
+<pre><code>## [1] 5.468668</code></pre>
+<p>The huge advantage of the standard deviation in comparison to the variance is that it can be interpreted in the original unit and is thus a more intuitive measure of dispersion to work with.</p>
+</div>
+</div>
+<div id="relationships-between-variables" class="section level3 hasAnchor" number="4.1.3">
+<h3><span class="header-section-number">4.1.3</span> Relationships between Variables<a href="exploratory-data-analysis-eda.html#relationships-between-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>It is necessary to understand one key difference in EDA. There are values you simply look at and interpret such as the measures shown before. But on the other hand there are measures which look at the relationship between variables, thus analyzing how they interact which each other. In the following, we will look at two methods to do so.</p>
+<div id="crosstables-contingency-tables" class="section level4 hasAnchor" number="4.1.3.1">
+<h4><span class="header-section-number">4.1.3.1</span> Crosstables / Contingency Tables<a href="exploratory-data-analysis-eda.html#crosstables-contingency-tables" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="exploratory-data-analysis-eda.html#cb280-1" tabindex="-1"></a><span class="fu">table</span>(penguins<span class="sc">$</span>species, penguins<span class="sc">$</span>island)</span></code></pre></div>
+<pre><code>##            
+##             Biscoe Dream Torgersen
+##   Adelie        44    55        47
+##   Chinstrap      0    68         0
+##   Gentoo       119     0         0</code></pre>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="exploratory-data-analysis-eda.html#cb282-1" tabindex="-1"></a>summarytools<span class="sc">::</span><span class="fu">ctable</span>(penguins<span class="sc">$</span>species, penguins<span class="sc">$</span>island)</span></code></pre></div>
+<pre><code>## Cross-Tabulation, Row Proportions  
+## species * island  
+## Data Frame: penguins  
+## 
+## ----------- -------- -------------- -------------- ------------ --------------
+##               island         Biscoe          Dream    Torgersen          Total
+##     species                                                                   
+##      Adelie             44 ( 30.1%)    55 ( 37.7%)   47 (32.2%)   146 (100.0%)
+##   Chinstrap              0 (  0.0%)    68 (100.0%)    0 ( 0.0%)    68 (100.0%)
+##      Gentoo            119 (100.0%)     0 (  0.0%)    0 ( 0.0%)   119 (100.0%)
+##       Total            163 ( 48.9%)   123 ( 36.9%)   47 (14.1%)   333 (100.0%)
+## ----------- -------- -------------- -------------- ------------ --------------</code></pre>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="exploratory-data-analysis-eda.html#cb284-1" tabindex="-1"></a>gtsummary<span class="sc">::</span><span class="fu">tbl_cross</span>(<span class="at">data =</span> penguins, </span>
+<span id="cb284-2"><a href="exploratory-data-analysis-eda.html#cb284-2" tabindex="-1"></a>                     <span class="at">row =</span> species, </span>
+<span id="cb284-3"><a href="exploratory-data-analysis-eda.html#cb284-3" tabindex="-1"></a>                     <span class="at">col =</span> island)</span></code></pre></div>
+<div id="qipzyayjvz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#qipzyayjvz table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
+#qipzyayjvz thead, #qipzyayjvz tbody, #qipzyayjvz tfoot, #qipzyayjvz tr, #qipzyayjvz td, #qipzyayjvz th {
+  border-style: none;
+}
+
+#qipzyayjvz p {
+  margin: 0;
+  padding: 0;
+}
+
+#qipzyayjvz .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#qipzyayjvz .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#qipzyayjvz .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#qipzyayjvz .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#qipzyayjvz .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#qipzyayjvz .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#qipzyayjvz .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#qipzyayjvz .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#qipzyayjvz .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#qipzyayjvz .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#qipzyayjvz .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#qipzyayjvz .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#qipzyayjvz .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#qipzyayjvz .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#qipzyayjvz .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#qipzyayjvz .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#qipzyayjvz .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#qipzyayjvz .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#qipzyayjvz .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qipzyayjvz .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#qipzyayjvz .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#qipzyayjvz .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#qipzyayjvz .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qipzyayjvz .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#qipzyayjvz .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#qipzyayjvz .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#qipzyayjvz .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qipzyayjvz .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#qipzyayjvz .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#qipzyayjvz .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#qipzyayjvz .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#qipzyayjvz .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#qipzyayjvz .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qipzyayjvz .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#qipzyayjvz .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qipzyayjvz .gt_left {
+  text-align: left;
+}
+
+#qipzyayjvz .gt_center {
+  text-align: center;
+}
+
+#qipzyayjvz .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#qipzyayjvz .gt_font_normal {
+  font-weight: normal;
+}
+
+#qipzyayjvz .gt_font_bold {
+  font-weight: bold;
+}
+
+#qipzyayjvz .gt_font_italic {
+  font-style: italic;
+}
+
+#qipzyayjvz .gt_super {
+  font-size: 65%;
+}
+
+#qipzyayjvz .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#qipzyayjvz .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#qipzyayjvz .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#qipzyayjvz .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#qipzyayjvz .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#qipzyayjvz .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#qipzyayjvz .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#qipzyayjvz .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#qipzyayjvz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings gt_spanner_row">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" scope="col" id="label"></th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="3" scope="colgroup" id="island">
+        <div class="gt_column_spanner"><span class='gt_from_md'>island</span></div>
+      </th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="2" colspan="1" scope="col" id="stat_0"><span class='gt_from_md'>Total</span></th>
+    </tr>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1"><span class='gt_from_md'>Biscoe</span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2"><span class='gt_from_md'>Dream</span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_3"><span class='gt_from_md'>Torgersen</span></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="label" class="gt_row gt_left">species</td>
+<td headers="stat_1" class="gt_row gt_center"><br /></td>
+<td headers="stat_2" class="gt_row gt_center"><br /></td>
+<td headers="stat_3" class="gt_row gt_center"><br /></td>
+<td headers="stat_0" class="gt_row gt_center"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Adelie</td>
+<td headers="stat_1" class="gt_row gt_center">44</td>
+<td headers="stat_2" class="gt_row gt_center">55</td>
+<td headers="stat_3" class="gt_row gt_center">47</td>
+<td headers="stat_0" class="gt_row gt_center">146</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Chinstrap</td>
+<td headers="stat_1" class="gt_row gt_center">0</td>
+<td headers="stat_2" class="gt_row gt_center">68</td>
+<td headers="stat_3" class="gt_row gt_center">0</td>
+<td headers="stat_0" class="gt_row gt_center">68</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Gentoo</td>
+<td headers="stat_1" class="gt_row gt_center">119</td>
+<td headers="stat_2" class="gt_row gt_center">0</td>
+<td headers="stat_3" class="gt_row gt_center">0</td>
+<td headers="stat_0" class="gt_row gt_center">119</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">Total</td>
+<td headers="stat_1" class="gt_row gt_center">163</td>
+<td headers="stat_2" class="gt_row gt_center">123</td>
+<td headers="stat_3" class="gt_row gt_center">47</td>
+<td headers="stat_0" class="gt_row gt_center">333</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+<div id="correlation" class="section level4 hasAnchor" number="4.1.3.2">
+<h4><span class="header-section-number">4.1.3.2</span> Correlation<a href="exploratory-data-analysis-eda.html#correlation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Correlation is an umbrella term for any statistical relationship, whether causal or not, between two random variables or bivariate data. The three main measures of correlations are named after their inventors: Pearsons Correlation (or simply Pearson’s r), Spearman’s Rank Correlation (or simply Spearman’s rho) and Kendall’s Tau.</p>
+<p>Before going on let us make clear what a linear relationship means. It means that if an observation increases or decreases the corresponding variables changes in a proportional and predictable way.</p>
+<div id="pearsons-correlation" class="section level5 hasAnchor" number="4.1.3.2.1">
+<h5><span class="header-section-number">4.1.3.2.1</span> Pearsons Correlation<a href="exploratory-data-analysis-eda.html#pearsons-correlation" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>Pearsons Correlation measures the linear relationship between two continous variables. To do so it assumes a normal distribution between two variables, a linear relationship and no major outliers.</p>
+<p>Normally, you should test those before running a correlation, but we skip that part and look at the implementation in R:</p>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="exploratory-data-analysis-eda.html#cb285-1" tabindex="-1"></a><span class="fu">cor</span>(penguins<span class="sc">$</span>bill_length_mm, penguins<span class="sc">$</span>body_mass_g,</span>
+<span id="cb285-2"><a href="exploratory-data-analysis-eda.html#cb285-2" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] 0.5894511</code></pre>
+<p>The interpretation of pearson’s r is quite straightforward: The result always ranges between +1 and -1, where +1 means a perfect linear relationship, 0 means no relationship at all, -1 means a perfect linear relationship.</p>
+<p>In our case there is a strong positive, linear relationship of both variables with a r = 0.59.</p>
+</div>
+<div id="spearmans-rank-correlation" class="section level5 hasAnchor" number="4.1.3.2.2">
+<h5><span class="header-section-number">4.1.3.2.2</span> Spearman’s Rank Correlation<a href="exploratory-data-analysis-eda.html#spearmans-rank-correlation" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>Spearman’s Rank Correlation, or simply Spearman’s Rho shows if ordinal or continuous variables have a Monotonic Relationship. This means that if one variables increases, the other always increases or decreases but not necessarily at a constant way, as it would be with a linear relationship.</p>
+<p>It has different assumptions like outliers are allowed, the relationship is non-linear, the data contains rank and the variables are not normally distributed.</p>
+<p>Let us have a look, how it is calculated in R:</p>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="exploratory-data-analysis-eda.html#cb287-1" tabindex="-1"></a><span class="fu">cor</span>(penguins<span class="sc">$</span>bill_length_mm, penguins<span class="sc">$</span>body_mass_g,</span>
+<span id="cb287-2"><a href="exploratory-data-analysis-eda.html#cb287-2" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] 0.5764804</code></pre>
+<p>The interpretation is analog to Pearson’s R, +1 means a perfect positive, monotonic relationship, 0 means no monotonic relationship and -1 means perfect negative, monotonic relationship.</p>
+<p>A spearman’s rho of 0.58 indicates a strong, positive, monotonic relationship between the two variables.</p>
+</div>
+<div id="kendalls-tau" class="section level5 hasAnchor" number="4.1.3.2.3">
+<h5><span class="header-section-number">4.1.3.2.3</span> Kendalls Tau<a href="exploratory-data-analysis-eda.html#kendalls-tau" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>Kendalls Tau measures the strength and direction of association between two ranked variables. We differentiate between two types of relationships: Concordant and Discordant relationships.</p>
+<ul>
+<li><p>A concordant relationship means both data points move in the same direction</p></li>
+<li><p>A discordant relationship if one data point increases, the other decreases (or vice versa).</p></li>
+</ul>
+<p>Let us calculate it:</p>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="exploratory-data-analysis-eda.html#cb289-1" tabindex="-1"></a><span class="fu">cor</span>(penguins<span class="sc">$</span>bill_length_mm, penguins<span class="sc">$</span>body_mass_g,</span>
+<span id="cb289-2"><a href="exploratory-data-analysis-eda.html#cb289-2" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">&quot;kendall&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] 0.4277598</code></pre>
+<p>Kendalls Tau can be interpreted wiht +1 as a perfect rank agreement, 0 means no association at all, and -1 means a perfect rank reversal.</p>
+<p>Our kendall’s tau indicates a high rank agreement between both our variables.</p>
+</div>
+</div>
+<div id="correlation-graphically" class="section level4 hasAnchor" number="4.1.3.3">
+<h4><span class="header-section-number">4.1.3.3</span> Correlation Graphically<a href="exploratory-data-analysis-eda.html#correlation-graphically" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The part before was quite theoretical, but there are also nice approaches to look at correlations graphically. we start with a simple scatterplot:</p>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="exploratory-data-analysis-eda.html#cb291-1" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb291-2"><a href="exploratory-data-analysis-eda.html#cb291-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;#0077b6&quot;</span>) <span class="sc">+</span></span>
+<span id="cb291-3"><a href="exploratory-data-analysis-eda.html#cb291-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Length in mm&quot;</span>,</span>
+<span id="cb291-4"><a href="exploratory-data-analysis-eda.html#cb291-4" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Body Mass in g&quot;</span>,</span>
+<span id="cb291-5"><a href="exploratory-data-analysis-eda.html#cb291-5" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;Relationship between Length (in mm) and Body Mass (in g)&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb291-6"><a href="exploratory-data-analysis-eda.html#cb291-6" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/graphically%20correlation-1.png" width="672" /></p>
+<p>When looking at relationships between two variables, scatterplots are the standard visualization to do so. As we can see, there is a clear trend that the length in mm could be positively related to the body mass in g. In the end of the day, there are three types of linear relationships and the scatterplots always look accordingly:</p>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="exploratory-data-analysis-eda.html#cb292-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb292-2"><a href="exploratory-data-analysis-eda.html#cb292-2" tabindex="-1"></a></span>
+<span id="cb292-3"><a href="exploratory-data-analysis-eda.html#cb292-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb292-4"><a href="exploratory-data-analysis-eda.html#cb292-4" tabindex="-1"></a></span>
+<span id="cb292-5"><a href="exploratory-data-analysis-eda.html#cb292-5" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb292-6"><a href="exploratory-data-analysis-eda.html#cb292-6" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span>n, <span class="dv">3</span>),</span>
+<span id="cb292-7"><a href="exploratory-data-analysis-eda.html#cb292-7" tabindex="-1"></a>  <span class="at">relationship =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Positive&quot;</span>, <span class="st">&quot;Negative&quot;</span>, <span class="st">&quot;None&quot;</span>), </span>
+<span id="cb292-8"><a href="exploratory-data-analysis-eda.html#cb292-8" tabindex="-1"></a>                     <span class="at">each =</span> n),</span>
+<span id="cb292-9"><a href="exploratory-data-analysis-eda.html#cb292-9" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">c</span>(</span>
+<span id="cb292-10"><a href="exploratory-data-analysis-eda.html#cb292-10" tabindex="-1"></a>    (<span class="dv">1</span><span class="sc">:</span>n) <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">sd =</span> <span class="dv">15</span>),    <span class="co"># strong positive correlation</span></span>
+<span id="cb292-11"><a href="exploratory-data-analysis-eda.html#cb292-11" tabindex="-1"></a>    (n<span class="sc">:</span><span class="dv">1</span>) <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">sd =</span> <span class="dv">15</span>),    <span class="co"># strong negative correlation</span></span>
+<span id="cb292-12"><a href="exploratory-data-analysis-eda.html#cb292-12" tabindex="-1"></a>    <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">20</span>) <span class="co"># no correlation</span></span>
+<span id="cb292-13"><a href="exploratory-data-analysis-eda.html#cb292-13" tabindex="-1"></a>  )</span>
+<span id="cb292-14"><a href="exploratory-data-analysis-eda.html#cb292-14" tabindex="-1"></a>)</span>
+<span id="cb292-15"><a href="exploratory-data-analysis-eda.html#cb292-15" tabindex="-1"></a></span>
+<span id="cb292-16"><a href="exploratory-data-analysis-eda.html#cb292-16" tabindex="-1"></a><span class="co"># Reorder factor levels</span></span>
+<span id="cb292-17"><a href="exploratory-data-analysis-eda.html#cb292-17" tabindex="-1"></a>df<span class="sc">$</span>relationship <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>relationship, </span>
+<span id="cb292-18"><a href="exploratory-data-analysis-eda.html#cb292-18" tabindex="-1"></a>                          <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Positive&quot;</span>, <span class="st">&quot;None&quot;</span>, <span class="st">&quot;Negative&quot;</span>),</span>
+<span id="cb292-19"><a href="exploratory-data-analysis-eda.html#cb292-19" tabindex="-1"></a>                          <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Positive&quot;</span>, <span class="st">&quot;No Correlation&quot;</span>, <span class="st">&quot;Negative&quot;</span>))</span>
+<span id="cb292-20"><a href="exploratory-data-analysis-eda.html#cb292-20" tabindex="-1"></a></span>
+<span id="cb292-21"><a href="exploratory-data-analysis-eda.html#cb292-21" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb292-22"><a href="exploratory-data-analysis-eda.html#cb292-22" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb292-23"><a href="exploratory-data-analysis-eda.html#cb292-23" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb292-24"><a href="exploratory-data-analysis-eda.html#cb292-24" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>relationship, <span class="at">nrow =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb292-25"><a href="exploratory-data-analysis-eda.html#cb292-25" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Strong Positive, Negative, and No Correlation&quot;</span>,</span>
+<span id="cb292-26"><a href="exploratory-data-analysis-eda.html#cb292-26" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;X&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Y&quot;</span>) <span class="sc">+</span></span>
+<span id="cb292-27"><a href="exploratory-data-analysis-eda.html#cb292-27" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">18</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/example%20correlations-1.png" width="672" /></p>
+<p>With scatterplots in combination with facet_wrap() you can show several correlations graphically, but there is a way to calculate the correlation coefficient and to show it graphically with a <strong>correlation plot</strong>. A correlation plot combines the logic of contingency tables, heat maps and the correlation coefficients.</p>
+<p>First a <strong>correlation matrix</strong> is created. A table that shows the <strong>pairwise correlation coefficients</strong> (typically Pearson) between several numerical variables. Each cell in the matrix represents the strength and direction of the linear relationship between two variables. A <strong>correlation plot</strong> is then a visual representation of this matrix, often using color gradients or circle sizes to show the strength and direction of correlations, making it easier to spot patterns.</p>
+<p>Let us compute it in R: We will use the corrplot package in R (There are other ways to compute it, which I will show later).</p>
+<ul>
+<li><p>First, we cut down our dataset to the variables you want to correlate with each other</p></li>
+<li><p>Second, compute a correlation matrix with the cor() command</p></li>
+<li><p>Third, call the corrplot variable, and take in the dataset, define the method (we will use the color to display the strength of the correlation), the type (<code>'full'</code> (default), <code>'upper'</code> or <code>'lower'</code>, display full matrix, lower triangular or upper triangular matrix).</p></li>
+</ul>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="exploratory-data-analysis-eda.html#cb293-1" tabindex="-1"></a><span class="co"># Step 1: Prepare numeric data</span></span>
+<span id="cb293-2"><a href="exploratory-data-analysis-eda.html#cb293-2" tabindex="-1"></a>penguins_numeric <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
+<span id="cb293-3"><a href="exploratory-data-analysis-eda.html#cb293-3" tabindex="-1"></a>  <span class="fu">select</span>(bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g) <span class="sc">%&gt;%</span></span>
+<span id="cb293-4"><a href="exploratory-data-analysis-eda.html#cb293-4" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span>
+<span id="cb293-5"><a href="exploratory-data-analysis-eda.html#cb293-5" tabindex="-1"></a></span>
+<span id="cb293-6"><a href="exploratory-data-analysis-eda.html#cb293-6" tabindex="-1"></a><span class="co"># Step 2: Compute correlation matrix</span></span>
+<span id="cb293-7"><a href="exploratory-data-analysis-eda.html#cb293-7" tabindex="-1"></a>corr_matrix <span class="ot">&lt;-</span> <span class="fu">cor</span>(penguins_numeric)</span>
+<span id="cb293-8"><a href="exploratory-data-analysis-eda.html#cb293-8" tabindex="-1"></a></span>
+<span id="cb293-9"><a href="exploratory-data-analysis-eda.html#cb293-9" tabindex="-1"></a><span class="co"># Step 3: Plot the correlation matrix</span></span>
+<span id="cb293-10"><a href="exploratory-data-analysis-eda.html#cb293-10" tabindex="-1"></a><span class="fu">corrplot</span>(corr_matrix, <span class="at">method =</span> <span class="st">&quot;color&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/simple%20corr%20matrix-1.png" width="672" /></p>
+<p>Now, we can see in an elegant way the correlation between the four selected variables, which are displayed through the color. Every cell displays the correlation coefficient of the variable on its respective column and on its respective row.</p>
+<p>The corrplot() function allows for further aesthetics:</p>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="exploratory-data-analysis-eda.html#cb294-1" tabindex="-1"></a><span class="fu">corrplot</span>(corr_matrix, <span class="at">method =</span> <span class="st">&quot;color&quot;</span>, <span class="at">type =</span> <span class="st">&quot;upper&quot;</span>, </span>
+<span id="cb294-2"><a href="exploratory-data-analysis-eda.html#cb294-2" tabindex="-1"></a>         <span class="at">addCoef.col =</span> <span class="st">&quot;black&quot;</span>, <span class="at">tl.col =</span> <span class="st">&quot;black&quot;</span>, <span class="at">tl.srt =</span> <span class="dv">45</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/pretty%20corrmatrix-1.png" width="672" /></p>
+<p>And finally, we can change the method to circular. This changes the plot insofar that it does not fill the cells with the color of the correlation coefficient, but makes a circle around the numbers and fills it then with the color. The size of the circles, thus the radius is determined but the strength of the correlation, meaning that the closer the coefficient to zero the smaller the circle:</p>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="exploratory-data-analysis-eda.html#cb295-1" tabindex="-1"></a><span class="fu">corrplot</span>(corr_matrix, <span class="at">method =</span> <span class="st">&quot;circle&quot;</span>, <span class="at">type =</span> <span class="st">&quot;upper&quot;</span>, </span>
+<span id="cb295-2"><a href="exploratory-data-analysis-eda.html#cb295-2" tabindex="-1"></a>         <span class="at">addCoef.col =</span> <span class="st">&quot;black&quot;</span>, <span class="at">tl.col =</span> <span class="st">&quot;black&quot;</span>, <span class="at">tl.srt =</span> <span class="dv">45</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/corrmatrix%20circular-1.png" width="672" /></p>
+<p>If I use the circular method, I like to display it without the numbers, looks better in my opinion, and is more intuitive then filling the whole row:</p>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="exploratory-data-analysis-eda.html#cb296-1" tabindex="-1"></a><span class="fu">corrplot</span>(corr_matrix, <span class="at">method =</span> <span class="st">&quot;circle&quot;</span>, <span class="at">type =</span> <span class="st">&quot;upper&quot;</span>, </span>
+<span id="cb296-2"><a href="exploratory-data-analysis-eda.html#cb296-2" tabindex="-1"></a>         <span class="at">tl.col =</span> <span class="st">&quot;black&quot;</span>, <span class="at">tl.srt =</span> <span class="dv">45</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/pretty%20corrmatrix%20circular-1.png" width="672" /></p>
+</div>
+</div>
+</div>
+<div id="working-with-eda-packages" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Working with EDA packages<a href="exploratory-data-analysis-eda.html#working-with-eda-packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>There are several other measures for EDA, and of course you do not have to calculate every single measure by hand, although you could. In the following, I will introduce you to the most popular packages for EDA. From my point of view, they are all basically the same, with some nuances and when talking to other R-users I noticed that everyone somehow established his or her own routine of EDA. Therefore I suggest that you get an overview of all those packages and find your own “EDA-Routine” so to speak.</p>
+<div id="psych" class="section level3 hasAnchor" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> psych<a href="exploratory-data-analysis-eda.html#psych" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The psych package is a crucial package for psychologists and I love to use its “describe()” function, which shows a bunch of descriptive statistics with one line of code:</p>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="exploratory-data-analysis-eda.html#cb297-1" tabindex="-1"></a><span class="co">#Applying describe to the whole dataset</span></span>
+<span id="cb297-2"><a href="exploratory-data-analysis-eda.html#cb297-2" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(penguins)</span></code></pre></div>
+<pre><code>##                   vars   n    mean     sd
+## species*             1 333    1.92   0.89
+## island*              2 333    1.65   0.71
+## bill_length_mm       3 333   43.99   5.47
+## bill_depth_mm        4 333   17.16   1.97
+## flipper_length_mm    5 333  200.97  14.02
+## body_mass_g          6 333 4207.06 805.22
+## sex*                 7 333    1.50   0.50
+## year                 8 333 2008.04   0.81
+##                   median trimmed    mad    min
+## species*             2.0    1.90   1.48    1.0
+## island*              2.0    1.57   1.48    1.0
+## bill_length_mm      44.5   43.98   6.97   32.1
+## bill_depth_mm       17.3   17.19   2.22   13.1
+## flipper_length_mm  197.0  200.36  16.31  172.0
+## body_mass_g       4050.0 4159.46 889.56 2700.0
+## sex*                 2.0    1.51   0.00    1.0
+## year              2008.0 2008.05   1.48 2007.0
+##                      max  range  skew kurtosis
+## species*             3.0    2.0  0.16    -1.72
+## island*              3.0    2.0  0.62    -0.85
+## bill_length_mm      59.6   27.5  0.04    -0.90
+## bill_depth_mm       21.5    8.4 -0.15    -0.91
+## flipper_length_mm  231.0   59.0  0.36    -0.98
+## body_mass_g       6300.0 3600.0  0.47    -0.75
+## sex*                 2.0    1.0 -0.02    -2.01
+## year              2009.0    2.0 -0.08    -1.49
+##                      se
+## species*           0.05
+## island*            0.04
+## bill_length_mm     0.30
+## bill_depth_mm      0.11
+## flipper_length_mm  0.77
+## body_mass_g       44.13
+## sex*               0.03
+## year               0.04</code></pre>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="exploratory-data-analysis-eda.html#cb299-1" tabindex="-1"></a><span class="co">#You can apply describe() also for single variables</span></span>
+<span id="cb299-2"><a href="exploratory-data-analysis-eda.html#cb299-2" tabindex="-1"></a><span class="co">#psych::describe(penguins$bill_length_mm)</span></span></code></pre></div>
+<p>The describe() function output is a summary table of the basic summary statistics as mean, standard deviation, median, and a lot more and it is a shortcut, so you do not have to calculate every measure on its own.</p>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="exploratory-data-analysis-eda.html#cb300-1" tabindex="-1"></a><span class="fu">corr.test</span>(penguins_numeric)</span></code></pre></div>
+<pre><code>## Call:corr.test(x = penguins_numeric)
+## Correlation matrix 
+##                   bill_length_mm bill_depth_mm
+## bill_length_mm              1.00         -0.23
+## bill_depth_mm              -0.23          1.00
+## flipper_length_mm           0.65         -0.58
+## body_mass_g                 0.59         -0.47
+##                   flipper_length_mm
+## bill_length_mm                 0.65
+## bill_depth_mm                 -0.58
+## flipper_length_mm              1.00
+## body_mass_g                    0.87
+##                   body_mass_g
+## bill_length_mm           0.59
+## bill_depth_mm           -0.47
+## flipper_length_mm        0.87
+## body_mass_g              1.00
+## Sample Size 
+## [1] 333
+## Probability values (Entries above the diagonal are adjusted for multiple tests.) 
+##                   bill_length_mm bill_depth_mm
+## bill_length_mm                 0             0
+## bill_depth_mm                  0             0
+## flipper_length_mm              0             0
+## body_mass_g                    0             0
+##                   flipper_length_mm
+## bill_length_mm                    0
+## bill_depth_mm                     0
+## flipper_length_mm                 0
+## body_mass_g                       0
+##                   body_mass_g
+## bill_length_mm              0
+## bill_depth_mm               0
+## flipper_length_mm           0
+## body_mass_g                 0
+## 
+##  To see confidence intervals of the correlations, print with the short=FALSE option</code></pre>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="exploratory-data-analysis-eda.html#cb302-1" tabindex="-1"></a><span class="fu">pairs.panels</span>(penguins_numeric)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/psych%20pairs.panels-1.png" width="672" /></p>
+</div>
+<div id="skimr" class="section level3 hasAnchor" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> skimr<a href="exploratory-data-analysis-eda.html#skimr" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The skimr package is a wonderful way to get an overview of our datasets structure and basic statistics, even with a visualization of the distribution of the variable. The main function is <code>skim()</code>:</p>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="exploratory-data-analysis-eda.html#cb303-1" tabindex="-1"></a>skimr<span class="sc">::</span><span class="fu">skim</span>(penguins)</span></code></pre></div>
+<table>
+<caption><span id="tab:skimr">Table 4.1: </span>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td align="left">Name</td>
+<td align="left">penguins</td>
+</tr>
+<tr class="even">
+<td align="left">Number of rows</td>
+<td align="left">333</td>
+</tr>
+<tr class="odd">
+<td align="left">Number of columns</td>
+<td align="left">8</td>
+</tr>
+<tr class="even">
+<td align="left">_______________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Column type frequency:</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">factor</td>
+<td align="left">3</td>
+</tr>
+<tr class="odd">
+<td align="left">numeric</td>
+<td align="left">5</td>
+</tr>
+<tr class="even">
+<td align="left">________________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Group variables</td>
+<td align="left">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: factor</strong></p>
+<table>
+<colgroup>
+<col width="16%" />
+<col width="12%" />
+<col width="16%" />
+<col width="9%" />
+<col width="10%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="left">ordered</th>
+<th align="right">n_unique</th>
+<th align="left">top_counts</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">species</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">3</td>
+<td align="left">Ade: 146, Gen: 119, Chi: 68</td>
+</tr>
+<tr class="even">
+<td align="left">island</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">3</td>
+<td align="left">Bis: 163, Dre: 123, Tor: 47</td>
+</tr>
+<tr class="odd">
+<td align="left">sex</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">2</td>
+<td align="left">mal: 168, fem: 165</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table style="width:100%;">
+<colgroup>
+<col width="18%" />
+<col width="10%" />
+<col width="14%" />
+<col width="8%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="6%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">p0</th>
+<th align="right">p25</th>
+<th align="right">p50</th>
+<th align="right">p75</th>
+<th align="right">p100</th>
+<th align="left">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">bill_length_mm</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">43.99</td>
+<td align="right">5.47</td>
+<td align="right">32.1</td>
+<td align="right">39.5</td>
+<td align="right">44.5</td>
+<td align="right">48.6</td>
+<td align="right">59.6</td>
+<td align="left">▃▇▇▆▁</td>
+</tr>
+<tr class="even">
+<td align="left">bill_depth_mm</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">17.16</td>
+<td align="right">1.97</td>
+<td align="right">13.1</td>
+<td align="right">15.6</td>
+<td align="right">17.3</td>
+<td align="right">18.7</td>
+<td align="right">21.5</td>
+<td align="left">▅▆▇▇▂</td>
+</tr>
+<tr class="odd">
+<td align="left">flipper_length_mm</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">200.97</td>
+<td align="right">14.02</td>
+<td align="right">172.0</td>
+<td align="right">190.0</td>
+<td align="right">197.0</td>
+<td align="right">213.0</td>
+<td align="right">231.0</td>
+<td align="left">▂▇▃▅▃</td>
+</tr>
+<tr class="even">
+<td align="left">body_mass_g</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">4207.06</td>
+<td align="right">805.22</td>
+<td align="right">2700.0</td>
+<td align="right">3550.0</td>
+<td align="right">4050.0</td>
+<td align="right">4775.0</td>
+<td align="right">6300.0</td>
+<td align="left">▃▇▅▃▂</td>
+</tr>
+<tr class="odd">
+<td align="left">year</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">2008.04</td>
+<td align="right">0.81</td>
+<td align="right">2007.0</td>
+<td align="right">2007.0</td>
+<td align="right">2008.0</td>
+<td align="right">2009.0</td>
+<td align="right">2009.0</td>
+<td align="left">▇▁▇▁▇</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="exploratory-data-analysis-eda.html#cb304-1" tabindex="-1"></a><span class="co">#If you do not want to see the distribution</span></span>
+<span id="cb304-2"><a href="exploratory-data-analysis-eda.html#cb304-2" tabindex="-1"></a><span class="co">#skimr::skim_without_charts(penguins)</span></span></code></pre></div>
+<p>The advantage of the skimr package is that it directly calculates descriptive statistics and shows the missing values for every variable in your dataset. I often use this command to have a look at datasets I am not familiar with. I think it is more a function for exploring the dataset rather than EDA it can be a useful first step for conducting EDA.</p>
+</div>
+<div id="summarytools" class="section level3 hasAnchor" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> summarytools<a href="exploratory-data-analysis-eda.html#summarytools" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We will dive into the summarytools package with the classic dfSummary command which summarizes the structure of our dataset:</p>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="exploratory-data-analysis-eda.html#cb305-1" tabindex="-1"></a><span class="fu">dfSummary</span>(penguins)</span></code></pre></div>
+<pre><code>## Data Frame Summary  
+## penguins  
+## Dimensions: 333 x 8  
+## Duplicates: 0  
+## 
+## ----------------------------------------------------------------------------------------------------------------------
+## No   Variable            Stats / Values               Freqs (% of Valid)    Graph                 Valid      Missing  
+## ---- ------------------- ---------------------------- --------------------- --------------------- ---------- ---------
+## 1    species             1. Adelie                    146 (43.8%)           IIIIIIII              333        0        
+##      [factor]            2. Chinstrap                  68 (20.4%)           IIII                  (100.0%)   (0.0%)   
+##                          3. Gentoo                    119 (35.7%)           IIIIIII                                   
+## 
+## 2    island              1. Biscoe                    163 (48.9%)           IIIIIIIII             333        0        
+##      [factor]            2. Dream                     123 (36.9%)           IIIIIII               (100.0%)   (0.0%)   
+##                          3. Torgersen                  47 (14.1%)           II                                        
+## 
+## 3    bill_length_mm      Mean (sd) : 44 (5.5)         163 distinct values       .     . :         333        0        
+##      [numeric]           min &lt; med &lt; max:                                     . : : : : :         (100.0%)   (0.0%)   
+##                          32.1 &lt; 44.5 &lt; 59.6                                   : : : : : :                             
+##                          IQR (CV) : 9.1 (0.1)                                 : : : : : : .                           
+##                                                                             . : : : : : : : .                         
+## 
+## 4    bill_depth_mm       Mean (sd) : 17.2 (2)         79 distinct values              :           333        0        
+##      [numeric]           min &lt; med &lt; max:                                           : :           (100.0%)   (0.0%)   
+##                          13.1 &lt; 17.3 &lt; 21.5                                   : . : : : .                             
+##                          IQR (CV) : 3.1 (0.1)                               . : : : : : :                             
+##                                                                             : : : : : : : . .                         
+## 
+## 5    flipper_length_mm   Mean (sd) : 201 (14)         54 distinct values          :               333        0        
+##      [integer]           min &lt; med &lt; max:                                       . :               (100.0%)   (0.0%)   
+##                          172 &lt; 197 &lt; 231                                        : : :   . .                           
+##                          IQR (CV) : 23 (0.1)                                  . : : :   : : :                         
+##                                                                               : : : : : : : : :                       
+## 
+## 6    body_mass_g         Mean (sd) : 4207.1 (805.2)   93 distinct values        :                 333        0        
+##      [integer]           min &lt; med &lt; max:                                     . :                 (100.0%)   (0.0%)   
+##                          2700 &lt; 4050 &lt; 6300                                   : : : :                                 
+##                          IQR (CV) : 1225 (0.2)                                : : : : : .                             
+##                                                                             . : : : : : :                             
+## 
+## 7    sex                 1. female                    165 (49.5%)           IIIIIIIII             333        0        
+##      [factor]            2. male                      168 (50.5%)           IIIIIIIIII            (100.0%)   (0.0%)   
+## 
+## 8    year                Mean (sd) : 2008 (0.8)       2007 : 103 (30.9%)    IIIIII                333        0        
+##      [integer]           min &lt; med &lt; max:             2008 : 113 (33.9%)    IIIIII                (100.0%)   (0.0%)   
+##                          2007 &lt; 2008 &lt; 2009           2009 : 117 (35.1%)    IIIIIII                                   
+##                          IQR (CV) : 2 (0)                                                                             
+## ----------------------------------------------------------------------------------------------------------------------</code></pre>
+<p>The huge advantage of this command is that if we wrap it around the dfSummary function and then it gives us a formatted in a nice table:</p>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="exploratory-data-analysis-eda.html#cb307-1" tabindex="-1"></a><span class="fu">view</span>(<span class="fu">dfSummary</span>(penguins))</span></code></pre></div>
+<pre><code>## Output file written: /tmp/RtmpYgNBUu/file41734389c825.html</code></pre>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="exploratory-data-analysis-eda.html#cb309-1" tabindex="-1"></a><span class="co"># Or if you are a good R user, then you can use also a pipe</span></span>
+<span id="cb309-2"><a href="exploratory-data-analysis-eda.html#cb309-2" tabindex="-1"></a><span class="co"># dfSummary(penguins) %&gt;%</span></span>
+<span id="cb309-3"><a href="exploratory-data-analysis-eda.html#cb309-3" tabindex="-1"></a><span class="co"># view()</span></span></code></pre></div>
+<p>The package also includes nice ways of showing frequency tables for single variables with more information than the standard table() command:</p>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="exploratory-data-analysis-eda.html#cb310-1" tabindex="-1"></a><span class="fu">freq</span>(penguins<span class="sc">$</span>species)</span></code></pre></div>
+<pre><code>## Frequencies  
+## penguins$species  
+## Type: Factor  
+## 
+##                   Freq   % Valid   % Valid Cum.   % Total   % Total Cum.
+## --------------- ------ --------- -------------- --------- --------------
+##          Adelie    146     43.84          43.84     43.84          43.84
+##       Chinstrap     68     20.42          64.26     20.42          64.26
+##          Gentoo    119     35.74         100.00     35.74         100.00
+##            &lt;NA&gt;      0                               0.00         100.00
+##           Total    333    100.00         100.00    100.00         100.00</code></pre>
+<p>We can also use the descr() function rom the package which shows us the most common descriptive statistics of our variables in our dataset:</p>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="exploratory-data-analysis-eda.html#cb312-1" tabindex="-1"></a><span class="fu">descr</span>(penguins)</span></code></pre></div>
+<pre><code>## Non-numerical variable(s) ignored: species, island, sex</code></pre>
+<pre><code>## Descriptive Statistics  
+## penguins  
+## N: 333  
+## 
+##                     bill_depth_mm   bill_length_mm   body_mass_g   flipper_length_mm      year
+## ----------------- --------------- ---------------- ------------- ------------------- ---------
+##              Mean           17.16            43.99       4207.06              200.97   2008.04
+##           Std.Dev            1.97             5.47        805.22               14.02      0.81
+##               Min           13.10            32.10       2700.00              172.00   2007.00
+##                Q1           15.60            39.50       3550.00              190.00   2007.00
+##            Median           17.30            44.50       4050.00              197.00   2008.00
+##                Q3           18.70            48.60       4775.00              213.00   2009.00
+##               Max           21.50            59.60       6300.00              231.00   2009.00
+##               MAD            2.22             6.97        889.56               16.31      1.48
+##               IQR            3.10             9.10       1225.00               23.00      2.00
+##                CV            0.11             0.12          0.19                0.07      0.00
+##          Skewness           -0.15             0.04          0.47                0.36     -0.08
+##       SE.Skewness            0.13             0.13          0.13                0.13      0.13
+##          Kurtosis           -0.91            -0.90         -0.75               -0.98     -1.49
+##           N.Valid          333.00           333.00        333.00              333.00    333.00
+##                 N          333.00           333.00        333.00              333.00    333.00
+##         Pct.Valid          100.00           100.00        100.00              100.00    100.00</code></pre>
+<p>Lastly, I want to show you how you can make cross tables with the summarytools package:</p>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="exploratory-data-analysis-eda.html#cb315-1" tabindex="-1"></a><span class="fu">ctable</span>(penguins<span class="sc">$</span>species, penguins<span class="sc">$</span>island)</span></code></pre></div>
+<pre><code>## Cross-Tabulation, Row Proportions  
+## species * island  
+## Data Frame: penguins  
+## 
+## ----------- -------- -------------- -------------- ------------ --------------
+##               island         Biscoe          Dream    Torgersen          Total
+##     species                                                                   
+##      Adelie             44 ( 30.1%)    55 ( 37.7%)   47 (32.2%)   146 (100.0%)
+##   Chinstrap              0 (  0.0%)    68 (100.0%)    0 ( 0.0%)    68 (100.0%)
+##      Gentoo            119 (100.0%)     0 (  0.0%)    0 ( 0.0%)   119 (100.0%)
+##       Total            163 ( 48.9%)   123 ( 36.9%)   47 (14.1%)   333 (100.0%)
+## ----------- -------- -------------- -------------- ------------ --------------</code></pre>
+</div>
+<div id="naniar" class="section level3 hasAnchor" number="4.2.4">
+<h3><span class="header-section-number">4.2.4</span> naniar<a href="exploratory-data-analysis-eda.html#naniar" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Naniar is one of the most powerful packages for working with missing data. At first glance, dealing with missing values may seem straightforward — as covered in the “Data Manipulation” chapter, it’s common to simply remove rows with missing values using functions like <code>na.omit()</code> or <code>drop_na()</code>.</p>
+<p>However, as you progress in data analysis, handling missing data becomes much more important and nuanced. Here’s why:</p>
+<ul>
+<li><p><strong>Dropping missing values can lead to a small sample size (<code>n</code>)</strong>, reducing statistical power.</p></li>
+<li><p><strong>If a large portion of data is missing</strong>, removing it may introduce bias, especially if the missingness is not random.</p></li>
+</ul>
+<p>In such situations, <strong>advanced techniques like multiple imputation</strong> become valuable. These methods estimate missing values using mathematical models that consider patterns in the data.</p>
+<p>But there’s a catch:</p>
+<p><strong>These models have assumptions</strong> (e.g., data are Missing at Random — MAR). Violating these assumptions can lead to misleading results. That’s why it’s crucial to <strong>explore and understand the structure of missingness</strong> before choosing a strategy.</p>
+<p>Let us start with the basic miss_var_summary() function, it shows the number of missing values, and calculates the percentages of missing values:</p>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="exploratory-data-analysis-eda.html#cb317-1" tabindex="-1"></a>naniar<span class="sc">::</span><span class="fu">miss_var_summary</span>(penguins_raw)</span></code></pre></div>
+<pre><code>## # A tibble: 17 × 3
+##    variable            n_miss pct_miss
+##    &lt;chr&gt;                &lt;int&gt;    &lt;num&gt;
+##  1 Comments               290   84.3  
+##  2 Delta 15 N (o/oo)       14    4.07 
+##  3 Delta 13 C (o/oo)       13    3.78 
+##  4 Sex                     11    3.20 
+##  5 Culmen Length (mm)       2    0.581
+##  6 Culmen Depth (mm)        2    0.581
+##  7 Flipper Length (mm)      2    0.581
+##  8 Body Mass (g)            2    0.581
+##  9 studyName                0    0    
+## 10 Sample Number            0    0    
+## 11 Species                  0    0    
+## 12 Region                   0    0    
+## 13 Island                   0    0    
+## 14 Stage                    0    0    
+## 15 Individual ID            0    0    
+## 16 Clutch Completion        0    0    
+## 17 Date Egg                 0    0</code></pre>
+<p>The function that made naniar famous is the gg_miss_upset() function, which shows us the structure of the missing values graphically:</p>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="exploratory-data-analysis-eda.html#cb319-1" tabindex="-1"></a>naniar<span class="sc">::</span><span class="fu">gg_miss_upset</span>(penguins_raw)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/naniar%20gg_miss_upset-1.png" width="672" /></p>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="exploratory-data-analysis-eda.html#cb320-1" tabindex="-1"></a>naniar<span class="sc">::</span><span class="fu">vis_miss</span>(penguins_raw)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/naniar%20vis_miss-1.png" width="672" /></p>
+</div>
+<div id="gtsummary" class="section level3 hasAnchor" number="4.2.5">
+<h3><span class="header-section-number">4.2.5</span> gtsummary<a href="exploratory-data-analysis-eda.html#gtsummary" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The gtsummary package is the package for data reporting, because it automatically creates data tables ready for publication with one line of code. Let us start with the tbl_summary() function:</p>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="exploratory-data-analysis-eda.html#cb321-1" tabindex="-1"></a>gtsummary<span class="sc">::</span><span class="fu">tbl_summary</span>(penguins)</span></code></pre></div>
+<div id="chnioqghai" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#chnioqghai table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#chnioqghai thead, #chnioqghai tbody, #chnioqghai tfoot, #chnioqghai tr, #chnioqghai td, #chnioqghai th {
+  border-style: none;
+}
+
+#chnioqghai p {
+  margin: 0;
+  padding: 0;
+}
+
+#chnioqghai .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#chnioqghai .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#chnioqghai .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#chnioqghai .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#chnioqghai .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#chnioqghai .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#chnioqghai .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#chnioqghai .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#chnioqghai .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#chnioqghai .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#chnioqghai .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#chnioqghai .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#chnioqghai .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#chnioqghai .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#chnioqghai .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#chnioqghai .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#chnioqghai .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#chnioqghai .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#chnioqghai .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#chnioqghai .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#chnioqghai .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#chnioqghai .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#chnioqghai .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#chnioqghai .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#chnioqghai .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#chnioqghai .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#chnioqghai .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#chnioqghai .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#chnioqghai .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#chnioqghai .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#chnioqghai .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#chnioqghai .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#chnioqghai .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#chnioqghai .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#chnioqghai .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#chnioqghai .gt_left {
+  text-align: left;
+}
+
+#chnioqghai .gt_center {
+  text-align: center;
+}
+
+#chnioqghai .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#chnioqghai .gt_font_normal {
+  font-weight: normal;
+}
+
+#chnioqghai .gt_font_bold {
+  font-weight: bold;
+}
+
+#chnioqghai .gt_font_italic {
+  font-style: italic;
+}
+
+#chnioqghai .gt_super {
+  font-size: 65%;
+}
+
+#chnioqghai .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#chnioqghai .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#chnioqghai .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#chnioqghai .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#chnioqghai .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#chnioqghai .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#chnioqghai .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#chnioqghai .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#chnioqghai div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_0"><span class='gt_from_md'><strong>N = 333</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="label" class="gt_row gt_left">species</td>
+<td headers="stat_0" class="gt_row gt_center"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Adelie</td>
+<td headers="stat_0" class="gt_row gt_center">146 (44%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Chinstrap</td>
+<td headers="stat_0" class="gt_row gt_center">68 (20%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Gentoo</td>
+<td headers="stat_0" class="gt_row gt_center">119 (36%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">island</td>
+<td headers="stat_0" class="gt_row gt_center"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Biscoe</td>
+<td headers="stat_0" class="gt_row gt_center">163 (49%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Dream</td>
+<td headers="stat_0" class="gt_row gt_center">123 (37%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Torgersen</td>
+<td headers="stat_0" class="gt_row gt_center">47 (14%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">bill_length_mm</td>
+<td headers="stat_0" class="gt_row gt_center">44.5 (39.5, 48.6)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">bill_depth_mm</td>
+<td headers="stat_0" class="gt_row gt_center">17.30 (15.60, 18.70)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">flipper_length_mm</td>
+<td headers="stat_0" class="gt_row gt_center">197 (190, 213)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">body_mass_g</td>
+<td headers="stat_0" class="gt_row gt_center">4,050 (3,550, 4,775)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">sex</td>
+<td headers="stat_0" class="gt_row gt_center"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    female</td>
+<td headers="stat_0" class="gt_row gt_center">165 (50%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    male</td>
+<td headers="stat_0" class="gt_row gt_center">168 (50%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">year</td>
+<td headers="stat_0" class="gt_row gt_center"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    2007</td>
+<td headers="stat_0" class="gt_row gt_center">103 (31%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    2008</td>
+<td headers="stat_0" class="gt_row gt_center">113 (34%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    2009</td>
+<td headers="stat_0" class="gt_row gt_center">117 (35%)</td></tr>
+  </tbody>
+  
+  <tfoot class="gt_footnotes">
+    <tr>
+      <td class="gt_footnote" colspan="2"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>n (%); Median (Q1, Q3)</span></td>
+    </tr>
+  </tfoot>
+</table>
+</div>
+<p>We get a nice table which splits up the categorical data in its categories and displays the absolute and relative frequencies (in the brackets) and for numeric variables we get the median value with first quartile and the third quartile.</p>
+<p>We can also group by certain variables to get a more detailed overview:</p>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="exploratory-data-analysis-eda.html#cb322-1" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb322-2"><a href="exploratory-data-analysis-eda.html#cb322-2" tabindex="-1"></a>  <span class="fu">tbl_summary</span>(<span class="at">by =</span> sex)</span></code></pre></div>
+<div id="owwxhaeyqf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#owwxhaeyqf table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#owwxhaeyqf thead, #owwxhaeyqf tbody, #owwxhaeyqf tfoot, #owwxhaeyqf tr, #owwxhaeyqf td, #owwxhaeyqf th {
+  border-style: none;
+}
+
+#owwxhaeyqf p {
+  margin: 0;
+  padding: 0;
+}
+
+#owwxhaeyqf .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#owwxhaeyqf .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#owwxhaeyqf .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#owwxhaeyqf .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#owwxhaeyqf .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#owwxhaeyqf .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#owwxhaeyqf .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#owwxhaeyqf .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#owwxhaeyqf .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#owwxhaeyqf .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#owwxhaeyqf .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#owwxhaeyqf .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#owwxhaeyqf .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#owwxhaeyqf .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#owwxhaeyqf .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#owwxhaeyqf .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#owwxhaeyqf .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#owwxhaeyqf .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#owwxhaeyqf .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#owwxhaeyqf .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#owwxhaeyqf .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#owwxhaeyqf .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#owwxhaeyqf .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#owwxhaeyqf .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#owwxhaeyqf .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#owwxhaeyqf .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#owwxhaeyqf .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#owwxhaeyqf .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#owwxhaeyqf .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#owwxhaeyqf .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#owwxhaeyqf .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#owwxhaeyqf .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#owwxhaeyqf .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#owwxhaeyqf .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#owwxhaeyqf .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#owwxhaeyqf .gt_left {
+  text-align: left;
+}
+
+#owwxhaeyqf .gt_center {
+  text-align: center;
+}
+
+#owwxhaeyqf .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#owwxhaeyqf .gt_font_normal {
+  font-weight: normal;
+}
+
+#owwxhaeyqf .gt_font_bold {
+  font-weight: bold;
+}
+
+#owwxhaeyqf .gt_font_italic {
+  font-style: italic;
+}
+
+#owwxhaeyqf .gt_super {
+  font-size: 65%;
+}
+
+#owwxhaeyqf .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#owwxhaeyqf .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#owwxhaeyqf .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#owwxhaeyqf .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#owwxhaeyqf .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#owwxhaeyqf .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#owwxhaeyqf .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#owwxhaeyqf .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#owwxhaeyqf div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1"><span class='gt_from_md'><strong>female</strong><br />
+N = 165</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2"><span class='gt_from_md'><strong>male</strong><br />
+N = 168</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="label" class="gt_row gt_left">species</td>
+<td headers="stat_1" class="gt_row gt_center"><br /></td>
+<td headers="stat_2" class="gt_row gt_center"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Adelie</td>
+<td headers="stat_1" class="gt_row gt_center">73 (44%)</td>
+<td headers="stat_2" class="gt_row gt_center">73 (43%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Chinstrap</td>
+<td headers="stat_1" class="gt_row gt_center">34 (21%)</td>
+<td headers="stat_2" class="gt_row gt_center">34 (20%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Gentoo</td>
+<td headers="stat_1" class="gt_row gt_center">58 (35%)</td>
+<td headers="stat_2" class="gt_row gt_center">61 (36%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">island</td>
+<td headers="stat_1" class="gt_row gt_center"><br /></td>
+<td headers="stat_2" class="gt_row gt_center"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Biscoe</td>
+<td headers="stat_1" class="gt_row gt_center">80 (48%)</td>
+<td headers="stat_2" class="gt_row gt_center">83 (49%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Dream</td>
+<td headers="stat_1" class="gt_row gt_center">61 (37%)</td>
+<td headers="stat_2" class="gt_row gt_center">62 (37%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Torgersen</td>
+<td headers="stat_1" class="gt_row gt_center">24 (15%)</td>
+<td headers="stat_2" class="gt_row gt_center">23 (14%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">bill_length_mm</td>
+<td headers="stat_1" class="gt_row gt_center">42.8 (37.6, 46.2)</td>
+<td headers="stat_2" class="gt_row gt_center">46.8 (41.0, 50.4)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">bill_depth_mm</td>
+<td headers="stat_1" class="gt_row gt_center">17.00 (14.50, 17.80)</td>
+<td headers="stat_2" class="gt_row gt_center">18.45 (16.05, 19.30)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">flipper_length_mm</td>
+<td headers="stat_1" class="gt_row gt_center">193 (187, 210)</td>
+<td headers="stat_2" class="gt_row gt_center">201 (193, 219)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">body_mass_g</td>
+<td headers="stat_1" class="gt_row gt_center">3,650 (3,350, 4,550)</td>
+<td headers="stat_2" class="gt_row gt_center">4,300 (3,900, 5,325)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">year</td>
+<td headers="stat_1" class="gt_row gt_center"><br /></td>
+<td headers="stat_2" class="gt_row gt_center"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    2007</td>
+<td headers="stat_1" class="gt_row gt_center">51 (31%)</td>
+<td headers="stat_2" class="gt_row gt_center">52 (31%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    2008</td>
+<td headers="stat_1" class="gt_row gt_center">56 (34%)</td>
+<td headers="stat_2" class="gt_row gt_center">57 (34%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    2009</td>
+<td headers="stat_1" class="gt_row gt_center">58 (35%)</td>
+<td headers="stat_2" class="gt_row gt_center">59 (35%)</td></tr>
+  </tbody>
+  
+  <tfoot class="gt_footnotes">
+    <tr>
+      <td class="gt_footnote" colspan="3"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>n (%); Median (Q1, Q3)</span></td>
+    </tr>
+  </tfoot>
+</table>
+</div>
+<p>The gtsummary package gives you many options to customize your table, which can be regarding the content (mean instead of median, displaying p-value…) but you can also customize its appearance for example customizing the font.</p>
+<p>It also includes a nice option to compute publish-ready cross tables:</p>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="exploratory-data-analysis-eda.html#cb323-1" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb323-2"><a href="exploratory-data-analysis-eda.html#cb323-2" tabindex="-1"></a>  <span class="fu">tbl_cross</span>(</span>
+<span id="cb323-3"><a href="exploratory-data-analysis-eda.html#cb323-3" tabindex="-1"></a>    <span class="at">row =</span> species,</span>
+<span id="cb323-4"><a href="exploratory-data-analysis-eda.html#cb323-4" tabindex="-1"></a>    <span class="at">col =</span> island</span>
+<span id="cb323-5"><a href="exploratory-data-analysis-eda.html#cb323-5" tabindex="-1"></a>  )</span></code></pre></div>
+<div id="ewrxhtxjvr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ewrxhtxjvr table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#ewrxhtxjvr thead, #ewrxhtxjvr tbody, #ewrxhtxjvr tfoot, #ewrxhtxjvr tr, #ewrxhtxjvr td, #ewrxhtxjvr th {
+  border-style: none;
+}
+
+#ewrxhtxjvr p {
+  margin: 0;
+  padding: 0;
+}
+
+#ewrxhtxjvr .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ewrxhtxjvr .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#ewrxhtxjvr .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#ewrxhtxjvr .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#ewrxhtxjvr .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ewrxhtxjvr .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ewrxhtxjvr .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ewrxhtxjvr .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ewrxhtxjvr .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ewrxhtxjvr .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ewrxhtxjvr .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ewrxhtxjvr .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ewrxhtxjvr .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#ewrxhtxjvr .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#ewrxhtxjvr .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ewrxhtxjvr .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ewrxhtxjvr .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ewrxhtxjvr .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ewrxhtxjvr .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ewrxhtxjvr .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#ewrxhtxjvr .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#ewrxhtxjvr .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#ewrxhtxjvr .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ewrxhtxjvr .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#ewrxhtxjvr .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#ewrxhtxjvr .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ewrxhtxjvr .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ewrxhtxjvr .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ewrxhtxjvr .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ewrxhtxjvr .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ewrxhtxjvr .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ewrxhtxjvr .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ewrxhtxjvr .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ewrxhtxjvr .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ewrxhtxjvr .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ewrxhtxjvr .gt_left {
+  text-align: left;
+}
+
+#ewrxhtxjvr .gt_center {
+  text-align: center;
+}
+
+#ewrxhtxjvr .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ewrxhtxjvr .gt_font_normal {
+  font-weight: normal;
+}
+
+#ewrxhtxjvr .gt_font_bold {
+  font-weight: bold;
+}
+
+#ewrxhtxjvr .gt_font_italic {
+  font-style: italic;
+}
+
+#ewrxhtxjvr .gt_super {
+  font-size: 65%;
+}
+
+#ewrxhtxjvr .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#ewrxhtxjvr .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#ewrxhtxjvr .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#ewrxhtxjvr .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#ewrxhtxjvr .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#ewrxhtxjvr .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#ewrxhtxjvr .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#ewrxhtxjvr .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#ewrxhtxjvr div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings gt_spanner_row">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" scope="col" id="label"></th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="3" scope="colgroup" id="island">
+        <div class="gt_column_spanner"><span class='gt_from_md'>island</span></div>
+      </th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="2" colspan="1" scope="col" id="stat_0"><span class='gt_from_md'>Total</span></th>
+    </tr>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1"><span class='gt_from_md'>Biscoe</span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2"><span class='gt_from_md'>Dream</span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_3"><span class='gt_from_md'>Torgersen</span></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="label" class="gt_row gt_left">species</td>
+<td headers="stat_1" class="gt_row gt_center"><br /></td>
+<td headers="stat_2" class="gt_row gt_center"><br /></td>
+<td headers="stat_3" class="gt_row gt_center"><br /></td>
+<td headers="stat_0" class="gt_row gt_center"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Adelie</td>
+<td headers="stat_1" class="gt_row gt_center">44</td>
+<td headers="stat_2" class="gt_row gt_center">55</td>
+<td headers="stat_3" class="gt_row gt_center">47</td>
+<td headers="stat_0" class="gt_row gt_center">146</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Chinstrap</td>
+<td headers="stat_1" class="gt_row gt_center">0</td>
+<td headers="stat_2" class="gt_row gt_center">68</td>
+<td headers="stat_3" class="gt_row gt_center">0</td>
+<td headers="stat_0" class="gt_row gt_center">68</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Gentoo</td>
+<td headers="stat_1" class="gt_row gt_center">119</td>
+<td headers="stat_2" class="gt_row gt_center">0</td>
+<td headers="stat_3" class="gt_row gt_center">0</td>
+<td headers="stat_0" class="gt_row gt_center">119</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">Total</td>
+<td headers="stat_1" class="gt_row gt_center">163</td>
+<td headers="stat_2" class="gt_row gt_center">123</td>
+<td headers="stat_3" class="gt_row gt_center">47</td>
+<td headers="stat_0" class="gt_row gt_center">333</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+<div id="dlookr" class="section level3 hasAnchor" number="4.2.6">
+<h3><span class="header-section-number">4.2.6</span> dlookr<a href="exploratory-data-analysis-eda.html#dlookr" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>dlookr is a nice package with different functions that can support us with EDA. Let us start with the diagnose() function, which is a gelps us identify missing values and unique observations in the dataset:</p>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="exploratory-data-analysis-eda.html#cb324-1" tabindex="-1"></a><span class="fu">diagnose</span>(penguins) <span class="sc">%&gt;%</span></span>
+<span id="cb324-2"><a href="exploratory-data-analysis-eda.html#cb324-2" tabindex="-1"></a>  <span class="fu">print</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 8 × 6
+##   variables types missing_count missing_percent
+##   &lt;chr&gt;     &lt;chr&gt;         &lt;int&gt;           &lt;dbl&gt;
+## 1 species   fact…             0               0
+## 2 island    fact…             0               0
+## 3 bill_len… nume…             0               0
+## 4 bill_dep… nume…             0               0
+## 5 flipper_… inte…             0               0
+## 6 body_mas… inte…             0               0
+## 7 sex       fact…             0               0
+## 8 year      inte…             0               0
+## # ℹ 2 more variables: unique_count &lt;int&gt;,
+## #   unique_rate &lt;dbl&gt;</code></pre>
+<p>We can also generate an output for summary statistics with an old friend, the describe() function, but this time from the dlookr package:</p>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="exploratory-data-analysis-eda.html#cb326-1" tabindex="-1"></a>dlookr<span class="sc">::</span><span class="fu">describe</span>(penguins)</span></code></pre></div>
+<pre><code>## # A tibble: 5 × 26
+##   described_variables     n    na   mean
+##   &lt;chr&gt;               &lt;int&gt; &lt;int&gt;  &lt;dbl&gt;
+## 1 bill_length_mm        333     0   44.0
+## 2 bill_depth_mm         333     0   17.2
+## 3 flipper_length_mm     333     0  201. 
+## 4 body_mass_g           333     0 4207. 
+## 5 year                  333     0 2008. 
+## # ℹ 22 more variables: sd &lt;dbl&gt;,
+## #   se_mean &lt;dbl&gt;, IQR &lt;dbl&gt;, skewness &lt;dbl&gt;,
+## #   kurtosis &lt;dbl&gt;, p00 &lt;dbl&gt;, p01 &lt;dbl&gt;,
+## #   p05 &lt;dbl&gt;, p10 &lt;dbl&gt;, p20 &lt;dbl&gt;,
+## #   p25 &lt;dbl&gt;, p30 &lt;dbl&gt;, p40 &lt;dbl&gt;,
+## #   p50 &lt;dbl&gt;, p60 &lt;dbl&gt;, p70 &lt;dbl&gt;,
+## #   p75 &lt;dbl&gt;, p80 &lt;dbl&gt;, p90 &lt;dbl&gt;, …</code></pre>
+<p>The dlookr package has one special feature: It can generate an EDA report with one line of code, I introduce you the eda_report() function:</p>
+<p><code>dlookr::eda_paged_report(penguins, output_format = "html")</code></p>
+<table>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><img src="images/Bildschirmfoto%20vom%202025-04-12%2019-48-38.png" /></td>
+<td><img src="images/Bildschirmfoto%20vom%202025-04-12%2019-49-55.png" /></td>
+<td><img src="images/Bildschirmfoto%20vom%202025-04-12%2019-50-21.png" /></td>
+</tr>
+<tr class="even">
+<td><img src="images/Bildschirmfoto%20vom%202025-04-12%2019-52-17.png" /></td>
+<td><img src="images/Bildschirmfoto%20vom%202025-04-12%2019-53-30.png" /></td>
+<td><img src="images/Bildschirmfoto%20vom%202025-04-12%2019-54-07.png" /></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="dataexplorer" class="section level3 hasAnchor" number="4.2.7">
+<h3><span class="header-section-number">4.2.7</span> DataExplorer<a href="exploratory-data-analysis-eda.html#dataexplorer" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>DataExplorer is a powerful all-in-one EDA package, that helps us to explore our data with a few line of code. It also includes a function that generates an EDA report.</p>
+<p>But let us start by getting basic information about our data with the introduce() function:</p>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="exploratory-data-analysis-eda.html#cb328-1" tabindex="-1"></a><span class="fu">introduce</span>(penguins)</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 9
+##    rows columns discrete_columns
+##   &lt;int&gt;   &lt;int&gt;            &lt;int&gt;
+## 1   333       8                3
+## # ℹ 6 more variables:
+## #   continuous_columns &lt;int&gt;,
+## #   all_missing_columns &lt;int&gt;,
+## #   total_missing_values &lt;int&gt;,
+## #   complete_rows &lt;int&gt;,
+## #   total_observations &lt;int&gt;,
+## #   memory_usage &lt;dbl&gt;</code></pre>
+<p>We can also plot missing values with DataExplorer by using the plot_missing() function:</p>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="exploratory-data-analysis-eda.html#cb330-1" tabindex="-1"></a><span class="fu">plot_missing</span>(penguins_raw)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/plot_missing-1.png" width="672" /></p>
+<p>Further, we can plot correlations with DataExplorer:</p>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="exploratory-data-analysis-eda.html#cb331-1" tabindex="-1"></a><span class="fu">plot_correlation</span>(penguins_numeric)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/plot_correlation-1.png" width="672" /></p>
+<p>And finally, we can use DataExplorer to generate an automated Data Report:</p>
+<p><code>create_report(penguins)</code></p>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><img src="images/clipboard-2450633220.png" /></td>
+<td><img src="images/clipboard-3067609921.png" /></td>
+</tr>
+<tr class="even">
+<td><img src="images/DataExplorer_report_screenshot4.png" /></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="smarteda" class="section level3 hasAnchor" number="4.2.8">
+<h3><span class="header-section-number">4.2.8</span> smartEDA<a href="exploratory-data-analysis-eda.html#smarteda" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The last package in this chapter is smartEDA. It is a powerful package designed to quickly create descriptive statistics and visualizations for numeric and categorical data.</p>
+<p>The first function is ExpData(), it gives us the structure, missing values and variable types:</p>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="exploratory-data-analysis-eda.html#cb332-1" tabindex="-1"></a><span class="fu">ExpData</span>(penguins, <span class="at">type =</span> <span class="dv">1</span>)</span></code></pre></div>
+<pre><code>##                                           Descriptions
+## 1                                   Sample size (nrow)
+## 2                              No. of variables (ncol)
+## 3                    No. of numeric/interger variables
+## 4                              No. of factor variables
+## 5                                No. of text variables
+## 6                             No. of logical variables
+## 7                          No. of identifier variables
+## 8                                No. of date variables
+## 9             No. of zero variance variables (uniform)
+## 10               %. of variables having complete cases
+## 11   %. of variables having &gt;0% and &lt;50% missing cases
+## 12 %. of variables having &gt;=50% and &lt;90% missing cases
+## 13          %. of variables having &gt;=90% missing cases
+##       Value
+## 1       333
+## 2         8
+## 3         5
+## 4         3
+## 5         0
+## 6         0
+## 7         0
+## 8         0
+## 9         0
+## 10 100% (8)
+## 11   0% (0)
+## 12   0% (0)
+## 13   0% (0)</code></pre>
+<p>We can also let smartEDA calculate summary statistics such as mean, standard deviation, skewness, etc.</p>
+<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="exploratory-data-analysis-eda.html#cb334-1" tabindex="-1"></a><span class="fu">ExpNumStat</span>(penguins)</span></code></pre></div>
+<pre><code>##               Vname Group  TN nNeg nZero nPos
+## 2     bill_depth_mm   All 333    0     0  333
+## 1    bill_length_mm   All 333    0     0  333
+## 4       body_mass_g   All 333    0     0  333
+## 3 flipper_length_mm   All 333    0     0  333
+##   NegInf PosInf NA_Value Per_of_Missing
+## 2      0      0        0              0
+## 1      0      0        0              0
+## 4      0      0        0              0
+## 3      0      0        0              0
+##         sum    min    max     mean median
+## 2    5715.9   13.1   21.5   17.165   17.3
+## 1   14649.6   32.1   59.6   43.993   44.5
+## 4 1400950.0 2700.0 6300.0 4207.057 4050.0
+## 3   66922.0  172.0  231.0  200.967  197.0
+##        SD    CV    IQR Skewness Kurtosis
+## 2   1.969 0.115    3.1   -0.149   -0.897
+## 1   5.469 0.124    9.1    0.045   -0.888
+## 4 805.216 0.191 1225.0    0.470   -0.740
+## 3  14.016 0.070   23.0    0.359   -0.965</code></pre>
+<p>Lastly, we can again generate an automatized EDA report with ExpReport():</p>
+<p><code>ExpReport(data = penguins, Target = "species", label = "Penguin Species", op_file="Samp1.html", Rc=3 )</code></p>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><img src="images/smartEDA_report_screenshot1.png" /></td>
+<td><img src="images/smartEDA_report_screenshot2.png" /></td>
+</tr>
+<tr class="even">
+<td><img src="images/smartEDA_report_screenshot3.png" /></td>
+<td><img src="images/smartEDA_report_screenshot4.png" /></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="conclusion" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Conclusion<a href="exploratory-data-analysis-eda.html#conclusion" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+
+</div>
 </div>
             </section>
 

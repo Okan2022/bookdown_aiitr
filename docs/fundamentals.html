@@ -23,7 +23,7 @@
 <meta name="author" content="Okan Sarioglu" />
 
 
-<meta name="date" content="2025-01-12" />
+<meta name="date" content="2025-04-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -208,7 +208,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.8" data-path="data-visualisation.html"><a href="data-visualisation.html#outlook-3"><i class="fa fa-check"></i><b>3.8</b> Outlook</a></li>
 <li class="chapter" data-level="3.9" data-path="data-visualisation.html"><a href="data-visualisation.html#exercise-section-2"><i class="fa fa-check"></i><b>3.9</b> Exercise Section</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="exploratory-data-analysis-eda.html"><a href="exploratory-data-analysis-eda.html"><i class="fa fa-check"></i><b>4</b> Exploratory Data Analysis (EDa)</a></li>
+<li class="chapter" data-level="4" data-path="exploratory-data-analysis-eda.html"><a href="exploratory-data-analysis-eda.html"><i class="fa fa-check"></i><b>4</b> Exploratory Data Analysis (EDA)</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="exploratory-data-analysis-eda.html"><a href="exploratory-data-analysis-eda.html#standard-descriptive-statistics"><i class="fa fa-check"></i><b>4.1</b> Standard Descriptive Statistics</a></li>
+<li class="chapter" data-level="4.2" data-path="exploratory-data-analysis-eda.html"><a href="exploratory-data-analysis-eda.html#working-with-eda-packages"><i class="fa fa-check"></i><b>4.2</b> Working with EDA packages</a></li>
+<li class="chapter" data-level="4.3" data-path="exploratory-data-analysis-eda.html"><a href="exploratory-data-analysis-eda.html#conclusion"><i class="fa fa-check"></i><b>4.3</b> Conclusion</a></li>
+</ul></li>
 <li class="chapter" data-level="5" data-path="data-analysis.html"><a href="data-analysis.html"><i class="fa fa-check"></i><b>5</b> Data Analysis</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="data-analysis.html"><a href="data-analysis.html#linear-regression"><i class="fa fa-check"></i><b>5.1</b> Linear Regression</a></li>
@@ -389,7 +394,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb37-2"><a href="fundamentals.html#cb37-2" tabindex="-1"></a>          <span class="st">&quot;Fish&quot;</span>, <span class="st">&quot;Burrito&quot;</span>) <span class="co">#food vector</span></span>
 <span id="cb37-3"><a href="fundamentals.html#cb37-3" tabindex="-1"></a></span>
 <span id="cb37-4"><a href="fundamentals.html#cb37-4" tabindex="-1"></a><span class="fu">print</span>(food) <span class="co">#printing it </span></span></code></pre></div>
-<pre><code>## [1] &quot;Pizza&quot;   &quot;Kebab&quot;   &quot;Curry&quot;   &quot;Fish&quot;    &quot;Burrito&quot;</code></pre>
+<pre><code>## [1] &quot;Pizza&quot;   &quot;Kebab&quot;   &quot;Curry&quot;   &quot;Fish&quot;   
+## [5] &quot;Burrito&quot;</code></pre>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="fundamentals.html#cb39-1" tabindex="-1"></a>prices <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">7.50</span>, <span class="fl">6.00</span>, <span class="fl">8.50</span>, <span class="fl">3.00</span>, <span class="fl">11.00</span>) <span class="co">#price vector</span></span>
 <span id="cb39-2"><a href="fundamentals.html#cb39-2" tabindex="-1"></a></span>
 <span id="cb39-3"><a href="fundamentals.html#cb39-3" tabindex="-1"></a><span class="fu">print</span>(prices) <span class="co">#printing it</span></span></code></pre></div>
@@ -484,10 +490,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb57-5"><a href="fundamentals.html#cb57-5" tabindex="-1"></a>                     cola_prices) <span class="co">#We bind it together</span></span>
 <span id="cb57-6"><a href="fundamentals.html#cb57-6" tabindex="-1"></a></span>
 <span id="cb57-7"><a href="fundamentals.html#cb57-7" tabindex="-1"></a><span class="fu">print</span>(price_index2) <span class="co">#We print it </span></span></code></pre></div>
-<pre><code>##             [,1]    [,2]    [,3]    [,4]   [,5]     
-## food        &quot;Pizza&quot; &quot;Kebab&quot; &quot;Curry&quot; &quot;Fish&quot; &quot;Burrito&quot;
-## prices      &quot;7.5&quot;   &quot;6&quot;     &quot;8.5&quot;   &quot;3&quot;    &quot;11&quot;     
-## cola_prices &quot;3.5&quot;   &quot;3&quot;     &quot;4&quot;     &quot;2.5&quot;  &quot;3&quot;</code></pre>
+<pre><code>##             [,1]    [,2]    [,3]    [,4]  
+## food        &quot;Pizza&quot; &quot;Kebab&quot; &quot;Curry&quot; &quot;Fish&quot;
+## prices      &quot;7.5&quot;   &quot;6&quot;     &quot;8.5&quot;   &quot;3&quot;   
+## cola_prices &quot;3.5&quot;   &quot;3&quot;     &quot;4&quot;     &quot;2.5&quot; 
+##             [,5]     
+## food        &quot;Burrito&quot;
+## prices      &quot;11&quot;     
+## cola_prices &quot;3&quot;</code></pre>
 <p>We can also generate a matrix by simulating it. There are a lot of things to care about, simply because a lot is possible:</p>
 <ul>
 <li><p>You first call the matrix() command.</p></li>

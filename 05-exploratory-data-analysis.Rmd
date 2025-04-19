@@ -1,0 +1,541 @@
+# Exploratory Data Analysis (EDA)
+
+In this chapter, we will start with data analysis. One crucial step when analyzing data is Exploratory Data Analysis. It describes the process of analyzing data sets to summarize their main characteristics. This step can help understanding the data, checking its quality, early detecting patterns and trends and gain first insights!
+
+Since R is a software specifically designed for statistics, we have a lot of high value libraries to perform EDA. The dataset we will use for this part is called `palmerpenguins`. This is a dataset about penguin species and their attributes.
+
+```{r loading packages and penguins data}
+pacman::p_load("summarytools", "SmartEDA", "skimr", 
+               "naniar", "gtsummary", "dlookr",
+               "DataExplorer", "psych", "ggplot2",
+               "palmerpenguins", "dplyr", "tidyr", "corrplot")
+
+penguins <- na.omit(penguins)
+penguins_raw <- penguins_raw
+```
+
+## Standard Descriptive Statistics
+
+### Measures of Central Tendency
+
+As the name suggests, measures of central tendency are helping us to understand the probability distribution of the data, its center and typical values. The three most common measures of central tendency are the arithmetic mean, the median and the mode.
+
+-   **Mode:** The most frequent number
+
+-   **Mean:** The sum of all values divided by the total number of values
+
+-   **Median:** The middle number in an ordered dataset
+
+#### Mode
+
+The mode is probably the easiest measure out of all measures: It is defined as the most frequent number of all observations. We cannot directly calculate the mode, but there is a way to it. First we look at all unique values of or observations with the `unique()` function, then we count the occurrences of each unique value with `tabulate()`, and lastly we use the `which.max()` function to get the most frequent unique value:
+
+```{r calculating the mode}
+uniq_vals <- unique(penguins$bill_length_mm)  # Get unique values
+freqs <- tabulate(match(penguins$bill_length_mm, uniq_vals))  # Count occurrences
+uniq_vals[which.max(freqs)] # Getting the unique value with the most occurrences
+```
+
+#### Mean
+
+Let us start by looking at the formula to calculate a mean:
+
+$$
+\bar{x} = \frac{\sum{x_i}}{n}
+$$
+
+whereas:
+
+-   $\bar{x}$ is our mean
+
+-   $\sum{x_i}$ is the sum of all our observations.
+
+-   $n$ is the number of all our observations
+
+We could do that by hand or we just use the built-in `mean()` function:
+
+```{r calculating the mean}
+mean(penguins$bill_length_mm)
+```
+
+#### Median
+
+Image sorting all your data from the lowest to highest and then pointing at the value, which has exactly 50% of all values to its left and the other 50% to its right, this would be the median value. Well, at least you will point at a value if your distribution has an yeven number of observations. But you can also calculate the value for an uneven number of observations, let us have a look at both formulas:
+
+-   \$ X\_{(\frac{n+1}{2})} \$ for an even number of *n*
+
+-   \$ \frac{1}{2}X\_{(\frac{n}{2})} + X\_{(\frac{n}{2} + 1)} \$
+
+    for an uneven number of *n*
+
+Again we could calculate that by hand or we just use the `median()` function:
+
+```{r calculating the median}
+median(penguins$bill_length_mm)
+```
+
+### Measures of Dispersion
+
+In statistics, measures of dispersion describe the extent to which a distribution of a variable is stretched or squeezed. In other words, they help to gauge the spread of our distributions.
+
+#### Interquartile Range (IQR)
+
+You remember the boxplot from the data visualization chapter? It is supposed to show the so-called interquartile range (IQR). It is defined as the difference between the 75th percentile (or third quartile) and the 25th percentile (or the first quartile). Basically the distribution is spread into four equally big areas, which are separated by three points, the first quartile denoted by $Q_1$ (also called the lower quartile), the second quartile is the median and denoted as $Q_2$, and the third quartile is measures of dispersiondenoted by $Q_3$ (also called the upper quartile), thus the formula is:
+
+$$
+IQR = Q_3 - Q_1
+$$
+
+In R, we can calculate the **Interquartile Range (IQR)** using the `IQR()` function. By hand, we would:
+
+1.  **Sort the data** in ascending order.
+
+2.  **Split the data into four equal parts** (quartiles).
+
+3.  Identify **Q1 (first quartile, 25th percentile)** and **Q3 (third quartile, 75th percentile)**.
+
+Note that in some cases the data cannot be divided into four even parts ddue to their size. In such cases, different statistical methods (e.g. Tukey's Hinges) approximate quartiles in such cases.
+
+```{r calculating the iqr}
+IQR(penguins$bill_length_mm)
+```
+
+#### Variance
+
+In statistics, the variance is the expected value of the squared deviation from the mean of our random variable. The concept of the mean gets clear if we break down its formula:
+
+$$
+s² = \frac{\sum(x_i - \bar{x})²}{n-1}
+$$
+
+where
+
+-   the index *i* runs over the observations (Respondents, Countries,...), *i* = 1,...,*n*
+
+-   $x_i$ are our observations
+
+-   $\bar{x}$ is the mean of our distribution
+
+-   $n$ is the number of observations
+
+Especially the nominator of the formula $\sum(x_i - \bar{x})²$ is quite interesting because it uses an interesting technique:
+
+Image our data is aligned on one dimension and somewhere in the middle there is our mean:
+
+Now, image we would calculate the differences and sum them up without squaring.
+
+You see that distance 1 would be -3 and distance 2 would be 4 an in sum that makes 0,8, but that is for sure not the distance between those two points. Here comes the squared part into action, every squared number is positive, this ensures that -3 becomes 9 and 4 becomes 16, thus the differences can be summed and result in 24.
+
+In R, we can implement this by simply calling the var() function:
+
+```{r calculating the variance}
+var(penguins$bill_length_mm)
+```
+
+Well we get 29.9 and the problem with variance is, that the squaring technique I showed you earlier leads to a problem: We cannot really interpret the data because it loses its unit, for example if our data is in meter, the variance would be in square meters. But we can solve this problem with the next measure: standard deviation.
+
+#### Standard Deviation
+
+The standard deviation is the square root of the variance. It describes the amount of variation of the values of a variables about its mean. A low standard deviation indicate closeness of the values to the mean, and a high standard deviation indicates that the values are spread out over a wider range.
+
+The standard deviation is the square root of the variance:
+
+$$
+s = \sqrt{s²} = \sqrt\frac{\sum(x_i - \bar{x})}{n-1}
+$$
+
+Remember our example?:
+
+We calculated the variance the distance of the squared sums to be 24 (9 + 16). However, what happens if we take the square root of the squared values before adding them? Well, we get 3 for distance 1 and 4 for distance 2. For distance 2 nothing changed, it came back to its original value 4, but distance 1 has become positive from -3 to 3. Now we can add it together and get the distance 7.
+
+Let us apply it in R, with the function `sd()`:
+
+```{r calculating the standard deviation}
+sd(penguins$bill_length_mm)
+```
+
+The huge advantage of the standard deviation in comparison to the variance is that it can be interpreted in the original unit and is thus a more intuitive measure of dispersion to work with.
+
+### Relationships between Variables
+
+It is necessary to understand one key difference in EDA. There are values you simply look at and interpret such as the measures shown before. But on the other hand there are measures which look at the relationship between variables, thus analyzing how they interact which each other. In the following, we will look at two methods to do so.
+
+#### Crosstables / Contingency Tables
+
+```{r making crosstabs}
+table(penguins$species, penguins$island)
+
+summarytools::ctable(penguins$species, penguins$island)
+
+gtsummary::tbl_cross(data = penguins, 
+                     row = species, 
+                     col = island)
+```
+
+#### Correlation
+
+Correlation is an umbrella term for any statistical relationship, whether causal or not, between two random variables or bivariate data. The three main measures of correlations are named after their inventors: Pearsons Correlation (or simply Pearson's r), Spearman's Rank Correlation (or simply Spearman's rho) and Kendall's Tau.
+
+Before going on let us make clear what a linear relationship means. It means that if an observation increases or decreases the corresponding variables changes in a proportional and predictable way.
+
+##### Pearsons Correlation
+
+Pearsons Correlation measures the linear relationship between two continous variables. To do so it assumes a normal distribution between two variables, a linear relationship and no major outliers.
+
+Normally, you should test those before running a correlation, but we skip that part and look at the implementation in R:
+
+```{r simple correlation}
+cor(penguins$bill_length_mm, penguins$body_mass_g,
+    method = "pearson")
+```
+
+The interpretation of pearson's r is quite straightforward: The result always ranges between +1 and -1, where +1 means a perfect linear relationship, 0 means no relationship at all, -1 means a perfect linear relationship.
+
+In our case there is a strong positive, linear relationship of both variables with a r = 0.59.
+
+##### Spearman's Rank Correlation
+
+Spearman's Rank Correlation, or simply Spearman's Rho shows if ordinal or continuous variables have a Monotonic Relationship. This means that if one variables increases, the other always increases or decreases but not necessarily at a constant way, as it would be with a linear relationship.
+
+It has different assumptions like outliers are allowed, the relationship is non-linear, the data contains rank and the variables are not normally distributed.
+
+Let us have a look, how it is calculated in R:
+
+```{r correlation spearman}
+cor(penguins$bill_length_mm, penguins$body_mass_g,
+    method = "spearman")
+```
+
+The interpretation is analog to Pearson's R, +1 means a perfect positive, monotonic relationship, 0 means no monotonic relationship and -1 means perfect negative, monotonic relationship.
+
+A spearman's rho of 0.58 indicates a strong, positive, monotonic relationship between the two variables.
+
+##### Kendalls Tau
+
+Kendalls Tau measures the strength and direction of association between two ranked variables. We differentiate between two types of relationships: Concordant and Discordant relationships.
+
+-   A concordant relationship means both data points move in the same direction
+
+-   A discordant relationship if one data point increases, the other decreases (or vice versa).
+
+Let us calculate it:
+
+```{r correlation with kendall}
+cor(penguins$bill_length_mm, penguins$body_mass_g,
+    method = "kendall")
+```
+
+Kendalls Tau can be interpreted wiht +1 as a perfect rank agreement, 0 means no association at all, and -1 means a perfect rank reversal.
+
+Our kendall's tau indicates a high rank agreement between both our variables.
+
+#### Correlation Graphically
+
+The part before was quite theoretical, but there are also nice approaches to look at correlations graphically. we start with a simple scatterplot:
+
+```{r graphically correlation}
+ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g)) +
+  geom_point(color = "#0077b6") +
+  labs(x = "Length in mm",
+       y = "Body Mass in g",
+       title = "Relationship between Length (in mm) and Body Mass (in g)") + 
+  theme_bw()
+```
+
+When looking at relationships between two variables, scatterplots are the standard visualization to do so. As we can see, there is a clear trend that the length in mm could be positively related to the body mass in g. In the end of the day, there are three types of linear relationships and the scatterplots always look accordingly:
+
+```{r example correlations}
+set.seed(123)
+
+n <- 100
+
+df <- data.frame(
+  x = rep(1:n, 3),
+  relationship = rep(c("Positive", "Negative", "None"), 
+                     each = n),
+  y = c(
+    (1:n) + rnorm(n, sd = 15),    # strong positive correlation
+    (n:1) + rnorm(n, sd = 15),    # strong negative correlation
+    rnorm(n, mean = 50, sd = 20) # no correlation
+  )
+)
+
+# Reorder factor levels
+df$relationship <- factor(df$relationship, 
+                          levels = c("Positive", "None", "Negative"),
+                          labels = c("Positive", "No Correlation", "Negative"))
+
+# Plot
+ggplot(df, aes(x = x, y = y)) +
+  geom_point(color = "steelblue", size = 2) +
+  facet_wrap(~relationship, nrow = 1) +
+  labs(title = "Strong Positive, Negative, and No Correlation",
+       x = "X", y = "Y") +
+  theme_bw(base_size = 18)
+```
+
+With scatterplots in combination with facet_wrap() you can show several correlations graphically, but there is a way to calculate the correlation coefficient and to show it graphically with a **correlation plot**. A correlation plot combines the logic of contingency tables, heat maps and the correlation coefficients.
+
+First a **correlation matrix** is created. A table that shows the **pairwise correlation coefficients** (typically Pearson) between several numerical variables. Each cell in the matrix represents the strength and direction of the linear relationship between two variables. A **correlation plot** is then a visual representation of this matrix, often using color gradients or circle sizes to show the strength and direction of correlations, making it easier to spot patterns.
+
+Let us compute it in R: We will use the corrplot package in R (There are other ways to compute it, which I will show later).
+
+-   First, we cut down our dataset to the variables you want to correlate with each other
+
+-   Second, compute a correlation matrix with the cor() command
+
+-   Third, call the corrplot variable, and take in the dataset, define the method (we will use the color to display the strength of the correlation), the type (`'full'` (default), `'upper'` or `'lower'`, display full matrix, lower triangular or upper triangular matrix).
+
+```{r simple corr matrix}
+# Step 1: Prepare numeric data
+penguins_numeric <- penguins %>%
+  select(bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g) %>%
+  drop_na()
+
+# Step 2: Compute correlation matrix
+corr_matrix <- cor(penguins_numeric)
+
+# Step 3: Plot the correlation matrix
+corrplot(corr_matrix, method = "color")
+```
+
+Now, we can see in an elegant way the correlation between the four selected variables, which are displayed through the color. Every cell displays the correlation coefficient of the variable on its respective column and on its respective row.
+
+The corrplot() function allows for further aesthetics:
+
+```{r pretty corrmatrix}
+corrplot(corr_matrix, method = "color", type = "upper", 
+         addCoef.col = "black", tl.col = "black", tl.srt = 45)
+```
+
+And finally, we can change the method to circular. This changes the plot insofar that it does not fill the cells with the color of the correlation coefficient, but makes a circle around the numbers and fills it then with the color. The size of the circles, thus the radius is determined but the strength of the correlation, meaning that the closer the coefficient to zero the smaller the circle:
+
+```{r corrmatrix circular}
+corrplot(corr_matrix, method = "circle", type = "upper", 
+         addCoef.col = "black", tl.col = "black", tl.srt = 45)
+```
+
+If I use the circular method, I like to display it without the numbers, looks better in my opinion, and is more intuitive then filling the whole row:
+
+```{r pretty corrmatrix circular}
+corrplot(corr_matrix, method = "circle", type = "upper", 
+         tl.col = "black", tl.srt = 45)
+```
+
+## Working with EDA packages
+
+There are several other measures for EDA, and of course you do not have to calculate every single measure by hand, although you could. In the following, I will introduce you to the most popular packages for EDA. From my point of view, they are all basically the same, with some nuances and when talking to other R-users I noticed that everyone somehow established his or her own routine of EDA. Therefore I suggest that you get an overview of all those packages and find your own "EDA-Routine" so to speak.
+
+### psych
+
+The psych package is a crucial package for psychologists and I love to use its "describe()" function, which shows a bunch of descriptive statistics with one line of code:
+
+```{r psych}
+#Applying describe to the whole dataset
+psych::describe(penguins)
+
+#You can apply describe() also for single variables
+#psych::describe(penguins$bill_length_mm)
+```
+
+The describe() function output is a summary table of the basic summary statistics as mean, standard deviation, median, and a lot more and it is a shortcut, so you do not have to calculate every measure on its own.
+
+```{r psych corr.test}
+corr.test(penguins_numeric)
+```
+
+```{r psych pairs.panels}
+pairs.panels(penguins_numeric)
+```
+
+### skimr
+
+The skimr package is a wonderful way to get an overview of our datasets structure and basic statistics, even with a visualization of the distribution of the variable. The main function is `skim()`:
+
+```{r skimr}
+skimr::skim(penguins)
+
+#If you do not want to see the distribution
+#skimr::skim_without_charts(penguins)
+```
+
+The advantage of the skimr package is that it directly calculates descriptive statistics and shows the missing values for every variable in your dataset. I often use this command to have a look at datasets I am not familiar with. I think it is more a function for exploring the dataset rather than EDA it can be a useful first step for conducting EDA.
+
+### summarytools
+
+We will dive into the summarytools package with the classic dfSummary command which summarizes the structure of our dataset:
+
+```{r dfSummary}
+dfSummary(penguins)
+```
+
+The huge advantage of this command is that if we wrap it around the dfSummary function and then it gives us a formatted in a nice table:
+
+```{r dfSummary with view}
+view(dfSummary(penguins))
+
+# Or if you are a good R user, then you can use also a pipe
+# dfSummary(penguins) %>%
+# view()
+```
+
+The package also includes nice ways of showing frequency tables for single variables with more information than the standard table() command:
+
+```{r dfSummary freq}
+freq(penguins$species)
+```
+
+We can also use the descr() function rom the package which shows us the most common descriptive statistics of our variables in our dataset:
+
+```{r descr function summarytools}
+descr(penguins)
+```
+
+Lastly, I want to show you how you can make cross tables with the summarytools package:
+
+```{r ctable summarytools}
+ctable(penguins$species, penguins$island)
+```
+
+### naniar
+
+Naniar is one of the most powerful packages for working with missing data. At first glance, dealing with missing values may seem straightforward — as covered in the "Data Manipulation" chapter, it’s common to simply remove rows with missing values using functions like `na.omit()` or `drop_na()`.
+
+However, as you progress in data analysis, handling missing data becomes much more important and nuanced. Here's why:
+
+-   **Dropping missing values can lead to a small sample size (`n`)**, reducing statistical power.
+
+-   **If a large portion of data is missing**, removing it may introduce bias, especially if the missingness is not random.
+
+In such situations, **advanced techniques like multiple imputation** become valuable. These methods estimate missing values using mathematical models that consider patterns in the data.
+
+But there's a catch:
+
+**These models have assumptions** (e.g., data are Missing at Random — MAR). Violating these assumptions can lead to misleading results. That’s why it’s crucial to **explore and understand the structure of missingness** before choosing a strategy.
+
+Let us start with the basic miss_var_summary() function, it shows the number of missing values, and calculates the percentages of missing values:
+
+```{r naniar miss_var_summary}
+naniar::miss_var_summary(penguins_raw)
+```
+
+The function that made naniar famous is the gg_miss_upset() function, which shows us the structure of the missing values graphically:
+
+```{r naniar gg_miss_upset}
+naniar::gg_miss_upset(penguins_raw)
+```
+
+```{r naniar vis_miss}
+naniar::vis_miss(penguins_raw)
+```
+
+### gtsummary
+
+The gtsummary package is the package for data reporting, because it automatically creates data tables ready for publication with one line of code. Let us start with the tbl_summary() function:
+
+```{r tbl_summary}
+gtsummary::tbl_summary(penguins)
+```
+
+We get a nice table which splits up the categorical data in its categories and displays the absolute and relative frequencies (in the brackets) and for numeric variables we get the median value with first quartile and the third quartile.
+
+We can also group by certain variables to get a more detailed overview:
+
+```{r grouped tbl_summary}
+penguins %>%
+  tbl_summary(by = sex)
+```
+
+The gtsummary package gives you many options to customize your table, which can be regarding the content (mean instead of median, displaying p-value...) but you can also customize its appearance for example customizing the font.
+
+It also includes a nice option to compute publish-ready cross tables:
+
+```{r tbl_cross}
+penguins %>%
+  tbl_cross(
+    row = species,
+    col = island
+  )
+```
+
+### dlookr
+
+dlookr is a nice package with different functions that can support us with EDA. Let us start with the diagnose() function, which is a gelps us identify missing values and unique observations in the dataset:
+
+```{r diagnose}
+diagnose(penguins) %>%
+  print()
+```
+
+We can also generate an output for summary statistics with an old friend, the describe() function, but this time from the dlookr package:
+
+```{r dlookr describe}
+dlookr::describe(penguins)
+```
+
+The dlookr package has one special feature: It can generate an EDA report with one line of code, I introduce you the eda_report() function:
+
+`dlookr::eda_paged_report(penguins, output_format = "html")`
+
+|  |  |  |
+|----|----|----|
+| ![](images/Bildschirmfoto%20vom%202025-04-12%2019-48-38.png) | ![](images/Bildschirmfoto%20vom%202025-04-12%2019-49-55.png) | ![](images/Bildschirmfoto%20vom%202025-04-12%2019-50-21.png) |
+| ![](images/Bildschirmfoto%20vom%202025-04-12%2019-52-17.png) | ![](images/Bildschirmfoto%20vom%202025-04-12%2019-53-30.png) | ![](images/Bildschirmfoto%20vom%202025-04-12%2019-54-07.png) |
+
+### DataExplorer
+
+DataExplorer is a powerful all-in-one EDA package, that helps us to explore our data with a few line of code. It also includes a function that generates an EDA report.
+
+But let us start by getting basic information about our data with the introduce() function:
+
+```{r introduce function dataexplorer}
+introduce(penguins)
+```
+
+We can also plot missing values with DataExplorer by using the plot_missing() function:
+
+```{r plot_missing}
+plot_missing(penguins_raw)
+```
+
+Further, we can plot correlations with DataExplorer:
+
+```{r plot_correlation}
+plot_correlation(penguins_numeric)
+```
+
+And finally, we can use DataExplorer to generate an automated Data Report:
+
+`create_report(penguins)`
+
+|  |  |
+|----|----|
+| ![](images/clipboard-2450633220.png) | ![](images/clipboard-3067609921.png) |
+| ![](images/DataExplorer_report_screenshot4.png) |  |
+
+### smartEDA
+
+The last package in this chapter is smartEDA. It is a powerful package designed to quickly create descriptive statistics and visualizations for numeric and categorical data.
+
+The first function is ExpData(), it gives us the structure, missing values and variable types:
+
+```{r ExpData}
+ExpData(penguins, type = 1)
+```
+
+We can also let smartEDA calculate summary statistics such as mean, standard deviation, skewness, etc.
+
+```{r ExpNumStat}
+ExpNumStat(penguins)
+```
+
+Lastly, we can again generate an automatized EDA report with ExpReport():
+
+`ExpReport(data = penguins, Target = "species", label = "Penguin Species", op_file="Samp1.html", Rc=3 )`
+
+|  |  |
+|----|----|
+| ![](images/smartEDA_report_screenshot1.png) | ![](images/smartEDA_report_screenshot2.png) |
+| ![](images/smartEDA_report_screenshot3.png) | ![](images/smartEDA_report_screenshot4.png) |
+
+## Conclusion

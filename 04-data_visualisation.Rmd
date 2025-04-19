@@ -1069,19 +1069,19 @@ summary(iris)
 
 a\. Plot a Chart, which shows the distribution of `Sepal.Length` over the `setosa` Species. Choose the type of distribution chart for yourself. **HINT:** Prepare the data first and then plot it.
 
-```{r ch4 exercise 1a}
+```{r ch4 exercise 1a, eval=FALSE}
 
 ```
 
 b\. Now I want you to add the two other Species to the Plot. Make Sure, that every Species has a unique color.
 
-```{r ch4 exercise 1b}
+```{r ch4 exercise 1b, eval=FALSE}
 
 ```
 
 c\. Make a nice Plot! Give the Plot a meaningful title, meaningful labels for the x-axis and the y-axis and play around with the colors.
 
-```{r ch4 exercise 1c}
+```{r ch4 exercise 1c, eval=FALSE}
 
 ```
 
@@ -1091,19 +1091,19 @@ d\. Interpret the Plot!
 
 a\. Calculate the average `Petal.Length` for every Species in a nice Barplot. HINT: You have to prepare the data again before you plot it
 
-```{r ch4 exercise 2a}
+```{r ch4 exercise 2a, eval=FALSE}
 
 ```
 
 b\. Add the Means of the `Petal.Width` variable to the plot, so you get a nice grouped Barplot.
 
-```{r ch4 exercise 2b}
+```{r ch4 exercise 2b, eval=FALSE}
 
 ```
 
 c\. Make a nice Plot! Give the Plot a meaningful title, meaningful labels for the x-axis and the y-axis and play around with the colors.
 
-```{r ch4 exercise 2c}
+```{r ch4 exercise 2c, eval=FALSE}
 
 ```
 
@@ -1113,18 +1113,18 @@ d\. Interpret the Plot!
 
 a\. Make a scatter plot where you plot `sepal.length` on the x-axis and `sepal.width` on the y-axis. Make the plot for the species `virginica`
 
-```{r ch4 exercise 3a}
+```{r ch4 exercise 3a, eval=FALSE}
 
 ```
 
 b\. Now I want you to add the species `versicolor` to the plot. The dots of this species should have a different color AND a different form.
 
-```{r ch4 exercise 3b}
+```{r ch4 exercise 3b, eval=FALSE}
 
 ```
 
 c\. Make a nice plot! Add a theme, labels, and a nice title
 
-```{r ch4 exercise 3c}
+```{r ch4 exercise 3c, eval=FALSE}
 
 ```

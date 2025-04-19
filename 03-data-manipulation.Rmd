@@ -743,7 +743,7 @@ d1 <- ess %>%
   )) %>%
   drop_na() %>%
   group_by(female) %>% 
-  summarize(average_happiness = mean(happy))
+  dplyr::summarize(average_happiness = mean(happy))
 
 #Checking it
 head(d1)
@@ -771,7 +771,7 @@ d1 <- ess %>%
     ) %>%
   drop_na() %>%
   group_by(country, female) %>% 
-  summarize(average_happiness = mean(happy), 
+  dplyr::summarize(average_happiness = mean(happy), 
             median_happiness = median(happy), 
             average_age = mean(age), 
             meadian_age = median(age)
