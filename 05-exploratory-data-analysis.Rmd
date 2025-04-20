@@ -478,7 +478,7 @@ The dlookr package has one special feature: It can generate an EDA report with o
 `dlookr::eda_paged_report(penguins, output_format = "html")`
 
 |  |  |  |
-|----|----|----|
+|------------------------|------------------------|------------------------|
 | ![](images/Bildschirmfoto%20vom%202025-04-12%2019-48-38.png) | ![](images/Bildschirmfoto%20vom%202025-04-12%2019-49-55.png) | ![](images/Bildschirmfoto%20vom%202025-04-12%2019-50-21.png) |
 | ![](images/Bildschirmfoto%20vom%202025-04-12%2019-52-17.png) | ![](images/Bildschirmfoto%20vom%202025-04-12%2019-53-30.png) | ![](images/Bildschirmfoto%20vom%202025-04-12%2019-54-07.png) |
 
@@ -509,7 +509,7 @@ And finally, we can use DataExplorer to generate an automated Data Report:
 `create_report(penguins)`
 
 |  |  |
-|----|----|
+|------------------------------------|------------------------------------|
 | ![](images/clipboard-2450633220.png) | ![](images/clipboard-3067609921.png) |
 | ![](images/DataExplorer_report_screenshot4.png) |  |
 
@@ -534,8 +534,46 @@ Lastly, we can again generate an automatized EDA report with ExpReport():
 `ExpReport(data = penguins, Target = "species", label = "Penguin Species", op_file="Samp1.html", Rc=3 )`
 
 |  |  |
-|----|----|
+|------------------------------------|------------------------------------|
 | ![](images/smartEDA_report_screenshot1.png) | ![](images/smartEDA_report_screenshot2.png) |
 | ![](images/smartEDA_report_screenshot3.png) | ![](images/smartEDA_report_screenshot4.png) |
 
 ## Conclusion
+
+And that is it - at least for now - the possibilities and functions of the packages presented could fill easily an own course and as I already said, at one point everyone gets its own EDA routine and has its own packages they want to work with. The important point is to always get an overview over your data and to always check for interesting patterns in your data before conducting substantial analysis.
+
+## Exercise Section
+
+### Exercise 1: Standard Descriptive Statistics
+
+a\. Calculate the mode, mean and the median for the `iris$sepal.length` variable
+
+b\. Calculate the interquartile range, variance and the standard deviation
+
+c\. Calculate all five measures at once by using a function that does so (Choose by yourself, which one you want to use)
+
+### Exercise 2: Contingency Tables and Correlations
+
+a\. Make a Contingency Table for iris\$sepal.length and iris\$sepal.width
+
+b\. Interpret the table, do you see any patterns?
+
+c\. Plot the relationship of both variables graphically by using a scatterplot
+
+d\. Cut down the iris dataset to Sepal.Length, Sepal.Width, Petal.Length and Petal.Width and save it in an object called iris_numeric.
+
+e\. Make a correlation matrix with iris_numeric
+
+f\. Make the correlation matrix pretty
+
+### Exercise 3: Working with packages 
+
+a\. Use a function to get an overview of the dataset mtcars
+
+b\. Print descriptive statistics of the mtcars datasets numeric variables by using a function
+
+c\. Make a summary table for the mtcars package
+
+d\. Make a contingency table for mtcars\$mpg, mtcars\$cyl, and mtcars disp
+
+e\. Make an automized EDA report for mtcars!
