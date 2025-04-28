@@ -129,6 +129,10 @@ dlookr
 dataexplorer
 smarteda
 conclusion
+exercise-section-3
+exercise-1-standard-descriptive-statistics
+exercise-2-contingency-tables-and-correlations
+exercise-3-working-with-packages
 data-analysis
 linear-regression
 terminology
@@ -161,7 +165,7 @@ variance-of-inflation-vif
 categorical-variables
 interaction-effects
 outlook-4
-exercise-section-3
+exercise-section-4
 exercise-1-linear-regression-with-two-variables
 exercise-2-multivariate-regression
 loops-and-functions
@@ -173,7 +177,7 @@ apply
 notes
 writing-your-own-functions
 outlook-5
-exercise-section-4
+exercise-section-5
 exercise-1-writing-a-loop
 exercise-2-writing-a-function
 exercise-3-the-midnight-formula
@@ -189,10 +193,14 @@ chapter-3-data-visualisation
 exercise-1-distributions-1
 exercise-2-rankings-1
 exercise-3-correlation-1
-chapter-4-loops-and-functions
-exercise-1-writing-a-loop-1
-exercise-2-writing-a-function-1
-exercise-3-the-midnight-formula-1
+chapter-4-exploratory-data-analysis
+exercise-1-standard-descriptive-statistics-1
+exercise-2-contingency-tables-and-correlations-1
+exercise-3-working-with-packages-1
 chapter-5-data-analysis
 exercise-1-linear-regression-with-two-variables-1
 exercise-2-multivariate-regression-1
+chapter-6-loops-and-functions
+exercise-1-writing-a-loop-1
+exercise-2-writing-a-function-1
+exercise-3-the-midnight-formula-1

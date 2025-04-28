@@ -348,6 +348,28 @@ corr.test(penguins_numeric)
 pairs.panels(penguins_numeric)
 ```
 
+So this is an interesting grid consisting of different types of data visualization, all related to correlations. Let us start with the easiest one, the diagonal.
+
+-   The diagonal shows us a histogram of the distributions of our input variables, additionally it includes a line, so we can check if the distributions look right.
+
+<!-- -->
+
+-   The upper right visualizations display the correlation coefficients of the respective two variables, like a correlation matrix.
+
+<!-- -->
+
+-   The bottom left visualizations are scatterplots between the two variables, where a line is fitted between the data points.
+
+<!-- -->
+
+-   In addition, the shape of the red line (a loess smoother) can reveal whether the relationship between the two variables is linear or more complex, such as curved or s-shaped.
+
+<!-- -->
+
+-   The scatterplots also include correlation ellipses, which visually represent the strength and direction of the relationship: narrow, tilted ellipses indicate strong correlations, while rounder shapes indicate weaker or no correlations.
+
+Together, this grid gives a comprehensive overview of both the distributions of individual variables and the pairwise relationships between them.
+
 ### skimr
 
 The skimr package is a wonderful way to get an overview of our datasets structure and basic statistics, even with a visualization of the distribution of the variable. The main function is `skim()`:
@@ -546,34 +568,28 @@ And that is it - at least for now - the possibilities and functions of the packa
 
 ### Exercise 1: Standard Descriptive Statistics
 
-a\. Calculate the mode, mean and the median for the `iris$sepal.length` variable
+In this exercise we will work with the built-in `iris` package in R:
 
-b\. Calculate the interquartile range, variance and the standard deviation
+a\. Calculate the mode, mean and the median for the `iris$Sepal.Length` variable
+
+b\. Calculate the interquartile range, variance and the standard deviation for iris\$Sepal.Length
 
 c\. Calculate all five measures at once by using a function that does so (Choose by yourself, which one you want to use)
 
 ### Exercise 2: Contingency Tables and Correlations
 
-a\. Make a Contingency Table for iris\$sepal.length and iris\$sepal.width
+a\. Make a Contingency Table for `esoph$agegp` and `esoph$alcgp`
 
-b\. Interpret the table, do you see any patterns?
+b\. Cut down the iris dataset to Sepal.Length, Sepal.Width, Petal.Length and Petal.Width and save it in an object called iris_numeric.
 
-c\. Plot the relationship of both variables graphically by using a scatterplot
+c\. Make a correlation matrix with iris_numeric
 
-d\. Cut down the iris dataset to Sepal.Length, Sepal.Width, Petal.Length and Petal.Width and save it in an object called iris_numeric.
+d\. Make the correlation matrix prettyChapter 4: Exploratory Data Analysis
 
-e\. Make a correlation matrix with iris_numeric
-
-f\. Make the correlation matrix pretty
-
-### Exercise 3: Working with packages 
+### Exercise 3: Working with packages
 
 a\. Use a function to get an overview of the dataset mtcars
 
-b\. Print descriptive statistics of the mtcars datasets numeric variables by using a function
+b\. Have a look at the structure of the missing values in mtcars
 
-c\. Make a summary table for the mtcars package
-
-d\. Make a contingency table for mtcars\$mpg, mtcars\$cyl, and mtcars disp
-
-e\. Make an automized EDA report for mtcars!
+c\. Make an automized EDA report for mtcars!

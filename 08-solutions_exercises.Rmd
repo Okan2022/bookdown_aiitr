@@ -1,7 +1,7 @@
 # Solutions Exercises
 
 ```{r loading packages for Exercises}
-pacman::p_load("tidyverse", "gapminder", "babynames", "sjPlot")
+pacman::p_load("tidyverse", "gapminder", "babynames", "sjPlot", "ggridges")
 ```
 
 ## Chapter 1: Fundamentals
@@ -22,7 +22,7 @@ class(my_vector)
 
 Create a Matrix called `student`. This should contain information about the `name`, `age` and `major`. Make three vectors with three entries and bind them together to a the matrix `student`. Print the matrix. Choose the three names, age, and major by yourself:
 
-```{r chapter 2 exercise 2, eval = FALSE}
+```{r chapter 1 exercise 2, eval = FALSE}
 #Create the vectors   
 name <- c("James", "Elif", "Jonas")
 age <- c("19", "17", "24")
@@ -42,7 +42,7 @@ print(student)
 
 Write an `ifelse` statement that checks if a given number is positive or negative. If the number is positive or 0, print "Number is positive", otherwise print "Number is negative". Feel free to decide if you want to use the `ifelse` function or the `ifelse` condition.
 
-```{r chapter 3 exercise 3, eval = FALSE}
+```{r chapter 1 exercise 3, eval = FALSE}
 #Assigning the number to the object "number" 
 number <- 0
 
@@ -64,7 +64,7 @@ Write an if-else ladder that categorizes a student's grade based on their score.
 
 Score \>= 90: "A" Score \>= 80 and \< 90: "B" Score \>= 70 and \< 80: "C" Score \>= 60 and \< 70: "D" Score \< 60: "F".
 
-```{r chapter 4 exercise 4, eval = FALSE}
+```{r chapter 1 exercise 4, eval = FALSE}
 #Defining the vector score 
 Score <- 90
 
@@ -172,7 +172,7 @@ f.  Rename the variables to more intuitive names, don't forget to name binary va
 g.  drop all missing values
 h.  Check out your new dataset
 
-```{r chapter3 exercise 1a, eval=FALSE}
+```{r chapter2 exercise 1a-h, eval=FALSE}
 ess <- d1 %>% 
   select(cntry, dscrgrp, cttresa, agea, gndr, eisced, lrscale) %>% #a
   filter(cntry %in% c("AT", "BE", "DK", "GE", "IS","RU")) %>% #b
@@ -226,7 +226,7 @@ summary(iris)
 
 a\. Plot a Chart, which shows the distribution of `Sepal.Length` over the `setosa` Species. Choose the type of distribution chart for yourself. **HINT:** Prepare the data first and then plot it.
 
-```{r chapter 4 exercise 1a}
+```{r chapter 3 exercise 1a}
 
 #Filtering for setosa
 d1 <- iris %>%
@@ -267,7 +267,7 @@ ggplot(iris, aes(x = Sepal.Length)) +
 
 b\. Now I want you to add the two other Species to the Plot. Make Sure, that every Species has a unique color.
 
-```{r chapter 4 exercise 1b}
+```{r chapter 3 exercise 1b}
 #Histogram
 ggplot(iris, aes(x = Sepal.Length, fill = Species)) +
   geom_histogram()
@@ -291,7 +291,7 @@ ggplot(iris, aes(x = Sepal.Length, y = Species, fill = Species)) +
 
 c\. Make a nice Plot! Give the Plot a meaningful title, meaningful labels for the x-axis and the y-axis and play around with the colors.
 
-```{r chapter 4 exercise 1c}
+```{r chapter 3 exercise 1c}
 #Histogram
 ggplot(iris, aes(x = Sepal.Length, fill = Species)) +
   geom_histogram() +
@@ -369,7 +369,7 @@ d\. Interpret the Plot!
 
 a\. Calculate the average `Petal.Length` and plot it for every Species in a nice Barplot. **HINT:** You have to prepare the data again before you plot it. Decide for yourself if you want to do it vertically or horizontally.
 
-```{r chapter 4 exercise 2a}
+```{r chapter 3 exercise 2a}
 #Prepare the data 
 d1 <- iris %>%
   group_by(Species) %>%
@@ -389,7 +389,7 @@ ggplot(d1, aes(x = PL_average, y = Species, fill = Species)) +
 
 b\. Make a nice Plot! Give the Plot a meaningful title, meaningful labels for the x-axis and the y-axis and play around with the colors.
 
-```{r chapter 4 exercise 2c}
+```{r chapter 3 exercise 2c}
 #Plotting a horizontal barplot
 ggplot(d1, aes(x = Species, y = PL_average, fill  = Species)) +
   geom_bar(stat = "identity") +
@@ -423,7 +423,7 @@ ggplot(d1, aes(x = PL_average, y = Species, fill = Species)) +
 
 a\. Make a scatter plot where you plot `Sepal.length` on the x-axis and `Sepal.width` on the y-axis. Make the plot for the species `virginica`
 
-```{r chapter 4 exercise 3a}
+```{r chapter 3 exercise 3a}
 #Preparing the data
 d1 <- iris %>%
   filter(Species == "virginica")
@@ -435,7 +435,7 @@ ggplot(d1, aes(x = Sepal.Length, y = Sepal.Width)) +
 
 b\. Now I want you to add the species `versicolor` to the plot. The dots of this species should have a different color AND a different form.
 
-```{r chapter 4 exercise 3b}
+```{r chapter 3 exercise 3b}
 #Preparing the Data 
 d1 <- iris %>%
   filter(Species %in% c("virginica", "versicolor")) 
@@ -448,7 +448,7 @@ ggplot(d1, aes(x = Sepal.Length, y = Sepal.Width,
 
 c\. Make a nice plot! Add a theme, labels, and a nice title, increase the size of the forms and make play around with the colors.
 
-```{r chapter 4 exercise 3c}
+```{r chapter 3 exercise 3c}
 #Making the Plot
 ggplot(d1, aes(x = Sepal.Length, y = Sepal.Width, 
                shape = Species, color = Species)) +
@@ -463,13 +463,253 @@ ggplot(d1, aes(x = Sepal.Length, y = Sepal.Width,
   
 ```
 
-## Chapter 4: Loops and Functions
+## Chapter 4: Exploratory Data Analysis
+
+### Exercise 1: Standard Descriptive Statistics
+
+In this exercise we will work with the built-in `iris` package in R:
+
+a\. Calculate the mode, mean and the median for the `iris$Sepal.Length` variable
+
+```{r chapter 4 exercise 1a}
+mean(iris$Sepal.Length) #Calculating the mean
+median(iris$Sepal.Length) # Calculating the median
+
+#Calculating the mode
+uniq_vals <- unique(iris$Sepal.Length)
+freqs <- tabulate(iris$Sepal.Length)
+uniq_vals[which.max(freqs)]
+
+# You could also define a function for the mode
+
+#mode <- function (x) {
+#  uniq_vals <- unique(x, na.rm = TRUE)
+#  freqs <- tabulate(match(x, uniq_vals))
+#  uniq_vals[which.max(freqs)]
+#}
+#mode(iris$Sepal.Length)
+```
+
+b\. Calculate the interquartile range, variance and the standard deviation for iris\$Sepal.Length
+
+```{r chapter 4 exercise 1b}
+IQR(iris$Sepal.Length)
+var(iris$Sepal.Length) #Variance
+sd(iris$Sepal.Length) #Standard deviatio
+#Or we take just the squareroot of the variance to get the sd
+#var(iris$Sepal.Length) %>%
+#  sqrt()
+```
+
+c\. Calculate all five measures at once by using a function that does so (Choose by yourself, which one you want to use)
+
+```{r chapter 4 exercise 1c}
+psych::describe(iris$Sepal.Length) #psych package
+skimr::skim(iris$Sepal.Length) #skim package
+summarytools::descr(iris$Sepal.Length) #summarytools package
+```
+
+### Exercise 2: Contingency Tables and Correlations
+
+a\. Make a Contingency Table for `esoph$agegp` and `esoph$alcgp`
+
+```{r chapter 4 exercise 2a}
+table(esoph$agegp, esoph$alcgp) #with base R
+summarytools::ctable(esoph$agegp, esoph$alcgp) #with summarytools
+gtsummary::tbl_cross(data = esoph,
+                     row = agegp, 
+                     col = alcgp) #with gtsummary
+```
+
+b\. Cut down the iris dataset to Sepal.Length, Sepal.Width, Petal.Length and Petal.Width and save it in an object called iris_numeric.
+
+```{r chapter 4 exercise 2b}
+iris_numeric <- iris %>% 
+  select(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width)
+```
+
+c\. Make a correlation matrix with iris_numeric
+
+```{r chapter 4 exercise 2c}
+# With corrplot package
+cor_iris <- cor(iris_numeric)
+corrplot::corrplot(cor_iris, method = "color")
+
+# With DataExplorer
+DataExplorer::plot_correlation(iris_numeric)
+```
+
+d\. Make the correlation matrix pretty
+
+```{r chapter 4 exercise 2d}
+# With Corrplot
+corrplot::corrplot(cor_iris, method = "circle", type = "upper", 
+         tl.col = "black", tl.srt = 45)
+
+# With DataExplorer
+DataExplorer::plot_correlation(
+  iris_numeric,
+  ggtheme = theme_minimal(base_size = 14),
+  title = "Correlation Matrix of Iris Numeric Variables"
+)
+```
+
+### Exercise 3: Working with packages
+
+a\. Use a function to get an overview of the dataset mtcars
+
+```{r chapter 4 exercise 3a}
+skimr::skim(mtcars)
+summarytools::dfSummary(mtcars)
+gtsummary::tbl_summary(mtcars)
+```
+
+b\. Have a look at the structure of the missing values in mtcars
+
+```{r chapter 4 exercise 3b}
+# With a table
+naniar::miss_var_summary(mtcars)
+DataExplorer::introduce(mtcars)
+SmartEDA::ExpData(mtcars, type = 1)
+
+# Graphically
+naniar::vis_miss(mtcars)
+DataExplorer::plot_missing(mtcars)
+```
+
+c\. Make an automized EDA report for mtcars!
+
+`dlookr::describe(mtcars)`
+
+`DataExplorer::create_reports(mtcars)`
+
+## Chapter 5: Data Analysis
+
+To understand linear regression, we do not have to load any complicated data. Let us assume, you are a market analyst and your customer is the production company of a series called "Breaking Thrones". The production company wants to know how the viewers of the series judge the final episode. You conduct a survey and ask people on how satisfied they were with the season final and some social demographics. Here is your codebook:
+
++--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Variable     | Description                                                                                                                                                    |
++==============+================================================================================================================================================================+
+| id           | The id of the respondent                                                                                                                                       |
++--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| satisfaction | The answer to the question "How satisfied were you with the final episode of Breaking Throne?", where 0 is completely dissatisfied and 10 completely satisfied |
++--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| age          | The age of the respondent                                                                                                                                      |
++--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| female       | The Gender of the respondent, where 0 = Male, 1 = Female                                                                                                       |
++--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Let us generate the data:
+
+```{r generating data for chapter 5 exercises}
+#setting seed for reproduciability 
+set.seed(123)  
+
+#Generating the data 
+final_BT <- data.frame(
+  id = c(1:10),    
+  satisfaction = round(rnorm(10, mean = 6, sd = 2.5)),    
+  age = round(rnorm(10, mean = 25, sd = 5)),    
+  female = rbinom(10, 1, 0.5)
+  )  
+
+#Print the Data Frame
+print(final_BT)
+```
+
+### Exercise 1: Linear Regression with two variables
+
+You want to know if age has an impact on the satisfaction with the last episode. You want to conduct a linear regression.
+
+a\. Calculate $\beta_0$ and $\beta_1$ by hand
+
+```{r chapter 5 exercise 1a}
+#Calculating Covariance
+cov <- sum((final_BT$age - mean(final_BT$age)) * (final_BT$satisfaction - mean(final_BT$satisfaction)))
+  
+#Calculating Variance
+var <- (sum((final_BT$age - mean(final_BT$age))^2))
+
+#Calculating beta_1
+beta_1 <- cov/var
+
+#printing beta_1
+print(beta_1)
+
+#calculating beta 1
+beta_0 <- mean(final_BT$satisfaction) - (beta_1 * mean(final_BT$age))
+
+#Print both
+print(beta_0)
+print(beta_1)
+```
+
+b\. Calculate $\beta_0$ and $\beta_1$ automatically with R
+
+```{r chapter 5 exercise 1b}
+#Calculating it automatically
+summary(m1 <- lm(satisfaction ~ age, 
+                 data = final_BT))
+```
+
+c\. Interpret all quantities of your result: Standard Error, t-statistic, p-value, confidence intervals and the $R^2$.
+
+d\. Check for influential outliers
+
+```{r chapter 5 exercise 1d}
+#Cooks Distance can be calculated with a built-in function
+final_BT$cooks_distance <- cooks.distance(m1) 
+
+#Plotting it
+ggplot(final_BT, aes(x = age, y = cooks_distance)) + 
+  geom_point(colour = "darkgreen", size = 3, alpha = 0.5) + 
+  labs(y = "Cook's Distance", x = "Independent Variable") + 
+  geom_hline(yintercept = 1, linetype = "dashed") + 
+  theme_bw()
+```
+
+### Exercise 2: Multivariate Regression
+
+a\. Add the variable `female` to your regression
+
+```{r chapter 5 exercise 2a}
+summary(m1 <- lm(satisfaction ~ age + female, 
+                 data = final_BT))
+```
+
+b\. Interpret the Output. What has changed? What stood the same?
+
+c\. Make an interaction effect between age and female and interpret it!
+
+```{r chapter 5 exercise 2c}
+summary(m2 <- lm(satisfaction ~ age + female + age:female, 
+                 data = final_BT))
+```
+
+d\. Plot the interaction and make the plot nice
+
+```{r chapter 5 exercise 2d}
+plot_model(m2, type = "int") +
+  scale_x_continuous(breaks = seq(0,60, 1)) + 
+  labs(title = "Relationship of Age and Gender on Satisfaction with BT.",
+       x = "Age", 
+       y = "Satisfaction") +
+  scale_color_manual(
+    values = c("red", "blue"),
+    labels = c("Female", "Male")
+  ) +
+  theme_sjplot() +
+  theme(legend.position = "bottom", 
+        legend.title = element_blank())
+```
+
+## Chapter 6: Loops and Functions
 
 ### Exercise 1: Writing a loop
 
 Write a `for` loop that prints the square of each number from 1 to 10
 
-```{r chapter 5 exercise 1}
+```{r chapter 6 exercise 1}
 #Assigning an object for a better workflow 
 number <- 10
 ```
@@ -478,7 +718,7 @@ number <- 10
 
 Write a function that takes the input x and squares it:
 
-```{r chapter 5 exercise 2, eval=FALSE}
+```{r chapter 6 exercise 2, eval=FALSE}
 #Defining a function for squaring  
 sq <- function (x) {          
   x_squared <- x^2
@@ -502,7 +742,7 @@ Make **one function** for the midnight formula, so the output are $x_1$ a d $x_2
 
 **Hint**: You need two split up the formula into two equations with two outputs.
 
-```{r chapter 5 exercise 3, eval=FALSE}
+```{r chapter 6 exercise 3, eval=FALSE}
 mnf <- function(a, b, c) {
   
   x_1 <- (-b + sqrt(b^2 - 4*a*c))/(2*a)
@@ -517,124 +757,4 @@ mnf <- function(a, b, c) {
   
 #Test it with these numbers (other numbers might throw an error if the number under the square root is negative)
 mnf(2, 20, 8)
-```
-
-## Chapter 5: Data Analysis
-
-To understand linear regression, we do not have to load any complicated data. Let us assume, you are a market analyst and your customer is the production company of a series called "Breaking Thrones". The production company wants to know how the viewers of the series judge the final episode. You conduct a survey and ask people on how satisfied they were with the season final and some social demographics. Here is your codebook:
-
-+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Variable     | Description                                                                                                                                                    |
-+==============+================================================================================================================================================================+
-| id           | The id of the respondent                                                                                                                                       |
-+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| satisfaction | The answer to the question "How satisfied were you with the final episode of Breaking Throne?", where 0 is completely dissatisfied and 10 completely satisfied |
-+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| age          | The age of the respondent                                                                                                                                      |
-+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| female       | The Gender of the respondent, where 0 = Male, 1 = Female                                                                                                       |
-+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-
-Let us generate the data:
-
-```{r generating data for DA exercises}
-#setting seed for reproduciability 
-set.seed(123)  
-
-#Generating the data 
-final_BT <- data.frame(
-  id = c(1:10),    
-  satisfaction = round(rnorm(10, mean = 6, sd = 2.5)),    
-  age = round(rnorm(10, mean = 25, sd = 5)),    
-  female = rbinom(10, 1, 0.5)
-  )  
-
-#Print the Data Frame
-print(final_BT)
-```
-
-### Exercise 1: Linear Regression with two variables
-
-You want to know if age has an impact on the satisfaction with the last episode. You want to conduct a linear regression.
-
-a\. Calculate $\beta_0$ and $\beta_1$ by hand
-
-```{r chapter 6 exercise 1a}
-#Calculating Covariance
-cov <- sum((final_BT$age - mean(final_BT$age)) * (final_BT$satisfaction - mean(final_BT$satisfaction)))
-  
-#Calculating Variance
-var <- (sum((final_BT$age - mean(final_BT$age))^2))
-
-#Calculating beta_1
-beta_1 <- cov/var
-
-#printing beta_1
-print(beta_1)
-
-#calculating beta 1
-beta_0 <- mean(final_BT$satisfaction) - (beta_1 * mean(final_BT$age))
-
-#Print both
-print(beta_0)
-print(beta_1)
-```
-
-b\. Calculate $\beta_0$ and $\beta_1$ automatically with R
-
-```{r chapter 6 exercise 1b}
-#Calculating it automatically
-summary(m1 <- lm(satisfaction ~ age, 
-                 data = final_BT))
-```
-
-c\. Interpret all quantities of your result: Standard Error, t-statistic, p-value, confidence intervals and the $R^2$.
-
-d\. Check for influential outliers
-
-```{r chapter 6 exercise 1d}
-#Cooks Distance can be calculated with a built-in function
-final_BT$cooks_distance <- cooks.distance(m1) 
-
-#Plotting it
-ggplot(final_BT, aes(x = x1, y = cooks_distance)) + 
-  geom_point(colour = "darkgreen", size = 3, alpha = 0.5) + 
-  labs(y = "Cook's Distance", x = "Independent Variables") + 
-  geom_hline(yintercept = 1, linetype = "dashed") + 
-  theme_bw()
-```
-
-### Exercise 2: Multivariate Regression
-
-a\. Add the variable `female` to your regression
-
-```{r chapter 6 exercise 2a}
-summary(m1 <- lm(satisfaction ~ age + female, 
-                 data = final_BT))
-```
-
-b\. Interpret the Output. What has changed? What stood the same?
-
-c\. Make an interaction effect between age and female and interpret it!
-
-```{r chapter 6 exercise 2c}
-summary(m2 <- lm(satisfaction ~ age + female + age:female, 
-                 data = final_BT))
-```
-
-d\. Plot the interaction and make the plot nice
-
-```{r chapter 6 exercise 2d}
-plot_model(m2, type = "int") +
-  scale_x_continuous(breaks = seq(0,60, 1)) + 
-  labs(title = "Relationship of Age and Gender on Satisfaction with BT.",
-       x = "Age", 
-       y = "Satisfaction") +
-  scale_color_manual(
-    values = c("red", "blue"),
-    labels = c("Female", "Male")
-  ) +
-  theme_sjplot() +
-  theme(legend.position = "bottom", 
-        legend.title = element_blank())
 ```
