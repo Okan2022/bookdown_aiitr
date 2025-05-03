@@ -5,7 +5,7 @@ date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 ---
 
-# Welcome ! {-}
+# Welcome ! {.unnumbered}
 
 Welcome to this R course! In this course I will teach you the workflow from raw data to your very first analyses in R. When I was a beginner myself, I tried a lot of courses like this, but there were two points, which I think slowed down my learning process, I do want to make different with this course:
 
@@ -17,17 +17,17 @@ This course was originally a tutorial for my juniors at my university and I aske
 
 This course is different! In this course, you can download R-scripts and load them directly on your own device and follow the course by executing the codes for yourself to have the original experience of working with R.
 
-## About this Course {-}
+## About this Course {.unnumbered}
 
-### Prerequisities {-}
+### Prerequisities {.unnumbered}
 
--   `R` and RStudio. You should download the most current version of R and RStudio. How to do that easily is described here.
+-   `R` and RStudio. You should download the most current version of R and RStudio. How to do that easily is described [here](https://posit.co/download/rstudio-desktop/ "Link to download R").
 
-### What is `R` and `RStudio` ? {-}
+### What is `R` and `RStudio` ? {.unnumbered}
 
-`R` is a programming language specifically developed for statistical analysis. `RStudio` is a nice graphical interface to work with R.
+`R` is a programming language specifically developed for statistical analysis. `RStudio` is the standard graphical interface to work with R.
 
-### Why `R` ? {-}
+### Why `R` ? {.unnumbered}
 
 -   Free of cost and open-source
 -   Functionalities for all steps of research process from Data Collection to Data Analysis
@@ -36,7 +36,7 @@ This course is different! In this course, you can download R-scripts and load th
 -   e.g. `R` community on [StackOverflow](https://stackoverflow.blog/2017/10/10/impressive-growth-r/)
 -   e.g. *#rstats* on twitter
 
-### What expects you and what not {-}
+### What expects you and what not {.unnumbered}
 
 In this course you will learn:
 
@@ -44,13 +44,13 @@ In this course you will learn:
 -   Core commands from the tidyverse package
 -   Data Wrangling, Data Bridging, Data Munging, Data Manipulation
 -   An efficient Workflow
--   A brief introduction into basic Data Analysis
+-   A brief introduction into basic Data Analysis and Exploratory Data Analysis.
 
 You will **not** learn:
 
 -   Advanced R usage (Webscraping, Quantitative Text Analysis etc...)
 
-### Overview of the course structure:{-}
+### Overview of the course structure: {.unnumbered}
 
 **1. The R environment**
 
@@ -70,9 +70,10 @@ You will **not** learn:
 
 **3. Exploratory Data Analysis/Descriptives**
 
--   Summary Statistics - the Psych package
--   Frequency Tables
--   Cross-Tabulations, Correlation Matrice
+-   Standard Descriptive Statistics (Mean, Median, SD,....)
+-   Contingency Tables
+-   Correlations
+-   Working with EDA packages
 
 **4. Data Visualization**
 
@@ -80,13 +81,25 @@ You will **not** learn:
 -   Constructing Plots
 -   Plotting anything
 
-**5. R Programming**
+**5. Data Analysis**
+
+-   Linear Regression
+
+-   Model Fit
+
+-   Hypothesis Testing with R
+
+-   Multivariate Regression
+
+-   Categorical Variables
+
+**6. R Programming**
 
 -   For loops
 -   Apply function
 -   Functions
 
-## About Me {-}
+## About Me {.unnumbered}
 
 My name is Okan and I am a Data Scientist. To be more precise, my profession is Data Science, but originally I graduated in Political Science. I know, what kind of transition is that? From Politics to Data? Well, my university was specialized in empirical research and Political Science was no exception. To explain political phenomena, I analysed large data sets and it was the most fun part of my studies. So I decided to become a Data Scientist and I could not be happier about that decision!
 

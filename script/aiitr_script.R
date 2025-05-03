@@ -26,443 +26,7 @@
 
 #=====================RUN THESE LINES BEFORE CONTINUING========================#
 
-if (!require("pacman")) install.packages("pacman") #installing pacman
-pacman::p_load("tidyverse", "psych", "WDI", "gapminder", "babynames", "sf", 
-               "ggridges","rnaturalearth", "forcats" ,"tmap", "ggpubr",
-               "gapminder", "sjPlot", "kableExtra", 
-               "GGally", "car", "margins", "plotly") #loading packages
-
-#Simulating European Election Survey (ESS)
-set.seed(123)
-
-ess <- data.frame(
-  idnt = 1:9000,
-  year = 2020,
-  cntry = rep(c("BE", "BG", "CH", "CZ", "EE", "FI", "FR","GB", 
-                "GR", "HR", "HU", "IE", "IS", "IT", "LT","NL", 
-                "NO", "PT", "SI", "SK"), each = 450),
-  agea = sample(15:90, 9000, replace = TRUE),
-  gndr = sample(1:2, 9000, replace = TRUE), 
-  happy = sample(1:10, 9000, replace = TRUE),   
-  eisced = sample(1:7, 9000, replace = TRUE), 
-  netusoft = sample(1:5, 9000, replace = TRUE),#Internet use    
-  trstprl = sample(1:10, 9000, replace = TRUE),
-  lrscale = sample(1:10, 9000, replace = TRUE)   
-)
-
-missing_indices_agea <- sample(1:9000, 45)
-ess$agea[missing_indices_agea] <- 999
-
-missing_indices_gndr <- sample(1:9000, 215)
-ess$gndr[missing_indices_gndr] <- 9
-
-missing_indices_happy <- sample(1:9000, 145)
-ess$happy[missing_indices_happy] <- sample(c(77, 88, 99), 145, 
-                                           replace = TRUE)
-
-missing_indices_eisced <- sample(1:9000, 355)
-ess$eisced[missing_indices_eisced] <- sample(c(55, 77, 88, 99), 
-                                             355, 
-                                             replace = TRUE)
-
-missing_indices_netusoft <- sample(1:9000, 228)
-ess$netusoft[missing_indices_netusoft] <- sample(c(7, 8, 9), 
-                                                 228, 
-                                                 replace = TRUE)
-
-missing_indices_trstprl <- sample(1:9000, 277)
-ess$trstprl[missing_indices_trstprl] <- sample(c(77, 88, 99),
-                                               277, 
-                                               replace = TRUE)
-
-missing_indices_lrscale <- sample(1:9000, 308)
-ess$lrscale[missing_indices_lrscale] <- sample(c(77, 88, 99),
-                                               308, 
-                                               replace = TRUE)
-
-# Data for histograms, density plots and boxplots
-#Simulating data 
-data1 <- data.frame(
-  type = c(rep("Variable 1", 1000)),
-  value = c(rnorm(1000))
-)
-
-#Creating data
-data2 <- data.frame(
-  type = c(rep("Variable 2", 1000)), 
-  value = c(rnorm(1000, mean = 4))
-)
-
-#rowbinding it with data1
-data2 <- rbind(data1, data2)
-
-# Simulate income data
-income_18_24 <- rnorm(1000, mean = 40000, sd = 11000)
-income_25_34 <- rnorm(1000, mean = 55000, sd = 17500)
-income_35_59 <- rnorm(1000, mean = 70000, sd = 25000)
-
-# Combine into a data frame
-data3 <- data.frame(
-  income = c(income_18_24, income_25_34, income_35_59),
-  age = factor(rep(c("18-24", "25-34", "35-59"), 
-                   each = 1000))
-)
-
-# Create data
-data4 <- data.frame(
-  name=c("King Kong","Godzilla","Superman",
-         "Odin","Darth Vader") ,  
-  strength=c(10,15,45,61,22)
-)
-
-#simulating data
-data5 <- data.frame(
-  hero = c(rep("Superman", 10), 
-           rep("King Kong", 3), 
-           rep("Godzilla", 7)), 
-  id = c(seq(1:20)), 
-  female = c(rep("Female", 7), 
-             rep("Male", 5), 
-             rep("Female", 1), 
-             rep("Female", 3), 
-             rep("Male", 4))
-) 
-
-data6 <- data.frame(
-  female = c("Female", "Male", "Female", "Male"), 
-  age = c("Old", "Old", "Young", "Young"), 
-  value = c(5, 2, 8, 7)
-)
-
-# Setting Seed
-set.seed(500)
-# create data
-date <- 2000:2024
-y <- cumsum(rnorm(25))
-y2 <- cumsum(rnorm(25))
-data7 <- data.frame(date,y, y2)
-
-# Set the seed for reproducibility
-set.seed(123)
-
-# Simulate data
-n <- 100
-marketing_budget <- runif(n, min = 1000, max = 10000)
-sales <- 2000 + 0.65 * marketing_budget + 
-  rnorm(n, mean = 1400, sd = 750)
-quarters <- rep(c("Q1", "Q2", "Q3", "Q4"), 25)
-
-# Create a data frame
-data_point <- data.frame(marketing_budget, sales, 
-                         quarters)
-
-#Give it a name
-data_point$name <- "Chocolate Milk"
-
-# Simulate data
-n <- 100
-marketing_budget <- runif(n, min = 1000, max = 10000)
-sales <- 1500 + 0.3 * marketing_budget + rnorm(n, mean = 1400, sd = 750)
-quarters <- rep(c("Q1", "Q2", "Q3", "Q4"), 25)
-
-#Making a df 
-df_dark <- data.frame(marketing_budget, sales, quarters)
-
-#Give it a name
-df_dark$name <- "Dark Chocolate"
-
-#rowbind it with the other dataset 
-data8 <- rbind(data_point, df_dark)
-
-# Define the cities, years, and months
-cities <- c("London", "Paris", "Berlin")
-years <- 2018:2020
-months <- 1:4  # Only the first four months
-
-# Create a data frame with all combinations of City, Year, and Month
-data9 <- expand.grid(City = cities, Year = years, Month = months)
-
-# Simulate temperature data with some variation depending on the city
-data9$Temperature <- round(rnorm(nrow(data9), mean = 15, sd = 10), 1) + 
-  with(data9, ifelse(City == "London", 0, ifelse(City == "Paris", 5, -5)))
-
-# Check the first few rows of the dataset
-head(data9)
-
-# Convert Month to a factor for better axis labeling
-data9$Month <- factor(data9$Month, levels = 1:4, labels = month.abb[1:4])
-
-# Simulating example data
-data10 <- data.frame(
-  months = factor(1:12, levels = 1:12, labels = month.abb), 
-  avg_temp = c(0.6, 1.8, 4.6, 6.1, 10.4, 19, 18.3, 
-               17.9, 15.2, 9.6, 4.7, 2.6), 
-  n_deaths = c(149, 155, 200, 218, 263, 282, 
-               318, 301, 247, 250, 194, 205)
-)
-
-# Scaling factor to align avg_temp with n_deaths
-scale_factor <- max(data10$n_deaths) / max(data10$avg_temp)
-
-# Simulate example sports data
-sports_data <- data.frame(
-  sport = factor(rep(c("Basketball", "Soccer", "Swimming", "Gymnastics", 
-                       "Tennis"), each = 100)),
-  height = c(
-    rnorm(100, mean = 200, sd = 10),   # Basketball players are typically tall
-    rnorm(100, mean = 175, sd = 7),    # Soccer players have average height
-    rnorm(100, mean = 180, sd = 8),    # Swimmers
-    rnorm(100, mean = 160, sd = 6),    # Gymnasts are typically shorter
-    rnorm(100, mean = 170, sd = 9)     # Tennis players
-  )
-)
-
-# Normal distribution
-normal_data <- rnorm(1000, mean = 50, sd = 10)
-
-# Left-skewed distribution (using exponential distribution)
-left_skewed_data <- rexp(1000, rate = 0.1)
-
-# Right-skewed distribution (using log-normal distribution)
-right_skewed_data <- rlnorm(1000, meanlog = 3, sdlog = 0.5)
-
-# Bimodal distribution (combining two normal distributions)
-bimodal_data <- c(rnorm(500, mean = 35, sd = 5), rnorm(500, mean = 60, sd = 5))
-
-# Combine the data into a data frame
-ridgeline_data <- data.frame(
-  value = c(normal_data, left_skewed_data, right_skewed_data, bimodal_data),
-  distribution = factor(rep(c("Normal", "Left-Skewed", "Right-Skewed", "Bimodal"), each = 1000))
-)
-
-#Setting seed for reproducibility
-set.seed(123)
-
-n <- 30 
-
-x <- runif(n) * 10 
-
-categorical_variable <- factor(sample(c(0, 1), n, replace = TRUE))
-
-y <- 0.8 + 1.6 * x + rnorm(n, 0, 3)
-
-df <- data.frame(x,y, categorical_variable)
-
-#Simulate further data
-
-X_quadratic <- X <- runif(50, min = -5, max = 5)
-u <- rnorm(50, sd = 1)  
-
-#True relation
-Y_quadratic <- X^2 + 2 * X + u
-
-#Making a data frame out of it
-df2 <- data.frame(X_quadratic, Y_quadratic)
-
-#Simulating time data 
-
-# set seed
-set.seed(123)
-
-# generate a date vector
-date <- seq(as.Date("1960/1/1"), as.Date("2020/1/1"), "years")
-
-# initialize the employment vector
-y_time <- c(5000, rep(NA, length(date)-1))
-
-# generate time series observations with random influences
-for (i in 2:length(date)) {
-  
-  y_time[i] <- -50 + 0.98 * y_time[i-1] + rnorm(n = 1, sd = 200)
-}
-
-# creating DataFrame 
-df_time_series <- data.frame(y_time, date)
-
-###Defining a function
-
-#Creating Function for Kable Table 
-table_ovb <- function(model1, model2) {
-  # Determine the maximum number of coefficients between the two models
-  max_coef <- max(length(model1$coefficients), length(model2$coefficients))
-  
-  # Initialize placeholders for coefficients
-  place_holder1 <- rep(NA, max_coef)
-  place_holder2 <- rep(NA, max_coef)
-  
-  # Replace the placeholders with coefficients from the models
-  place_holder1[1:length(model1$coefficients)] <- model1$coefficients
-  place_holder2[1:length(model2$coefficients)] <- model2$coefficients
-  
-  # Create a data frame with coefficients from both models
-  dt <- data.frame(place_holder1,place_holder2) 
-  
-  # Set row and column names
-  colnames(dt) <- c("Model without Temperature", "Model with Temperature")
-  rownames(dt) <- c("Intercept", "Ice Cream Sales", "Temperature")
-  
-  # Display the table
-  
-  dt %>%
-    kbl() %>%
-    kable_styling()
-  
-}
-
-# Generate some data
-x <- runif(150, 0.05, 1)
-e <- rnorm(150, 0, 0.5)
-
-#homoskedastic data 
-y_homo <- 2 * x + e 
-#heteroskedastic data 
-y_hetero <- 2 * x + e*x^2 
-#making a data frame with both data
-df_homo_hetero <- data.frame(x, y_homo, y_hetero)
-
-#set seed 
-set.seed(069)
-
-#generate fake data with outlier 
-x1 <- sort(runif(10, min = 30, max = 70))
-y1 <- rnorm(10 , mean = 200, sd = 50)
-y1[9] <- 2000
-data_outlier <- data.frame(x1, y1)
-
-#Model with Outlier 
-model_outlier <- lm(y1 ~ x1) 
-
-#Model without Outlier
-model_without_outlier <- lm(y1[-9] ~ x1[-9]) 
-
-# Generate data
-x <- seq(-5, 5, length.out = 100)
-
-# Calculate densities
-densities <- data.frame(
-  x = rep(x, 4),
-  density = c(dt(x, df = 1), dt(x, df = 2), dt(x, df = 10), dnorm(x, mean = 0, 
-                                                                  sd = 1)),
-  distribution = rep(c("t(df=1)", "t(df=2)", "t(df=10)", "Normal"), each = 100)
-)
-
-densities$distribution <- factor(densities$distribution, 
-                                 levels = c("Normal", 
-                                            "t(df=10)", 
-                                            "t(df=2)", 
-                                            "t(df=1)"))
-#setting seed 
-set.seed(42) 
-
-# Generate data
-x <- seq(-5, 5, length.out = 100)
-t_density <- function(x) dt(x, df = 28)
-
-# Calculate densities
-t_value_data <- data.frame(
-  x = rep(x, 1),
-  density = dt(x, df = 28),
-  distribution = rep("t(df=28)", 100)
-)
-
-#Since this is a simulation we need to set a seed
-set.seed(187)
-
-#We will need to have vectors for the upper confidence interval and the lower one
-lower_ci <- numeric(100)
-upper_ci <- numeric(100)
-estimates <- numeric(100)
-
-#This loop represents 
-for(i in 1:length(lower_ci)) {
-  
-  Y <- rnorm(100, mean = 24, sd = 2)
-  estimates[i] <- Y[i]
-  lower_ci[i] <- Y[i] - 1.96 * 24 / 10
-  upper_ci[i] <- Y[i] + 1.96 * 24 / 10
-  
-}
-
-#Let us bind both vectors together 
-CIs <- data.frame(estimates, lower_ci, upper_ci)
-
-#Print it 
-head(CIs)
-
-#Getting the true mean 
-true_mean <- 24
-
-#First, we identify those who are not including 24 our true population parameter
-CIs$missed <- ifelse(CIs$lower_ci > true_mean | CIs$upper_ci < true_mean, 
-                     "Out", "In")
-
-#Let us give every sample an identification number 
-CIs$id <- 1:nrow(CIs)
-
-# Set seed for reproducibility 
-set.seed(0)  
-
-# Number of data points 
-n <- 100
-
-# Simulate diet data (assuming a normal distribution) 
-temperature <- rnorm(n, mean = 1500, sd = 200)  
-
-# Simulate exercise data (assuming a normal distribution) 
-ice_cream_sales <- rnorm(n, mean = 3, sd = 1)  
-
-# Simulate weight loss data 
-violence_crime_true <- 0.2 * temperature - 
-  0.5 * ice_cream_sales + 
-  rnorm(n, mean = 0, sd = 5) 
-
-# Create a data frame 
-data_ice <- data.frame(temperature = temperature,
-                       ice_cream_sales = ice_cream_sales,
-                       violence_crime_true = violence_crime_true)  
-
-# Set seed for reproducibility
-set.seed(42)
-
-# Number of samples
-n <- 100
-
-# True coefficients
-beta_0 <- 80
-beta_1 <- 1.5
-beta_2 <- 1.5
-
-# Generate independent variables
-learning_time <- runif(n, 1, 10)
-gaming_time <- 0.7 * learning_time + 
-  sqrt(1 - 0.7^2) * rnorm(n, sd = 1) 
-
-#generate error term
-epsilon <- rnorm(n, 0, 3)
-
-# Generate grades
-grades <- beta_0 + beta_1 * learning_time + beta_2 * gaming_time + epsilon
-
-# Create a data frame
-df_grades <- data.frame(learning_time,
-                        gaming_time,
-                        grades)
-
-# Setting seed for reproducibility
-set.seed(123)
-
-# Generate hours spent on a course
-hours_spent <- runif(100, min = 0, max = 10)
-
-# Generate the course dummy (0 = other courses, 1 = this course)
-this_course = sample(c(0, 1), n, replace = TRUE)
-
-# Generate y with interaction effect
-coding_ability <- 2 + 0.5 * hours_spent + 0 * this_course + 
-  1.5 * hours_spent * this_course + rnorm(n)
-
-# Create a data frame
-df_int <- data.frame(hours_spent, this_course, coding_ability)
+#source(link/to/file/on/github)
 
 #=====================RUN THESE LINES BEFORE CONTINUING========================#
 
@@ -474,9 +38,9 @@ df_int <- data.frame(hours_spent, this_course, coding_ability)
 #And now I wish you fun with the course!
 
 
-#----------------------
-#   1. Fundamentals
-#----------------------
+#-----------------
+# 1. Fundamentals
+#-----------------
 
 #-------------------------------------------------------------------------------
 
@@ -786,9 +350,9 @@ ifelse(grade == 1.0, "Amazing",
 
 #-------------------------------------------------------------------------------
 
-#--------------------------
-#   2.Data Manipulation
-#--------------------------
+#---------------------
+# 2.Data Manipulation
+#---------------------
 
 #-------------------------------------------------------------------------------
 
@@ -1186,7 +750,8 @@ wb <- data.frame(
                      267154.70, 308650.30)
 )
 
-#This takes some time, especially if you have more countries, more indicators and a longer time span.
+# This takes some time, especially if you have more countries, more indicators 
+# and a longer time span.
 
 #Checking it
 head(wb)
@@ -1324,6 +889,11 @@ head(merged_data4)
 
 #b.  Load World Bank Data from 1972 to 2007 and load the variable "Exports and 
 #Goods (% of GDP)".
+
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+
 #c.  Merge the World Bank data to the gapminder data, so a dataset evolves with 
 #the number of observations of the gapminder data.
 
@@ -1338,7 +908,7 @@ head(merged_data4)
 #-------------------------------------------------------------------------------
 
 #-----------------------
-#  Data Visualisation
+# 3. Data Visualization
 #-----------------------
 
 
@@ -1984,8 +1554,322 @@ tm_shape(world) +
 
 #-------------------------------------------------------------------------------
 
+#------------------------------
+# 4. Exploratory Data Analysis
+#------------------------------
+
+#-------------------------------------------------------------------------------
+
+## Calculating the Mode
+
+uniq_vals <- unique(penguins$bill_length_mm)  # Get unique values
+freqs <- tabulate(match(penguins$bill_length_mm, uniq_vals))  # Count occurrences
+uniq_vals[which.max(freqs)] # Getting the unique value with the most occurrences
+
+#-------------------------------------------------------------------------------
+
+## Calculating the Mean
+mean(penguins$bill_length_mm)
+
+#-------------------------------------------------------------------------------
+
+## Calculating the Median
+median(penguins$bill_length_mm)
+
+#-------------------------------------------------------------------------------
+
+## Calculating the Interquartile Range (IQR)
+IQR(penguins$bill_length_mm)
+
+#-------------------------------------------------------------------------------
+
+## Calculating the Variance 
+var(penguins$bill_length_mm)
+
+#-------------------------------------------------------------------------------
+
+## Calculating the Standard Deviation
+sd(penguins$bill_length_mm)
+
+#-------------------------------------------------------------------------------
+
+## Contingency Tables / Crosstabs
+table(penguins$species, penguins$island)
+
+summarytools::ctable(penguins$species, penguins$island)
+
+gtsummary::tbl_cross(data = penguins, 
+                     row = species, 
+                     col = island)
+
+#-------------------------------------------------------------------------------
+
+## Correlation Pearson
+cor(penguins$bill_length_mm, penguins$body_mass_g,
+    method = "pearson")
+
+#-------------------------------------------------------------------------------
+
+## Correlation Spearman
+cor(penguins$bill_length_mm, penguins$body_mass_g,
+    method = "spearman")
+
+#-------------------------------------------------------------------------------
+
+## Correlation Kendall
+cor(penguins$bill_length_mm, penguins$body_mass_g,
+    method = "kendall")
+
+#-------------------------------------------------------------------------------
+
+## Correlation Graphically
+ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g)) +
+  geom_point(color = "#0077b6") +
+  labs(x = "Length in mm",
+       y = "Body Mass in g",
+       title = "Relationship between Length (in mm) and Body Mass (in g)") + 
+  theme_bw()
+
+#-------------------------------------------------------------------------------
+
+## Correlation Matrix
+
+# Step 1: Prepare numeric data
+penguins_numeric <- penguins %>%
+  select(bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g) %>%
+  drop_na()
+
+# Step 2: Compute correlation matrix
+corr_matrix <- cor(penguins_numeric)
+
+# Step 3: Plot the correlation matrix
+corrplot(corr_matrix, method = "color")
+
+
+#-------------------------------------------------------------------------------
+
+## Correlation Matrix Pretty
+corrplot(corr_matrix, method = "color", type = "upper", 
+         addCoef.col = "black", tl.col = "black", tl.srt = 45)
+
+#-------------------------------------------------------------------------------
+
+## Correlation Matrix Circular
+corrplot(corr_matrix, method = "circle", type = "upper", 
+         addCoef.col = "black", tl.col = "black", tl.srt = 45)
+
+#-------------------------------------------------------------------------------
+
+## Correlation Matrix Circular Pretty
+corrplot(corr_matrix, method = "circle", type = "upper", 
+         tl.col = "black", tl.srt = 45)
+
+#-------------------------------------------------------------------------------
+
+#Applying describe to the whole dataset
+psych::describe(penguins)
+
+#You can apply describe() also for single variables
+#psych::describe(penguins$bill_length_mm)
+
+#-------------------------------------------------------------------------------
+
+## Correlation test psych
+corr.test(penguins_numeric)
+
+#-------------------------------------------------------------------------------
+
+## Psych Pair.Panels
+pairs.panels(penguins_numeric)
+
+#-------------------------------------------------------------------------------
+
+## skimr
+skimr::skim(penguins)
+
+#If you do not want to see the distribution
+#skimr::skim_without_charts(penguins)
+
+#-------------------------------------------------------------------------------
+
+## dfsummary
+dfSummary(penguins)
+
+#-------------------------------------------------------------------------------
+
+## dfSummary with view()
+view(dfSummary(penguins))
+
+# Or if you are a good R user, then you can use also a pipe
+# dfSummary(penguins) %>%
+# view()
+
+#-------------------------------------------------------------------------------
+
+## summarytools freq()
+freq(penguins$species)
+
+#-------------------------------------------------------------------------------
+
+## descr function summarytools
+descr(penguins)
+
+#-------------------------------------------------------------------------------
+
+## ctable summarytools
+ctable(penguins$species, penguins$island)
+
+#-------------------------------------------------------------------------------
+
+## naniar miss_var_summary
+naniar::miss_var_summary(penguins_raw)
+
+#-------------------------------------------------------------------------------
+
+## naniar gg_miss_upset
+naniar::gg_miss_upset(penguins_raw)
+
+#-------------------------------------------------------------------------------
+
+## naniar vis_miss
+naniar::vis_miss(penguins_raw)
+
+#-------------------------------------------------------------------------------
+
+## tbl_summary
+gtsummary::tbl_summary(penguins)
+
+#-------------------------------------------------------------------------------
+
+## grouped tbl_summary
+penguins %>%
+  tbl_summary(by = sex)
+
+#-------------------------------------------------------------------------------
+
+## tbl_cross
+penguins %>%
+  tbl_cross(
+    row = species,
+    col = island
+  )
+
+#-------------------------------------------------------------------------------
+
+## dlookr diagnose
+diagnose(penguins) %>%
+  print()
+
+#-------------------------------------------------------------------------------
+
+## dlookr describe
+dlookr::describe(penguins)
+
+#-------------------------------------------------------------------------------
+
+## eda_paged_report dlookr
+dlookr::eda_paged_report(penguins, output_format = "html")
+
+#-------------------------------------------------------------------------------
+
+## introduce function DataExplorer
+introduce(penguins)
+
+#-------------------------------------------------------------------------------
+
+## plot_missing DataExplorer
+plot_missing(penguins_raw)
+
+#-------------------------------------------------------------------------------
+
+## plot_correlation
+plot_correlation(penguins_numeric)
+
+#-------------------------------------------------------------------------------
+
+## ExpData
+ExpData(penguins, type = 1)
+
+#-------------------------------------------------------------------------------
+
+## ExpNumStat
+ExpNumStat(penguins)
+
+#-------------------------------------------------------------------------------
+
+## Exercise 1: Standard Descriptive Statistics
+
+#In this exercise we will work with the built-in iris package in R:
+  
+# a. Calculate the mode, mean and the median for the iris$Sepal.Length variable
+
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+
+# b. Calculate the interquartile range, variance and the standard deviation 
+#    for iris$Sepal.Length
+
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+
+# c. Calculate all five measures at once by using a function that does so 
+#   (Choose by yourself, which one you want to use)
+
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+
+# Exercise 2: Contingency Tables and Correlations
+# 
+# a. Make a Contingency Table for esoph$agegp and esoph$alcgp
+
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+
+# b. Cut down the iris dataset to Sepal.Length, Sepal.Width, Petal.Length and 
+#    Petal.Width and save it in an object called iris_numeric.
+
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+
+# c. Make a correlation matrix with iris_numeric
+
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+ 
+# d. Make the correlation matrix prettyChapter 4: Exploratory Data Analysis
+
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+
+# Exercise 3: Working with packages
+# 
+# a. Use a function to get an overview of the dataset mtcars
+
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+
+# b. Have a look at the structure of the missing values in mtcars
+
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+
+# c. Make an automatized EDA report for mtcars
+
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+
 #-------------------
-#  Data Analysis
+# 5. Data Analysis
 #-------------------
 
 ## Linear Regression
@@ -2136,14 +2020,17 @@ summary(model1)$r.squared
 ggplot(data_outlier, aes(x = x1, y = y1)) +
   geom_point(shape = 20, size = 3) +
 # Regression line for the model with outlier
-  geom_abline(aes(slope = model_outlier$coefficients[2], intercept =
-                      model_outlier$coefficients[1], 
-                    color = "Model with Outlier"), linewidth = 0.75, show.legend = TRUE) +
+  geom_abline(aes(slope = model_outlier$coefficients[2], 
+                  intercept = model_outlier$coefficients[1], 
+                  color = "Model with Outlier"), 
+              linewidth = 0.75, 
+              show.legend = TRUE) +
 # Regression line for the model without outlier
   geom_abline(aes(slope = model_without_outlier$coefficients[2], 
                   intercept = model_without_outlier$coefficients[1], 
-                  color = "Model without Outlier"), linewidth = 0.75, 
-                 show.legend = TRUE) +
+                  color = "Model without Outlier"), 
+              linewidth = 0.75, 
+              show.legend = TRUE) +
     xlab("Independent Variable") +
     # Adding legend
     theme_classic() + 
@@ -2417,7 +2304,8 @@ model_without_temperature <- lm(violence_crime_true ~ ice_cream_sales,
 
 #Fit a model with only the temperature variable
 
-model_with_only_temperature <- lm(violence_crime_true ~temperature,                        data = data)
+model_with_only_temperature <- lm(violence_crime_true ~temperature,                        
+                                  data = data)
 
 # Fit a model including both diet and exercise variables 
 model_with_temperature <- lm(violence_crime_true ~ ice_cream_sales + 
@@ -2529,3 +2417,346 @@ plot_model(model_interaction, type = "int") +
 #-------------------------------------------------------------------------------
 
 ## Exercise Section
+
+# To understand linear regression, we do not have to load any complicated data. 
+# Let us assume, you are a market analyst and your customer is the production 
+# company of a series called "Breaking Thrones". The production company wants to 
+# know how the viewers of the series judge the final episode. You conduct a 
+# survey and ask people on how satisfied they were with the season final and 
+# some social demographics. Here is your codebook:
+  
+#  | Variable     | Description                                                                                                                                                    |
+#  |------------------|------------------------------------------------------|
+#  | id           | The id of the respondent                                                                                                                                       |
+#  | satisfaction | The answer to the question 
+#                 | "How satisfied were you with the final episode of Breaking 
+#                 | Throne?", where 0 is completely dissatisfied and 10 
+#                 | completely satisfied |
+#  | age          | The age of the respondent                                                                                                                                      |
+#  | female       | The Gender of the respondent, where 0 = Male, 1 = Female                                                                                                       |
+  
+
+### Exercise 1: Linear Regression with two variables
+
+#You want to know if age has an impact on the satisfaction with the last episode. 
+#You want to conduct a linear regression.
+
+#a\. Calculate $\beta_0$ and $\beta_1$ by hand
+
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+
+#b\. Calculate $\beta_0$ and $\beta_1$ automatically with R
+
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+
+#c\. Interpret all quantities of your result: Standard Error, t-statistic, 
+#    p-value, confidence intervals and the $R^2$.
+
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+
+#d\. Check for influential outliers
+
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+
+### Exercise 2: Multivariate Regression
+
+#a\. Add the variable `female` to your regression
+
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+
+#b\. Interpret the Output. What has changed? What stays the same?
+  
+#c\. Make an interaction effect between age and gender and interpret it!
+  
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+
+#d\. Plot the interaction and make the plot nice
+
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+
+#------------------------
+# 6. Loops and Functions
+#------------------------
+
+#-------------------------------------------------------------------------------
+
+## ifelse function from Chapter 1
+
+grade <- 4.0
+
+if (grade == 1.0) {
+  print("Amazing") 
+} else if (grade > 1.0 & grade <= 2.0) {
+  print("Good Job")
+} else if (grade > 2.0 & grade <= 3.0) {
+  print("OK")
+} else if (grade > 3.0 & grade <= 4.0) {
+  print("Life goes on") 
+}
+
+grade <- 3.3
+
+if (grade == 1.0) {
+  print("Amazing") 
+} else if (grade > 1.0 & grade <= 2.0) {
+  print("Good Job")
+} else if (grade > 2.0 & grade <= 3.0) {
+  print("OK")
+} else if (grade > 3.0 & grade <= 4.0) {
+  print("Life goes on") 
+}
+
+grade <- 4.0
+
+if (grade == 1.0) {
+  print("Amazing") 
+} else if (grade > 1.0 & grade <= 2.0) {
+  print("Good Job")
+} else if (grade > 2.0 & grade <= 3.0) {
+  print("OK")
+} else if (grade > 3.0 & grade <= 4.0) {
+  print("Life goes on") 
+}
+
+grade <- 2.3
+
+if (grade == 1.0) {
+  print("Amazing") 
+} else if (grade > 1.0 & grade <= 2.0) {
+  print("Good Job")
+} else if (grade > 2.0 & grade <= 3.0) {
+  print("OK")
+} else if (grade > 3.0 & grade <= 4.0) {
+  print("Life goes on") 
+}
+
+grade <- 1.7
+
+if (grade == 1.0) {
+  print("Amazing") 
+} else if (grade > 1.0 & grade <= 2.0) {
+  print("Good Job")
+} else if (grade > 2.0 & grade <= 3.0) {
+  print("OK")
+} else if (grade > 3.0 & grade <= 4.0) {
+  print("Life goes on") 
+}
+
+#-------------------------------------------------------------------------------
+
+## grades vector
+grades <- c(1.7, 3.3, 4.0, 2.3, 1.0)
+
+#-------------------------------------------------------------------------------
+
+## basic loop
+
+for (i in 1:length(grades)) {
+  if (grades[i] == 1.0) {
+    print("Amazing") 
+  } else if (grades[i] > 1.0 & grades[i] <= 2.0) {
+    print("Good Job")
+  } else if (grades[i] > 2.0 & grades[i] <= 3.0) {
+    print("OK")
+  } else if (grades[i] > 3.0 & grades[i] <= 4.0) {
+    print("Life goes on") 
+  }
+  
+}
+
+#-------------------------------------------------------------------------------
+
+## loop num
+# creating num vector
+num <- c(1, 2, 3, 4, 5, 249)
+
+# looping through vector
+for (i in num) { 
+  print(stringr::str_c("This is the ", i, "th Iteration")) 
+}
+
+#-------------------------------------------------------------------------------
+
+## ttt matrix
+#Defining a matrix 
+ttt <- matrix(c("X", "O", "X",
+                "O", "X", "O",
+                "O", "X", "O"), nrow = 3, ncol = 3, byrow = TRUE)
+
+#-------------------------------------------------------------------------------
+
+## nested loops
+for (i in 1:nrow(ttt)) {
+  for (j in 1:ncol(ttt)) {
+    print(paste("On row", i, "and column", 
+                j, "the board contains", ttt[i,j]))
+  }
+}
+
+#-------------------------------------------------------------------------------
+
+## example matrix}
+#Let us create a matrix with random numbers 
+mat <- matrix(1:10, nrow = 5, ncol = 6)
+
+#Checking it
+head(mat)
+
+#-------------------------------------------------------------------------------
+
+## basic apply function
+
+apply(mat, 2, mean) #calculating mean 
+apply(mat, 2, sum) #calculating sum
+apply(mat, 2, sd) #calculating sd
+
+
+#The corresponding Loop would look like this: 
+for (i in 1:ncol(mat)) {
+  mean_col <- mean(mat[, i])
+  print(mean_col)
+}
+
+#-------------------------------------------------------------------------------
+
+## own function
+
+#My function is just a sum
+
+add <- function(x, y) { 
+  
+  result <- x + y
+  return(result)
+}
+
+add(2,7) #Now I can use my function
+
+#-------------------------------------------------------------------------------
+
+## area of circle
+
+aoc <- function(radius) {
+  pi <- 3.14159
+  
+  area <- pi * radius^2
+  
+  return(area)
+}
+
+aoc(5)
+
+#-------------------------------------------------------------------------------
+
+## student sitting order
+# The function
+print_classroom <- function(x) {
+  for (i in 1:length(x)) {  # Outer loop iterates over rows
+    for (j in 1:length(x[[i]])) {  # Inner loop iterates over columns
+      student <- x[[i]][j]
+      if (student == 1) {
+        comment <- "Alice"
+      } else if (student == 2) {
+        comment <- "Bob"
+      } else if (student == 3) {
+        comment <- "Cathy"
+      } else if (student == 4) {
+        comment <- "David"
+      } else if (student == 5) {
+        comment <- "Eva"
+      } else {
+        comment <- paste("Unknown student", student, "is doing something 
+                         interesting.")
+      }
+      cat("At row", i, "column", j, ":", comment, "\n")
+    }
+  }
+}
+
+# Example usage
+seating_order <- list(
+  c(1, 5, 2),
+  c(4, 3)
+)
+
+#Checking it
+print_classroom(seating_order)
+
+#-------------------------------------------------------------------------------
+
+## Exercise Section
+
+### Exercise 1: Writing a loop
+
+# Write a `for` loop that prints the square of each number from 1 to 10
+
+#-------------------------------------------------------------------------------
+
+#Assigning an object for a better workflow
+number <- 10
+
+#The Loop 
+
+#-------------------------------------------------------------------------------
+
+### Exercise 2: Writing a function
+
+# Write a function that takes the input x and squares it:
+  
+#-------------------------------------------------------------------------------
+
+#Defining a function for squaring
+
+sq <- function (x) {
+  
+  
+  
+}
+
+#-------------------------------------------------------------------------------
+
+#Defining a vector containing a vector from 1 to 10 
+numbers <- c(1:10) 
+
+#Applying the number 
+sq(numbers)
+
+#-------------------------------------------------------------------------------
+
+### Exercise 3: The midnight Formula
+
+#This is the midnight formula separated in two equations:
+  
+#$x_{1,2} = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$
+  
+# Make **one function** for the midnight formula, so the output are $x_1$ and 
+# $x_2$. Test it with a = 2, b = -6, c = -8
+
+# **Hint**: You need two split up the formula into two equations with two outputs.
+
+#-------------------------------------------------------------------------------
+
+mnf <- 
+  
+mnf(2, 6, 8)
+
+#-------------------------------------------------------------------------------
+
+
+
+
+
+

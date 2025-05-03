@@ -3,8 +3,8 @@
 In this chapter you I introduce you to the basic ideas of statistical analysis and hypothesis testing. For me, it is important that you get an intuition about what is going on rather than terrorizing you with complicated math. Although, I cannot and will not leave out central formulas, you will be fine with the maths. There extensively commented and in the end of the day not that hard to understand. You will notice that the programming in this chapter is quite easy compared to before. In the end, you only need formulas, who do everything you need to analyse data, that is also a strength of R. Please concentrate more on the concepts and get an idea what is going on. The goal of this chapter is that you get to know linear regression and how to check if the model fits and the results are robust and significant.
 
 ```{r loading packages}
-pacman::p_load("tidyverse", "ggpubr","gapminder", "sjPlot", "kableExtra", 
-               "GGally", "car", "margins", "plotly")
+pacman::p_load("tidyverse", "ggpubr","gapminder", 
+               "sjPlot", "GGally", "car", "margins", "plotly")
 ```
 
 ## Linear Regression
@@ -59,56 +59,6 @@ Y_quadratic <- X^2 + 2 * X + u
 
 #Making a data frame out of it
 df2 <- data.frame(X_quadratic, Y_quadratic)
-
-#Simulating time data 
-
-# set seed
-set.seed(123)
-
-# generate a date vector
-date <- seq(as.Date("1960/1/1"), as.Date("2020/1/1"), "years")
-
-# initialize the employment vector
-y_time <- c(5000, rep(NA, length(date)-1))
-
-# generate time series observations with random influences
-for (i in 2:length(date)) {
-  
-    y_time[i] <- -50 + 0.98 * y_time[i-1] + rnorm(n = 1, sd = 200)
-}
-
-# creating DataFrame 
-df_time_series <- data.frame(y_time, date)
-
-###Defining a function
-
-#Creating Function for Kable Table 
-table_ovb <- function(model1, model2) {
-  # Determine the maximum number of coefficients between the two models
-  max_coef <- max(length(model1$coefficients), length(model2$coefficients))
-  
-  # Initialize placeholders for coefficients
-  place_holder1 <- rep(NA, max_coef)
-  place_holder2 <- rep(NA, max_coef)
-  
-  # Replace the placeholders with coefficients from the models
-  place_holder1[1:length(model1$coefficients)] <- model1$coefficients
-  place_holder2[1:length(model2$coefficients)] <- model2$coefficients
-  
-  # Create a data frame with coefficients from both models
-  dt <- data.frame(place_holder1,place_holder2) 
-  
-  # Set row and column names
-  colnames(dt) <- c("Model without Temperature", "Model with Temperature")
-  rownames(dt) <- c("Intercept", "Ice Cream Sales", "Temperature")
-  
-  # Display the table
-  
-dt %>%
-  kbl() %>%
-  kable_styling()
-  
-}
 ```
 
 ```{r plotting x and y in df}
@@ -220,264 +170,6 @@ df$auto_y_hat <- predict(model1)
 #Checking it 
 head(df)
 ```
-
-## Model Fit
-
-Now the linear regression has a lot of assumptions, it is not like we can run the model every time how we want. Since it is a model, it makes assumptions and instead of just assuming them to be right, we can test them. To techniques to test them are called **Measures of Fit**. Because they test how much our data fits the data. Let us have a look at the assumptions and how we can test them:
-
-### Measures of Fit
-
-#### Residuals
-
-1.) Calculating Residuals:
-
-$$
-Residuals = y_i - \hat{y_i} = y_i - (\hat{\beta_0} - \hat{\beta_1}x_i) 
-$$
-
-where
-
--   $y_i$ = our actual observed values of our dependent variable (`df$y`)
-
--   $\hat{y_i}$ = are our predicted values based on our OLS estimator
-
-Reconsider the graph at 2.2.1, the residuals are basically the red lines, thus the distance from the line to the point. We can calculate the residuals for our graph:
-
-```{r calculating residuals}
-#We get the Residuals by subtracting our actual y from y_hat
-df$residuals <- df$y - df$y_hat 
-
-#cheking it
-head(df) 
-
-#We could have done that automatically with R as well !  
-df$residuals_auto <- residuals(model1)
-
-#Checking it
-head(df)
-```
-
-Let us have a look at a so-called **Residual Plot**: On the x-axis you plot the **fitted values**, thus our `y_hat`. On the y-axis you plot the residuals, thus $y-\hat{y}$. Then you plot a horizontal line at y = 0. All dots on those lines show us the values correctly predicted by our model.
-
-```{r residual plot}
-ggplot(df, aes(x, residuals_auto)) + 
-  geom_point() + 
-  geom_hline(yintercept = 0) +
-  scale_y_continuous("Residuals", seq(-6, 6, 1), 
-                     limits = c(-6, 6)) +
-  scale_x_continuous("Fitted Values", seq(0, 10, 1), 
-                     limits = c(0, 10)) +
-  theme_bw()
-```
-
-#### Homoskedasticity and Heteroskedasticity
-
-One assumption of linear regression is that the variance of the error term is not correlated with our independent variable. Well, that is quite technocratic and means basically, that the residuals are distributed equally over the independent variables. Let us plot it to get a visual intuition:
-
-```{r homo and hetero plot, message=FALSE, warning=FALSE}
-#setting seed for reproduciability
-set.seed(123)
-
-# Generate some data
-x <- runif(150, 0.05, 1)
-e <- rnorm(150, 0, 0.5)
-
-#homoskedastic data 
-y_homo <- 2 * x + e 
-#heteroskedastic data 
-y_hetero <- 2 * x + e*x^2 
-#making a data frame with both data
-df_homo_hetero <- data.frame(x, y_homo, y_hetero)
-
-# Scatterplot with homoscedasticity
-homoskedastic_plot <- ggplot(df_homo_hetero, aes(x = x, y = y_homo)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE) +# Add linear regression line
-  scale_y_continuous("Y", seq(-0.5, 3.5, 0.5), limits = c(-0.5, 3.5)) +
-  labs(title = "Homoskedastic Plot") +
-  theme_minimal()
-
-# Scatterplot with heteroscedasticity
-heteroskedastic_plot <- ggplot(df_homo_hetero, 
-                               aes(x = x, y = y_hetero)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE) +#Add linear regression line
-  labs(title = "Heteroskedastic Plot") +
-  scale_y_continuous("Y", seq(-0.5, 3.5, 0.5), limits = c(-0.5, 3.5)) +
-  theme_minimal()
-
-# Combine plots using facet_wrap
-facet_plots <- ggarrange(homoskedastic_plot, heteroskedastic_plot, nrow = 1)
-
-# Print the combined plots
-print(facet_plots)
-```
-
-In the left plot, you see the homoskedastic data. The dots are equally and constantly distributed around the fitted line. However, the right plot shows that the more the independent variable **x** increases, the more the observations are increasing. The dots are not constantly distributed over the line. In the case, that the data is heteroskedastic, then this is a problem. You could try to transform the independent variable by taking the logarithm (We will look into that later). You could also use so-called heteroskedastic regression, but this an advanced model.
-
-### TSS, ESS and $R^2$
-
-Now that we have the Residuals, we can calculate the Total Sum of Square (TSS), the Explained Sum of Squared ESS, and $R^2$:
-
--   TSS (Variation in the DV): $TSS =\sum(y_i - \bar{y})^2$ , we just subtract our actual values (`df$y`) from its mean and square it to avoid negative numbers. This gives us the total variation of our dependent variable.
-
--   ESS (Variation we explain in the DV): $ESS = \sum(\hat{y_i} - \bar{y})^2$ , now we use our predicted values (`df$y_hat`) instead of our actual values. That gives us the variation in the dependent variable, we can explain with our model.
-
--   $R^2$ (The Variation we can predict from our model): $R^2 = \frac{ESS}{TSS}$ , well to get the proportion we just divide the variation we can explain from our DV from the actual variation through the total variation in the DV. If these two values are the same, thus our model predicts all the variation in our dependent variable and this $R^2$ is 1. If our model could not explain anything the variation would be 0, since the values of both cannot be negative. Let us calculate them:
-
-```{r calculating r2 by hand}
-#total sum of squares
-tss <- sum((df$y - mean(df$y))^2)
-#explained sum of squares
-ess <- sum((df$y_hat - mean(df$y))^2)
-#caculating r squared
-r_squared <- ess/tss
-
-#Printing it
-r_squared
-
-#Summarizing it
-summary(model1)$r.squared
-```
-
-### Influential Outliers
-
-Outliers are extremely deviating values, which can impact our analysis and bias it. Therefore, we have to check, if our data contains such values. But first let us see how they can impact our data:
-
-```{r plotting bias through outliers}
-#set seed 
-set.seed(069)
-
-#generate fake data with outlier 
-x1 <- sort(runif(10, min = 30, max = 70))
-y1 <- rnorm(10 , mean = 200, sd = 50)
-y1[9] <- 2000
-data_outlier <- data.frame(x1, y1)
-
-#Model with Outlier 
-model_outlier <- lm(y1 ~ x1) 
-
-#Model without Outlier
-model_without_outlier <- lm(y1[-9] ~ x1[-9]) 
-
-#Plotting the Data 
-
-# Scatter plot with points
-ggplot(data_outlier, aes(x = x1, y = y1)) +
-  geom_point(shape = 20, size = 3) +
-  # Regression line for the model with outlier
-  geom_abline(aes(slope = model_outlier$coefficients[2], intercept =
-              model_outlier$coefficients[1], 
-              color = "Model with Outlier"), linewidth = 0.75, show.legend = TRUE) +
-  # Regression line for the model without outlier
-  geom_abline(aes(slope = model_without_outlier$coefficients[2], 
-              intercept = model_without_outlier$coefficients[1], 
-              color = "Model without Outlier"), linewidth = 0.75, 
-              show.legend = TRUE) +
-  xlab("Independent Variable") +
-  # Adding legend
-  theme_classic() + 
-  theme(legend.position = c(0.15,0.9), 
-        legend.title = element_blank()) 
-
-```
-
-We see that this one observation completely biases our sample. But how do we find out, which observation is an influential outlier? There is a metric called **Cook's Distance**, we can use. Let us do it and plot it in R.
-
-```{r plotting cooks distance}
-#Cooks Distance can be calculated with a built-in function
-data_outlier$cooks_distance <- cooks.distance(model_outlier) 
-
-#Plotting it
-ggplot(data_outlier, aes(x = x1, y = cooks_distance)) + 
-  geom_point(colour = "darkgreen", size = 3, alpha = 0.5) + 
-  labs(y = "Cook's Distance", x = "Independent Variables") + 
-  geom_hline(yintercept = 1, linetype = "dashed") + 
-  theme_bw()
-```
-
-We can clearly see that **Cook's Distance** detected the outlier. The rule is that values with a cooks distance bigger than 1 have to be eliminated. You can do that with the `filter()` function and run the model afterward again without the outliers.
-
-### Functional Form
-
-Linear regression is a mathematical model. Therefore it is based on assumptions. But we should not just assume them, we should test them! One assumption is that linearity is assumed between X and Y. But that can be problematic consider following example:
-
-```{r plotting linear fit through quadratic form}
-# estimate a simple regression model 
-model_simple <- lm(Y_quadratic ~ X_quadratic, data = df2)
-
-# Summarize it
-summary(model_simple)
-
-#Plot it
-ggplot(df2, aes(x = X_quadratic, y = Y_quadratic)) + 
-  geom_point(shape = 20, size = 3) + 
-  geom_smooth(method = "lm", se = FALSE) + 
-  theme_bw()
-```
-
-As you can see something look wrong. There seems to be a correlation between the two variables, but it does not seem linear. In such a case it does make sense to square the independent variable and run the regression again:
-
-```{r plotting quadratic fit with quadratic form}
-# estimate a simple regression model 
-model_quadratic <- lm(Y_quadratic ~ X_quadratic^2, data = df2)
-
-#Summarize it 
-summary(model_quadratic)
-
-#Plot it
-ggplot(df2, aes(x = X_quadratic, y = Y_quadratic)) + 
-  geom_point(shape = 20, size = 3) + 
-  geom_smooth(method = "lm", formula = y ~ poly(x, 2), 
-              color = "red", 
-              se = FALSE,) + 
-  scale_x_continuous("X", breaks = seq(-5,5,1), limits = c(-5,5)) +
-  ylab("Y") +
-  theme_bw()
-```
-
-Well that looks better and is the proper way to deal with quadratic relationships in linear regression. Well, data can take on not only a quadratic form, it could also take on a form of a square-root function. I will show the most classical example of such a functional form. The `gapminder` data is loaded. It contains data about the average life expectancy (`lifeExp`)and the GDP per capita (`gdpPercap`) of countries in different years. Let us look if the GDP per Capita is correlated with Life Expectancy:
-
-```{r unlogged fit, warning=FALSE}
-#checking the data
-head(gapminder)
-
-#Plotting it
-ggplot(gapminder, aes(gdpPercap, lifeExp)) + 
-  geom_point() + 
-  geom_smooth(method = "loess", se = FALSE) + 
-  scale_y_continuous("Life Expectancy", seq(30, 80, 10), 
-                     limits = c(30, 80)) + 
-  theme_bw()
-```
-
-Well, that looks terrible. What can we do? I already mentioned that the fitted line looks like a square-root function ($y = \beta{\sqrt{x}}$ ). When you take the logarithm of square root, you neutralize the square root and only x remains $\log{(\sqrt{x})} = x$. When you do that the functional form changes to $y = \beta{x}$. Well, that is exactly the systematic component we are after:
-
-```{r logged fit, warning=FALSE}
-ggplot(gapminder, aes(log(gdpPercap), lifeExp)) + 
-  geom_point() + 
-  geom_smooth(method = "lm", se = FALSE) + 
-  scale_y_continuous("Life Expectancy", seq(30, 80, 10), 
-                     limits = c(30, 80)) + 
-  xlab("GDP per Capita") +
-  theme_bw()
-```
-
-This looks more like what we want to achieve. What can we see in that plot? When we run a model we want to take the logarithm of the independent variable, when we expect the following: If the most observations of a variable are low, but some observations are extremely high such functional forms can occur. In our example, most of the countries have a low GDP per Capita, but some countries such as the Western European countries or the USA have such a a high level of GDP per Capita, they change the functional form of the fitted line. These are influential outliers, but too much to delete them. It could bias the representativeness of the sample, therefore we can deal with them by taking the logarithm.
-
-### Independent Observation
-
-Another assumption of the linear regression model is the independent, identically distributed (i.i.d) assumption. That sounds complicated but it really is not. Consider following plot:
-
-```{r time trend}
-ggplot(df_time_series, aes(date, y_time)) + 
-  geom_line() +
-  ylab("Y") +
-  xlab("Year") +
-  theme_bw()  
-```
-
-If you look at the plot, can we assume that the observation Year = 2000 is independent from the Years before? No, the observation in the years are correlated to each other, thus the assumption is violated. This is basically the huge problem of working with longitudinal data (time-series cross-sectional or panel). If you face such problems there are plenty of other methods to use: Interrupted time series, Difference-in-Difference Designs, Panel-Matching, Fixed-Effects Models etc.
 
 ## Hypothesis Testing in R
 
@@ -800,191 +492,12 @@ $$ Y_i = -0.54 + 0.67X_i + 0.52Z_i + \epsilon_i  $$
 
 If we want to visualize this, we would need a three-dimensional coordinate system. Why? Because every independent variable is one-dimension if you want. I said that *k* is the number of our independent variables, technically it is the number of dimensions our model has. I am not a fan of plotting graphs more than three dimensions and I do not recommend it to you either.
 
-### Model Fit: Adjusted R-squared
-
-The last important aspect of Multivariate Regression is the Adjusted R-squared measure. Reconsider, the calculation of the classical R-squared:
-
--   TSS (Variation in the DV): $TSS =\sum(y_i - \bar{y})^2$ , we just subtract our actual values (`df$y`) from its mean and square it to avoid negative numbers. This gives us the total variation of our dependent variable.
-
--   ESS (Variation we explain in the DV): $ESS = \sum(\hat{y_i} - \bar{y})^2$ , now we use our predicted values (`df$y_hat`) instead of our actual values. That gives us the variation in the dependent variable, we can explain with our model.
-
--   $R^2$ (The Variation we can predict from our model): $R^2 = \frac{ESS}{TSS}$ , well to get the proportion we just divide the variation we can explain from our DV from the actual variation through the total variation in the DV. If these two values are the same, thus our model predicts all the variation in our dependent variable and this $R^2$ is 1.
-
-The problem with the classical R-squared is, that if you would add useless independent variables to it, the classical R-squared would decrease, although your model did not increase in explanatory power. This is called **overfitting**. However, adjusted R-squared will account for that problem by introducing a "penalty" for every additional variable. Mathematically, it looks like this:
-
-$$ Adj.R^2 = 1 - \frac{(1 - R^2)*(N - 1)}{N - k - 1} $$
-
-where
-
--   $R^2$ is our classical R-squared calculated ($\frac{TSS}{ESS}$)
-
--   $N$ is the number of observations in our sample
-
--   $k$ is the number of independent variables
-
-In `R`, we can extract the adjusted R-squared simply from our model in chunk, multivariate regression:
-
-```{r calculating adj r2}
-#running multivariate model
-multivariate_model <- lm(y ~ x + categorical_variable, data = df)
-
-#Getting summary
-summary(multivariate_model)
-
-#Extract Adjusted R-squared
-summary(multivariate_model)$adj.r.squared
-
-#Calculating by hand
-adj_r_squared <- 1 - (((1-summary(multivariate_model)$r.squared) * (nrow(df) - 1))/(nrow(df) - 2 - 1))
-
-#printing it
-print(adj_r_squared)
-```
-
-### Omitted Variable Bias
-
-I already mentioned one (abstract) reason why we should include other variables in our model. But there is more to it: You could find effects between two variables X and Y, but it could be that in Reality there is not an association. For example, let us say you collect data about ice cream and shark attacks. Ice cream sales is your independent variable and you want to explain the number of shark attacks, here is your data:
-
-```{r omitted variable bias}
-# Set seed for reproducibility 
-set.seed(0)  
-
-# Number of data points 
-n <- 100
-
-# Simulate diet data (assuming a normal distribution) 
-temperature <- rnorm(n, mean = 1500, sd = 200)  
-
-# Simulate exercise data (assuming a normal distribution) 
-ice_cream_sales <- rnorm(n, mean = 3, sd = 1)  
-
-# Simulate weight loss data 
-violence_crime_true <- 0.2 * temperature - 
-  0.5 * ice_cream_sales + 
-  rnorm(n, mean = 0, sd = 5) 
-
-# Create a data frame 
-data <- data.frame(temperature = temperature,ice_cream_sales = ice_cream_sales,                     violence_crime_true = violence_crime_true)  
-
-# Fit a model without including the diet variable 
-model_without_temperature <- lm(violence_crime_true ~ ice_cream_sales, data = data)
-
-#Fit a model with only the temperature variable
-
-model_with_only_temperature <- lm(violence_crime_true ~temperature,                        data = data)
-
-# Fit a model including both diet and exercise variables 
-model_with_temperature <- lm(violence_crime_true ~ ice_cream_sales + temperature,                        data = data)  
-
-# Output the summary of both models 
-summary(model_without_temperature) 
-summary(model_with_only_temperature)
-summary(model_with_temperature)  
-
-#Let us display both models next to each other
-#EDIT: I created this function specifically, the code for the function is at the top.   
-table_ovb(model_without_temperature, model_with_temperature)
-```
-
-We can see that the coefficient changes dramatically. What happened? Well, one important assumption of linear regression is that the error term captures all variance not explained by our model and is **not correlated** with the independent variable(s) nor the dependent variable. But if there is unexplained variation in our model that is correlated with our independent variable, then this assumption is violated. In our example, we can see that ice cream sales coefficient in the first model is biased, because ice cream sales and is correlated to temperature. The warmer it gets, the more ice cream is sold. But, the warmer it gets, the more violent people get, therefore we have an omitted variable and that is temperature. When we include temperature in the model, we see the problem of omitted variable bias: It biases our coefficients, by either overestimating (like in our example) or by underestimating it. What we should do in such a case, is to delete the omitted variable, which is the drastically changing variable (ice cream sales in our case). This is also the reason, why people talk about additional variables as control variables in a multiple linear model. This way you can control if an association between two variables is due to omitted variable bias or other variables, which can explain the variation better.
-
-### Multicollinearity
-
-Another, and I promise, the last OLS assumption, which has to tested is that **there is no Multicollinearity**. The concept is simple: The independent variables should not be correlated. In our previous example, ice cream sales and temperature were correlated. This would have hurt these assumption. In strong cases, multicollinearity can bias our estimates, so that they gain statistical significance and lead us to wrong conclusions. Let us look at an obvious example. You want to find out how the grades of children is affected by different factors. You choose 2 factors: The time they spent on doing their homework (*learning time*) and the time they spent on playing video games (*gaming time*). The systematic component looks like this:
-
-$$
-Grades_i = \beta_0 + \beta_1*\text{learning time}_i + \beta_2 *\text{gaming time}_i + \epsilon_i
-$$
-
-Let us compute them:
-
-```{r Multicollinearity}
-# Set seed for reproducibility
-set.seed(42)
-
-# Number of samples
-n <- 100
-
-# True coefficients
-beta_0 <- 80
-beta_1 <- 1.5
-beta_2 <- 1.5
-
-# Generate independent variables
-learning_time <- runif(n, 1, 10)
-gaming_time <- 0.7 * learning_time + 
-  sqrt(1 - 0.7^2) * rnorm(n, sd = 1) 
-
-#generate error term
-epsilon <- rnorm(n, 0, 3)
-
-# Generate grades
-grades <- beta_0 + beta_1 * learning_time + beta_2 * gaming_time + epsilon
-
-# Create a data frame
-df_grades <- data.frame(learning_time,
-                   gaming_time,
-                   grades)
-
-# Display first few rows of the data frame
-grades_model <- lm(grades ~ learning_time + gaming_time, 
-                   data = df_grades)
-
-#Getting the summary
-summary(grades_model)
-```
-
-By looking at the model, we could conclude that the more a student learns, the better its grades on average, holding all else constant. So far, so clear, but the same goes for gaming time. Why is that the case? Because if we think that a student has per day 3 hours, which the student can assign to either learning or gaming, than both are correlated, because assigning 2 hours to learning means 1 hour for gaming, 0.5 hours for learning means 2.5 hours for gaming and so forth. This means both coefficients are explaining each other and bias each other. How to detect them?
-
-#### Testing Correlations to each other
-
-The first technique is to check the correlations of the variables to each other beforehand. You can do that two-ways: Just print out a correlation table:
-
-```{r testing correlations}
-#First store the variables you need in a seperate data frame 
-cormatrix_data <- df_grades %>% 
-  select(learning_time, gaming_time)
-
-
-#Second, calculate the table, the 2 at the end are the dimensions
-cormatrix <- cor(cormatrix_data) #Calculate the correlations
-round(cormatrix, 2) #round it to the second digit and display it 
-
-#We could have also done this code in one step 
-
-#df_grades %>% 
-#  select(learning_time, gaming_time) %>% 
-#  cor() %>% 
-#  round(2) 
-```
-
-We can see that the correlation between both variables is way to high. Now, with only two variables the table works fine, but what if we have, let us say, 20 variables? It could get messy, therefore you could also use the correlation matrix, which I introduced in the chapter before. In this case, it does not make sense, since it would just print out one block. But keep it nevertheless in mind for the future.
-
-#### Variance of Inflation (VIF)
-
-Another measure for multicolinearity and probably the most famous one, is the Variance-of-Inflation (VIF) factor. Intuitively spoken, this measure fits models with multiple variables, by calculating the variance of each variable. Then it fits a model with only one independent variable and calculates the variance of it. The result is a measure that displays high values if the variance of a variable increases, when other variables are added. That is exactly what this measure does.. The formula of it is really simple:
-
-$$
-VIF_i = \frac{1}{1 - R^2_i} 
-$$
-
-where, the Variance of inflation (VIF) of variable *i* is calculated by 1 divided by 1 - the R-squared ($R^2_i$) of the regression with only that variable.
-
-In `R`, we can use the `VIF()` function from the `car` - package to do it.
-
-```{r vif}
-#We only have to use the function VIF() on our model 
-vif(grades_model)
-```
-
-The rule is that if a value exceeds 10, it is considered critical. We should always test for multicolinearity, and if we detect it, run the regression separately without the correlated variables.
-
 ## Categorical Variables
 
 As I mentioned in the first chapter, there are different types of variables, let us reconsider them:
 
 |               |               |                                              |
-|-------------------|-------------------|----------------------------------|
+|----------------|----------------|----------------------------------------|
 | **Numeric**   | Numbers       | `c(1, 2.4, 3.14, 4)`                         |
 | **Character** | Text          | `c("1", "blue", "fun", "monster")`           |
 | **Logical**   | True or false | `c(TRUE, FALSE, TRUE, FALSE)`                |
@@ -1067,11 +580,11 @@ set.seed(123)
 hours_spent <- runif(100, min = 0, max = 10)
 
 # Generate the course dummy (0 = other courses, 1 = this course)
-this_course = sample(c(0, 1), n, replace = TRUE)
+this_course = sample(c(0, 1), 100, replace = TRUE)
 
 # Generate y with interaction effect
 coding_ability <- 2 + 0.5 * hours_spent + 0 * this_course + 
-  1.5 * hours_spent * this_course + rnorm(n)
+  1.5 * hours_spent * this_course + rnorm(100)
 
 # Create a data frame
 df_int <- data.frame(hours_spent, this_course, coding_ability)
@@ -1135,12 +648,12 @@ Further Links:
 
 To understand linear regression, we do not have to load any complicated data. Let us assume, you are a market analyst and your customer is the production company of a series called "Breaking Thrones". The production company wants to know how the viewers of the series judge the final episode. You conduct a survey and ask people on how satisfied they were with the season final and some social demographics. Here is your codebook:
 
-| Variable     | Description                                                                                                                                                    |
-|------------------|------------------------------------------------------|
-| id           | The id of the respondent                                                                                                                                       |
+| Variable | Description |
+|------------------------------------|------------------------------------|
+| id | The id of the respondent |
 | satisfaction | The answer to the question "How satisfied were you with the final episode of Breaking Throne?", where 0 is completely dissatisfied and 10 completely satisfied |
-| age          | The age of the respondent                                                                                                                                      |
-| female       | The Gender of the respondent, where 0 = Male, 1 = Female                                                                                                       |
+| age | The age of the respondent |
+| female | The Gender of the respondent, where 0 = Male, 1 = Female |
 
 Let us generate the data:
 

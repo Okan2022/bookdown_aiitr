@@ -249,7 +249,7 @@ set.seed(123)
 
 n <- 100
 
-df <- data.frame(
+df_cor <- data.frame(
   x = rep(1:n, 3),
   relationship = rep(c("Positive", "Negative", "None"), 
                      each = n),
@@ -261,12 +261,15 @@ df <- data.frame(
 )
 
 # Reorder factor levels
-df$relationship <- factor(df$relationship, 
-                          levels = c("Positive", "None", "Negative"),
-                          labels = c("Positive", "No Correlation", "Negative"))
+df_cor$relationship <- factor(df_cor$relationship, 
+                          levels = c("Positive", 
+                                     "None", "Negative"),
+                          labels = c("Positive", 
+                                     "No Correlation", 
+                                     "Negative"))
 
 # Plot
-ggplot(df, aes(x = x, y = y)) +
+ggplot(df_cor, aes(x = x, y = y)) +
   geom_point(color = "steelblue", size = 2) +
   facet_wrap(~relationship, nrow = 1) +
   labs(title = "Strong Positive, Negative, and No Correlation",
@@ -344,6 +347,8 @@ The describe() function output is a summary table of the basic summary statistic
 corr.test(penguins_numeric)
 ```
 
+In the next step, I want to show you the pairs.panel() function. It displays a really interesting visualization regarding correlations between the variables:
+
 ```{r psych pairs.panels}
 pairs.panels(penguins_numeric)
 ```
@@ -351,21 +356,9 @@ pairs.panels(penguins_numeric)
 So this is an interesting grid consisting of different types of data visualization, all related to correlations. Let us start with the easiest one, the diagonal.
 
 -   The diagonal shows us a histogram of the distributions of our input variables, additionally it includes a line, so we can check if the distributions look right.
-
-<!-- -->
-
 -   The upper right visualizations display the correlation coefficients of the respective two variables, like a correlation matrix.
-
-<!-- -->
-
 -   The bottom left visualizations are scatterplots between the two variables, where a line is fitted between the data points.
-
-<!-- -->
-
 -   In addition, the shape of the red line (a loess smoother) can reveal whether the relationship between the two variables is linear or more complex, such as curved or s-shaped.
-
-<!-- -->
-
 -   The scatterplots also include correlation ellipses, which visually represent the strength and direction of the relationship: narrow, tilted ellipses indicate strong correlations, while rounder shapes indicate weaker or no correlations.
 
 Together, this grid gives a comprehensive overview of both the distributions of individual variables and the pairwise relationships between them.
@@ -403,7 +396,7 @@ view(dfSummary(penguins))
 
 The package also includes nice ways of showing frequency tables for single variables with more information than the standard table() command:
 
-```{r dfSummary freq}
+```{r summarytools freq}
 freq(penguins$species)
 ```
 
@@ -413,7 +406,7 @@ We can also use the descr() function rom the package which shows us the most com
 descr(penguins)
 ```
 
-Lastly, I want to show you how you can make cross tables with the summarytools package:
+Lastly, I want to show you how you can make cross tables with the summarytools package (you already saw it above):
 
 ```{r ctable summarytools}
 ctable(penguins$species, penguins$island)
@@ -484,7 +477,7 @@ penguins %>%
 
 dlookr is a nice package with different functions that can support us with EDA. Let us start with the diagnose() function, which is a gelps us identify missing values and unique observations in the dataset:
 
-```{r diagnose}
+```{r dlookr diagnose}
 diagnose(penguins) %>%
   print()
 ```
@@ -500,7 +493,7 @@ The dlookr package has one special feature: It can generate an EDA report with o
 `dlookr::eda_paged_report(penguins, output_format = "html")`
 
 |  |  |  |
-|------------------------|------------------------|------------------------|
+|----|----|----|
 | ![](images/Bildschirmfoto%20vom%202025-04-12%2019-48-38.png) | ![](images/Bildschirmfoto%20vom%202025-04-12%2019-49-55.png) | ![](images/Bildschirmfoto%20vom%202025-04-12%2019-50-21.png) |
 | ![](images/Bildschirmfoto%20vom%202025-04-12%2019-52-17.png) | ![](images/Bildschirmfoto%20vom%202025-04-12%2019-53-30.png) | ![](images/Bildschirmfoto%20vom%202025-04-12%2019-54-07.png) |
 
@@ -531,7 +524,7 @@ And finally, we can use DataExplorer to generate an automated Data Report:
 `create_report(penguins)`
 
 |  |  |
-|------------------------------------|------------------------------------|
+|----|----|
 | ![](images/clipboard-2450633220.png) | ![](images/clipboard-3067609921.png) |
 | ![](images/DataExplorer_report_screenshot4.png) |  |
 
@@ -556,7 +549,7 @@ Lastly, we can again generate an automatized EDA report with ExpReport():
 `ExpReport(data = penguins, Target = "species", label = "Penguin Species", op_file="Samp1.html", Rc=3 )`
 
 |  |  |
-|------------------------------------|------------------------------------|
+|----|----|
 | ![](images/smartEDA_report_screenshot1.png) | ![](images/smartEDA_report_screenshot2.png) |
 | ![](images/smartEDA_report_screenshot3.png) | ![](images/smartEDA_report_screenshot4.png) |
 
@@ -592,4 +585,4 @@ a\. Use a function to get an overview of the dataset mtcars
 
 b\. Have a look at the structure of the missing values in mtcars
 
-c\. Make an automized EDA report for mtcars!
+c\. Make an automatized EDA report for mtcars!

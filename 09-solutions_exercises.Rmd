@@ -373,7 +373,7 @@ a\. Calculate the average `Petal.Length` and plot it for every Species in a nice
 #Prepare the data 
 d1 <- iris %>%
   group_by(Species) %>%
-  summarize(PL_average = mean(Petal.Length))
+  dplyr::summarize(PL_average = mean(Petal.Length))
 
 #Check it
 head(d1)  

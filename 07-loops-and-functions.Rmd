@@ -128,7 +128,7 @@ Because you will eventually encounter them, I will show you shortly nested loops
 
 First, let us play a game of tic tac toe:
 
-```{r}
+```{r ttt matrix}
 #Defining a matrix 
 ttt <- matrix(c("X", "O", "X",
                 "O", "X", "O",
@@ -227,7 +227,7 @@ Let us combine what we have learned in this chapter with a meeting of animals. Y
 
 In this loop, we let R print out what persons in a classroom are doing. Before that we identify where the individuals are sitting. And the seating order in a class, is nothing more that a matrix right? We have rows and columns. This loops identifies in which row (i) and in which column (j) an individual sits. Moreover, the values in the matrix are student ids and the loop knows the id of students and prints out where which student sits. So this is an unnecessary loop, but I think a good example. Imagine the class are 1000 of people, then this loop would be necessary. As I said you do not need to completely understand it. Its purpose is to illustrate what you can do in R.
 
-```{r animal}
+```{r student sitting order}
 # The function
 print_classroom <- function(x) {
   for (i in 1:length(x)) {  # Outer loop iterates over rows
@@ -313,7 +313,7 @@ This is the midnight formula separated in two equations:
 
 $x_{1,2} = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$
 
-Make **one function** for the midnight formula, so the output are $x_1$ a d $x_2$. Test it with a = 2, b = -6, c = -8
+Make **one function** for the midnight formula, so the output are $x_1$ and $x_2$. Test it with a = 2, b = -6, c = -8
 
 **Hint**: You need two split up the formula into two equations with two outputs.
 

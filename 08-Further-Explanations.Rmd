@@ -1,0 +1,1072 @@
+---
+title: "08-Further-Explanations"
+author: "Okan Sarioglu"
+date: "2025-04-29"
+output: html_document
+---
+
+# Further Explanations
+
+In this Chapter we start into the main strength of R: Data Analysis. After cleaning our data we are ready to analyze it, but it is always recommend to get an overview of our data with exploratory data analysis. This yields the advantage that we can detect first trends and potential problems with our data. Furthermore, we will get a better understand of the Data Generating Process and how data is generated.
+
+Let us tart with loading packages and you will see, that we are loading a lot of packages due to the fact, that R is a statistical analysis software and therefore it is only natural that Statisticians and Data Scientists, who use R, are also writing packages to (1) make their own life easier, but also (2) further developing R.
+
+```{r loading packages eda}
+pacman::p_load("dplyr", "tidyr", "ggpubr", "gapminder",
+               "kableExtra", "car")
+```
+
+Defining Function for later:
+
+```{r}
+###Defining a function
+#Creating Function for Kable Table 
+table_ovb <- function(model1, model2) {
+  # Determine the maximum number of coefficients between the two models
+  max_coef <- max(length(model1$coefficients), length(model2$coefficients))
+  
+  # Initialize placeholders for coefficients
+  place_holder1 <- rep(NA, max_coef)
+  place_holder2 <- rep(NA, max_coef)
+  
+  # Replace the placeholders with coefficients from the models
+  place_holder1[1:length(model1$coefficients)] <- model1$coefficients
+  place_holder2[1:length(model2$coefficients)] <- model2$coefficients
+  
+  # Create a data frame with coefficients from both models
+  dt <- data.frame(place_holder1,place_holder2) 
+  
+  # Set row and column names
+  colnames(dt) <- c("Model without Temperature", "Model with Temperature")
+  rownames(dt) <- c("Intercept", "Ice Cream Sales", "Temperature")
+  
+# Display the table
+  dt %>%
+  kbl() %>%
+  kable_styling()
+  
+}
+```
+
+## Probability Theory
+
+**Before diving into Exploratory Data Analysis and Linear Regression, it's worth taking a moment to look at Probability Theory.** This is crucial because probability forms the foundation of statistics: it allows us to make statements that include uncertainty. Instead of saying something definite like *"It will rain tomorrow,"* probability allows us to say, *"There is a 70% chance of rain tomorrow."* That means you might want to take an umbrella — but there’s still a 30% chance you won’t need it.
+
+### Random Variable
+
+We are interested in Data! And Data is nothing more than a bunch of **Random Variables.** Technically speaking, a Random Variable is a numerical outcome of a random process or experiment. Informally, let us say you want to collect Data about your family, just image all of them and now randomly pick some information about them, their height, their age, gender, glasses or not, cooking abilities, anything, and now you just need to find a system of assigning a number (e.g. height in cm, age in years,...) and et violà you collected a random variable. Note that a random variable is the mutually exclusive outcome of a random process.
+
+Rolling a dice and getting the result of the dice could be a random variable, let us role the dice and say we got a 3:
+
+```{r rolling one dice}
+dice_role <- 3
+print(dice_role)
+```
+
+We now collected our first random variable. On its own, a random variable is not really insightful, but what if we do not collect one random variable, but two? Or three? Or thousand?
+
+#### Discrete and Continuous Variables
+
+Before answering the question above, there is an important distinction to make between the types of random variables we can collect. There are **discrete** and **continuous variables**:
+
+-   A **discrete variable** can take on a **finite or countably infinite** set of distinct values, usually integers. These values are **separated** and cannot take on values in between. For example: Number of children, coin flips, number of goals.
+
+-   A **continuous variable** can take on **any value** within a given range, including **fractions and decimals**. Between any two values, there are **infinitely many** possible values. For example: Height, weight, temperature, time.
+
+#### Population vs Sample Distribution
+
+Another thing to clarify before going on with Probability Distributions, is the difference between Populations and Samples.
+
+-   **Population**: The population is the entire group we are theoretically interested in studying, based on our research question. For example, if we want to know the **average height of German women**, then the **population** consists of **all German women**. The **population mean** is the true average height of all German women.
+
+-   **Sample:** Asking every **German woman** (42.3 million, according to the Federal Office of Statistics, 2023) would indeed be impractical. Instead, we use **statistical sampling** to gather data from a smaller, more manageable subset of the population. **Probability theory** helps ensure that this sample is representative of the entire population.
+
+    For the sample to be representative of the population, it needs to meet two key criteria:
+
+    1.  **Sample Size:** The sample must be large enough to accurately reflect the population's characteristics.
+
+    2.  **Randomness:** Every individual in the population must have an equal chance of being selected for the sample. This ensures that the sample is **random** and not biased in any way.
+
+    When these conditions are met, we can confidently generalize the findings from the sample to the larger population. For example, we calculate the **sample mean** (the average of the sample). This is the true value for the sample itself, but we use it to make an inference about the **population mean**.
+
+    However, the sample mean will not always be exactly equal to the population mean. This is because of **sampling variability** — there's always some random variation in the sample that can cause deviations from the population mean.
+
+    Despite this, **if the sample is large enough** and **chosen randomly**, the sample mean will tend to be **close** to the population mean on average, and the difference between them decreases as the sample size increases.
+
+The difference of population and sample is crucial and will be important in the later section of this chapter!
+
+### Probability Distributions
+
+#### Probability Mass Functions (PMF)
+
+##### Uniform Distributions
+
+We can let **R roll the dice for us** using the `sample()` function. This function takes in the range of possible outcomes, the number of observations to draw, and some additional options (which we won’t worry about for now):
+
+```{r sampling the dice}
+dice_rolls <- data.frame(
+  roll = sample(c(1:6), 1000, replace = TRUE)
+)
+```
+
+This simulates rolling a fair six-sided die 1,000 times.
+
+Let us plot it:
+
+```{r}
+# Plot with ggplot
+ggplot(dice_rolls, aes(x = factor(roll))) +
+  geom_bar(fill = "#89CFF0", color = "gray") +
+  labs(
+    title = "Distribution of 1,000 Dice Rolls",
+    x = "Dice Face",
+    y = "Frequency"
+  ) +
+  theme_minimal()
+```
+
+What we’ve created here is called a **distribution of a discrete variable**. A **discrete variable** has a countable number of distinct outcomes. In this case, our die can only land on one of six values: 1 through 6 — nothing in between.
+
+This explicit type of distribution is called uniform distribution. A **uniform distribution** is one in which **all outcomes are equally likely** — in our case, each face of the die (1 through 6) has the same probability of occurring. Thus, the probability of one outcome is just 1/n, thus 1/6 for each outcome. Let us plot that as well:
+
+```{r generating probabilities}
+# Define the outcomes and their corresponding probabilities
+df <- data.frame(
+  Outcome = factor(1:6),
+  Probability = rep(1/6, 6)
+)
+
+# Plot it
+ggplot(df, aes(x = Outcome, y = Probability)) +
+  geom_point() +
+  labs(
+    title = "Uniform Probability Distribution of a Fair Die",
+    x = "Die Face",
+    y = "Probability"
+  ) +
+  theme_minimal()
+```
+
+This a so-called Probability Mass Function (PMF). This is the term for probability distributions of discrete variables. It is useful since we can determine the probability of an event with it, for example the probability of getting 3:
+
+$$
+P(X = 3) = \frac{1}{6}
+$$
+
+What if we start to cumulate the probabilities, like in the following table:
+
+| Outcome                    | 1   | 2   | 3   | 4   | 5   | 6   |
+|----------------------------|-----|-----|-----|-----|-----|-----|
+| **Probability**            | 1/6 | 1/6 | 1/6 | 1/6 | 1/6 | 1/6 |
+| **Cumulative Probability** | 1/6 | 2/6 | 3/6 | 4/6 | 5/6 | 1   |
+
+We can plot the cumulative Probability by calculating it with the `cumsum()` function:
+
+```{r cumsum}
+# Calculating the cumsum
+df$cumsum <- cumsum(df$Probability)
+
+# Plot it
+ggplot(df, aes(x = Outcome, y = cumsum)) +
+  geom_point() +
+  labs(
+    title = "Cumulative Distribution of a Fair Die",
+    x = "Die Face",
+    y = "Probability"
+  ) +
+  ylim(0,1) +
+  theme_minimal()
+```
+
+With this graph we can directly see the cumulative distribution for several outcomes, for example the cumulative probability for the outcome 3 is 0.5, thus 50%, so with a 50% probability I will get either 1, 2 or 3.
+
+##### Bernoulli Distributions
+
+In this part I want to introduce you a new type of distribution: The bernoulli distribution. It is super easy it takes on the value 1 with probability $p$ and the value 0 with the probability $q = 1 -p$. In more simple terms, it displays the outcomes for any experiment that has yes/no answers. The classical example is head and tails, you throw a coin and it either shows head or tails. Let us simulate data and plot it:
+
+```{r bernoulli data}
+# Simulate 1000 tosses of a fair coin (1 = Head, 0 = Tail)
+set.seed(101)  # for reproducibility
+fair_coin <- data.frame(
+  outcome = factor(rbinom(10, 1, 0.5), levels = c(0, 1), 
+                   labels = c("Tail", "Head"))
+)
+
+# Plot the results
+ggplot(fair_coin, aes(x = outcome)) +
+  geom_bar(fill = "#89CFF0", width = 0.35) +
+  labs(
+    title = "Simulation of 10 Tosses of a Fair Coin",
+    x = "Outcome",
+    y = "Count"
+  ) +
+  theme_minimal()
+```
+
+As we probably expected, if we throw a fair coin ten times we will get approximately 5 Tails and 5 Heads. Furthermore, we plotted our first Bernoulli Distribution.
+
+This is an example for a fair coin, what if our coin was "not fair" or "unfair", thus a "biased" coin, we could plot that as well:
+
+```{r}
+# Simulate 1000 tosses of a fair coin (1 = Head, 0 = Tail)
+set.seed(102)  # for reproducibility
+unfair_coin <- data.frame(
+  outcome = factor(rbinom(10, 1, 0.28), levels = c(0, 1), 
+                   labels = c("Tail", "Head"))
+)
+
+# Plot the results
+ggplot(unfair_coin, aes(x = outcome)) +
+  geom_bar(fill = "#89CFF0", width = 0.35) +
+  labs(
+    title = "Simulation of 1000 Tosses of an unfair Coin",
+    x = "Outcome",
+    y = "Count"
+  ) +
+  theme_minimal()
+```
+
+We can see that the bins are not equal the coin has a tendency for Tail. The Probability for getting Tail is higher than getting Head with this Unfair Coin.
+
+How does the Probability Distribution of a Bernoulli Distribution looks like? Before answering this question, we have to calculate the probability of getting exact 7 Tails and 3 Heads as we got. I leave the maths out, thankfully R can do that with the `dbinom()` function, it takes in "x" which is the number of outcomes we got, thus our Tail = 7. Then we have to put in the size, which is the number of trials, thus 10 and lastly the probability, if it is a fair coin 0.5. I computed the biased coin with a probability of 0.28.
+
+Let us calculate for the fair and the biased coin, the probability of our results:
+
+```{r}
+# fair coin
+dbinom(
+  x = 5,
+  size = 10,
+  prob = 0.5
+)
+
+# biased coin
+dbinom(
+  x = 3,
+  size = 10,
+  prob = 0.28
+)
+```
+
+What you can see here is the probability of getting exact 5 heads for the fair coin and 3 heads for the unfair coin. So to get exact 5 heads with the fair coin has a probability of 24.6% and the probability of getting exact 3 heads has a probability of 26.4%.
+
+##### Binomial Distribution
+
+How does it come, that although we have compute a probability of 50% of a success in each trial, that we only get a probability of 5 heads with 24.6% probability and 26.4% of getting 3 heads with a biased coin?
+
+We can solve this problem by plotting a so-called Binomial Distribution. It displays the number of **successes** in a fixed number of independent **yes/no, thus head and tails (Bernoulli)** trials.
+
+It gets clear, when we plot all Probabilities for both coins for each possible outcome for head, thus 10, since we have 10 trials:
+
+```{r}
+# Create theoretical distributions
+theoretical_probs <- data.frame(
+  heads = rep(0:10, 2),
+  coin_type = rep(c("unbiased", "biased"), each = 11),
+  prob = c(dbinom(0:10, size = 10, prob = 0.5),
+           dbinom(0:10, size = 10, prob = 0.28))
+)
+
+# Plot
+ggplot(theoretical_probs, aes(x = heads, y = prob)) +
+  geom_point(size = 1.5, color = "black") +
+  facet_wrap(~ coin_type, 
+             labeller = as_labeller(c(
+               biased = "Biased Coin (p = 0.28)", 
+               unbiased = "Unbiased Coin (p = 0.5)"))) +
+  labs(title = "Theoretical Binomial Distribution of Number of Heads in 10 Flips",
+       x = "Number of Heads",
+       y = "Probability") +
+  scale_x_continuous(breaks = 0:10) +
+  theme_bw()
+```
+
+Now, the reason behind the probabilities for the outcome for heads becomes clear, the computed probability deviates from the outcome probability because in some cases the trials follow the computed probability but in some cases it deviates and head becomes 2 or 4 for the biased coin and 4 or 6 for the unbiased coin.
+
+At this point, one thing becomes clear: the **computed probability** represents the *expected likelihood* of obtaining a specific number of heads **on average** over a large number of repeated experiments. Why "on average"? Because probability theory accounts for randomness — meaning that in any single simulation (say, flipping a coin 10 times), we might observe different outcomes: sometimes 5 heads, sometimes 2, or even 9.
+
+For a fair coin, the theoretical expectation is 5 heads in 10 flips. However, this doesn’t mean we will always get exactly 5. The actual results vary due to chance. In the case of a biased coin with a 0.28 probability of heads, we might expect around 2.8 heads on average — but again, we will only ever see whole numbers like 2 or 3 in practice.
+
+In short, these deviations from the expected value arise from randomness. While the true probability (e.g., 0.5 or 0.28) describes the long-term pattern, it does not guarantee specific outcomes in short runs. Instead, it tells us what to expect **most frequently** over a large number of repetitions.
+
+This concept will become important later again, but before that let us have a look at the cumulated distribution function (CDF) of the probability distribution function (PDF):
+
+```{r}
+# Fix cumulative sum: compute it within each coin_type group
+theoretical_probs <- theoretical_probs %>%
+  group_by(coin_type) %>%
+  arrange(heads, .by_group = TRUE) %>%
+  mutate(cumsum_prob = cumsum(prob)) %>%
+  ungroup()
+
+# Plot cumulative probabilities
+ggplot(theoretical_probs, aes(x = heads, y = cumsum_prob)) +
+  geom_point(size = 1.5, color = "black") +
+  facet_wrap(~ coin_type,
+             labeller = as_labeller(c(
+               biased = "Biased Coin (p = 0.28)",
+               unbiased = "Unbiased Coin (p = 0.5)")),
+             nrow = 2) +
+  labs(
+    title = "Cumulative Distribution of Number of Heads in 10 Flips",
+       x = "Number of Heads",
+       y = "Cumulative Probability") +
+  scale_x_continuous(breaks = 0:10) +
+  theme_bw()
+```
+
+The CDF is quite interesting, we see that in round about 70% of all experiments of the biased coin will result in 3 or less heads and on the other side the unbiased coin will result in round about 80% in 6 or less heads.
+
+#### Probability Density Functions (PDF)
+
+##### **Normal Distributions**
+
+Thus far we looked at the two typical distributions for **discrete variables**. In the following, we will look at distributions for **continuous variables**.
+
+The probability distributions of the Bernoulli trials we saw in the part follow the form of the arguably most important distribution: The normal distribution. This distribution is also called a Gaussian distribution after its inventor Carl-Friedrich Gauss, or Bell Curve due to its shape. Let us have a look at it at the Probability Distribution Function (PDF):
+
+```{r, error=FALSE}
+# simulating the data
+set.seed(123)
+snd <- data.frame(
+  sample = rnorm(1000000, mean = 0, sd = 1)
+  )
+
+# Plot it
+ggplot(snd, aes(x = sample)) +
+  geom_density() +
+  labs(title = "Normal Distribution",
+       x = "Value of Random Variable",
+       y = "Density") +
+  scale_x_continuous(breaks = -5:5,
+                     limits = c(-5,5)) +
+  theme_minimal()
+```
+
+The normal distribution has a lot of properties:
+
+-   The distribution is perfectly symmetrical around the mean
+
+-   The mean equals the median equals the mode
+
+-   The shape is bell-like, with most values clustered around the mean and tails tapering off in both directions.
+
+-   About 68% of the data fall within 1 standard deviation of the mean, about 95% fall within 2 standard deviations and around 99.7% fall within 3 standard deviations.
+
+-   The distribution is defined by its mean ($\mu$) and its standard deviation ($\sigma$).
+
+-   The tails extend infinitely in both directions but never touch the x-axis (approach zero asymptotically).
+
+-   The area under the density curve represents probability, and it sums up to exactly 1. That is the reason the reason why we talk about Probability Density Functions, because we can determine the probability for each data point by calculating the density of the curve.
+
+-   It is unimodal, thus has only one peak.
+
+-   As Standard Normal Distributions is a special case where the mean, $\mu$ = 0 and the standard deviation, $\sigma$ = 1
+
+We already saw the Cumulative Density Function in the Bernoulli Trials, but let us have a look again:
+
+```{r}
+# Plot empirical CDF
+ggplot(snd, aes(x = sample)) +
+  stat_ecdf(geom = "step", color = "black") +
+  labs(title = "Cumulative Distribution Function (CDF)",
+       x = "Value of Random Variable",
+       y = "Cumulative Probability") +
+  theme_minimal()
+```
+
+We can use the cumulative distribution function (CDF) to determine the probability that a random variable takes on a value **less than or equal to** a specific value. For example, with a standard normal distribution, the CDF tells us there's a 50% chance that the random variable will take on a value **less than or equal to 0**.
+
+##### Central Limit Theorem (CTL)
+
+In the examples of the Chapter \@ref(working-with-distributions) we will use normal distributions due to its significance for natural and social sciences, here is why:
+
+-   When we collect random variables such as height, IQ, sizes of snowflakes, milk production of cows follows a normal distribution.
+
+-   Due to its elegant mathematical properties like the symmetry around the mean, the 68-95-99.7 rule, and it is defined by only two parameters, the mean and the standard deviation.
+
+-   Statistical Analysis assumes in many models a normal distributions, because its simplicity, for example the it is the building block for machine learning, finance, etc., and for statistical models such as regression analysis assumes also normality.
+
+But besides these, let's say "convenient reasons", there is also one mathematical reason why it is so frequently used in statistics, **the central limit theorem**. I will not dive into its maths, but it is quite easy to understand:
+
+The Central Limit Theorem states that, under certain conditions, the distribution of the **sample means** of a large number of independent and identically distributed random variables will approximate a normal distribution—**regardless of the shape of the original population distribution**. In other words, as the sample size increases, the distribution of the **means of these samples** becomes increasingly normal.
+
+Let us visualize that! Remember the sample of our dice? What if we draw many, many samples and collect their sample means, and then plot the sample means? We would expect a uniform distribution, right? Because every outcome has the same probability to happen, exactly 1/6?
+
+Let us draw samples and look what happens. In the following I first define a function that rolls the dice 1000 times. In the next step, I use the function to draw a sample. I first take one sample, thus role the dice 1000 times and save the result, and plot it, I do the same for 2, 3, and 4 samples:
+
+```{r}
+set.seed(123)  # For reproducibility
+
+# Function to simulate rolling a die n_rolls times, repeated n_sim times
+simulate_dice_means <- function(n_rolls, n_sim = 1000) {
+  replicate(n_sim, mean(sample(1:6, n_rolls, replace = TRUE)))
+}
+
+# Simulate sample means for different numbers of rolls
+means_1 <- simulate_dice_means(1)
+means_2 <- simulate_dice_means(2)
+means_3 <- simulate_dice_means(3)
+means_4 <- simulate_dice_means(4)
+
+df <- bind_rows(
+  data.frame(mean = means_1, rolls = "1000 Rolls"),
+  data.frame(mean = means_2, rolls = "2000 Rolls"),
+  data.frame(mean = means_3, rolls = "3000 Rolls"),
+  data.frame(mean = means_4, rolls = "4000 Rolls")
+)
+
+# Plotting
+ggplot(df, aes(x = mean)) +
+  geom_density(fill = "skyblue", alpha = 0.6) +
+  facet_wrap(~ rolls, scales = "free", ncol = 2) +
+  labs(title = "Central Limit Theorem Demonstration with Dice Rolls",
+       x = "Sample Mean",
+       y = "Density") +
+  scale_x_continuous(breaks = 1:6,
+                     limits = c(1,6)) +
+  theme_minimal()
+```
+
+Here we can clearly see how the distribution of the sample means converge to the form of a normal distribution. That leaves only one question, why does the mean of the sample means converge to 3.5?
+
+##### **Law of Large Numbers**
+
+The phenomenon that the sample converges to 3.5 is due to the Law of large numbers. It is a mathematical law that states that if the sample size increases, the sample mean gets closer population mean. The true population mean for our dice example is 3.5 (1+2+3+4+5+6/6 = 3.5), thus our expected value is our true population mean. According to the Law of large numbers, the more the dice is rolled the more the sample mean converges to 3.5 and that is what we see in the density plot in the bottom, right corner. When the dice is rolled 4000 times in total the curve gets closer to the sample mean.
+
+#### Different Types of Distributions
+
+Alright, that was a lot of theory, but it is crucial to understand, because probability distributions are the basic ground for the statistical models to analyse our data. And here is the deal, knowing the distributions of our data leads to configuration possibilities later in the models, so that our models can better fit our data! In the next chapter, I hope that will become clear!
+
+To conclude this chapter, I will briefly introduce you in different types of distributions and their interpretations:
+
+```{r, message=FALSE, warning=FALSE}
+# Create a data frame with different distributions
+x_vals <- seq(0, 10, by = 0.1)
+
+dist_df <- data.frame(
+  x = rep(x_vals, 4),  # only 4 now, Poisson removed from here
+  distribution = rep(c("Exponential (λ=1)", 
+                       "Gamma (shape=2, rate=1)", 
+                       "Chi-Square (df=3)", 
+                       "t-Distribution (df=10)"), each = length(x_vals)),
+  y = c(
+    dexp(x_vals, rate = 1),
+    dgamma(x_vals, shape = 2, rate = 1),
+    dchisq(x_vals, df = 3),
+    dt(x_vals - 5, df = 10)  # shift t-distribution for better display
+  )
+)
+
+# Add Poisson and F-distribution
+poisson_vals <- data.frame(
+  x = 0:10,
+  y = dpois(0:10, lambda = 3),
+  distribution = "Poisson (λ=3)"
+)
+
+f_vals <- data.frame(
+  x = x_vals,
+  y = df(x_vals, df1 = 5, df2 = 10),
+  distribution = "F-Distribution (df1=5, df2=10)"
+)
+
+# Combine all distributions
+plot_df <- bind_rows(dist_df, poisson_vals, f_vals)
+
+# Plot using facet_wrap
+ggplot(plot_df, aes(x = x, y = y)) +
+  geom_line(data = filter(plot_df, !distribution %in% c("Poisson (λ=3)")),
+            color = "steelblue", linewidth = 1) +
+  geom_point(data = filter(plot_df, distribution == "Poisson (λ=3)"),
+             color = "darkgreen", size = 1) +
+  facet_wrap(~ distribution, scales = "free", ncol = 3) +
+  labs(title = "Overview of Common Statistical Distributions",
+       x = "x", y = "Density / Probability") +
+  theme_minimal(base_size = 14)
+```
+
+Let us go shortly through these distributions and their meanings:
+
+-   Chi-Square: This distribution arises when squaring standard normal values. It’s fundamental in hypothesis testing (e.g., the Chi-Square Test for independence) and constructing confidence intervals for population variances.
+
+-   Exponential: It describes the time between two independent events in a Poisson process. Essential for survival analysis and modeling waiting times.
+
+-   F-Distribution: It describes the ratio of two sample variances, each from normally distributed populations. Used in comparing model fits.
+
+-   Gamma: A flexible distribution that models the waiting time until multiple independent events occur. It generalizes the exponential distribution and is widely used in Bayesian statistics, reliability engineering, and insurance modeling.
+
+-   Poisson: Models the number of events occurring in a fixed time or space interval when events happen independently at a constant average rate—like the number of emails per hour. Commonly used for count data and in event-based modeling.
+
+-   t-Distribution: Used when estimating the mean of a normally distributed population in small samples. It accounts for the added uncertainty from estimating the standard deviation. Essential in hypothesis testing and regression analysis.
+
+### Working with Distributions
+
+This data about my mom gives us information about one person, but working with quantitative methods means, to (guess what?) collect data quantitatively. Thus, we are mostly interested in a so-called **population.**
+
+In statistics, a **population** refers to the entire set of individuals, items, or data points that are of interest in a particular study. It represents the complete group about which you want to draw conclusions or make inferences.
+
+In my example, the population I would be interested in could not only be my mum, but all mums living in Germany. I want to know their heights and if they wear glasses or not.
+
+To get all the heights and if they wearing glasses of all mums in Germany would be a lot. According to the public statistic there are 20 million mothers in Germany. But that is no problem, we can take smaller, representative subset of the population, selected for analysis. This is called a **sample**. Let us simulate 1000 mothers, their heights and if they wear glasses and simulate it in R, put it in a data frame and visualize it:
+
+```{r simulating sample}
+
+#Setting seed for reproduciability
+set.seed(123)
+
+#Simulating sample
+sample_mum <- data.frame(
+  name = rep("mum", 1000),
+  height = rnorm(1000, mean = 165.8, sd = 9),
+  glasses = as.factor(rbinom(1000, 1, 0.33))
+)
+
+#print it
+head(sample_mum)
+
+#Making a histogram for the heights
+ggplot(sample_mum, aes(x = height)) +
+  geom_histogram(binwidth = 2, color = "white", 
+                 fill = "#FC4E2A") +
+  labs(
+    x = "Height (in cm)",
+    y = "Count"
+  ) +
+  theme_bw()
+
+#Making a bar plot for glasses
+ggplot(sample_mum, aes(x = glasses)) +
+  geom_bar(fill = "#FC4E2A", width = 0.5) +
+  labs(
+    x = "",
+    y = ""
+  ) +
+  scale_x_discrete(labels = c("0" = "No Glasses", "1" = "Wearing Glasses")) +
+  theme_bw()
+
+```
+
+Now, we have sampled the information we need! We know how the heights of our representative sample is distributed, as well as the distribution of mums with or without glasses.
+
+Let us now calculate some properties of these two distributions and get more information about them. We start by asking the question: What is the average height of a mum in Germany? We can simply calculate that by calling the respective column in our dataset `sample_mum$height` and wrap it into the built-in function of `R`: `mean()`
+
+```{r mean sample mum}
+mean_mum <- mean(sample_mum$height)
+print(mean_mum)
+```
+
+Alright, the average height of a mum in Germany is 165 cm. But the PDF contains more information. For example, we could be interested in the dispersion and spread of the distribution, and could be interested in the Variance of the Distribution. The Variance tells us how much the data points are deviate from the average value. A low variance indicates that data points are close to the mean, while a high variance indicates more spread. In R, we can calculate the variance by wrapping our data (df\$height) into the var() function:
+
+```{r}
+#Calculate Variance
+var_mum <- var(sample_mum$height)
+print(var_mum)
+```
+
+wThe variance is around 80, the problem with variance is, that it is a squared unit, but to make the interpretation more intuitive, we can take the square root and thus calculate the **standard deviation**. As the name suggests the standard deviation tells us that the data points typically deviate from the mean. We can calculate it by calling the sd() function (of course it would also work if we take the square root of the var_mum object:
+
+```{r}
+sd_mum <- sd(sample_mum$height)
+print(sd_mum)
+```
+
+So, the height of mums in Germany typically deviates by 8.9 cm from the average height of mums 165cm, meaning that typically a mum in Germany is between 156.1 cm (165 cm - 8.9 cm) and 164.9 cm (165 cm + 8.9 cm).
+
+### Conclusion
+
+## Regression Diagnostics
+
+### Model Fit: Bivariate Regression
+
+Now the linear regression has a lot of assumptions, it is not like we can run the model every time how we want. Since it is a model, it makes assumptions and instead of just assuming them to be right, we can test them. To techniques to test them are called **Measures of Fit**. Because they test how much our data fits the data. Let us have a look at the assumptions and how we can test them:
+
+#### Measures of Fit
+
+##### Residuals
+
+1.) Calculating Residuals:
+
+$$
+Residuals = y_i - \hat{y_i} = y_i - (\hat{\beta_0} - \hat{\beta_1}x_i) 
+$$
+
+where
+
+-   $y_i$ = our actual observed values of our dependent variable (`df$y`)
+
+-   $\hat{y_i}$ = are our predicted values based on our OLS estimator
+
+Reconsider the graph at 2.2.1, the residuals are basically the red lines, thus the distance from the line to the point. We can calculate the residuals for our graph:
+
+```{r sumulating data}
+#Getting the data
+set.seed(123) # For reproducibility
+
+n <- 30 
+
+x <- runif(n) * 10 
+
+categorical_variable <- factor(sample(c(0, 1), n, replace = TRUE))
+
+y <- 0.8 + 1.6 * x + rnorm(n, 0, 3)
+
+df <- data.frame(x,y, categorical_variable)
+
+# And or Model
+#running a linear regression
+model1 <- lm(y ~ x, 
+             data = df) 
+```
+
+```{r calculating residuals}
+#First, we calculate the predictions for y
+df$y_hat <- 1.6821 + 1.5394*df$x 
+
+#We get the Residuals by subtracting our actual y from y_hat
+df$residuals <- df$y - df$y_hat 
+
+#cheking it
+head(df) 
+
+#We could have done that automatically with R as well !  
+df$residuals_auto <- residuals(model1)
+
+#Checking it
+head(df)
+```
+
+Let us have a look at a so-called **Residual Plot**: On the x-axis you plot the **fitted values**, thus our `y_hat`. On the y-axis you plot the residuals, thus $y-\hat{y}$. Then you plot a horizontal line at y = 0. All dots on those lines show us the values correctly predicted by our model.
+
+```{r residual plot}
+ggplot(df, aes(x, residuals_auto)) + 
+  geom_point() + 
+  geom_hline(yintercept = 0) +
+  scale_y_continuous("Residuals", seq(-6, 6, 1), 
+                     limits = c(-6, 6)) +
+  scale_x_continuous("Fitted Values", seq(0, 10, 1), 
+                     limits = c(0, 10)) +
+  theme_bw()
+```
+
+##### Homoskedasticity and Heteroskedasticity
+
+One assumption of linear regression is that the variance of the error term is not correlated with our independent variable. Well, that is quite technocratic and means basically, that the residuals are distributed equally over the independent variables. Let us plot it to get a visual intuition:
+
+```{r homo and hetero plot, message=FALSE, warning=FALSE}
+#setting seed for reproduciability
+set.seed(123)
+
+# Generate some data
+x <- runif(150, 0.05, 1)
+e <- rnorm(150, 0, 0.5)
+
+#homoskedastic data 
+y_homo <- 2 * x + e 
+#heteroskedastic data 
+y_hetero <- 2 * x + e*x^2 
+#making a data frame with both data
+df_homo_hetero <- data.frame(x, y_homo, y_hetero)
+
+# Scatterplot with homoscedasticity
+homoskedastic_plot <- ggplot(df_homo_hetero, aes(x = x, y = y_homo)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +# Add linear regression line
+  scale_y_continuous("Y", seq(-0.5, 3.5, 0.5), limits = c(-0.5, 3.5)) +
+  labs(title = "Homoskedastic Plot") +
+  theme_minimal()
+
+# Scatterplot with heteroscedasticity
+heteroskedastic_plot <- ggplot(df_homo_hetero, 
+                               aes(x = x, y = y_hetero)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +#Add linear regression line
+  labs(title = "Heteroskedastic Plot") +
+  scale_y_continuous("Y", seq(-0.5, 3.5, 0.5), limits = c(-0.5, 3.5)) +
+  theme_minimal()
+
+# Combine plots using facet_wrap
+facet_plots <- ggarrange(homoskedastic_plot, heteroskedastic_plot, nrow = 1)
+
+# Print the combined plots
+print(facet_plots)
+```
+
+In the left plot, you see the homoskedastic data. The dots are equally and constantly distributed around the fitted line. However, the right plot shows that the more the independent variable **x** increases, the more the observations are increasing. The dots are not constantly distributed over the line. In the case, that the data is heteroskedastic, then this is a problem. You could try to transform the independent variable by taking the logarithm (We will look into that later). You could also use so-called heteroskedastic regression, but this an advanced model.
+
+#### TSS, ESS and $R^2$
+
+Now that we have the Residuals, we can calculate the Total Sum of Square (TSS), the Explained Sum of Squared ESS, and $R^2$:
+
+-   TSS (Variation in the DV): $TSS =\sum(y_i - \bar{y})^2$ , we just subtract our actual values (`df$y`) from its mean and square it to avoid negative numbers. This gives us the total variation of our dependent variable.
+
+-   ESS (Variation we explain in the DV): $ESS = \sum(\hat{y_i} - \bar{y})^2$ , now we use our predicted values (`df$y_hat`) instead of our actual values. That gives us the variation in the dependent variable, we can explain with our model.
+
+-   $R^2$ (The Variation we can predict from our model): $R^2 = \frac{ESS}{TSS}$ , well to get the proportion we just divide the variation we can explain from our DV from the actual variation through the total variation in the DV. If these two values are the same, thus our model predicts all the variation in our dependent variable and this $R^2$ is 1. If our model could not explain anything the variation would be 0, since the values of both cannot be negative. Let us calculate them:
+
+```{r calculating r2 by hand}
+#total sum of squares
+tss <- sum((df$y - mean(df$y))^2)
+#explained sum of squares
+ess <- sum((df$y_hat - mean(df$y))^2)
+#caculating r squared
+r_squared <- ess/tss
+
+#Printing it
+r_squared
+
+#Summarizing it
+summary(model1)$r.squared
+```
+
+#### Influential Outliers
+
+Outliers are extremely deviating values, which can impact our analysis and bias it. Therefore, we have to check, if our data contains such values. But first let us see how they can impact our data:
+
+```{r plotting bias through outliers}
+#set seed 
+set.seed(069)
+
+#generate fake data with outlier 
+x1 <- sort(runif(10, min = 30, max = 70))
+y1 <- rnorm(10 , mean = 200, sd = 50)
+y1[9] <- 2000
+data_outlier <- data.frame(x1, y1)
+
+#Model with Outlier 
+model_outlier <- lm(y1 ~ x1) 
+
+#Model without Outlier
+model_without_outlier <- lm(y1[-9] ~ x1[-9]) 
+
+#Plotting the Data 
+
+# Scatter plot with points
+ggplot(data_outlier, aes(x = x1, y = y1)) +
+  geom_point(shape = 20, size = 3) +
+  # Regression line for the model with outlier
+  geom_abline(aes(slope = model_outlier$coefficients[2], intercept =
+              model_outlier$coefficients[1], 
+              color = "Model with Outlier"), linewidth = 0.75, show.legend = TRUE) +
+  # Regression line for the model without outlier
+  geom_abline(aes(slope = model_without_outlier$coefficients[2], 
+              intercept = model_without_outlier$coefficients[1], 
+              color = "Model without Outlier"), linewidth = 0.75, 
+              show.legend = TRUE) +
+  xlab("Independent Variable") +
+  # Adding legend
+  theme_classic() + 
+  theme(legend.position = c(0.15,0.9), 
+        legend.title = element_blank()) 
+
+```
+
+We see that this one observation completely biases our sample. But how do we find out, which observation is an influential outlier? There is a metric called **Cook's Distance**, we can use. Let us do it and plot it in R.
+
+```{r plotting cooks distance}
+#Cooks Distance can be calculated with a built-in function
+data_outlier$cooks_distance <- cooks.distance(model_outlier) 
+
+#Plotting it
+ggplot(data_outlier, aes(x = x1, y = cooks_distance)) + 
+  geom_point(colour = "darkgreen", size = 3, alpha = 0.5) + 
+  labs(y = "Cook's Distance", x = "Independent Variables") + 
+  geom_hline(yintercept = 1, linetype = "dashed") + 
+  theme_bw()
+```
+
+We can clearly see that **Cook's Distance** detected the outlier. The rule is that values with a cooks distance bigger than 1 have to be eliminated. You can do that with the `filter()` function and run the model afterward again without the outliers.
+
+#### Functional Form
+
+First let us get our data:
+
+```{r}
+#Simulate further data
+X_quadratic <- X <- runif(50, min = -5, max = 5)
+u <- rnorm(50, sd = 1)  
+
+#True relation
+Y_quadratic <- X^2 + 2 * X + u
+
+#Making a data frame out of it
+df2 <- data.frame(X_quadratic, Y_quadratic)
+```
+
+Linear regression is a mathematical model. Therefore it is based on assumptions. But we should not just assume them, we should test them! One assumption is that linearity is assumed between X and Y. But that can be problematic consider following example:
+
+```{r plotting linear fit through quadratic form}
+# estimate a simple regression model 
+model_simple <- lm(Y_quadratic ~ X_quadratic, data = df2)
+
+# Summarize it
+summary(model_simple)
+
+#Plot it
+ggplot(df2, aes(x = X_quadratic, y = Y_quadratic)) + 
+  geom_point(shape = 20, size = 3) + 
+  geom_smooth(method = "lm", se = FALSE) + 
+  theme_bw()
+```
+
+As you can see something look wrong. There seems to be a correlation between the two variables, but it does not seem linear. In such a case it does make sense to square the independent variable and run the regression again:
+
+```{r plotting quadratic fit with quadratic form}
+# estimate a simple regression model 
+model_quadratic <- lm(Y_quadratic ~ X_quadratic^2, data = df2)
+
+#Summarize it 
+summary(model_quadratic)
+
+#Plot it
+ggplot(df2, aes(x = X_quadratic, y = Y_quadratic)) + 
+  geom_point(shape = 20, size = 3) + 
+  geom_smooth(method = "lm", formula = y ~ poly(x, 2), 
+              color = "red", 
+              se = FALSE,) + 
+  scale_x_continuous("X", breaks = seq(-5,5,1), limits = c(-5,5)) +
+  ylab("Y") +
+  theme_bw()
+```
+
+Well that looks better and is the proper way to deal with quadratic relationships in linear regression. Well, data can take on not only a quadratic form, it could also take on a form of a square-root function. I will show the most classical example of such a functional form. The `gapminder` data is loaded. It contains data about the average life expectancy (`lifeExp`)and the GDP per capita (`gdpPercap`) of countries in different years. Let us look if the GDP per Capita is correlated with Life Expectancy:
+
+```{r unlogged fit, warning=FALSE}
+#checking the data
+head(gapminder)
+
+#Plotting it
+ggplot(gapminder, aes(gdpPercap, lifeExp)) + 
+  geom_point() + 
+  geom_smooth(method = "loess", se = FALSE) + 
+  scale_y_continuous("Life Expectancy", seq(30, 80, 10), 
+                     limits = c(30, 80)) + 
+  theme_bw()
+```
+
+Well, that looks terrible. What can we do? I already mentioned that the fitted line looks like a square-root function ($y = \beta{\sqrt{x}}$ ). When you take the logarithm of square root, you neutralize the square root and only x remains $\log{(\sqrt{x})} = x$. When you do that the functional form changes to $y = \beta{x}$. Well, that is exactly the systematic component we are after:
+
+```{r logged fit, warning=FALSE}
+ggplot(gapminder, aes(log(gdpPercap), lifeExp)) + 
+  geom_point() + 
+  geom_smooth(method = "lm", se = FALSE) + 
+  scale_y_continuous("Life Expectancy", seq(30, 80, 10), 
+                     limits = c(30, 80)) + 
+  xlab("GDP per Capita") +
+  theme_bw()
+```
+
+This looks more like what we want to achieve. What can we see in that plot? When we run a model we want to take the logarithm of the independent variable, when we expect the following: If the most observations of a variable are low, but some observations are extremely high such functional forms can occur. In our example, most of the countries have a low GDP per Capita, but some countries such as the Western European countries or the USA have such a a high level of GDP per Capita, they change the functional form of the fitted line. These are influential outliers, but too much to delete them. It could bias the representativeness of the sample, therefore we can deal with them by taking the logarithm.
+
+#### Independent Observation
+
+Another assumption of the linear regression model is the independent, identically distributed (i.i.d) assumption. That sounds complicated but it really is not. Consider following plot:
+
+```{r time trend}
+# Getting the Data
+# set seed
+set.seed(123)
+
+# generate a date vector
+date <- seq(as.Date("1960/1/1"), as.Date("2020/1/1"), "years")
+
+# initialize the employment vector
+y_time <- c(5000, rep(NA, length(date)-1))
+
+# generate time series observations with random influences
+for (i in 2:length(date)) {
+  
+    y_time[i] <- -50 + 0.98 * y_time[i-1] + rnorm(n = 1, sd = 200)
+}
+
+# Plot it
+df_time_series <- data.frame(y_time, date)
+ggplot(df_time_series, aes(date, y_time)) + 
+  geom_line() +
+  ylab("Y") +
+  xlab("Year") +
+  theme_bw()  
+```
+
+If you look at the plot, can we assume that the observation Year = 2000 is independent from the Years before? No, the observation in the years are correlated to each other, thus the assumption is violated. This is basically the huge problem of working with longitudinal data (time-series cross-sectional or panel). If you face such problems there are plenty of other methods to use: Interrupted time series, Difference-in-Difference Designs, Panel-Matching, Fixed-Effects Models etc.
+
+### Model Fit: Multivariate Regression
+
+#### Model Fit: Adjusted R-squared
+
+The last important aspect of Multivariate Regression is the Adjusted R-squared measure. Reconsider, the calculation of the classical R-squared:
+
+-   TSS (Variation in the DV): $TSS =\sum(y_i - \bar{y})^2$ , we just subtract our actual values (`df$y`) from its mean and square it to avoid negative numbers. This gives us the total variation of our dependent variable.
+
+-   ESS (Variation we explain in the DV): $ESS = \sum(\hat{y_i} - \bar{y})^2$ , now we use our predicted values (`df$y_hat`) instead of our actual values. That gives us the variation in the dependent variable, we can explain with our model.
+
+-   $R^2$ (The Variation we can predict from our model): $R^2 = \frac{ESS}{TSS}$ , well to get the proportion we just divide the variation we can explain from our DV from the actual variation through the total variation in the DV. If these two values are the same, thus our model predicts all the variation in our dependent variable and this $R^2$ is 1.
+
+The problem with the classical R-squared is, that if you would add useless independent variables to it, the classical R-squared would decrease, although your model did not increase in explanatory power. This is called **overfitting**. However, adjusted R-squared will account for that problem by introducing a "penalty" for every additional variable. Mathematically, it looks like this:
+
+$$ Adj.R^2 = 1 - \frac{(1 - R^2)*(N - 1)}{N - k - 1} $$
+
+where
+
+-   $R^2$ is our classical R-squared calculated ($\frac{TSS}{ESS}$)
+
+-   $N$ is the number of observations in our sample
+
+-   $k$ is the number of independent variables
+
+In `R`, we can extract the adjusted R-squared simply from our model in chunk, multivariate regression:
+
+```{r calculating adj r2}
+#running multivariate model
+multivariate_model <- lm(y ~ x + categorical_variable, data = df)
+
+#Getting summary
+summary(multivariate_model)
+
+#Extract Adjusted R-squared
+summary(multivariate_model)$adj.r.squared
+
+#Calculating by hand
+adj_r_squared <- 1 - (((1-summary(multivariate_model)$r.squared) * (nrow(df) - 1))/(nrow(df) - 2 - 1))
+
+#printing it
+print(adj_r_squared)
+```
+
+#### Omitted Variable Bias
+
+I already mentioned one (abstract) reason why we should include other variables in our model. But there is more to it: You could find effects between two variables X and Y, but it could be that in Reality there is not an association. For example, let us say you collect data about ice cream and shark attacks. Ice cream sales is your independent variable and you want to explain the number of shark attacks, here is your data:
+
+```{r omitted variable bias}
+# Set seed for reproducibility 
+set.seed(0)  
+
+# Number of data points 
+n <- 100
+
+# Simulate diet data (assuming a normal distribution) 
+temperature <- rnorm(n, mean = 1500, sd = 200)  
+
+# Simulate exercise data (assuming a normal distribution) 
+ice_cream_sales <- rnorm(n, mean = 3, sd = 1)  
+
+# Simulate weight loss data 
+violence_crime_true <- 0.2 * temperature - 
+  0.5 * ice_cream_sales + 
+  rnorm(n, mean = 0, sd = 5) 
+
+# Create a data frame 
+data <- data.frame(temperature = temperature,ice_cream_sales = ice_cream_sales,                     violence_crime_true = violence_crime_true)  
+
+# Fit a model without including the diet variable 
+model_without_temperature <- lm(violence_crime_true ~ ice_cream_sales, data = data)
+
+#Fit a model with only the temperature variable
+
+model_with_only_temperature <- lm(violence_crime_true ~temperature,                        data = data)
+
+# Fit a model including both diet and exercise variables 
+model_with_temperature <- lm(violence_crime_true ~ ice_cream_sales + temperature,                        data = data)  
+
+# Output the summary of both models 
+summary(model_without_temperature) 
+summary(model_with_only_temperature)
+summary(model_with_temperature)  
+
+#Let us display both models next to each other
+#EDIT: I created this function specifically, the code for the function is at the top.   
+table_ovb(model_without_temperature, model_with_temperature)
+```
+
+We can see that the coefficient changes dramatically. What happened? Well, one important assumption of linear regression is that the error term captures all variance not explained by our model and is **not correlated** with the independent variable(s) nor the dependent variable. But if there is unexplained variation in our model that is correlated with our independent variable, then this assumption is violated. In our example, we can see that ice cream sales coefficient in the first model is biased, because ice cream sales and is correlated to temperature. The warmer it gets, the more ice cream is sold. But, the warmer it gets, the more violent people get, therefore we have an omitted variable and that is temperature. When we include temperature in the model, we see the problem of omitted variable bias: It biases our coefficients, by either overestimating (like in our example) or by underestimating it. What we should do in such a case, is to delete the omitted variable, which is the drastically changing variable (ice cream sales in our case). This is also the reason, why people talk about additional variables as control variables in a multiple linear model. This way you can control if an association between two variables is due to omitted variable bias or other variables, which can explain the variation better.
+
+#### Multicollinearity
+
+Another, and I promise, the last OLS assumption, which has to tested is that **there is no Multicollinearity**. The concept is simple: The independent variables should not be correlated. In our previous example, ice cream sales and temperature were correlated. This would have hurt these assumption. In strong cases, multicollinearity can bias our estimates, so that they gain statistical significance and lead us to wrong conclusions. Let us look at an obvious example. You want to find out how the grades of children is affected by different factors. You choose 2 factors: The time they spent on doing their homework (*learning time*) and the time they spent on playing video games (*gaming time*). The systematic component looks like this:
+
+$$
+Grades_i = \beta_0 + \beta_1*\text{learning time}_i + \beta_2 *\text{gaming time}_i + \epsilon_i
+$$
+
+Let us compute them:
+
+```{r Multicollinearity}
+# Set seed for reproducibility
+set.seed(42)
+
+# Number of samples
+n <- 100
+
+# True coefficients
+beta_0 <- 80
+beta_1 <- 1.5
+beta_2 <- 1.5
+
+# Generate independent variables
+learning_time <- runif(n, 1, 10)
+gaming_time <- 0.7 * learning_time + 
+  sqrt(1 - 0.7^2) * rnorm(n, sd = 1) 
+
+#generate error term
+epsilon <- rnorm(n, 0, 3)
+
+# Generate grades
+grades <- beta_0 + beta_1 * learning_time + beta_2 * gaming_time + epsilon
+
+# Create a data frame
+df_grades <- data.frame(learning_time,
+                   gaming_time,
+                   grades)
+
+# Display first few rows of the data frame
+grades_model <- lm(grades ~ learning_time + gaming_time, 
+                   data = df_grades)
+
+#Getting the summary
+summary(grades_model)
+```
+
+By looking at the model, we could conclude that the more a student learns, the better its grades on average, holding all else constant. So far, so clear, but the same goes for gaming time. Why is that the case? Because if we think that a student has per day 3 hours, which the student can assign to either learning or gaming, than both are correlated, because assigning 2 hours to learning means 1 hour for gaming, 0.5 hours for learning means 2.5 hours for gaming and so forth. This means both coefficients are explaining each other and bias each other. How to detect them?
+
+##### Testing Correlations to each other
+
+The first technique is to check the correlations of the variables to each other beforehand. You can do that two-ways: Just print out a correlation table:
+
+```{r testing correlations}
+#First store the variables you need in a seperate data frame 
+cormatrix_data <- df_grades %>% 
+  select(learning_time, gaming_time)
+
+
+#Second, calculate the table, the 2 at the end are the dimensions
+cormatrix <- cor(cormatrix_data) #Calculate the correlations
+round(cormatrix, 2) #round it to the second digit and display it 
+
+#We could have also done this code in one step 
+
+#df_grades %>% 
+#  select(learning_time, gaming_time) %>% 
+#  cor() %>% 
+#  round(2) 
+```
+
+We can see that the correlation between both variables is way to high. Now, with only two variables the table works fine, but what if we have, let us say, 20 variables? It could get messy, therefore you could also use the correlation matrix, which I introduced in the chapter before. In this case, it does not make sense, since it would just print out one block. But keep it nevertheless in mind for the future.
+
+##### Variance of Inflation (VIF)
+
+Another measure for multicolinearity and probably the most famous one, is the Variance-of-Inflation (VIF) factor. Intuitively spoken, this measure fits models with multiple variables, by calculating the variance of each variable. Then it fits a model with only one independent variable and calculates the variance of it. The result is a measure that displays high values if the variance of a variable increases, when other variables are added. That is exactly what this measure does.. The formula of it is really simple:
+
+$$
+VIF_i = \frac{1}{1 - R^2_i} 
+$$
+
+where, the Variance of inflation (VIF) of variable *i* is calculated by 1 divided by 1 - the R-squared ($R^2_i$) of the regression with only that variable.
+
+In `R`, we can use the `VIF()` function from the `car` - package to do it.
+
+```{r vif}
+#We only have to use the function VIF() on our model 
+vif(grades_model)
+```
+
+The rule is that if a value exceeds 10, it is considered critical. We should always test for multicolinearity, and if we detect it, run the regression separately without the correlated variables.
