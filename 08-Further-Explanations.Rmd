@@ -1,10 +1,3 @@
----
-title: "08-Further-Explanations"
-author: "Okan Sarioglu"
-date: "2025-04-29"
-output: html_document
----
-
 # Further Explanations
 
 In this Chapter we start into the main strength of R: Data Analysis. After cleaning our data we are ready to analyze it, but it is always recommend to get an overview of our data with exploratory data analysis. This yields the advantage that we can detect first trends and potential problems with our data. Furthermore, we will get a better understand of the Data Generating Process and how data is generated.

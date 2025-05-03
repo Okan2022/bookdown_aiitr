@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 7 Further Explanations | 08-Further-Explanations</title>
-  <meta name="description" content="Chapter 7 Further Explanations | 08-Further-Explanations" />
+  <title>Chapter 7 Further Explanations | An intuitive Introduction to R</title>
+  <meta name="description" content="Chapter 7 Further Explanations | An intuitive Introduction to R" />
   <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 7 Further Explanations | 08-Further-Explanations" />
+  <meta property="og:title" content="Chapter 7 Further Explanations | An intuitive Introduction to R" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 7 Further Explanations | 08-Further-Explanations" />
+  <meta name="twitter:title" content="Chapter 7 Further Explanations | An intuitive Introduction to R" />
   
   
   
@@ -23,7 +23,7 @@
 <meta name="author" content="Okan Sarioglu" />
 
 
-<meta name="date" content="2025-04-29" />
+<meta name="date" content="2025-05-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -258,7 +258,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">08-Further-Explanations</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">An intuitive Introduction to R</a>
           </h1>
         </div>
 
@@ -1004,8 +1004,7 @@ Residuals = y_i - \hat{y_i} = y_i - (\hat{\beta_0} - \hat{\beta_1}x_i)
 ## X_quadratic 5.32e-06 ***
 ## ---
 ## Signif. codes:  
-##   0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39;
-##   0.1 &#39; &#39; 1
+##   0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1  &#39; &#39; 1
 ## 
 ## Residual standard error: 7.709 on 48 degrees of freedom
 ## Multiple R-squared:  0.3534, Adjusted R-squared:  0.3399 
@@ -1040,8 +1039,7 @@ Residuals = y_i - \hat{y_i} = y_i - (\hat{\beta_0} - \hat{\beta_1}x_i)
 ## X_quadratic 5.32e-06 ***
 ## ---
 ## Signif. codes:  
-##   0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39;
-##   0.1 &#39; &#39; 1
+##   0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1  &#39; &#39; 1
 ## 
 ## Residual standard error: 7.709 on 48 degrees of freedom
 ## Multiple R-squared:  0.3534, Adjusted R-squared:  0.3399 
@@ -1060,14 +1058,14 @@ Residuals = y_i - \hat{y_i} = y_i - (\hat{\beta_0} - \hat{\beta_1}x_i)
 <div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="further-explanations.html#cb480-1" tabindex="-1"></a><span class="co">#checking the data</span></span>
 <span id="cb480-2"><a href="further-explanations.html#cb480-2" tabindex="-1"></a><span class="fu">head</span>(gapminder)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 6
-##   country     continent  year lifeExp    pop
-##   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;  &lt;int&gt;
-## 1 Afghanistan Asia       1952    28.8 8.43e6
-## 2 Afghanistan Asia       1957    30.3 9.24e6
-## 3 Afghanistan Asia       1962    32.0 1.03e7
-## 4 Afghanistan Asia       1967    34.0 1.15e7
-## 5 Afghanistan Asia       1972    36.1 1.31e7
-## 6 Afghanistan Asia       1977    38.4 1.49e7
+##   country     continent  year lifeExp     pop
+##   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;
+## 1 Afghanistan Asia       1952    28.8  8.43e6
+## 2 Afghanistan Asia       1957    30.3  9.24e6
+## 3 Afghanistan Asia       1962    32.0  1.03e7
+## 4 Afghanistan Asia       1967    34.0  1.15e7
+## 5 Afghanistan Asia       1972    36.1  1.31e7
+## 6 Afghanistan Asia       1977    38.4  1.49e7
 ## # ℹ 1 more variable: gdpPercap &lt;dbl&gt;</code></pre>
 <div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="further-explanations.html#cb482-1" tabindex="-1"></a><span class="co">#Plotting it</span></span>
 <span id="cb482-2"><a href="further-explanations.html#cb482-2" tabindex="-1"></a><span class="fu">ggplot</span>(gapminder, <span class="fu">aes</span>(gdpPercap, lifeExp)) <span class="sc">+</span> </span>
@@ -1163,8 +1161,7 @@ Residuals = y_i - \hat{y_i} = y_i - (\hat{\beta_0} - \hat{\beta_1}x_i)
 ## categorical_variable1  -1.107   0.2781    
 ## ---
 ## Signif. codes:  
-##   0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39;
-##   0.1 &#39; &#39; 1
+##   0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1  &#39; &#39; 1
 ## 
 ## Residual standard error: 2.533 on 27 degrees of freedom
 ## Multiple R-squared:  0.7734, Adjusted R-squared:  0.7566 
@@ -1231,8 +1228,7 @@ Residuals = y_i - \hat{y_i} = y_i - (\hat{\beta_0} - \hat{\beta_1}x_i)
 ## ice_cream_sales    0.277    
 ## ---
 ## Signif. codes:  
-##   0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39;
-##   0.1 &#39; &#39; 1
+##   0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1  &#39; &#39; 1
 ## 
 ## Residual standard error: 35.94 on 98 degrees of freedom
 ## Multiple R-squared:  0.01205,    Adjusted R-squared:  0.001969 
@@ -1243,10 +1239,8 @@ Residuals = y_i - \hat{y_i} = y_i - (\hat{\beta_0} - \hat{\beta_1}x_i)
 ## lm(formula = violence_crime_true ~ temperature, data = data)
 ## 
 ## Residuals:
-##      Min       1Q   Median       3Q 
-## -13.9969  -3.8454   0.1718   2.9121 
-##      Max 
-##  11.7502 
+##      Min       1Q   Median       3Q      Max 
+## -13.9969  -3.8454   0.1718   2.9121  11.7502 
 ## 
 ## Coefficients:
 ##              Estimate Std. Error t value
@@ -1257,8 +1251,7 @@ Residuals = y_i - \hat{y_i} = y_i - (\hat{\beta_0} - \hat{\beta_1}x_i)
 ## temperature   &lt;2e-16 ***
 ## ---
 ## Signif. codes:  
-##   0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39;
-##   0.1 &#39; &#39; 1
+##   0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1  &#39; &#39; 1
 ## 
 ## Residual standard error: 5.307 on 98 degrees of freedom
 ## Multiple R-squared:  0.9785, Adjusted R-squared:  0.9782 
@@ -1270,24 +1263,21 @@ Residuals = y_i - \hat{y_i} = y_i - (\hat{\beta_0} - \hat{\beta_1}x_i)
 ##     data = data)
 ## 
 ## Residuals:
-##      Min       1Q   Median       3Q 
-## -14.4770  -3.6734  -0.0914   2.9449 
-##      Max 
-##  12.1843 
+##      Min       1Q   Median       3Q      Max 
+## -14.4770  -3.6734  -0.0914   2.9449  12.1843 
 ## 
 ## Coefficients:
-##                  Estimate Std. Error
-## (Intercept)     -2.396657   4.694786
-## ice_cream_sales -0.596143   0.556470
-## temperature      0.202005   0.003043
-##                 t value Pr(&gt;|t|)    
-## (Intercept)      -0.510    0.611    
-## ice_cream_sales  -1.071    0.287    
-## temperature      66.373   &lt;2e-16 ***
+##                  Estimate Std. Error t value
+## (Intercept)     -2.396657   4.694786  -0.510
+## ice_cream_sales -0.596143   0.556470  -1.071
+## temperature      0.202005   0.003043  66.373
+##                 Pr(&gt;|t|)    
+## (Intercept)        0.611    
+## ice_cream_sales    0.287    
+## temperature       &lt;2e-16 ***
 ## ---
 ## Signif. codes:  
-##   0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39;
-##   0.1 &#39; &#39; 1
+##   0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1  &#39; &#39; 1
 ## 
 ## Residual standard error: 5.303 on 97 degrees of freedom
 ## Multiple R-squared:  0.9787, Adjusted R-squared:  0.9783 
@@ -1405,8 +1395,7 @@ Grades_i = \beta_0 + \beta_1*\text{learning time}_i + \beta_2 *\text{gaming time
 ## gaming_time   7.36e-05 ***
 ## ---
 ## Signif. codes:  
-##   0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39;
-##   0.1 &#39; &#39; 1
+##   0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1  &#39; &#39; 1
 ## 
 ## Residual standard error: 2.822 on 97 degrees of freedom
 ## Multiple R-squared:  0.8661, Adjusted R-squared:  0.8634 

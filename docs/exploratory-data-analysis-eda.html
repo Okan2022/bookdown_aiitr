@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Exploratory Data Analysis (EDA) | 08-Further-Explanations</title>
-  <meta name="description" content="Chapter 4 Exploratory Data Analysis (EDA) | 08-Further-Explanations" />
+  <title>Chapter 4 Exploratory Data Analysis (EDA) | An intuitive Introduction to R</title>
+  <meta name="description" content="Chapter 4 Exploratory Data Analysis (EDA) | An intuitive Introduction to R" />
   <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Exploratory Data Analysis (EDA) | 08-Further-Explanations" />
+  <meta property="og:title" content="Chapter 4 Exploratory Data Analysis (EDA) | An intuitive Introduction to R" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Exploratory Data Analysis (EDA) | 08-Further-Explanations" />
+  <meta name="twitter:title" content="Chapter 4 Exploratory Data Analysis (EDA) | An intuitive Introduction to R" />
   
   
   
@@ -23,7 +23,7 @@
 <meta name="author" content="Okan Sarioglu" />
 
 
-<meta name="date" content="2025-04-29" />
+<meta name="date" content="2025-05-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -258,7 +258,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">08-Further-Explanations</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">An intuitive Introduction to R</a>
           </h1>
         </div>
 
@@ -1046,24 +1046,24 @@ s = \sqrt{s²} = \sqrt\frac{\sum(x_i - \bar{x})}{n-1}
 ## body_mass_g       4050.0 4159.46 889.56
 ## sex*                 2.0    1.51   0.00
 ## year              2008.0 2008.05   1.48
-##                      min    max  range
-## species*             1.0    3.0    2.0
-## island*              1.0    3.0    2.0
-## bill_length_mm      32.1   59.6   27.5
-## bill_depth_mm       13.1   21.5    8.4
-## flipper_length_mm  172.0  231.0   59.0
-## body_mass_g       2700.0 6300.0 3600.0
-## sex*                 1.0    2.0    1.0
-## year              2007.0 2009.0    2.0
-##                    skew kurtosis    se
-## species*           0.16    -1.72  0.05
-## island*            0.62    -0.85  0.04
-## bill_length_mm     0.04    -0.90  0.30
-## bill_depth_mm     -0.15    -0.91  0.11
-## flipper_length_mm  0.36    -0.98  0.77
-## body_mass_g        0.47    -0.75 44.13
-## sex*              -0.02    -2.01  0.03
-## year              -0.08    -1.49  0.04</code></pre>
+##                      min    max  range  skew
+## species*             1.0    3.0    2.0  0.16
+## island*              1.0    3.0    2.0  0.62
+## bill_length_mm      32.1   59.6   27.5  0.04
+## bill_depth_mm       13.1   21.5    8.4 -0.15
+## flipper_length_mm  172.0  231.0   59.0  0.36
+## body_mass_g       2700.0 6300.0 3600.0  0.47
+## sex*                 1.0    2.0    1.0 -0.02
+## year              2007.0 2009.0    2.0 -0.08
+##                   kurtosis    se
+## species*             -1.72  0.05
+## island*              -0.85  0.04
+## bill_length_mm       -0.90  0.30
+## bill_depth_mm        -0.91  0.11
+## flipper_length_mm    -0.98  0.77
+## body_mass_g          -0.75 44.13
+## sex*                 -2.01  0.03
+## year                 -1.49  0.04</code></pre>
 <div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="exploratory-data-analysis-eda.html#cb299-1" tabindex="-1"></a><span class="co">#You can apply describe() also for single variables</span></span>
 <span id="cb299-2"><a href="exploratory-data-analysis-eda.html#cb299-2" tabindex="-1"></a><span class="co">#psych::describe(penguins$bill_length_mm)</span></span></code></pre></div>
 <p>The describe() function output is a summary table of the basic summary statistics as mean, standard deviation, median, and a lot more and it is a shortcut, so you do not have to calculate every measure on its own.</p>
@@ -1376,7 +1376,7 @@ s = \sqrt{s²} = \sqrt\frac{\sum(x_i - \bar{x})}{n-1}
 ## ----------------------------------------------------------------------------------------------------------------------</code></pre>
 <p>The huge advantage of this command is that if we wrap it around the dfSummary function and then it gives us a formatted in a nice table:</p>
 <div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="exploratory-data-analysis-eda.html#cb307-1" tabindex="-1"></a><span class="fu">view</span>(<span class="fu">dfSummary</span>(penguins))</span></code></pre></div>
-<pre><code>## Output file written: /tmp/RtmpfMc93D/file17cf17b3568c.html</code></pre>
+<pre><code>## Output file written: /tmp/RtmpfMc93D/file17cf7e885fed.html</code></pre>
 <div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="exploratory-data-analysis-eda.html#cb309-1" tabindex="-1"></a><span class="co"># Or if you are a good R user, then you can use also a pipe</span></span>
 <span id="cb309-2"><a href="exploratory-data-analysis-eda.html#cb309-2" tabindex="-1"></a><span class="co"># dfSummary(penguins) %&gt;%</span></span>
 <span id="cb309-3"><a href="exploratory-data-analysis-eda.html#cb309-3" tabindex="-1"></a><span class="co"># view()</span></span></code></pre></div>
@@ -3020,8 +3020,7 @@ N = 168</span><span class="gt_footnote_marks" style="white-space:nowrap;font-sty
 ## 6 body_mass_g       integer             0
 ## 7 sex               factor              0
 ## 8 year              integer             0
-## # ℹ 3 more variables:
-## #   missing_percent &lt;dbl&gt;,
+## # ℹ 3 more variables: missing_percent &lt;dbl&gt;,
 ## #   unique_count &lt;int&gt;, unique_rate &lt;dbl&gt;</code></pre>
 <p>We can also generate an output for summary statistics with an old friend, the describe() function, but this time from the dlookr package:</p>
 <div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="exploratory-data-analysis-eda.html#cb326-1" tabindex="-1"></a>dlookr<span class="sc">::</span><span class="fu">describe</span>(penguins)</span></code></pre></div>
@@ -3143,26 +3142,21 @@ N = 168</span><span class="gt_footnote_marks" style="white-space:nowrap;font-sty
 ## 1    bill_length_mm   All 333    0     0
 ## 4       body_mass_g   All 333    0     0
 ## 3 flipper_length_mm   All 333    0     0
-##   nPos NegInf PosInf NA_Value
-## 2  333      0      0        0
-## 1  333      0      0        0
-## 4  333      0      0        0
-## 3  333      0      0        0
-##   Per_of_Missing       sum    min    max
-## 2              0    5715.9   13.1   21.5
-## 1              0   14649.6   32.1   59.6
-## 4              0 1400950.0 2700.0 6300.0
-## 3              0   66922.0  172.0  231.0
-##       mean median      SD    CV    IQR
-## 2   17.165   17.3   1.969 0.115    3.1
-## 1   43.993   44.5   5.469 0.124    9.1
-## 4 4207.057 4050.0 805.216 0.191 1225.0
-## 3  200.967  197.0  14.016 0.070   23.0
-##   Skewness Kurtosis
-## 2   -0.149   -0.897
-## 1    0.045   -0.888
-## 4    0.470   -0.740
-## 3    0.359   -0.965</code></pre>
+##   nPos NegInf PosInf NA_Value Per_of_Missing
+## 2  333      0      0        0              0
+## 1  333      0      0        0              0
+## 4  333      0      0        0              0
+## 3  333      0      0        0              0
+##         sum    min    max     mean median
+## 2    5715.9   13.1   21.5   17.165   17.3
+## 1   14649.6   32.1   59.6   43.993   44.5
+## 4 1400950.0 2700.0 6300.0 4207.057 4050.0
+## 3   66922.0  172.0  231.0  200.967  197.0
+##        SD    CV    IQR Skewness Kurtosis
+## 2   1.969 0.115    3.1   -0.149   -0.897
+## 1   5.469 0.124    9.1    0.045   -0.888
+## 4 805.216 0.191 1225.0    0.470   -0.740
+## 3  14.016 0.070   23.0    0.359   -0.965</code></pre>
 <p>Lastly, we can again generate an automatized EDA report with ExpReport():</p>
 <p><code>ExpReport(data = penguins, Target = "species", label = "Penguin Species", op_file="Samp1.html", Rc=3 )</code></p>
 <table>
