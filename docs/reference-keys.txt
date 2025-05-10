@@ -184,6 +184,9 @@ central-limit-theorem-ctl
 law-of-large-numbers
 different-types-of-distributions
 working-with-distributions
+the-68-95-99.7-rule
+determining-the-probability-of-single-values
+getting-the-probabilities-until-a-certain-value
 conclusion-1
 regression-diagnostics
 model-fit-bivariate-regression

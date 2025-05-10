@@ -20,6 +20,13 @@ bookdown::gitbook:
         </div> 
         <div style="text-align: center;margin-top: 10px;margin-bottom: 10px">
         <a href="aiitr_script.R" download="aiitr_script.R" style="display: inline-block; padding: 10px 20px; font-size: 16px; color: #fff; background-color: #4169e1; text-decoration: none; border-radius: 8px;">Download R Script</a>
+        
+        <div style="text-align: center; margin-top: 10px; margin-bottom: 10px;">
+        <a href="https://www.paypal.com/donate?hosted_button_id=ZBMC2WD84P75S"
+                 style="display: inline-block; padding: 10px 20px; font-size: 16px; color: #fff; background-color: #FCBB32; text-decoration: none; border-radius: 8px;">
+                 <img src="images/pp_logo.png" alt="PayPal" style="height: 24px; vertical-align: middle; margin-right: 8px;">
+        Support me here!
+        </a>
         </div>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>

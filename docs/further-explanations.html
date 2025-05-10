@@ -23,7 +23,7 @@
 <meta name="author" content="Okan Sarioglu" />
 
 
-<meta name="date" content="2025-05-03" />
+<meta name="date" content="2025-05-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -170,6 +170,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div> 
 <div style="text-align: center;margin-top: 10px;margin-bottom: 10px">
 <a href="aiitr_script.R" download="aiitr_script.R" style="display: inline-block; padding: 10px 20px; font-size: 16px; color: #fff; background-color: #4169e1; text-decoration: none; border-radius: 8px;">Download R Script</a>
+
+<div style="text-align: center; margin-top: 10px; margin-bottom: 10px;">
+<a href="https://www.paypal.com/donate?hosted_button_id=ZBMC2WD84P75S"
+         style="display: inline-block; padding: 10px 20px; font-size: 16px; color: #fff; background-color: #FCBB32; text-decoration: none; border-radius: 8px;">
+         <img src="images/pp_logo.png" alt="PayPal" style="height: 24px; vertical-align: middle; margin-right: 8px;">
+Support me here!
+</a>
 </div>
 
 <li class="divider"></li>
@@ -358,7 +365,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb434-7"><a href="further-explanations.html#cb434-7" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span></span>
 <span id="cb434-8"><a href="further-explanations.html#cb434-8" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb434-9"><a href="further-explanations.html#cb434-9" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/simple%20dice%20rolls-1.png" width="672" /></p>
 <p>What we’ve created here is called a <strong>distribution of a discrete variable</strong>. A <strong>discrete variable</strong> has a countable number of distinct outcomes. In this case, our die can only land on one of six values: 1 through 6 — nothing in between.</p>
 <p>This explicit type of distribution is called uniform distribution. A <strong>uniform distribution</strong> is one in which <strong>all outcomes are equally likely</strong> — in our case, each face of the die (1 through 6) has the same probability of occurring. Thus, the probability of one outcome is just 1/n, thus 1/6 for each outcome. Let us plot that as well:</p>
 <div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="further-explanations.html#cb435-1" tabindex="-1"></a><span class="co"># Define the outcomes and their corresponding probabilities</span></span>
@@ -451,7 +458,7 @@ P(X = 3) = \frac{1}{6}
 <span id="cb437-14"><a href="further-explanations.html#cb437-14" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Count&quot;</span></span>
 <span id="cb437-15"><a href="further-explanations.html#cb437-15" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb437-16"><a href="further-explanations.html#cb437-16" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/bernoulli%20data-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/bernoulli%20fair%20coin-1.png" width="672" /></p>
 <p>As we probably expected, if we throw a fair coin ten times we will get approximately 5 Tails and 5 Heads. Furthermore, we plotted our first Bernoulli Distribution.</p>
 <p>This is an example for a fair coin, what if our coin was “not fair” or “unfair”, thus a “biased” coin, we could plot that as well:</p>
 <div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="further-explanations.html#cb438-1" tabindex="-1"></a><span class="co"># Simulate 1000 tosses of a fair coin (1 = Head, 0 = Tail)</span></span>
@@ -470,7 +477,7 @@ P(X = 3) = \frac{1}{6}
 <span id="cb438-14"><a href="further-explanations.html#cb438-14" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Count&quot;</span></span>
 <span id="cb438-15"><a href="further-explanations.html#cb438-15" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb438-16"><a href="further-explanations.html#cb438-16" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/bernoulli%20biased%20coin-1.png" width="672" /></p>
 <p>We can see that the bins are not equal the coin has a tendency for Tail. The Probability for getting Tail is higher than getting Head with this Unfair Coin.</p>
 <p>How does the Probability Distribution of a Bernoulli Distribution looks like? Before answering this question, we have to calculate the probability of getting exact 7 Tails and 3 Heads as we got. I leave the maths out, thankfully R can do that with the <code>dbinom()</code> function, it takes in “x” which is the number of outcomes we got, thus our Tail = 7. Then we have to put in the size, which is the number of trials, thus 10 and lastly the probability, if it is a fair coin 0.5. I computed the biased coin with a probability of 0.28.</p>
 <p>Let us calculate for the fair and the biased coin, the probability of our results:</p>
@@ -515,7 +522,7 @@ P(X = 3) = \frac{1}{6}
 <span id="cb443-18"><a href="further-explanations.html#cb443-18" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Probability&quot;</span>) <span class="sc">+</span></span>
 <span id="cb443-19"><a href="further-explanations.html#cb443-19" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">+</span></span>
 <span id="cb443-20"><a href="further-explanations.html#cb443-20" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/binomial%20distributions-1.png" width="672" /></p>
 <p>Now, the reason behind the probabilities for the outcome for heads becomes clear, the computed probability deviates from the outcome probability because in some cases the trials follow the computed probability but in some cases it deviates and head becomes 2 or 4 for the biased coin and 4 or 6 for the unbiased coin.</p>
 <p>At this point, one thing becomes clear: the <strong>computed probability</strong> represents the <em>expected likelihood</em> of obtaining a specific number of heads <strong>on average</strong> over a large number of repeated experiments. Why “on average”? Because probability theory accounts for randomness — meaning that in any single simulation (say, flipping a coin 10 times), we might observe different outcomes: sometimes 5 heads, sometimes 2, or even 9.</p>
 <p>For a fair coin, the theoretical expectation is 5 heads in 10 flips. However, this doesn’t mean we will always get exactly 5. The actual results vary due to chance. In the case of a biased coin with a 0.28 probability of heads, we might expect around 2.8 heads on average — but again, we will only ever see whole numbers like 2 or 3 in practice.</p>
@@ -542,7 +549,7 @@ P(X = 3) = \frac{1}{6}
 <span id="cb444-19"><a href="further-explanations.html#cb444-19" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Cumulative Probability&quot;</span>) <span class="sc">+</span></span>
 <span id="cb444-20"><a href="further-explanations.html#cb444-20" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">+</span></span>
 <span id="cb444-21"><a href="further-explanations.html#cb444-21" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/cumulative%20probabilities-1.png" width="672" /></p>
 <p>The CDF is quite interesting, we see that in round about 70% of all experiments of the biased coin will result in 3 or less heads and on the other side the unbiased coin will result in round about 80% in 6 or less heads.</p>
 </div>
 </div>
@@ -567,7 +574,7 @@ P(X = 3) = \frac{1}{6}
 <span id="cb445-13"><a href="further-explanations.html#cb445-13" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="sc">-</span><span class="dv">5</span><span class="sc">:</span><span class="dv">5</span>,</span>
 <span id="cb445-14"><a href="further-explanations.html#cb445-14" tabindex="-1"></a>                     <span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>)) <span class="sc">+</span></span>
 <span id="cb445-15"><a href="further-explanations.html#cb445-15" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/pdf-1.png" width="672" /></p>
 <p>The normal distribution has a lot of properties:</p>
 <ul>
 <li><p>The distribution is perfectly symmetrical around the mean</p></li>
@@ -588,7 +595,7 @@ P(X = 3) = \frac{1}{6}
 <span id="cb446-5"><a href="further-explanations.html#cb446-5" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Value of Random Variable&quot;</span>,</span>
 <span id="cb446-6"><a href="further-explanations.html#cb446-6" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Cumulative Probability&quot;</span>) <span class="sc">+</span></span>
 <span id="cb446-7"><a href="further-explanations.html#cb446-7" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/cdf-1.png" width="672" /></p>
 <p>We can use the cumulative distribution function (CDF) to determine the probability that a random variable takes on a value <strong>less than or equal to</strong> a specific value. For example, with a standard normal distribution, the CDF tells us there’s a 50% chance that the random variable will take on a value <strong>less than or equal to 0</strong>.</p>
 </div>
 <div id="central-limit-theorem-ctl" class="section level5 hasAnchor" number="7.1.2.2.2">
@@ -633,7 +640,7 @@ P(X = 3) = \frac{1}{6}
 <span id="cb447-28"><a href="further-explanations.html#cb447-28" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,</span>
 <span id="cb447-29"><a href="further-explanations.html#cb447-29" tabindex="-1"></a>                     <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">6</span>)) <span class="sc">+</span></span>
 <span id="cb447-30"><a href="further-explanations.html#cb447-30" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/central%20limit%20theorem-1.png" width="672" /></p>
 <p>Here we can clearly see how the distribution of the sample means converge to the form of a normal distribution. That leaves only one question, why does the mean of the sample means converge to 3.5?</p>
 </div>
 <div id="law-of-large-numbers" class="section level5 hasAnchor" number="7.1.2.2.3">
@@ -683,12 +690,12 @@ P(X = 3) = \frac{1}{6}
 <span id="cb448-36"><a href="further-explanations.html#cb448-36" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> <span class="fu">filter</span>(plot_df, <span class="sc">!</span>distribution <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Poisson (λ=3)&quot;</span>)),</span>
 <span id="cb448-37"><a href="further-explanations.html#cb448-37" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb448-38"><a href="further-explanations.html#cb448-38" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> <span class="fu">filter</span>(plot_df, distribution <span class="sc">==</span> <span class="st">&quot;Poisson (λ=3)&quot;</span>),</span>
-<span id="cb448-39"><a href="further-explanations.html#cb448-39" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&quot;darkgreen&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb448-39"><a href="further-explanations.html#cb448-39" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb448-40"><a href="further-explanations.html#cb448-40" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> distribution, <span class="at">scales =</span> <span class="st">&quot;free&quot;</span>, <span class="at">ncol =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
 <span id="cb448-41"><a href="further-explanations.html#cb448-41" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Overview of Common Statistical Distributions&quot;</span>,</span>
 <span id="cb448-42"><a href="further-explanations.html#cb448-42" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;x&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Density / Probability&quot;</span>) <span class="sc">+</span></span>
 <span id="cb448-43"><a href="further-explanations.html#cb448-43" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>Let us go shortly through these distributions and their meanings:</p>
 <ul>
 <li><p>Chi-Square: This distribution arises when squaring standard normal values. It’s fundamental in hypothesis testing (e.g., the Chi-Square Test for independence) and constructing confidence intervals for population variances.</p></li>
@@ -702,67 +709,111 @@ P(X = 3) = \frac{1}{6}
 </div>
 <div id="working-with-distributions" class="section level3 hasAnchor" number="7.1.3">
 <h3><span class="header-section-number">7.1.3</span> Working with Distributions<a href="further-explanations.html#working-with-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>This data about my mom gives us information about one person, but working with quantitative methods means, to (guess what?) collect data quantitatively. Thus, we are mostly interested in a so-called <strong>population.</strong></p>
-<p>In statistics, a <strong>population</strong> refers to the entire set of individuals, items, or data points that are of interest in a particular study. It represents the complete group about which you want to draw conclusions or make inferences.</p>
-<p>In my example, the population I would be interested in could not only be my mum, but all mums living in Germany. I want to know their heights and if they wear glasses or not.</p>
-<p>To get all the heights and if they wearing glasses of all mums in Germany would be a lot. According to the public statistic there are 20 million mothers in Germany. But that is no problem, we can take smaller, representative subset of the population, selected for analysis. This is called a <strong>sample</strong>. Let us simulate 1000 mothers, their heights and if they wear glasses and simulate it in R, put it in a data frame and visualize it:</p>
+<p>After the fairly theoretical part before, let us work with distributions hands-on in <code>R</code>: For this purpose let us simulate data. For the following part, I will simulate a normal distribution and introduce you to the first central function <code>rnorm()</code>. This functions takes in three arguments, the number of observations <strong>n</strong>, the <strong>mean</strong> and the standard deviation, <strong>sd</strong>. And again, the beauty of the normal distribution becomes clear, we do not need to tell R more than that, since normal distributions can be generated with only the mean and the standard deviation and on top we can define the number of observations.</p>
+<p>We will simulate the normal distribution for IQ. Let the mean be 100 and the standard deviation 15. These are not randomly selected, most samples of the IQ result in this mean and sd:</p>
 <div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="further-explanations.html#cb449-1" tabindex="-1"></a><span class="co">#Setting seed for reproduciability</span></span>
 <span id="cb449-2"><a href="further-explanations.html#cb449-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
 <span id="cb449-3"><a href="further-explanations.html#cb449-3" tabindex="-1"></a></span>
 <span id="cb449-4"><a href="further-explanations.html#cb449-4" tabindex="-1"></a><span class="co">#Simulating sample</span></span>
-<span id="cb449-5"><a href="further-explanations.html#cb449-5" tabindex="-1"></a>sample_mum <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb449-6"><a href="further-explanations.html#cb449-6" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">rep</span>(<span class="st">&quot;mum&quot;</span>, <span class="dv">1000</span>),</span>
-<span id="cb449-7"><a href="further-explanations.html#cb449-7" tabindex="-1"></a>  <span class="at">height =</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="at">mean =</span> <span class="fl">165.8</span>, <span class="at">sd =</span> <span class="dv">9</span>),</span>
-<span id="cb449-8"><a href="further-explanations.html#cb449-8" tabindex="-1"></a>  <span class="at">glasses =</span> <span class="fu">as.factor</span>(<span class="fu">rbinom</span>(<span class="dv">1000</span>, <span class="dv">1</span>, <span class="fl">0.33</span>))</span>
-<span id="cb449-9"><a href="further-explanations.html#cb449-9" tabindex="-1"></a>)</span>
-<span id="cb449-10"><a href="further-explanations.html#cb449-10" tabindex="-1"></a></span>
-<span id="cb449-11"><a href="further-explanations.html#cb449-11" tabindex="-1"></a><span class="co">#print it</span></span>
-<span id="cb449-12"><a href="further-explanations.html#cb449-12" tabindex="-1"></a><span class="fu">head</span>(sample_mum)</span></code></pre></div>
-<pre><code>##   name   height glasses
-## 1  mum 160.7557       0
-## 2  mum 163.7284       0
-## 3  mum 179.8284       0
-## 4  mum 166.4346       0
-## 5  mum 166.9636       0
-## 6  mum 181.2356       0</code></pre>
-<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="further-explanations.html#cb451-1" tabindex="-1"></a><span class="co">#Making a histogram for the heights</span></span>
-<span id="cb451-2"><a href="further-explanations.html#cb451-2" tabindex="-1"></a><span class="fu">ggplot</span>(sample_mum, <span class="fu">aes</span>(<span class="at">x =</span> height)) <span class="sc">+</span></span>
-<span id="cb451-3"><a href="further-explanations.html#cb451-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">2</span>, <span class="at">color =</span> <span class="st">&quot;white&quot;</span>, </span>
-<span id="cb451-4"><a href="further-explanations.html#cb451-4" tabindex="-1"></a>                 <span class="at">fill =</span> <span class="st">&quot;#FC4E2A&quot;</span>) <span class="sc">+</span></span>
-<span id="cb451-5"><a href="further-explanations.html#cb451-5" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb451-6"><a href="further-explanations.html#cb451-6" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Height (in cm)&quot;</span>,</span>
-<span id="cb451-7"><a href="further-explanations.html#cb451-7" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Count&quot;</span></span>
-<span id="cb451-8"><a href="further-explanations.html#cb451-8" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb451-9"><a href="further-explanations.html#cb451-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<span id="cb449-5"><a href="further-explanations.html#cb449-5" tabindex="-1"></a>sample_iq <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb449-6"><a href="further-explanations.html#cb449-6" tabindex="-1"></a>  <span class="at">height =</span> <span class="fu">rnorm</span>(<span class="dv">10000</span>, <span class="at">mean =</span> <span class="dv">100</span>, <span class="at">sd =</span> <span class="dv">15</span>))</span>
+<span id="cb449-7"><a href="further-explanations.html#cb449-7" tabindex="-1"></a></span>
+<span id="cb449-8"><a href="further-explanations.html#cb449-8" tabindex="-1"></a><span class="co">#Plotting it</span></span>
+<span id="cb449-9"><a href="further-explanations.html#cb449-9" tabindex="-1"></a><span class="fu">ggplot</span>(sample_iq, <span class="fu">aes</span>(<span class="at">x=</span>height)) <span class="sc">+</span></span>
+<span id="cb449-10"><a href="further-explanations.html#cb449-10" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">linewidth =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">&quot;#E35335&quot;</span>) <span class="sc">+</span></span>
+<span id="cb449-11"><a href="further-explanations.html#cb449-11" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb449-12"><a href="further-explanations.html#cb449-12" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;IQ&quot;</span>, </span>
+<span id="cb449-13"><a href="further-explanations.html#cb449-13" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span></span>
+<span id="cb449-14"><a href="further-explanations.html#cb449-14" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb449-15"><a href="further-explanations.html#cb449-15" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">40</span>, <span class="dv">160</span>, <span class="dv">20</span>),</span>
+<span id="cb449-16"><a href="further-explanations.html#cb449-16" tabindex="-1"></a>                     <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">40</span>, <span class="dv">160</span>)) <span class="sc">+</span></span>
+<span id="cb449-17"><a href="further-explanations.html#cb449-17" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/simulating%20sample-1.png" width="672" /></p>
-<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="further-explanations.html#cb452-1" tabindex="-1"></a><span class="co">#Making a bar plot for glasses</span></span>
-<span id="cb452-2"><a href="further-explanations.html#cb452-2" tabindex="-1"></a><span class="fu">ggplot</span>(sample_mum, <span class="fu">aes</span>(<span class="at">x =</span> glasses)) <span class="sc">+</span></span>
-<span id="cb452-3"><a href="further-explanations.html#cb452-3" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">&quot;#FC4E2A&quot;</span>, <span class="at">width =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb452-4"><a href="further-explanations.html#cb452-4" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb452-5"><a href="further-explanations.html#cb452-5" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;&quot;</span>,</span>
-<span id="cb452-6"><a href="further-explanations.html#cb452-6" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;&quot;</span></span>
-<span id="cb452-7"><a href="further-explanations.html#cb452-7" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb452-8"><a href="further-explanations.html#cb452-8" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;0&quot;</span> <span class="ot">=</span> <span class="st">&quot;No Glasses&quot;</span>, <span class="st">&quot;1&quot;</span> <span class="ot">=</span> <span class="st">&quot;Wearing Glasses&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb452-9"><a href="further-explanations.html#cb452-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/simulating%20sample-2.png" width="672" /></p>
-<p>Now, we have sampled the information we need! We know how the heights of our representative sample is distributed, as well as the distribution of mums with or without glasses.</p>
-<p>Let us now calculate some properties of these two distributions and get more information about them. We start by asking the question: What is the average height of a mum in Germany? We can simply calculate that by calling the respective column in our dataset <code>sample_mum$height</code> and wrap it into the built-in function of <code>R</code>: <code>mean()</code></p>
-<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="further-explanations.html#cb453-1" tabindex="-1"></a>mean_mum <span class="ot">&lt;-</span> <span class="fu">mean</span>(sample_mum<span class="sc">$</span>height)</span>
-<span id="cb453-2"><a href="further-explanations.html#cb453-2" tabindex="-1"></a><span class="fu">print</span>(mean_mum)</span></code></pre></div>
-<pre><code>## [1] 165.9452</code></pre>
-<p>Alright, the average height of a mum in Germany is 165 cm. But the PDF contains more information. For example, we could be interested in the dispersion and spread of the distribution, and could be interested in the Variance of the Distribution. The Variance tells us how much the data points are deviate from the average value. A low variance indicates that data points are close to the mean, while a high variance indicates more spread. In R, we can calculate the variance by wrapping our data (df$height) into the var() function:</p>
-<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="further-explanations.html#cb455-1" tabindex="-1"></a><span class="co">#Calculate Variance</span></span>
-<span id="cb455-2"><a href="further-explanations.html#cb455-2" tabindex="-1"></a>var_mum <span class="ot">&lt;-</span> <span class="fu">var</span>(sample_mum<span class="sc">$</span>height)</span>
-<span id="cb455-3"><a href="further-explanations.html#cb455-3" tabindex="-1"></a><span class="fu">print</span>(var_mum)</span></code></pre></div>
-<pre><code>## [1] 79.66017</code></pre>
-<p>wThe variance is around 80, the problem with variance is, that it is a squared unit, but to make the interpretation more intuitive, we can take the square root and thus calculate the <strong>standard deviation</strong>. As the name suggests the standard deviation tells us that the data points typically deviate from the mean. We can calculate it by calling the sd() function (of course it would also work if we take the square root of the var_mum object:</p>
-<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="further-explanations.html#cb457-1" tabindex="-1"></a>sd_mum <span class="ot">&lt;-</span> <span class="fu">sd</span>(sample_mum<span class="sc">$</span>height)</span>
-<span id="cb457-2"><a href="further-explanations.html#cb457-2" tabindex="-1"></a><span class="fu">print</span>(sd_mum)</span></code></pre></div>
-<pre><code>## [1] 8.925255</code></pre>
-<p>So, the height of mums in Germany typically deviates by 8.9 cm from the average height of mums 165cm, meaning that typically a mum in Germany is between 156.1 cm (165 cm - 8.9 cm) and 164.9 cm (165 cm + 8.9 cm).</p>
+<div id="the-68-95-99.7-rule" class="section level4 hasAnchor" number="7.1.3.1">
+<h4><span class="header-section-number">7.1.3.1</span> The 68-95-99.7 Rule<a href="further-explanations.html#the-68-95-99.7-rule" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Remember this Rule? Without any complex mathematics, we can determine, where the most values are located, just by by subtracting the standard deviation from the mean:</p>
+<ul>
+<li><p>68% of all values falls within one standard deviation of the mean:</p>
+<p><span class="math display">\[
+\mu + \sigma² = 100 + 15 = 115
+\]</span></p>
+<p><span class="math display">\[
+\mu - \sigma² = 100 + 15 = 85
+\]</span></p>
+<p>We can interpret these values as follows, when your IQ falls between 115 and 115 you share the fate of 68% of our sample.</p></li>
+<li><p>95% of all values falls within two standard deviations of the mean:</p>
+<p><span class="math display">\[
+\mu + 2\sigma² = 100 + 2 \cdot 15 = 130
+\]</span></p>
+<p><span class="math display">\[
+\mu - 2\sigma² = 100 - 2 \cdot 15 = 70
+\]</span></p>
+<p>If an IQ is not within 70 and 130 then it is either in the 2.5 % lowest or 2.5 highest values. An IQ smaller than 70 means being among the 2.5% lowest IQs and on the other side, if the IQ is above 130 than your IQ is higher than 97.5% !</p></li>
+<li><p>99.7% of all values falls within three standard deviations of the mean:</p>
+<p><span class="math display">\[
+\mu + 3\sigma² = 100 + 3 \cdot 15 = 145
+\]</span></p>
+<p><span class="math display">\[
+\mu + 3\sigma² = 100 - 3 = 55
+\]</span></p></li>
+</ul>
+<p>If the IQ value is outside of 145 or 55, the value is either at the top 0.15 or if it is below 55 it is at the bottom 0.15.</p>
 </div>
-<div id="conclusion-1" class="section level3 hasAnchor" number="7.1.4">
-<h3><span class="header-section-number">7.1.4</span> Conclusion<a href="further-explanations.html#conclusion-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="determining-the-probability-of-single-values" class="section level4 hasAnchor" number="7.1.3.2">
+<h4><span class="header-section-number">7.1.3.2</span> Determining the probability of single values?<a href="further-explanations.html#determining-the-probability-of-single-values" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The 68-95-99.7 rule is a helpful rule of thumb for understanding normal distributions. However, it’s not very precise. If we want to determine the <strong>exact probability</strong> of a value in our distribution, we need to use the <strong>Probability Density Function (PDF)</strong> of the normal distribution.</p>
+<p>Now, because a continuous distribution has <strong>infinitely many possible values</strong>, the probability of observing <strong>any exact value</strong> (like exactly 100) is actually <strong>zero</strong>. That’s why we work with <strong>probability densities</strong>, not exact probabilities at a single point.</p>
+<p>Instead of asking “What is the probability of exactly 100?”, we ask “What is the <strong>density</strong> at 100?” — which reflects how likely it is to observe values <strong>around</strong> 100.</p>
+<p>In R, we can use the <code>dnorm()</code> function to compute this <strong>density</strong>. It takes three arguments:</p>
+<ul>
+<li><p><strong>x</strong>: the value we’re interested in</p></li>
+<li><p><strong>mean</strong>: the mean of the distribution</p></li>
+<li><p><strong>sd</strong>: the standard deviation</p></li>
+</ul>
+<p>Let us calculate the probability of having an IQ of exactly 100, 87 and 140:</p>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="further-explanations.html#cb450-1" tabindex="-1"></a><span class="fu">dnorm</span>(<span class="at">x =</span> <span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">100</span>, <span class="at">sd =</span> <span class="dv">15</span>) <span class="co">#Probability of 100 IQ</span></span></code></pre></div>
+<pre><code>## [1] 0.02659615</code></pre>
+<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="further-explanations.html#cb452-1" tabindex="-1"></a><span class="fu">dnorm</span>(<span class="at">x =</span> <span class="dv">87</span>, <span class="at">mean =</span> <span class="dv">100</span>, <span class="at">sd =</span> <span class="dv">15</span>) <span class="co">#Probability of 65 IQ</span></span></code></pre></div>
+<pre><code>## [1] 0.0182691</code></pre>
+<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="further-explanations.html#cb454-1" tabindex="-1"></a><span class="fu">dnorm</span>(<span class="at">x =</span> <span class="dv">140</span>, <span class="at">mean =</span> <span class="dv">100</span>, <span class="at">sd =</span> <span class="dv">15</span>) <span class="co">#Probability of 135 IQ</span></span></code></pre></div>
+<pre><code>## [1] 0.0007597324</code></pre>
+<p>So the probability of having an IQ of 100 is 2.6%, getting an IQ of 87 is 1.8% and lastly the probability of having an IQ of 140 is 0.07%.</p>
+</div>
+<div id="getting-the-probabilities-until-a-certain-value" class="section level4 hasAnchor" number="7.1.3.3">
+<h4><span class="header-section-number">7.1.3.3</span> Getting the probabilities until a certain value<a href="further-explanations.html#getting-the-probabilities-until-a-certain-value" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The function <code>pnorm()</code> in R gives the <strong>cumulative probability</strong> up to a certain value under the normal distribution. In simpler terms, it tells you <strong>how likely it is that a value drawn from a normal distribution is less than or equal to a given number</strong>.</p>
+<p>It takes the following arguments:</p>
+<ul>
+<li><p><code>q</code>: the value you are interested in (the quantile)</p></li>
+<li><p><code>mean</code>: the mean (μ) of the distribution</p></li>
+<li><p><code>sd</code>: the standard deviation (σ) of the distribution</p></li>
+</ul>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="further-explanations.html#cb456-1" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="at">q =</span> <span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">100</span>, <span class="at">sd =</span> <span class="dv">15</span>) <span class="co">#Probability of 100 IQ</span></span></code></pre></div>
+<pre><code>## [1] 0.5</code></pre>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="further-explanations.html#cb458-1" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="at">q =</span> <span class="dv">87</span>, <span class="at">mean =</span> <span class="dv">100</span>, <span class="at">sd =</span> <span class="dv">15</span>) <span class="co">#Probability of 65 IQ</span></span></code></pre></div>
+<pre><code>## [1] 0.1930623</code></pre>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="further-explanations.html#cb460-1" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="at">q =</span> <span class="dv">140</span>, <span class="at">mean =</span> <span class="dv">100</span>, <span class="at">sd =</span> <span class="dv">15</span>) <span class="co">#Probability of 135 IQ</span></span></code></pre></div>
+<pre><code>## [1] 0.9961696</code></pre>
+<p>Now what do those values mean? The interpretation is quite easy, 0.5 means that an IQ of 100 is higher than 0.5, thus 50% of our distribution has lower values than 100. In simpler terms. If a person has an IQ of 100, the person has an IQ smarter than 50% of all other people. If a person has an IQ of 87, the person has an IQ higher than 19.3% of the sample/population. For an IQ of 140 we can say that the person has a higher IQ than 99.6% of all other persons in the sample. In other ways, with an IQ of 140, a person is part of the top 1%.</p>
+<p>What if we want to know which value we need, to be in a certain percentile? Well, for this case R has the <code>qnorm()</code> function.</p>
+<ul>
+<li>It takes in the argument <strong>p</strong>, which takes probability, we want the corresponding value and of course our two parameters mean and standard deviation</li>
+</ul>
+<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb462-1"><a href="further-explanations.html#cb462-1" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="at">p =</span> <span class="fl">0.5</span>, <span class="at">mean =</span> <span class="dv">100</span>, <span class="at">sd =</span> <span class="dv">15</span>) <span class="co">#Probability of 100 IQ</span></span></code></pre></div>
+<pre><code>## [1] 100</code></pre>
+<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="further-explanations.html#cb464-1" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="at">p =</span> <span class="fl">0.1930623</span>, <span class="at">mean =</span> <span class="dv">100</span>, <span class="at">sd =</span> <span class="dv">15</span>) <span class="co">#Probability of 65 IQ</span></span></code></pre></div>
+<pre><code>## [1] 87</code></pre>
+<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="further-explanations.html#cb466-1" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="at">p =</span> <span class="fl">0.9961696</span>, <span class="at">mean =</span> <span class="dv">100</span>, <span class="at">sd =</span> <span class="dv">15</span>) <span class="co">#Probability of 135 IQ</span></span></code></pre></div>
+<pre><code>## [1] 140</code></pre>
+<p>We see that we get our estimated values before. This function is especially useful when setting thresholds (e.g., what IQ is needed to qualify as a “genius”) or determining cutoffs in standardized testing.</p>
+</div>
+<div id="conclusion-1" class="section level4 hasAnchor" number="7.1.3.4">
+<h4><span class="header-section-number">7.1.3.4</span> Conclusion<a href="further-explanations.html#conclusion-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>This concludes our chapter on probability theory.
+We explored different types of variables, learned about <strong>Probability Mass Functions (PMFs)</strong> and <strong>Probability Density Functions (PDFs)</strong>, and finally saw how to work with probability distributions in R.</p>
+<p>At first glance, this might seem like basic theory. However, a solid understanding of distributions is essential: it allows us to <strong>detect and correct mistakes</strong> when building statistical models, which often <strong>rely on distributional assumptions</strong>.</p>
+<p>Moreover, understanding distributions shows us <strong>why</strong> statistical analysis works in the first place—even in the presence of uncertainty. It allows us to assign <strong>probabilities to predictions</strong>, interpret results meaningfully, and quantify how likely certain outcomes are.</p>
+</div>
 </div>
 </div>
 <div id="regression-diagnostics" class="section level2 hasAnchor" number="7.2">
@@ -784,31 +835,31 @@ Residuals = y_i - \hat{y_i} = y_i - (\hat{\beta_0} - \hat{\beta_1}x_i)
 <li><p><span class="math inline">\(\hat{y_i}\)</span> = are our predicted values based on our OLS estimator</p></li>
 </ul>
 <p>Reconsider the graph at 2.2.1, the residuals are basically the red lines, thus the distance from the line to the point. We can calculate the residuals for our graph:</p>
-<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="further-explanations.html#cb459-1" tabindex="-1"></a><span class="co">#Getting the data</span></span>
-<span id="cb459-2"><a href="further-explanations.html#cb459-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># For reproducibility</span></span>
-<span id="cb459-3"><a href="further-explanations.html#cb459-3" tabindex="-1"></a></span>
-<span id="cb459-4"><a href="further-explanations.html#cb459-4" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">30</span> </span>
-<span id="cb459-5"><a href="further-explanations.html#cb459-5" tabindex="-1"></a></span>
-<span id="cb459-6"><a href="further-explanations.html#cb459-6" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">runif</span>(n) <span class="sc">*</span> <span class="dv">10</span> </span>
-<span id="cb459-7"><a href="further-explanations.html#cb459-7" tabindex="-1"></a></span>
-<span id="cb459-8"><a href="further-explanations.html#cb459-8" tabindex="-1"></a>categorical_variable <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), n, <span class="at">replace =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb459-9"><a href="further-explanations.html#cb459-9" tabindex="-1"></a></span>
-<span id="cb459-10"><a href="further-explanations.html#cb459-10" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fl">0.8</span> <span class="sc">+</span> <span class="fl">1.6</span> <span class="sc">*</span> x <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, <span class="dv">3</span>)</span>
-<span id="cb459-11"><a href="further-explanations.html#cb459-11" tabindex="-1"></a></span>
-<span id="cb459-12"><a href="further-explanations.html#cb459-12" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x,y, categorical_variable)</span>
-<span id="cb459-13"><a href="further-explanations.html#cb459-13" tabindex="-1"></a></span>
-<span id="cb459-14"><a href="further-explanations.html#cb459-14" tabindex="-1"></a><span class="co"># And or Model</span></span>
-<span id="cb459-15"><a href="further-explanations.html#cb459-15" tabindex="-1"></a><span class="co">#running a linear regression</span></span>
-<span id="cb459-16"><a href="further-explanations.html#cb459-16" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, </span>
-<span id="cb459-17"><a href="further-explanations.html#cb459-17" tabindex="-1"></a>             <span class="at">data =</span> df) </span></code></pre></div>
-<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="further-explanations.html#cb460-1" tabindex="-1"></a><span class="co">#First, we calculate the predictions for y</span></span>
-<span id="cb460-2"><a href="further-explanations.html#cb460-2" tabindex="-1"></a>df<span class="sc">$</span>y_hat <span class="ot">&lt;-</span> <span class="fl">1.6821</span> <span class="sc">+</span> <span class="fl">1.5394</span><span class="sc">*</span>df<span class="sc">$</span>x </span>
-<span id="cb460-3"><a href="further-explanations.html#cb460-3" tabindex="-1"></a></span>
-<span id="cb460-4"><a href="further-explanations.html#cb460-4" tabindex="-1"></a><span class="co">#We get the Residuals by subtracting our actual y from y_hat</span></span>
-<span id="cb460-5"><a href="further-explanations.html#cb460-5" tabindex="-1"></a>df<span class="sc">$</span>residuals <span class="ot">&lt;-</span> df<span class="sc">$</span>y <span class="sc">-</span> df<span class="sc">$</span>y_hat </span>
-<span id="cb460-6"><a href="further-explanations.html#cb460-6" tabindex="-1"></a></span>
-<span id="cb460-7"><a href="further-explanations.html#cb460-7" tabindex="-1"></a><span class="co">#cheking it</span></span>
-<span id="cb460-8"><a href="further-explanations.html#cb460-8" tabindex="-1"></a><span class="fu">head</span>(df) </span></code></pre></div>
+<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="further-explanations.html#cb468-1" tabindex="-1"></a><span class="co">#Getting the data</span></span>
+<span id="cb468-2"><a href="further-explanations.html#cb468-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># For reproducibility</span></span>
+<span id="cb468-3"><a href="further-explanations.html#cb468-3" tabindex="-1"></a></span>
+<span id="cb468-4"><a href="further-explanations.html#cb468-4" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">30</span> </span>
+<span id="cb468-5"><a href="further-explanations.html#cb468-5" tabindex="-1"></a></span>
+<span id="cb468-6"><a href="further-explanations.html#cb468-6" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">runif</span>(n) <span class="sc">*</span> <span class="dv">10</span> </span>
+<span id="cb468-7"><a href="further-explanations.html#cb468-7" tabindex="-1"></a></span>
+<span id="cb468-8"><a href="further-explanations.html#cb468-8" tabindex="-1"></a>categorical_variable <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), n, <span class="at">replace =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb468-9"><a href="further-explanations.html#cb468-9" tabindex="-1"></a></span>
+<span id="cb468-10"><a href="further-explanations.html#cb468-10" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fl">0.8</span> <span class="sc">+</span> <span class="fl">1.6</span> <span class="sc">*</span> x <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, <span class="dv">3</span>)</span>
+<span id="cb468-11"><a href="further-explanations.html#cb468-11" tabindex="-1"></a></span>
+<span id="cb468-12"><a href="further-explanations.html#cb468-12" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x,y, categorical_variable)</span>
+<span id="cb468-13"><a href="further-explanations.html#cb468-13" tabindex="-1"></a></span>
+<span id="cb468-14"><a href="further-explanations.html#cb468-14" tabindex="-1"></a><span class="co"># And or Model</span></span>
+<span id="cb468-15"><a href="further-explanations.html#cb468-15" tabindex="-1"></a><span class="co">#running a linear regression</span></span>
+<span id="cb468-16"><a href="further-explanations.html#cb468-16" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, </span>
+<span id="cb468-17"><a href="further-explanations.html#cb468-17" tabindex="-1"></a>             <span class="at">data =</span> df) </span></code></pre></div>
+<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="further-explanations.html#cb469-1" tabindex="-1"></a><span class="co">#First, we calculate the predictions for y</span></span>
+<span id="cb469-2"><a href="further-explanations.html#cb469-2" tabindex="-1"></a>df<span class="sc">$</span>y_hat <span class="ot">&lt;-</span> <span class="fl">1.6821</span> <span class="sc">+</span> <span class="fl">1.5394</span><span class="sc">*</span>df<span class="sc">$</span>x </span>
+<span id="cb469-3"><a href="further-explanations.html#cb469-3" tabindex="-1"></a></span>
+<span id="cb469-4"><a href="further-explanations.html#cb469-4" tabindex="-1"></a><span class="co">#We get the Residuals by subtracting our actual y from y_hat</span></span>
+<span id="cb469-5"><a href="further-explanations.html#cb469-5" tabindex="-1"></a>df<span class="sc">$</span>residuals <span class="ot">&lt;-</span> df<span class="sc">$</span>y <span class="sc">-</span> df<span class="sc">$</span>y_hat </span>
+<span id="cb469-6"><a href="further-explanations.html#cb469-6" tabindex="-1"></a></span>
+<span id="cb469-7"><a href="further-explanations.html#cb469-7" tabindex="-1"></a><span class="co">#cheking it</span></span>
+<span id="cb469-8"><a href="further-explanations.html#cb469-8" tabindex="-1"></a><span class="fu">head</span>(df) </span></code></pre></div>
 <pre><code>##          x         y categorical_variable
 ## 1 2.875775  6.680633                    0
 ## 2 7.883051 12.527668                    1
@@ -823,11 +874,11 @@ Residuals = y_i - \hat{y_i} = y_i - (\hat{\beta_0} - \hat{\beta_1}x_i)
 ## 4 15.275270  2.2874090
 ## 5 16.159653  2.1525664
 ## 6  2.383397  1.2114280</code></pre>
-<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb462-1"><a href="further-explanations.html#cb462-1" tabindex="-1"></a><span class="co">#We could have done that automatically with R as well !  </span></span>
-<span id="cb462-2"><a href="further-explanations.html#cb462-2" tabindex="-1"></a>df<span class="sc">$</span>residuals_auto <span class="ot">&lt;-</span> <span class="fu">residuals</span>(model1)</span>
-<span id="cb462-3"><a href="further-explanations.html#cb462-3" tabindex="-1"></a></span>
-<span id="cb462-4"><a href="further-explanations.html#cb462-4" tabindex="-1"></a><span class="co">#Checking it</span></span>
-<span id="cb462-5"><a href="further-explanations.html#cb462-5" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="further-explanations.html#cb471-1" tabindex="-1"></a><span class="co">#We could have done that automatically with R as well !  </span></span>
+<span id="cb471-2"><a href="further-explanations.html#cb471-2" tabindex="-1"></a>df<span class="sc">$</span>residuals_auto <span class="ot">&lt;-</span> <span class="fu">residuals</span>(model1)</span>
+<span id="cb471-3"><a href="further-explanations.html#cb471-3" tabindex="-1"></a></span>
+<span id="cb471-4"><a href="further-explanations.html#cb471-4" tabindex="-1"></a><span class="co">#Checking it</span></span>
+<span id="cb471-5"><a href="further-explanations.html#cb471-5" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
 <pre><code>##          x         y categorical_variable
 ## 1 2.875775  6.680633                    0
 ## 2 7.883051 12.527668                    1
@@ -843,55 +894,55 @@ Residuals = y_i - \hat{y_i} = y_i - (\hat{\beta_0} - \hat{\beta_1}x_i)
 ## 5 16.159653  2.1525664      2.1529337
 ## 6  2.383397  1.2114280      1.2114141</code></pre>
 <p>Let us have a look at a so-called <strong>Residual Plot</strong>: On the x-axis you plot the <strong>fitted values</strong>, thus our <code>y_hat</code>. On the y-axis you plot the residuals, thus <span class="math inline">\(y-\hat{y}\)</span>. Then you plot a horizontal line at y = 0. All dots on those lines show us the values correctly predicted by our model.</p>
-<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="further-explanations.html#cb464-1" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(x, residuals_auto)) <span class="sc">+</span> </span>
-<span id="cb464-2"><a href="further-explanations.html#cb464-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb464-3"><a href="further-explanations.html#cb464-3" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
-<span id="cb464-4"><a href="further-explanations.html#cb464-4" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="st">&quot;Residuals&quot;</span>, <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">1</span>), </span>
-<span id="cb464-5"><a href="further-explanations.html#cb464-5" tabindex="-1"></a>                     <span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">6</span>, <span class="dv">6</span>)) <span class="sc">+</span></span>
-<span id="cb464-6"><a href="further-explanations.html#cb464-6" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="st">&quot;Fitted Values&quot;</span>, <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">1</span>), </span>
-<span id="cb464-7"><a href="further-explanations.html#cb464-7" tabindex="-1"></a>                     <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">10</span>)) <span class="sc">+</span></span>
-<span id="cb464-8"><a href="further-explanations.html#cb464-8" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="further-explanations.html#cb473-1" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(x, residuals_auto)) <span class="sc">+</span> </span>
+<span id="cb473-2"><a href="further-explanations.html#cb473-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb473-3"><a href="further-explanations.html#cb473-3" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb473-4"><a href="further-explanations.html#cb473-4" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="st">&quot;Residuals&quot;</span>, <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">1</span>), </span>
+<span id="cb473-5"><a href="further-explanations.html#cb473-5" tabindex="-1"></a>                     <span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">6</span>, <span class="dv">6</span>)) <span class="sc">+</span></span>
+<span id="cb473-6"><a href="further-explanations.html#cb473-6" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="st">&quot;Fitted Values&quot;</span>, <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">1</span>), </span>
+<span id="cb473-7"><a href="further-explanations.html#cb473-7" tabindex="-1"></a>                     <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">10</span>)) <span class="sc">+</span></span>
+<span id="cb473-8"><a href="further-explanations.html#cb473-8" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/residual%20plot-1.png" width="672" /></p>
 </div>
 <div id="homoskedasticity-and-heteroskedasticity" class="section level5 hasAnchor" number="7.2.1.1.2">
 <h5><span class="header-section-number">7.2.1.1.2</span> Homoskedasticity and Heteroskedasticity<a href="further-explanations.html#homoskedasticity-and-heteroskedasticity" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>One assumption of linear regression is that the variance of the error term is not correlated with our independent variable. Well, that is quite technocratic and means basically, that the residuals are distributed equally over the independent variables. Let us plot it to get a visual intuition:</p>
-<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="further-explanations.html#cb465-1" tabindex="-1"></a><span class="co">#setting seed for reproduciability</span></span>
-<span id="cb465-2"><a href="further-explanations.html#cb465-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb465-3"><a href="further-explanations.html#cb465-3" tabindex="-1"></a></span>
-<span id="cb465-4"><a href="further-explanations.html#cb465-4" tabindex="-1"></a><span class="co"># Generate some data</span></span>
-<span id="cb465-5"><a href="further-explanations.html#cb465-5" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">150</span>, <span class="fl">0.05</span>, <span class="dv">1</span>)</span>
-<span id="cb465-6"><a href="further-explanations.html#cb465-6" tabindex="-1"></a>e <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">150</span>, <span class="dv">0</span>, <span class="fl">0.5</span>)</span>
-<span id="cb465-7"><a href="further-explanations.html#cb465-7" tabindex="-1"></a></span>
-<span id="cb465-8"><a href="further-explanations.html#cb465-8" tabindex="-1"></a><span class="co">#homoskedastic data </span></span>
-<span id="cb465-9"><a href="further-explanations.html#cb465-9" tabindex="-1"></a>y_homo <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> x <span class="sc">+</span> e </span>
-<span id="cb465-10"><a href="further-explanations.html#cb465-10" tabindex="-1"></a><span class="co">#heteroskedastic data </span></span>
-<span id="cb465-11"><a href="further-explanations.html#cb465-11" tabindex="-1"></a>y_hetero <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> x <span class="sc">+</span> e<span class="sc">*</span>x<span class="sc">^</span><span class="dv">2</span> </span>
-<span id="cb465-12"><a href="further-explanations.html#cb465-12" tabindex="-1"></a><span class="co">#making a data frame with both data</span></span>
-<span id="cb465-13"><a href="further-explanations.html#cb465-13" tabindex="-1"></a>df_homo_hetero <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x, y_homo, y_hetero)</span>
-<span id="cb465-14"><a href="further-explanations.html#cb465-14" tabindex="-1"></a></span>
-<span id="cb465-15"><a href="further-explanations.html#cb465-15" tabindex="-1"></a><span class="co"># Scatterplot with homoscedasticity</span></span>
-<span id="cb465-16"><a href="further-explanations.html#cb465-16" tabindex="-1"></a>homoskedastic_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df_homo_hetero, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y_homo)) <span class="sc">+</span></span>
-<span id="cb465-17"><a href="further-explanations.html#cb465-17" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb465-18"><a href="further-explanations.html#cb465-18" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span><span class="co"># Add linear regression line</span></span>
-<span id="cb465-19"><a href="further-explanations.html#cb465-19" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="st">&quot;Y&quot;</span>, <span class="fu">seq</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">3.5</span>, <span class="fl">0.5</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">3.5</span>)) <span class="sc">+</span></span>
-<span id="cb465-20"><a href="further-explanations.html#cb465-20" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Homoskedastic Plot&quot;</span>) <span class="sc">+</span></span>
-<span id="cb465-21"><a href="further-explanations.html#cb465-21" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb465-22"><a href="further-explanations.html#cb465-22" tabindex="-1"></a></span>
-<span id="cb465-23"><a href="further-explanations.html#cb465-23" tabindex="-1"></a><span class="co"># Scatterplot with heteroscedasticity</span></span>
-<span id="cb465-24"><a href="further-explanations.html#cb465-24" tabindex="-1"></a>heteroskedastic_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df_homo_hetero, </span>
-<span id="cb465-25"><a href="further-explanations.html#cb465-25" tabindex="-1"></a>                               <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y_hetero)) <span class="sc">+</span></span>
-<span id="cb465-26"><a href="further-explanations.html#cb465-26" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb465-27"><a href="further-explanations.html#cb465-27" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span><span class="co">#Add linear regression line</span></span>
-<span id="cb465-28"><a href="further-explanations.html#cb465-28" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Heteroskedastic Plot&quot;</span>) <span class="sc">+</span></span>
-<span id="cb465-29"><a href="further-explanations.html#cb465-29" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="st">&quot;Y&quot;</span>, <span class="fu">seq</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">3.5</span>, <span class="fl">0.5</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">3.5</span>)) <span class="sc">+</span></span>
-<span id="cb465-30"><a href="further-explanations.html#cb465-30" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb465-31"><a href="further-explanations.html#cb465-31" tabindex="-1"></a></span>
-<span id="cb465-32"><a href="further-explanations.html#cb465-32" tabindex="-1"></a><span class="co"># Combine plots using facet_wrap</span></span>
-<span id="cb465-33"><a href="further-explanations.html#cb465-33" tabindex="-1"></a>facet_plots <span class="ot">&lt;-</span> <span class="fu">ggarrange</span>(homoskedastic_plot, heteroskedastic_plot, <span class="at">nrow =</span> <span class="dv">1</span>)</span>
-<span id="cb465-34"><a href="further-explanations.html#cb465-34" tabindex="-1"></a></span>
-<span id="cb465-35"><a href="further-explanations.html#cb465-35" tabindex="-1"></a><span class="co"># Print the combined plots</span></span>
-<span id="cb465-36"><a href="further-explanations.html#cb465-36" tabindex="-1"></a><span class="fu">print</span>(facet_plots)</span></code></pre></div>
+<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="further-explanations.html#cb474-1" tabindex="-1"></a><span class="co">#setting seed for reproduciability</span></span>
+<span id="cb474-2"><a href="further-explanations.html#cb474-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb474-3"><a href="further-explanations.html#cb474-3" tabindex="-1"></a></span>
+<span id="cb474-4"><a href="further-explanations.html#cb474-4" tabindex="-1"></a><span class="co"># Generate some data</span></span>
+<span id="cb474-5"><a href="further-explanations.html#cb474-5" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">150</span>, <span class="fl">0.05</span>, <span class="dv">1</span>)</span>
+<span id="cb474-6"><a href="further-explanations.html#cb474-6" tabindex="-1"></a>e <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">150</span>, <span class="dv">0</span>, <span class="fl">0.5</span>)</span>
+<span id="cb474-7"><a href="further-explanations.html#cb474-7" tabindex="-1"></a></span>
+<span id="cb474-8"><a href="further-explanations.html#cb474-8" tabindex="-1"></a><span class="co">#homoskedastic data </span></span>
+<span id="cb474-9"><a href="further-explanations.html#cb474-9" tabindex="-1"></a>y_homo <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> x <span class="sc">+</span> e </span>
+<span id="cb474-10"><a href="further-explanations.html#cb474-10" tabindex="-1"></a><span class="co">#heteroskedastic data </span></span>
+<span id="cb474-11"><a href="further-explanations.html#cb474-11" tabindex="-1"></a>y_hetero <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> x <span class="sc">+</span> e<span class="sc">*</span>x<span class="sc">^</span><span class="dv">2</span> </span>
+<span id="cb474-12"><a href="further-explanations.html#cb474-12" tabindex="-1"></a><span class="co">#making a data frame with both data</span></span>
+<span id="cb474-13"><a href="further-explanations.html#cb474-13" tabindex="-1"></a>df_homo_hetero <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x, y_homo, y_hetero)</span>
+<span id="cb474-14"><a href="further-explanations.html#cb474-14" tabindex="-1"></a></span>
+<span id="cb474-15"><a href="further-explanations.html#cb474-15" tabindex="-1"></a><span class="co"># Scatterplot with homoscedasticity</span></span>
+<span id="cb474-16"><a href="further-explanations.html#cb474-16" tabindex="-1"></a>homoskedastic_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df_homo_hetero, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y_homo)) <span class="sc">+</span></span>
+<span id="cb474-17"><a href="further-explanations.html#cb474-17" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb474-18"><a href="further-explanations.html#cb474-18" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span><span class="co"># Add linear regression line</span></span>
+<span id="cb474-19"><a href="further-explanations.html#cb474-19" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="st">&quot;Y&quot;</span>, <span class="fu">seq</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">3.5</span>, <span class="fl">0.5</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">3.5</span>)) <span class="sc">+</span></span>
+<span id="cb474-20"><a href="further-explanations.html#cb474-20" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Homoskedastic Plot&quot;</span>) <span class="sc">+</span></span>
+<span id="cb474-21"><a href="further-explanations.html#cb474-21" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb474-22"><a href="further-explanations.html#cb474-22" tabindex="-1"></a></span>
+<span id="cb474-23"><a href="further-explanations.html#cb474-23" tabindex="-1"></a><span class="co"># Scatterplot with heteroscedasticity</span></span>
+<span id="cb474-24"><a href="further-explanations.html#cb474-24" tabindex="-1"></a>heteroskedastic_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df_homo_hetero, </span>
+<span id="cb474-25"><a href="further-explanations.html#cb474-25" tabindex="-1"></a>                               <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y_hetero)) <span class="sc">+</span></span>
+<span id="cb474-26"><a href="further-explanations.html#cb474-26" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb474-27"><a href="further-explanations.html#cb474-27" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span><span class="co">#Add linear regression line</span></span>
+<span id="cb474-28"><a href="further-explanations.html#cb474-28" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Heteroskedastic Plot&quot;</span>) <span class="sc">+</span></span>
+<span id="cb474-29"><a href="further-explanations.html#cb474-29" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="st">&quot;Y&quot;</span>, <span class="fu">seq</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">3.5</span>, <span class="fl">0.5</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">3.5</span>)) <span class="sc">+</span></span>
+<span id="cb474-30"><a href="further-explanations.html#cb474-30" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb474-31"><a href="further-explanations.html#cb474-31" tabindex="-1"></a></span>
+<span id="cb474-32"><a href="further-explanations.html#cb474-32" tabindex="-1"></a><span class="co"># Combine plots using facet_wrap</span></span>
+<span id="cb474-33"><a href="further-explanations.html#cb474-33" tabindex="-1"></a>facet_plots <span class="ot">&lt;-</span> <span class="fu">ggarrange</span>(homoskedastic_plot, heteroskedastic_plot, <span class="at">nrow =</span> <span class="dv">1</span>)</span>
+<span id="cb474-34"><a href="further-explanations.html#cb474-34" tabindex="-1"></a></span>
+<span id="cb474-35"><a href="further-explanations.html#cb474-35" tabindex="-1"></a><span class="co"># Print the combined plots</span></span>
+<span id="cb474-36"><a href="further-explanations.html#cb474-36" tabindex="-1"></a><span class="fu">print</span>(facet_plots)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/homo%20and%20hetero%20plot-1.png" width="672" /></p>
 <p>In the left plot, you see the homoskedastic data. The dots are equally and constantly distributed around the fitted line. However, the right plot shows that the more the independent variable <strong>x</strong> increases, the more the observations are increasing. The dots are not constantly distributed over the line. In the case, that the data is heteroskedastic, then this is a problem. You could try to transform the independent variable by taking the logarithm (We will look into that later). You could also use so-called heteroskedastic regression, but this an advanced model.</p>
 </div>
@@ -904,89 +955,89 @@ Residuals = y_i - \hat{y_i} = y_i - (\hat{\beta_0} - \hat{\beta_1}x_i)
 <li><p>ESS (Variation we explain in the DV): <span class="math inline">\(ESS = \sum(\hat{y_i} - \bar{y})^2\)</span> , now we use our predicted values (<code>df$y_hat</code>) instead of our actual values. That gives us the variation in the dependent variable, we can explain with our model.</p></li>
 <li><p><span class="math inline">\(R^2\)</span> (The Variation we can predict from our model): <span class="math inline">\(R^2 = \frac{ESS}{TSS}\)</span> , well to get the proportion we just divide the variation we can explain from our DV from the actual variation through the total variation in the DV. If these two values are the same, thus our model predicts all the variation in our dependent variable and this <span class="math inline">\(R^2\)</span> is 1. If our model could not explain anything the variation would be 0, since the values of both cannot be negative. Let us calculate them:</p></li>
 </ul>
-<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="further-explanations.html#cb466-1" tabindex="-1"></a><span class="co">#total sum of squares</span></span>
-<span id="cb466-2"><a href="further-explanations.html#cb466-2" tabindex="-1"></a>tss <span class="ot">&lt;-</span> <span class="fu">sum</span>((df<span class="sc">$</span>y <span class="sc">-</span> <span class="fu">mean</span>(df<span class="sc">$</span>y))<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb466-3"><a href="further-explanations.html#cb466-3" tabindex="-1"></a><span class="co">#explained sum of squares</span></span>
-<span id="cb466-4"><a href="further-explanations.html#cb466-4" tabindex="-1"></a>ess <span class="ot">&lt;-</span> <span class="fu">sum</span>((df<span class="sc">$</span>y_hat <span class="sc">-</span> <span class="fu">mean</span>(df<span class="sc">$</span>y))<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb466-5"><a href="further-explanations.html#cb466-5" tabindex="-1"></a><span class="co">#caculating r squared</span></span>
-<span id="cb466-6"><a href="further-explanations.html#cb466-6" tabindex="-1"></a>r_squared <span class="ot">&lt;-</span> ess<span class="sc">/</span>tss</span>
-<span id="cb466-7"><a href="further-explanations.html#cb466-7" tabindex="-1"></a></span>
-<span id="cb466-8"><a href="further-explanations.html#cb466-8" tabindex="-1"></a><span class="co">#Printing it</span></span>
-<span id="cb466-9"><a href="further-explanations.html#cb466-9" tabindex="-1"></a>r_squared</span></code></pre></div>
+<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="further-explanations.html#cb475-1" tabindex="-1"></a><span class="co">#total sum of squares</span></span>
+<span id="cb475-2"><a href="further-explanations.html#cb475-2" tabindex="-1"></a>tss <span class="ot">&lt;-</span> <span class="fu">sum</span>((df<span class="sc">$</span>y <span class="sc">-</span> <span class="fu">mean</span>(df<span class="sc">$</span>y))<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb475-3"><a href="further-explanations.html#cb475-3" tabindex="-1"></a><span class="co">#explained sum of squares</span></span>
+<span id="cb475-4"><a href="further-explanations.html#cb475-4" tabindex="-1"></a>ess <span class="ot">&lt;-</span> <span class="fu">sum</span>((df<span class="sc">$</span>y_hat <span class="sc">-</span> <span class="fu">mean</span>(df<span class="sc">$</span>y))<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb475-5"><a href="further-explanations.html#cb475-5" tabindex="-1"></a><span class="co">#caculating r squared</span></span>
+<span id="cb475-6"><a href="further-explanations.html#cb475-6" tabindex="-1"></a>r_squared <span class="ot">&lt;-</span> ess<span class="sc">/</span>tss</span>
+<span id="cb475-7"><a href="further-explanations.html#cb475-7" tabindex="-1"></a></span>
+<span id="cb475-8"><a href="further-explanations.html#cb475-8" tabindex="-1"></a><span class="co">#Printing it</span></span>
+<span id="cb475-9"><a href="further-explanations.html#cb475-9" tabindex="-1"></a>r_squared</span></code></pre></div>
 <pre><code>## [1] 0.7631199</code></pre>
-<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="further-explanations.html#cb468-1" tabindex="-1"></a><span class="co">#Summarizing it</span></span>
-<span id="cb468-2"><a href="further-explanations.html#cb468-2" tabindex="-1"></a><span class="fu">summary</span>(model1)<span class="sc">$</span>r.squared</span></code></pre></div>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="further-explanations.html#cb477-1" tabindex="-1"></a><span class="co">#Summarizing it</span></span>
+<span id="cb477-2"><a href="further-explanations.html#cb477-2" tabindex="-1"></a><span class="fu">summary</span>(model1)<span class="sc">$</span>r.squared</span></code></pre></div>
 <pre><code>## [1] 0.7630777</code></pre>
 </div>
 <div id="influential-outliers" class="section level4 hasAnchor" number="7.2.1.3">
 <h4><span class="header-section-number">7.2.1.3</span> Influential Outliers<a href="further-explanations.html#influential-outliers" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Outliers are extremely deviating values, which can impact our analysis and bias it. Therefore, we have to check, if our data contains such values. But first let us see how they can impact our data:</p>
-<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="further-explanations.html#cb470-1" tabindex="-1"></a><span class="co">#set seed </span></span>
-<span id="cb470-2"><a href="further-explanations.html#cb470-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">069</span>)</span>
-<span id="cb470-3"><a href="further-explanations.html#cb470-3" tabindex="-1"></a></span>
-<span id="cb470-4"><a href="further-explanations.html#cb470-4" tabindex="-1"></a><span class="co">#generate fake data with outlier </span></span>
-<span id="cb470-5"><a href="further-explanations.html#cb470-5" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">runif</span>(<span class="dv">10</span>, <span class="at">min =</span> <span class="dv">30</span>, <span class="at">max =</span> <span class="dv">70</span>))</span>
-<span id="cb470-6"><a href="further-explanations.html#cb470-6" tabindex="-1"></a>y1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10</span> , <span class="at">mean =</span> <span class="dv">200</span>, <span class="at">sd =</span> <span class="dv">50</span>)</span>
-<span id="cb470-7"><a href="further-explanations.html#cb470-7" tabindex="-1"></a>y1[<span class="dv">9</span>] <span class="ot">&lt;-</span> <span class="dv">2000</span></span>
-<span id="cb470-8"><a href="further-explanations.html#cb470-8" tabindex="-1"></a>data_outlier <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x1, y1)</span>
-<span id="cb470-9"><a href="further-explanations.html#cb470-9" tabindex="-1"></a></span>
-<span id="cb470-10"><a href="further-explanations.html#cb470-10" tabindex="-1"></a><span class="co">#Model with Outlier </span></span>
-<span id="cb470-11"><a href="further-explanations.html#cb470-11" tabindex="-1"></a>model_outlier <span class="ot">&lt;-</span> <span class="fu">lm</span>(y1 <span class="sc">~</span> x1) </span>
-<span id="cb470-12"><a href="further-explanations.html#cb470-12" tabindex="-1"></a></span>
-<span id="cb470-13"><a href="further-explanations.html#cb470-13" tabindex="-1"></a><span class="co">#Model without Outlier</span></span>
-<span id="cb470-14"><a href="further-explanations.html#cb470-14" tabindex="-1"></a>model_without_outlier <span class="ot">&lt;-</span> <span class="fu">lm</span>(y1[<span class="sc">-</span><span class="dv">9</span>] <span class="sc">~</span> x1[<span class="sc">-</span><span class="dv">9</span>]) </span>
-<span id="cb470-15"><a href="further-explanations.html#cb470-15" tabindex="-1"></a></span>
-<span id="cb470-16"><a href="further-explanations.html#cb470-16" tabindex="-1"></a><span class="co">#Plotting the Data </span></span>
-<span id="cb470-17"><a href="further-explanations.html#cb470-17" tabindex="-1"></a></span>
-<span id="cb470-18"><a href="further-explanations.html#cb470-18" tabindex="-1"></a><span class="co"># Scatter plot with points</span></span>
-<span id="cb470-19"><a href="further-explanations.html#cb470-19" tabindex="-1"></a><span class="fu">ggplot</span>(data_outlier, <span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">y =</span> y1)) <span class="sc">+</span></span>
-<span id="cb470-20"><a href="further-explanations.html#cb470-20" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">20</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb470-21"><a href="further-explanations.html#cb470-21" tabindex="-1"></a>  <span class="co"># Regression line for the model with outlier</span></span>
-<span id="cb470-22"><a href="further-explanations.html#cb470-22" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="fu">aes</span>(<span class="at">slope =</span> model_outlier<span class="sc">$</span>coefficients[<span class="dv">2</span>], <span class="at">intercept =</span></span>
-<span id="cb470-23"><a href="further-explanations.html#cb470-23" tabindex="-1"></a>              model_outlier<span class="sc">$</span>coefficients[<span class="dv">1</span>], </span>
-<span id="cb470-24"><a href="further-explanations.html#cb470-24" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">&quot;Model with Outlier&quot;</span>), <span class="at">linewidth =</span> <span class="fl">0.75</span>, <span class="at">show.legend =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
-<span id="cb470-25"><a href="further-explanations.html#cb470-25" tabindex="-1"></a>  <span class="co"># Regression line for the model without outlier</span></span>
-<span id="cb470-26"><a href="further-explanations.html#cb470-26" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="fu">aes</span>(<span class="at">slope =</span> model_without_outlier<span class="sc">$</span>coefficients[<span class="dv">2</span>], </span>
-<span id="cb470-27"><a href="further-explanations.html#cb470-27" tabindex="-1"></a>              <span class="at">intercept =</span> model_without_outlier<span class="sc">$</span>coefficients[<span class="dv">1</span>], </span>
-<span id="cb470-28"><a href="further-explanations.html#cb470-28" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">&quot;Model without Outlier&quot;</span>), <span class="at">linewidth =</span> <span class="fl">0.75</span>, </span>
-<span id="cb470-29"><a href="further-explanations.html#cb470-29" tabindex="-1"></a>              <span class="at">show.legend =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
-<span id="cb470-30"><a href="further-explanations.html#cb470-30" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Independent Variable&quot;</span>) <span class="sc">+</span></span>
-<span id="cb470-31"><a href="further-explanations.html#cb470-31" tabindex="-1"></a>  <span class="co"># Adding legend</span></span>
-<span id="cb470-32"><a href="further-explanations.html#cb470-32" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
-<span id="cb470-33"><a href="further-explanations.html#cb470-33" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.15</span>,<span class="fl">0.9</span>), </span>
-<span id="cb470-34"><a href="further-explanations.html#cb470-34" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_blank</span>()) </span></code></pre></div>
+<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="further-explanations.html#cb479-1" tabindex="-1"></a><span class="co">#set seed </span></span>
+<span id="cb479-2"><a href="further-explanations.html#cb479-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">069</span>)</span>
+<span id="cb479-3"><a href="further-explanations.html#cb479-3" tabindex="-1"></a></span>
+<span id="cb479-4"><a href="further-explanations.html#cb479-4" tabindex="-1"></a><span class="co">#generate fake data with outlier </span></span>
+<span id="cb479-5"><a href="further-explanations.html#cb479-5" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">runif</span>(<span class="dv">10</span>, <span class="at">min =</span> <span class="dv">30</span>, <span class="at">max =</span> <span class="dv">70</span>))</span>
+<span id="cb479-6"><a href="further-explanations.html#cb479-6" tabindex="-1"></a>y1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10</span> , <span class="at">mean =</span> <span class="dv">200</span>, <span class="at">sd =</span> <span class="dv">50</span>)</span>
+<span id="cb479-7"><a href="further-explanations.html#cb479-7" tabindex="-1"></a>y1[<span class="dv">9</span>] <span class="ot">&lt;-</span> <span class="dv">2000</span></span>
+<span id="cb479-8"><a href="further-explanations.html#cb479-8" tabindex="-1"></a>data_outlier <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x1, y1)</span>
+<span id="cb479-9"><a href="further-explanations.html#cb479-9" tabindex="-1"></a></span>
+<span id="cb479-10"><a href="further-explanations.html#cb479-10" tabindex="-1"></a><span class="co">#Model with Outlier </span></span>
+<span id="cb479-11"><a href="further-explanations.html#cb479-11" tabindex="-1"></a>model_outlier <span class="ot">&lt;-</span> <span class="fu">lm</span>(y1 <span class="sc">~</span> x1) </span>
+<span id="cb479-12"><a href="further-explanations.html#cb479-12" tabindex="-1"></a></span>
+<span id="cb479-13"><a href="further-explanations.html#cb479-13" tabindex="-1"></a><span class="co">#Model without Outlier</span></span>
+<span id="cb479-14"><a href="further-explanations.html#cb479-14" tabindex="-1"></a>model_without_outlier <span class="ot">&lt;-</span> <span class="fu">lm</span>(y1[<span class="sc">-</span><span class="dv">9</span>] <span class="sc">~</span> x1[<span class="sc">-</span><span class="dv">9</span>]) </span>
+<span id="cb479-15"><a href="further-explanations.html#cb479-15" tabindex="-1"></a></span>
+<span id="cb479-16"><a href="further-explanations.html#cb479-16" tabindex="-1"></a><span class="co">#Plotting the Data </span></span>
+<span id="cb479-17"><a href="further-explanations.html#cb479-17" tabindex="-1"></a></span>
+<span id="cb479-18"><a href="further-explanations.html#cb479-18" tabindex="-1"></a><span class="co"># Scatter plot with points</span></span>
+<span id="cb479-19"><a href="further-explanations.html#cb479-19" tabindex="-1"></a><span class="fu">ggplot</span>(data_outlier, <span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">y =</span> y1)) <span class="sc">+</span></span>
+<span id="cb479-20"><a href="further-explanations.html#cb479-20" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">20</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb479-21"><a href="further-explanations.html#cb479-21" tabindex="-1"></a>  <span class="co"># Regression line for the model with outlier</span></span>
+<span id="cb479-22"><a href="further-explanations.html#cb479-22" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="fu">aes</span>(<span class="at">slope =</span> model_outlier<span class="sc">$</span>coefficients[<span class="dv">2</span>], <span class="at">intercept =</span></span>
+<span id="cb479-23"><a href="further-explanations.html#cb479-23" tabindex="-1"></a>              model_outlier<span class="sc">$</span>coefficients[<span class="dv">1</span>], </span>
+<span id="cb479-24"><a href="further-explanations.html#cb479-24" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">&quot;Model with Outlier&quot;</span>), <span class="at">linewidth =</span> <span class="fl">0.75</span>, <span class="at">show.legend =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb479-25"><a href="further-explanations.html#cb479-25" tabindex="-1"></a>  <span class="co"># Regression line for the model without outlier</span></span>
+<span id="cb479-26"><a href="further-explanations.html#cb479-26" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="fu">aes</span>(<span class="at">slope =</span> model_without_outlier<span class="sc">$</span>coefficients[<span class="dv">2</span>], </span>
+<span id="cb479-27"><a href="further-explanations.html#cb479-27" tabindex="-1"></a>              <span class="at">intercept =</span> model_without_outlier<span class="sc">$</span>coefficients[<span class="dv">1</span>], </span>
+<span id="cb479-28"><a href="further-explanations.html#cb479-28" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">&quot;Model without Outlier&quot;</span>), <span class="at">linewidth =</span> <span class="fl">0.75</span>, </span>
+<span id="cb479-29"><a href="further-explanations.html#cb479-29" tabindex="-1"></a>              <span class="at">show.legend =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb479-30"><a href="further-explanations.html#cb479-30" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Independent Variable&quot;</span>) <span class="sc">+</span></span>
+<span id="cb479-31"><a href="further-explanations.html#cb479-31" tabindex="-1"></a>  <span class="co"># Adding legend</span></span>
+<span id="cb479-32"><a href="further-explanations.html#cb479-32" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
+<span id="cb479-33"><a href="further-explanations.html#cb479-33" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.15</span>,<span class="fl">0.9</span>), </span>
+<span id="cb479-34"><a href="further-explanations.html#cb479-34" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_blank</span>()) </span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/plotting%20bias%20through%20outliers-1.png" width="672" /></p>
 <p>We see that this one observation completely biases our sample. But how do we find out, which observation is an influential outlier? There is a metric called <strong>Cook’s Distance</strong>, we can use. Let us do it and plot it in R.</p>
-<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="further-explanations.html#cb471-1" tabindex="-1"></a><span class="co">#Cooks Distance can be calculated with a built-in function</span></span>
-<span id="cb471-2"><a href="further-explanations.html#cb471-2" tabindex="-1"></a>data_outlier<span class="sc">$</span>cooks_distance <span class="ot">&lt;-</span> <span class="fu">cooks.distance</span>(model_outlier) </span>
-<span id="cb471-3"><a href="further-explanations.html#cb471-3" tabindex="-1"></a></span>
-<span id="cb471-4"><a href="further-explanations.html#cb471-4" tabindex="-1"></a><span class="co">#Plotting it</span></span>
-<span id="cb471-5"><a href="further-explanations.html#cb471-5" tabindex="-1"></a><span class="fu">ggplot</span>(data_outlier, <span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">y =</span> cooks_distance)) <span class="sc">+</span> </span>
-<span id="cb471-6"><a href="further-explanations.html#cb471-6" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">colour =</span> <span class="st">&quot;darkgreen&quot;</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span> </span>
-<span id="cb471-7"><a href="further-explanations.html#cb471-7" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Cook&#39;s Distance&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Independent Variables&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb471-8"><a href="further-explanations.html#cb471-8" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">1</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb471-9"><a href="further-explanations.html#cb471-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="further-explanations.html#cb480-1" tabindex="-1"></a><span class="co">#Cooks Distance can be calculated with a built-in function</span></span>
+<span id="cb480-2"><a href="further-explanations.html#cb480-2" tabindex="-1"></a>data_outlier<span class="sc">$</span>cooks_distance <span class="ot">&lt;-</span> <span class="fu">cooks.distance</span>(model_outlier) </span>
+<span id="cb480-3"><a href="further-explanations.html#cb480-3" tabindex="-1"></a></span>
+<span id="cb480-4"><a href="further-explanations.html#cb480-4" tabindex="-1"></a><span class="co">#Plotting it</span></span>
+<span id="cb480-5"><a href="further-explanations.html#cb480-5" tabindex="-1"></a><span class="fu">ggplot</span>(data_outlier, <span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">y =</span> cooks_distance)) <span class="sc">+</span> </span>
+<span id="cb480-6"><a href="further-explanations.html#cb480-6" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">colour =</span> <span class="st">&quot;darkgreen&quot;</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span> </span>
+<span id="cb480-7"><a href="further-explanations.html#cb480-7" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Cook&#39;s Distance&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Independent Variables&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb480-8"><a href="further-explanations.html#cb480-8" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">1</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb480-9"><a href="further-explanations.html#cb480-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/plotting%20cooks%20distance-1.png" width="672" /></p>
 <p>We can clearly see that <strong>Cook’s Distance</strong> detected the outlier. The rule is that values with a cooks distance bigger than 1 have to be eliminated. You can do that with the <code>filter()</code> function and run the model afterward again without the outliers.</p>
 </div>
 <div id="functional-form" class="section level4 hasAnchor" number="7.2.1.4">
 <h4><span class="header-section-number">7.2.1.4</span> Functional Form<a href="further-explanations.html#functional-form" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>First let us get our data:</p>
-<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="further-explanations.html#cb472-1" tabindex="-1"></a><span class="co">#Simulate further data</span></span>
-<span id="cb472-2"><a href="further-explanations.html#cb472-2" tabindex="-1"></a>X_quadratic <span class="ot">&lt;-</span> X <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">50</span>, <span class="at">min =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">max =</span> <span class="dv">5</span>)</span>
-<span id="cb472-3"><a href="further-explanations.html#cb472-3" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">1</span>)  </span>
-<span id="cb472-4"><a href="further-explanations.html#cb472-4" tabindex="-1"></a></span>
-<span id="cb472-5"><a href="further-explanations.html#cb472-5" tabindex="-1"></a><span class="co">#True relation</span></span>
-<span id="cb472-6"><a href="further-explanations.html#cb472-6" tabindex="-1"></a>Y_quadratic <span class="ot">&lt;-</span> X<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> X <span class="sc">+</span> u</span>
-<span id="cb472-7"><a href="further-explanations.html#cb472-7" tabindex="-1"></a></span>
-<span id="cb472-8"><a href="further-explanations.html#cb472-8" tabindex="-1"></a><span class="co">#Making a data frame out of it</span></span>
-<span id="cb472-9"><a href="further-explanations.html#cb472-9" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(X_quadratic, Y_quadratic)</span></code></pre></div>
+<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="further-explanations.html#cb481-1" tabindex="-1"></a><span class="co">#Simulate further data</span></span>
+<span id="cb481-2"><a href="further-explanations.html#cb481-2" tabindex="-1"></a>X_quadratic <span class="ot">&lt;-</span> X <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">50</span>, <span class="at">min =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">max =</span> <span class="dv">5</span>)</span>
+<span id="cb481-3"><a href="further-explanations.html#cb481-3" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">1</span>)  </span>
+<span id="cb481-4"><a href="further-explanations.html#cb481-4" tabindex="-1"></a></span>
+<span id="cb481-5"><a href="further-explanations.html#cb481-5" tabindex="-1"></a><span class="co">#True relation</span></span>
+<span id="cb481-6"><a href="further-explanations.html#cb481-6" tabindex="-1"></a>Y_quadratic <span class="ot">&lt;-</span> X<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> X <span class="sc">+</span> u</span>
+<span id="cb481-7"><a href="further-explanations.html#cb481-7" tabindex="-1"></a></span>
+<span id="cb481-8"><a href="further-explanations.html#cb481-8" tabindex="-1"></a><span class="co">#Making a data frame out of it</span></span>
+<span id="cb481-9"><a href="further-explanations.html#cb481-9" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(X_quadratic, Y_quadratic)</span></code></pre></div>
 <p>Linear regression is a mathematical model. Therefore it is based on assumptions. But we should not just assume them, we should test them! One assumption is that linearity is assumed between X and Y. But that can be problematic consider following example:</p>
-<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="further-explanations.html#cb473-1" tabindex="-1"></a><span class="co"># estimate a simple regression model </span></span>
-<span id="cb473-2"><a href="further-explanations.html#cb473-2" tabindex="-1"></a>model_simple <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y_quadratic <span class="sc">~</span> X_quadratic, <span class="at">data =</span> df2)</span>
-<span id="cb473-3"><a href="further-explanations.html#cb473-3" tabindex="-1"></a></span>
-<span id="cb473-4"><a href="further-explanations.html#cb473-4" tabindex="-1"></a><span class="co"># Summarize it</span></span>
-<span id="cb473-5"><a href="further-explanations.html#cb473-5" tabindex="-1"></a><span class="fu">summary</span>(model_simple)</span></code></pre></div>
+<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="further-explanations.html#cb482-1" tabindex="-1"></a><span class="co"># estimate a simple regression model </span></span>
+<span id="cb482-2"><a href="further-explanations.html#cb482-2" tabindex="-1"></a>model_simple <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y_quadratic <span class="sc">~</span> X_quadratic, <span class="at">data =</span> df2)</span>
+<span id="cb482-3"><a href="further-explanations.html#cb482-3" tabindex="-1"></a></span>
+<span id="cb482-4"><a href="further-explanations.html#cb482-4" tabindex="-1"></a><span class="co"># Summarize it</span></span>
+<span id="cb482-5"><a href="further-explanations.html#cb482-5" tabindex="-1"></a><span class="fu">summary</span>(model_simple)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Y_quadratic ~ X_quadratic, data = df2)
@@ -1009,19 +1060,19 @@ Residuals = y_i - \hat{y_i} = y_i - (\hat{\beta_0} - \hat{\beta_1}x_i)
 ## Residual standard error: 7.709 on 48 degrees of freedom
 ## Multiple R-squared:  0.3534, Adjusted R-squared:  0.3399 
 ## F-statistic: 26.23 on 1 and 48 DF,  p-value: 5.321e-06</code></pre>
-<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="further-explanations.html#cb475-1" tabindex="-1"></a><span class="co">#Plot it</span></span>
-<span id="cb475-2"><a href="further-explanations.html#cb475-2" tabindex="-1"></a><span class="fu">ggplot</span>(df2, <span class="fu">aes</span>(<span class="at">x =</span> X_quadratic, <span class="at">y =</span> Y_quadratic)) <span class="sc">+</span> </span>
-<span id="cb475-3"><a href="further-explanations.html#cb475-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">20</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
-<span id="cb475-4"><a href="further-explanations.html#cb475-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
-<span id="cb475-5"><a href="further-explanations.html#cb475-5" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="further-explanations.html#cb484-1" tabindex="-1"></a><span class="co">#Plot it</span></span>
+<span id="cb484-2"><a href="further-explanations.html#cb484-2" tabindex="-1"></a><span class="fu">ggplot</span>(df2, <span class="fu">aes</span>(<span class="at">x =</span> X_quadratic, <span class="at">y =</span> Y_quadratic)) <span class="sc">+</span> </span>
+<span id="cb484-3"><a href="further-explanations.html#cb484-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">20</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb484-4"><a href="further-explanations.html#cb484-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
+<span id="cb484-5"><a href="further-explanations.html#cb484-5" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
 <p><img src="bookdownproj_files/figure-html/plotting%20linear%20fit%20through%20quadratic%20form-1.png" width="672" /></p>
 <p>As you can see something look wrong. There seems to be a correlation between the two variables, but it does not seem linear. In such a case it does make sense to square the independent variable and run the regression again:</p>
-<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="further-explanations.html#cb477-1" tabindex="-1"></a><span class="co"># estimate a simple regression model </span></span>
-<span id="cb477-2"><a href="further-explanations.html#cb477-2" tabindex="-1"></a>model_quadratic <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y_quadratic <span class="sc">~</span> X_quadratic<span class="sc">^</span><span class="dv">2</span>, <span class="at">data =</span> df2)</span>
-<span id="cb477-3"><a href="further-explanations.html#cb477-3" tabindex="-1"></a></span>
-<span id="cb477-4"><a href="further-explanations.html#cb477-4" tabindex="-1"></a><span class="co">#Summarize it </span></span>
-<span id="cb477-5"><a href="further-explanations.html#cb477-5" tabindex="-1"></a><span class="fu">summary</span>(model_quadratic)</span></code></pre></div>
+<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb486-1"><a href="further-explanations.html#cb486-1" tabindex="-1"></a><span class="co"># estimate a simple regression model </span></span>
+<span id="cb486-2"><a href="further-explanations.html#cb486-2" tabindex="-1"></a>model_quadratic <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y_quadratic <span class="sc">~</span> X_quadratic<span class="sc">^</span><span class="dv">2</span>, <span class="at">data =</span> df2)</span>
+<span id="cb486-3"><a href="further-explanations.html#cb486-3" tabindex="-1"></a></span>
+<span id="cb486-4"><a href="further-explanations.html#cb486-4" tabindex="-1"></a><span class="co">#Summarize it </span></span>
+<span id="cb486-5"><a href="further-explanations.html#cb486-5" tabindex="-1"></a><span class="fu">summary</span>(model_quadratic)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Y_quadratic ~ X_quadratic^2, data = df2)
@@ -1044,19 +1095,19 @@ Residuals = y_i - \hat{y_i} = y_i - (\hat{\beta_0} - \hat{\beta_1}x_i)
 ## Residual standard error: 7.709 on 48 degrees of freedom
 ## Multiple R-squared:  0.3534, Adjusted R-squared:  0.3399 
 ## F-statistic: 26.23 on 1 and 48 DF,  p-value: 5.321e-06</code></pre>
-<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="further-explanations.html#cb479-1" tabindex="-1"></a><span class="co">#Plot it</span></span>
-<span id="cb479-2"><a href="further-explanations.html#cb479-2" tabindex="-1"></a><span class="fu">ggplot</span>(df2, <span class="fu">aes</span>(<span class="at">x =</span> X_quadratic, <span class="at">y =</span> Y_quadratic)) <span class="sc">+</span> </span>
-<span id="cb479-3"><a href="further-explanations.html#cb479-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">20</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
-<span id="cb479-4"><a href="further-explanations.html#cb479-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">formula =</span> y <span class="sc">~</span> <span class="fu">poly</span>(x, <span class="dv">2</span>), </span>
-<span id="cb479-5"><a href="further-explanations.html#cb479-5" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, </span>
-<span id="cb479-6"><a href="further-explanations.html#cb479-6" tabindex="-1"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>,) <span class="sc">+</span> </span>
-<span id="cb479-7"><a href="further-explanations.html#cb479-7" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="st">&quot;X&quot;</span>, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">1</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>)) <span class="sc">+</span></span>
-<span id="cb479-8"><a href="further-explanations.html#cb479-8" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Y&quot;</span>) <span class="sc">+</span></span>
-<span id="cb479-9"><a href="further-explanations.html#cb479-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb488-1"><a href="further-explanations.html#cb488-1" tabindex="-1"></a><span class="co">#Plot it</span></span>
+<span id="cb488-2"><a href="further-explanations.html#cb488-2" tabindex="-1"></a><span class="fu">ggplot</span>(df2, <span class="fu">aes</span>(<span class="at">x =</span> X_quadratic, <span class="at">y =</span> Y_quadratic)) <span class="sc">+</span> </span>
+<span id="cb488-3"><a href="further-explanations.html#cb488-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">20</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb488-4"><a href="further-explanations.html#cb488-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">formula =</span> y <span class="sc">~</span> <span class="fu">poly</span>(x, <span class="dv">2</span>), </span>
+<span id="cb488-5"><a href="further-explanations.html#cb488-5" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, </span>
+<span id="cb488-6"><a href="further-explanations.html#cb488-6" tabindex="-1"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>,) <span class="sc">+</span> </span>
+<span id="cb488-7"><a href="further-explanations.html#cb488-7" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="st">&quot;X&quot;</span>, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">1</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb488-8"><a href="further-explanations.html#cb488-8" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Y&quot;</span>) <span class="sc">+</span></span>
+<span id="cb488-9"><a href="further-explanations.html#cb488-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/plotting%20quadratic%20fit%20with%20quadratic%20form-1.png" width="672" /></p>
 <p>Well that looks better and is the proper way to deal with quadratic relationships in linear regression. Well, data can take on not only a quadratic form, it could also take on a form of a square-root function. I will show the most classical example of such a functional form. The <code>gapminder</code> data is loaded. It contains data about the average life expectancy (<code>lifeExp</code>)and the GDP per capita (<code>gdpPercap</code>) of countries in different years. Let us look if the GDP per Capita is correlated with Life Expectancy:</p>
-<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="further-explanations.html#cb480-1" tabindex="-1"></a><span class="co">#checking the data</span></span>
-<span id="cb480-2"><a href="further-explanations.html#cb480-2" tabindex="-1"></a><span class="fu">head</span>(gapminder)</span></code></pre></div>
+<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="further-explanations.html#cb489-1" tabindex="-1"></a><span class="co">#checking the data</span></span>
+<span id="cb489-2"><a href="further-explanations.html#cb489-2" tabindex="-1"></a><span class="fu">head</span>(gapminder)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 6
 ##   country     continent  year lifeExp     pop
 ##   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;
@@ -1067,23 +1118,23 @@ Residuals = y_i - \hat{y_i} = y_i - (\hat{\beta_0} - \hat{\beta_1}x_i)
 ## 5 Afghanistan Asia       1972    36.1  1.31e7
 ## 6 Afghanistan Asia       1977    38.4  1.49e7
 ## # ℹ 1 more variable: gdpPercap &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="further-explanations.html#cb482-1" tabindex="-1"></a><span class="co">#Plotting it</span></span>
-<span id="cb482-2"><a href="further-explanations.html#cb482-2" tabindex="-1"></a><span class="fu">ggplot</span>(gapminder, <span class="fu">aes</span>(gdpPercap, lifeExp)) <span class="sc">+</span> </span>
-<span id="cb482-3"><a href="further-explanations.html#cb482-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb482-4"><a href="further-explanations.html#cb482-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;loess&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
-<span id="cb482-5"><a href="further-explanations.html#cb482-5" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="st">&quot;Life Expectancy&quot;</span>, <span class="fu">seq</span>(<span class="dv">30</span>, <span class="dv">80</span>, <span class="dv">10</span>), </span>
-<span id="cb482-6"><a href="further-explanations.html#cb482-6" tabindex="-1"></a>                     <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">80</span>)) <span class="sc">+</span> </span>
-<span id="cb482-7"><a href="further-explanations.html#cb482-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb491-1"><a href="further-explanations.html#cb491-1" tabindex="-1"></a><span class="co">#Plotting it</span></span>
+<span id="cb491-2"><a href="further-explanations.html#cb491-2" tabindex="-1"></a><span class="fu">ggplot</span>(gapminder, <span class="fu">aes</span>(gdpPercap, lifeExp)) <span class="sc">+</span> </span>
+<span id="cb491-3"><a href="further-explanations.html#cb491-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb491-4"><a href="further-explanations.html#cb491-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;loess&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
+<span id="cb491-5"><a href="further-explanations.html#cb491-5" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="st">&quot;Life Expectancy&quot;</span>, <span class="fu">seq</span>(<span class="dv">30</span>, <span class="dv">80</span>, <span class="dv">10</span>), </span>
+<span id="cb491-6"><a href="further-explanations.html#cb491-6" tabindex="-1"></a>                     <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">80</span>)) <span class="sc">+</span> </span>
+<span id="cb491-7"><a href="further-explanations.html#cb491-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
 <p><img src="bookdownproj_files/figure-html/unlogged%20fit-1.png" width="672" /></p>
 <p>Well, that looks terrible. What can we do? I already mentioned that the fitted line looks like a square-root function (<span class="math inline">\(y = \beta{\sqrt{x}}\)</span> ). When you take the logarithm of square root, you neutralize the square root and only x remains <span class="math inline">\(\log{(\sqrt{x})} = x\)</span>. When you do that the functional form changes to <span class="math inline">\(y = \beta{x}\)</span>. Well, that is exactly the systematic component we are after:</p>
-<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="further-explanations.html#cb484-1" tabindex="-1"></a><span class="fu">ggplot</span>(gapminder, <span class="fu">aes</span>(<span class="fu">log</span>(gdpPercap), lifeExp)) <span class="sc">+</span> </span>
-<span id="cb484-2"><a href="further-explanations.html#cb484-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb484-3"><a href="further-explanations.html#cb484-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
-<span id="cb484-4"><a href="further-explanations.html#cb484-4" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="st">&quot;Life Expectancy&quot;</span>, <span class="fu">seq</span>(<span class="dv">30</span>, <span class="dv">80</span>, <span class="dv">10</span>), </span>
-<span id="cb484-5"><a href="further-explanations.html#cb484-5" tabindex="-1"></a>                     <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">80</span>)) <span class="sc">+</span> </span>
-<span id="cb484-6"><a href="further-explanations.html#cb484-6" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;GDP per Capita&quot;</span>) <span class="sc">+</span></span>
-<span id="cb484-7"><a href="further-explanations.html#cb484-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="further-explanations.html#cb493-1" tabindex="-1"></a><span class="fu">ggplot</span>(gapminder, <span class="fu">aes</span>(<span class="fu">log</span>(gdpPercap), lifeExp)) <span class="sc">+</span> </span>
+<span id="cb493-2"><a href="further-explanations.html#cb493-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb493-3"><a href="further-explanations.html#cb493-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
+<span id="cb493-4"><a href="further-explanations.html#cb493-4" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="st">&quot;Life Expectancy&quot;</span>, <span class="fu">seq</span>(<span class="dv">30</span>, <span class="dv">80</span>, <span class="dv">10</span>), </span>
+<span id="cb493-5"><a href="further-explanations.html#cb493-5" tabindex="-1"></a>                     <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">80</span>)) <span class="sc">+</span> </span>
+<span id="cb493-6"><a href="further-explanations.html#cb493-6" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;GDP per Capita&quot;</span>) <span class="sc">+</span></span>
+<span id="cb493-7"><a href="further-explanations.html#cb493-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
 <p><img src="bookdownproj_files/figure-html/logged%20fit-1.png" width="672" /></p>
 <p>This looks more like what we want to achieve. What can we see in that plot? When we run a model we want to take the logarithm of the independent variable, when we expect the following: If the most observations of a variable are low, but some observations are extremely high such functional forms can occur. In our example, most of the countries have a low GDP per Capita, but some countries such as the Western European countries or the USA have such a a high level of GDP per Capita, they change the functional form of the fitted line. These are influential outliers, but too much to delete them. It could bias the representativeness of the sample, therefore we can deal with them by taking the logarithm.</p>
@@ -1091,29 +1142,29 @@ Residuals = y_i - \hat{y_i} = y_i - (\hat{\beta_0} - \hat{\beta_1}x_i)
 <div id="independent-observation" class="section level4 hasAnchor" number="7.2.1.5">
 <h4><span class="header-section-number">7.2.1.5</span> Independent Observation<a href="further-explanations.html#independent-observation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Another assumption of the linear regression model is the independent, identically distributed (i.i.d) assumption. That sounds complicated but it really is not. Consider following plot:</p>
-<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb486-1"><a href="further-explanations.html#cb486-1" tabindex="-1"></a><span class="co"># Getting the Data</span></span>
-<span id="cb486-2"><a href="further-explanations.html#cb486-2" tabindex="-1"></a><span class="co"># set seed</span></span>
-<span id="cb486-3"><a href="further-explanations.html#cb486-3" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb486-4"><a href="further-explanations.html#cb486-4" tabindex="-1"></a></span>
-<span id="cb486-5"><a href="further-explanations.html#cb486-5" tabindex="-1"></a><span class="co"># generate a date vector</span></span>
-<span id="cb486-6"><a href="further-explanations.html#cb486-6" tabindex="-1"></a>date <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">as.Date</span>(<span class="st">&quot;1960/1/1&quot;</span>), <span class="fu">as.Date</span>(<span class="st">&quot;2020/1/1&quot;</span>), <span class="st">&quot;years&quot;</span>)</span>
-<span id="cb486-7"><a href="further-explanations.html#cb486-7" tabindex="-1"></a></span>
-<span id="cb486-8"><a href="further-explanations.html#cb486-8" tabindex="-1"></a><span class="co"># initialize the employment vector</span></span>
-<span id="cb486-9"><a href="further-explanations.html#cb486-9" tabindex="-1"></a>y_time <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5000</span>, <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="fu">length</span>(date)<span class="sc">-</span><span class="dv">1</span>))</span>
-<span id="cb486-10"><a href="further-explanations.html#cb486-10" tabindex="-1"></a></span>
-<span id="cb486-11"><a href="further-explanations.html#cb486-11" tabindex="-1"></a><span class="co"># generate time series observations with random influences</span></span>
-<span id="cb486-12"><a href="further-explanations.html#cb486-12" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="fu">length</span>(date)) {</span>
-<span id="cb486-13"><a href="further-explanations.html#cb486-13" tabindex="-1"></a>  </span>
-<span id="cb486-14"><a href="further-explanations.html#cb486-14" tabindex="-1"></a>    y_time[i] <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">50</span> <span class="sc">+</span> <span class="fl">0.98</span> <span class="sc">*</span> y_time[i<span class="dv">-1</span>] <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">200</span>)</span>
-<span id="cb486-15"><a href="further-explanations.html#cb486-15" tabindex="-1"></a>}</span>
-<span id="cb486-16"><a href="further-explanations.html#cb486-16" tabindex="-1"></a></span>
-<span id="cb486-17"><a href="further-explanations.html#cb486-17" tabindex="-1"></a><span class="co"># Plot it</span></span>
-<span id="cb486-18"><a href="further-explanations.html#cb486-18" tabindex="-1"></a>df_time_series <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(y_time, date)</span>
-<span id="cb486-19"><a href="further-explanations.html#cb486-19" tabindex="-1"></a><span class="fu">ggplot</span>(df_time_series, <span class="fu">aes</span>(date, y_time)) <span class="sc">+</span> </span>
-<span id="cb486-20"><a href="further-explanations.html#cb486-20" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb486-21"><a href="further-explanations.html#cb486-21" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Y&quot;</span>) <span class="sc">+</span></span>
-<span id="cb486-22"><a href="further-explanations.html#cb486-22" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Year&quot;</span>) <span class="sc">+</span></span>
-<span id="cb486-23"><a href="further-explanations.html#cb486-23" tabindex="-1"></a>  <span class="fu">theme_bw</span>()  </span></code></pre></div>
+<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="further-explanations.html#cb495-1" tabindex="-1"></a><span class="co"># Getting the Data</span></span>
+<span id="cb495-2"><a href="further-explanations.html#cb495-2" tabindex="-1"></a><span class="co"># set seed</span></span>
+<span id="cb495-3"><a href="further-explanations.html#cb495-3" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb495-4"><a href="further-explanations.html#cb495-4" tabindex="-1"></a></span>
+<span id="cb495-5"><a href="further-explanations.html#cb495-5" tabindex="-1"></a><span class="co"># generate a date vector</span></span>
+<span id="cb495-6"><a href="further-explanations.html#cb495-6" tabindex="-1"></a>date <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">as.Date</span>(<span class="st">&quot;1960/1/1&quot;</span>), <span class="fu">as.Date</span>(<span class="st">&quot;2020/1/1&quot;</span>), <span class="st">&quot;years&quot;</span>)</span>
+<span id="cb495-7"><a href="further-explanations.html#cb495-7" tabindex="-1"></a></span>
+<span id="cb495-8"><a href="further-explanations.html#cb495-8" tabindex="-1"></a><span class="co"># initialize the employment vector</span></span>
+<span id="cb495-9"><a href="further-explanations.html#cb495-9" tabindex="-1"></a>y_time <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5000</span>, <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="fu">length</span>(date)<span class="sc">-</span><span class="dv">1</span>))</span>
+<span id="cb495-10"><a href="further-explanations.html#cb495-10" tabindex="-1"></a></span>
+<span id="cb495-11"><a href="further-explanations.html#cb495-11" tabindex="-1"></a><span class="co"># generate time series observations with random influences</span></span>
+<span id="cb495-12"><a href="further-explanations.html#cb495-12" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="fu">length</span>(date)) {</span>
+<span id="cb495-13"><a href="further-explanations.html#cb495-13" tabindex="-1"></a>  </span>
+<span id="cb495-14"><a href="further-explanations.html#cb495-14" tabindex="-1"></a>    y_time[i] <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">50</span> <span class="sc">+</span> <span class="fl">0.98</span> <span class="sc">*</span> y_time[i<span class="dv">-1</span>] <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">200</span>)</span>
+<span id="cb495-15"><a href="further-explanations.html#cb495-15" tabindex="-1"></a>}</span>
+<span id="cb495-16"><a href="further-explanations.html#cb495-16" tabindex="-1"></a></span>
+<span id="cb495-17"><a href="further-explanations.html#cb495-17" tabindex="-1"></a><span class="co"># Plot it</span></span>
+<span id="cb495-18"><a href="further-explanations.html#cb495-18" tabindex="-1"></a>df_time_series <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(y_time, date)</span>
+<span id="cb495-19"><a href="further-explanations.html#cb495-19" tabindex="-1"></a><span class="fu">ggplot</span>(df_time_series, <span class="fu">aes</span>(date, y_time)) <span class="sc">+</span> </span>
+<span id="cb495-20"><a href="further-explanations.html#cb495-20" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb495-21"><a href="further-explanations.html#cb495-21" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Y&quot;</span>) <span class="sc">+</span></span>
+<span id="cb495-22"><a href="further-explanations.html#cb495-22" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Year&quot;</span>) <span class="sc">+</span></span>
+<span id="cb495-23"><a href="further-explanations.html#cb495-23" tabindex="-1"></a>  <span class="fu">theme_bw</span>()  </span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/time%20trend-1.png" width="672" /></p>
 <p>If you look at the plot, can we assume that the observation Year = 2000 is independent from the Years before? No, the observation in the years are correlated to each other, thus the assumption is violated. This is basically the huge problem of working with longitudinal data (time-series cross-sectional or panel). If you face such problems there are plenty of other methods to use: Interrupted time series, Difference-in-Difference Designs, Panel-Matching, Fixed-Effects Models etc.</p>
 </div>
@@ -1137,11 +1188,11 @@ Residuals = y_i - \hat{y_i} = y_i - (\hat{\beta_0} - \hat{\beta_1}x_i)
 <li><p><span class="math inline">\(k\)</span> is the number of independent variables</p></li>
 </ul>
 <p>In <code>R</code>, we can extract the adjusted R-squared simply from our model in chunk, multivariate regression:</p>
-<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="further-explanations.html#cb487-1" tabindex="-1"></a><span class="co">#running multivariate model</span></span>
-<span id="cb487-2"><a href="further-explanations.html#cb487-2" tabindex="-1"></a>multivariate_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x <span class="sc">+</span> categorical_variable, <span class="at">data =</span> df)</span>
-<span id="cb487-3"><a href="further-explanations.html#cb487-3" tabindex="-1"></a></span>
-<span id="cb487-4"><a href="further-explanations.html#cb487-4" tabindex="-1"></a><span class="co">#Getting summary</span></span>
-<span id="cb487-5"><a href="further-explanations.html#cb487-5" tabindex="-1"></a><span class="fu">summary</span>(multivariate_model)</span></code></pre></div>
+<div class="sourceCode" id="cb496"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb496-1"><a href="further-explanations.html#cb496-1" tabindex="-1"></a><span class="co">#running multivariate model</span></span>
+<span id="cb496-2"><a href="further-explanations.html#cb496-2" tabindex="-1"></a>multivariate_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x <span class="sc">+</span> categorical_variable, <span class="at">data =</span> df)</span>
+<span id="cb496-3"><a href="further-explanations.html#cb496-3" tabindex="-1"></a></span>
+<span id="cb496-4"><a href="further-explanations.html#cb496-4" tabindex="-1"></a><span class="co">#Getting summary</span></span>
+<span id="cb496-5"><a href="further-explanations.html#cb496-5" tabindex="-1"></a><span class="fu">summary</span>(multivariate_model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y ~ x + categorical_variable, data = df)
@@ -1166,51 +1217,51 @@ Residuals = y_i - \hat{y_i} = y_i - (\hat{\beta_0} - \hat{\beta_1}x_i)
 ## Residual standard error: 2.533 on 27 degrees of freedom
 ## Multiple R-squared:  0.7734, Adjusted R-squared:  0.7566 
 ## F-statistic: 46.07 on 2 and 27 DF,  p-value: 1.982e-09</code></pre>
-<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="further-explanations.html#cb489-1" tabindex="-1"></a><span class="co">#Extract Adjusted R-squared</span></span>
-<span id="cb489-2"><a href="further-explanations.html#cb489-2" tabindex="-1"></a><span class="fu">summary</span>(multivariate_model)<span class="sc">$</span>adj.r.squared</span></code></pre></div>
+<div class="sourceCode" id="cb498"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb498-1"><a href="further-explanations.html#cb498-1" tabindex="-1"></a><span class="co">#Extract Adjusted R-squared</span></span>
+<span id="cb498-2"><a href="further-explanations.html#cb498-2" tabindex="-1"></a><span class="fu">summary</span>(multivariate_model)<span class="sc">$</span>adj.r.squared</span></code></pre></div>
 <pre><code>## [1] 0.7565721</code></pre>
-<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb491-1"><a href="further-explanations.html#cb491-1" tabindex="-1"></a><span class="co">#Calculating by hand</span></span>
-<span id="cb491-2"><a href="further-explanations.html#cb491-2" tabindex="-1"></a>adj_r_squared <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> (((<span class="dv">1</span><span class="sc">-</span><span class="fu">summary</span>(multivariate_model)<span class="sc">$</span>r.squared) <span class="sc">*</span> (<span class="fu">nrow</span>(df) <span class="sc">-</span> <span class="dv">1</span>))<span class="sc">/</span>(<span class="fu">nrow</span>(df) <span class="sc">-</span> <span class="dv">2</span> <span class="sc">-</span> <span class="dv">1</span>))</span>
-<span id="cb491-3"><a href="further-explanations.html#cb491-3" tabindex="-1"></a></span>
-<span id="cb491-4"><a href="further-explanations.html#cb491-4" tabindex="-1"></a><span class="co">#printing it</span></span>
-<span id="cb491-5"><a href="further-explanations.html#cb491-5" tabindex="-1"></a><span class="fu">print</span>(adj_r_squared)</span></code></pre></div>
+<div class="sourceCode" id="cb500"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb500-1"><a href="further-explanations.html#cb500-1" tabindex="-1"></a><span class="co">#Calculating by hand</span></span>
+<span id="cb500-2"><a href="further-explanations.html#cb500-2" tabindex="-1"></a>adj_r_squared <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> (((<span class="dv">1</span><span class="sc">-</span><span class="fu">summary</span>(multivariate_model)<span class="sc">$</span>r.squared) <span class="sc">*</span> (<span class="fu">nrow</span>(df) <span class="sc">-</span> <span class="dv">1</span>))<span class="sc">/</span>(<span class="fu">nrow</span>(df) <span class="sc">-</span> <span class="dv">2</span> <span class="sc">-</span> <span class="dv">1</span>))</span>
+<span id="cb500-3"><a href="further-explanations.html#cb500-3" tabindex="-1"></a></span>
+<span id="cb500-4"><a href="further-explanations.html#cb500-4" tabindex="-1"></a><span class="co">#printing it</span></span>
+<span id="cb500-5"><a href="further-explanations.html#cb500-5" tabindex="-1"></a><span class="fu">print</span>(adj_r_squared)</span></code></pre></div>
 <pre><code>## [1] 0.7565721</code></pre>
 </div>
 <div id="omitted-variable-bias" class="section level4 hasAnchor" number="7.2.2.2">
 <h4><span class="header-section-number">7.2.2.2</span> Omitted Variable Bias<a href="further-explanations.html#omitted-variable-bias" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>I already mentioned one (abstract) reason why we should include other variables in our model. But there is more to it: You could find effects between two variables X and Y, but it could be that in Reality there is not an association. For example, let us say you collect data about ice cream and shark attacks. Ice cream sales is your independent variable and you want to explain the number of shark attacks, here is your data:</p>
-<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="further-explanations.html#cb493-1" tabindex="-1"></a><span class="co"># Set seed for reproducibility </span></span>
-<span id="cb493-2"><a href="further-explanations.html#cb493-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)  </span>
-<span id="cb493-3"><a href="further-explanations.html#cb493-3" tabindex="-1"></a></span>
-<span id="cb493-4"><a href="further-explanations.html#cb493-4" tabindex="-1"></a><span class="co"># Number of data points </span></span>
-<span id="cb493-5"><a href="further-explanations.html#cb493-5" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb493-6"><a href="further-explanations.html#cb493-6" tabindex="-1"></a></span>
-<span id="cb493-7"><a href="further-explanations.html#cb493-7" tabindex="-1"></a><span class="co"># Simulate diet data (assuming a normal distribution) </span></span>
-<span id="cb493-8"><a href="further-explanations.html#cb493-8" tabindex="-1"></a>temperature <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">1500</span>, <span class="at">sd =</span> <span class="dv">200</span>)  </span>
-<span id="cb493-9"><a href="further-explanations.html#cb493-9" tabindex="-1"></a></span>
-<span id="cb493-10"><a href="further-explanations.html#cb493-10" tabindex="-1"></a><span class="co"># Simulate exercise data (assuming a normal distribution) </span></span>
-<span id="cb493-11"><a href="further-explanations.html#cb493-11" tabindex="-1"></a>ice_cream_sales <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">3</span>, <span class="at">sd =</span> <span class="dv">1</span>)  </span>
-<span id="cb493-12"><a href="further-explanations.html#cb493-12" tabindex="-1"></a></span>
-<span id="cb493-13"><a href="further-explanations.html#cb493-13" tabindex="-1"></a><span class="co"># Simulate weight loss data </span></span>
-<span id="cb493-14"><a href="further-explanations.html#cb493-14" tabindex="-1"></a>violence_crime_true <span class="ot">&lt;-</span> <span class="fl">0.2</span> <span class="sc">*</span> temperature <span class="sc">-</span> </span>
-<span id="cb493-15"><a href="further-explanations.html#cb493-15" tabindex="-1"></a>  <span class="fl">0.5</span> <span class="sc">*</span> ice_cream_sales <span class="sc">+</span> </span>
-<span id="cb493-16"><a href="further-explanations.html#cb493-16" tabindex="-1"></a>  <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">5</span>) </span>
-<span id="cb493-17"><a href="further-explanations.html#cb493-17" tabindex="-1"></a></span>
-<span id="cb493-18"><a href="further-explanations.html#cb493-18" tabindex="-1"></a><span class="co"># Create a data frame </span></span>
-<span id="cb493-19"><a href="further-explanations.html#cb493-19" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">temperature =</span> temperature,<span class="at">ice_cream_sales =</span> ice_cream_sales,                     <span class="at">violence_crime_true =</span> violence_crime_true)  </span>
-<span id="cb493-20"><a href="further-explanations.html#cb493-20" tabindex="-1"></a></span>
-<span id="cb493-21"><a href="further-explanations.html#cb493-21" tabindex="-1"></a><span class="co"># Fit a model without including the diet variable </span></span>
-<span id="cb493-22"><a href="further-explanations.html#cb493-22" tabindex="-1"></a>model_without_temperature <span class="ot">&lt;-</span> <span class="fu">lm</span>(violence_crime_true <span class="sc">~</span> ice_cream_sales, <span class="at">data =</span> data)</span>
-<span id="cb493-23"><a href="further-explanations.html#cb493-23" tabindex="-1"></a></span>
-<span id="cb493-24"><a href="further-explanations.html#cb493-24" tabindex="-1"></a><span class="co">#Fit a model with only the temperature variable</span></span>
-<span id="cb493-25"><a href="further-explanations.html#cb493-25" tabindex="-1"></a></span>
-<span id="cb493-26"><a href="further-explanations.html#cb493-26" tabindex="-1"></a>model_with_only_temperature <span class="ot">&lt;-</span> <span class="fu">lm</span>(violence_crime_true <span class="sc">~</span>temperature,                        <span class="at">data =</span> data)</span>
-<span id="cb493-27"><a href="further-explanations.html#cb493-27" tabindex="-1"></a></span>
-<span id="cb493-28"><a href="further-explanations.html#cb493-28" tabindex="-1"></a><span class="co"># Fit a model including both diet and exercise variables </span></span>
-<span id="cb493-29"><a href="further-explanations.html#cb493-29" tabindex="-1"></a>model_with_temperature <span class="ot">&lt;-</span> <span class="fu">lm</span>(violence_crime_true <span class="sc">~</span> ice_cream_sales <span class="sc">+</span> temperature,                        <span class="at">data =</span> data)  </span>
-<span id="cb493-30"><a href="further-explanations.html#cb493-30" tabindex="-1"></a></span>
-<span id="cb493-31"><a href="further-explanations.html#cb493-31" tabindex="-1"></a><span class="co"># Output the summary of both models </span></span>
-<span id="cb493-32"><a href="further-explanations.html#cb493-32" tabindex="-1"></a><span class="fu">summary</span>(model_without_temperature) </span></code></pre></div>
+<div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb502-1"><a href="further-explanations.html#cb502-1" tabindex="-1"></a><span class="co"># Set seed for reproducibility </span></span>
+<span id="cb502-2"><a href="further-explanations.html#cb502-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)  </span>
+<span id="cb502-3"><a href="further-explanations.html#cb502-3" tabindex="-1"></a></span>
+<span id="cb502-4"><a href="further-explanations.html#cb502-4" tabindex="-1"></a><span class="co"># Number of data points </span></span>
+<span id="cb502-5"><a href="further-explanations.html#cb502-5" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb502-6"><a href="further-explanations.html#cb502-6" tabindex="-1"></a></span>
+<span id="cb502-7"><a href="further-explanations.html#cb502-7" tabindex="-1"></a><span class="co"># Simulate diet data (assuming a normal distribution) </span></span>
+<span id="cb502-8"><a href="further-explanations.html#cb502-8" tabindex="-1"></a>temperature <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">1500</span>, <span class="at">sd =</span> <span class="dv">200</span>)  </span>
+<span id="cb502-9"><a href="further-explanations.html#cb502-9" tabindex="-1"></a></span>
+<span id="cb502-10"><a href="further-explanations.html#cb502-10" tabindex="-1"></a><span class="co"># Simulate exercise data (assuming a normal distribution) </span></span>
+<span id="cb502-11"><a href="further-explanations.html#cb502-11" tabindex="-1"></a>ice_cream_sales <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">3</span>, <span class="at">sd =</span> <span class="dv">1</span>)  </span>
+<span id="cb502-12"><a href="further-explanations.html#cb502-12" tabindex="-1"></a></span>
+<span id="cb502-13"><a href="further-explanations.html#cb502-13" tabindex="-1"></a><span class="co"># Simulate weight loss data </span></span>
+<span id="cb502-14"><a href="further-explanations.html#cb502-14" tabindex="-1"></a>violence_crime_true <span class="ot">&lt;-</span> <span class="fl">0.2</span> <span class="sc">*</span> temperature <span class="sc">-</span> </span>
+<span id="cb502-15"><a href="further-explanations.html#cb502-15" tabindex="-1"></a>  <span class="fl">0.5</span> <span class="sc">*</span> ice_cream_sales <span class="sc">+</span> </span>
+<span id="cb502-16"><a href="further-explanations.html#cb502-16" tabindex="-1"></a>  <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">5</span>) </span>
+<span id="cb502-17"><a href="further-explanations.html#cb502-17" tabindex="-1"></a></span>
+<span id="cb502-18"><a href="further-explanations.html#cb502-18" tabindex="-1"></a><span class="co"># Create a data frame </span></span>
+<span id="cb502-19"><a href="further-explanations.html#cb502-19" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">temperature =</span> temperature,<span class="at">ice_cream_sales =</span> ice_cream_sales,                     <span class="at">violence_crime_true =</span> violence_crime_true)  </span>
+<span id="cb502-20"><a href="further-explanations.html#cb502-20" tabindex="-1"></a></span>
+<span id="cb502-21"><a href="further-explanations.html#cb502-21" tabindex="-1"></a><span class="co"># Fit a model without including the diet variable </span></span>
+<span id="cb502-22"><a href="further-explanations.html#cb502-22" tabindex="-1"></a>model_without_temperature <span class="ot">&lt;-</span> <span class="fu">lm</span>(violence_crime_true <span class="sc">~</span> ice_cream_sales, <span class="at">data =</span> data)</span>
+<span id="cb502-23"><a href="further-explanations.html#cb502-23" tabindex="-1"></a></span>
+<span id="cb502-24"><a href="further-explanations.html#cb502-24" tabindex="-1"></a><span class="co">#Fit a model with only the temperature variable</span></span>
+<span id="cb502-25"><a href="further-explanations.html#cb502-25" tabindex="-1"></a></span>
+<span id="cb502-26"><a href="further-explanations.html#cb502-26" tabindex="-1"></a>model_with_only_temperature <span class="ot">&lt;-</span> <span class="fu">lm</span>(violence_crime_true <span class="sc">~</span>temperature,                        <span class="at">data =</span> data)</span>
+<span id="cb502-27"><a href="further-explanations.html#cb502-27" tabindex="-1"></a></span>
+<span id="cb502-28"><a href="further-explanations.html#cb502-28" tabindex="-1"></a><span class="co"># Fit a model including both diet and exercise variables </span></span>
+<span id="cb502-29"><a href="further-explanations.html#cb502-29" tabindex="-1"></a>model_with_temperature <span class="ot">&lt;-</span> <span class="fu">lm</span>(violence_crime_true <span class="sc">~</span> ice_cream_sales <span class="sc">+</span> temperature,                        <span class="at">data =</span> data)  </span>
+<span id="cb502-30"><a href="further-explanations.html#cb502-30" tabindex="-1"></a></span>
+<span id="cb502-31"><a href="further-explanations.html#cb502-31" tabindex="-1"></a><span class="co"># Output the summary of both models </span></span>
+<span id="cb502-32"><a href="further-explanations.html#cb502-32" tabindex="-1"></a><span class="fu">summary</span>(model_without_temperature) </span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = violence_crime_true ~ ice_cream_sales, data = data)
@@ -1233,7 +1284,7 @@ Residuals = y_i - \hat{y_i} = y_i - (\hat{\beta_0} - \hat{\beta_1}x_i)
 ## Residual standard error: 35.94 on 98 degrees of freedom
 ## Multiple R-squared:  0.01205,    Adjusted R-squared:  0.001969 
 ## F-statistic: 1.195 on 1 and 98 DF,  p-value: 0.2769</code></pre>
-<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="further-explanations.html#cb495-1" tabindex="-1"></a><span class="fu">summary</span>(model_with_only_temperature)</span></code></pre></div>
+<div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb504-1"><a href="further-explanations.html#cb504-1" tabindex="-1"></a><span class="fu">summary</span>(model_with_only_temperature)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = violence_crime_true ~ temperature, data = data)
@@ -1256,7 +1307,7 @@ Residuals = y_i - \hat{y_i} = y_i - (\hat{\beta_0} - \hat{\beta_1}x_i)
 ## Residual standard error: 5.307 on 98 degrees of freedom
 ## Multiple R-squared:  0.9785, Adjusted R-squared:  0.9782 
 ## F-statistic:  4452 on 1 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb497-1"><a href="further-explanations.html#cb497-1" tabindex="-1"></a><span class="fu">summary</span>(model_with_temperature)  </span></code></pre></div>
+<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb506-1"><a href="further-explanations.html#cb506-1" tabindex="-1"></a><span class="fu">summary</span>(model_with_temperature)  </span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = violence_crime_true ~ ice_cream_sales + temperature, 
@@ -1282,9 +1333,9 @@ Residuals = y_i - \hat{y_i} = y_i - (\hat{\beta_0} - \hat{\beta_1}x_i)
 ## Residual standard error: 5.303 on 97 degrees of freedom
 ## Multiple R-squared:  0.9787, Adjusted R-squared:  0.9783 
 ## F-statistic:  2230 on 2 and 97 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb499-1"><a href="further-explanations.html#cb499-1" tabindex="-1"></a><span class="co">#Let us display both models next to each other</span></span>
-<span id="cb499-2"><a href="further-explanations.html#cb499-2" tabindex="-1"></a><span class="co">#EDIT: I created this function specifically, the code for the function is at the top.   </span></span>
-<span id="cb499-3"><a href="further-explanations.html#cb499-3" tabindex="-1"></a><span class="fu">table_ovb</span>(model_without_temperature, model_with_temperature)</span></code></pre></div>
+<div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb508-1"><a href="further-explanations.html#cb508-1" tabindex="-1"></a><span class="co">#Let us display both models next to each other</span></span>
+<span id="cb508-2"><a href="further-explanations.html#cb508-2" tabindex="-1"></a><span class="co">#EDIT: I created this function specifically, the code for the function is at the top.   </span></span>
+<span id="cb508-3"><a href="further-explanations.html#cb508-3" tabindex="-1"></a><span class="fu">table_ovb</span>(model_without_temperature, model_with_temperature)</span></code></pre></div>
 <table class="table" style="color: black; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1343,39 +1394,39 @@ NA
 Grades_i = \beta_0 + \beta_1*\text{learning time}_i + \beta_2 *\text{gaming time}_i + \epsilon_i
 \]</span></p>
 <p>Let us compute them:</p>
-<div class="sourceCode" id="cb500"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb500-1"><a href="further-explanations.html#cb500-1" tabindex="-1"></a><span class="co"># Set seed for reproducibility</span></span>
-<span id="cb500-2"><a href="further-explanations.html#cb500-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
-<span id="cb500-3"><a href="further-explanations.html#cb500-3" tabindex="-1"></a></span>
-<span id="cb500-4"><a href="further-explanations.html#cb500-4" tabindex="-1"></a><span class="co"># Number of samples</span></span>
-<span id="cb500-5"><a href="further-explanations.html#cb500-5" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb500-6"><a href="further-explanations.html#cb500-6" tabindex="-1"></a></span>
-<span id="cb500-7"><a href="further-explanations.html#cb500-7" tabindex="-1"></a><span class="co"># True coefficients</span></span>
-<span id="cb500-8"><a href="further-explanations.html#cb500-8" tabindex="-1"></a>beta_0 <span class="ot">&lt;-</span> <span class="dv">80</span></span>
-<span id="cb500-9"><a href="further-explanations.html#cb500-9" tabindex="-1"></a>beta_1 <span class="ot">&lt;-</span> <span class="fl">1.5</span></span>
-<span id="cb500-10"><a href="further-explanations.html#cb500-10" tabindex="-1"></a>beta_2 <span class="ot">&lt;-</span> <span class="fl">1.5</span></span>
-<span id="cb500-11"><a href="further-explanations.html#cb500-11" tabindex="-1"></a></span>
-<span id="cb500-12"><a href="further-explanations.html#cb500-12" tabindex="-1"></a><span class="co"># Generate independent variables</span></span>
-<span id="cb500-13"><a href="further-explanations.html#cb500-13" tabindex="-1"></a>learning_time <span class="ot">&lt;-</span> <span class="fu">runif</span>(n, <span class="dv">1</span>, <span class="dv">10</span>)</span>
-<span id="cb500-14"><a href="further-explanations.html#cb500-14" tabindex="-1"></a>gaming_time <span class="ot">&lt;-</span> <span class="fl">0.7</span> <span class="sc">*</span> learning_time <span class="sc">+</span> </span>
-<span id="cb500-15"><a href="further-explanations.html#cb500-15" tabindex="-1"></a>  <span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.7</span><span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> <span class="fu">rnorm</span>(n, <span class="at">sd =</span> <span class="dv">1</span>) </span>
-<span id="cb500-16"><a href="further-explanations.html#cb500-16" tabindex="-1"></a></span>
-<span id="cb500-17"><a href="further-explanations.html#cb500-17" tabindex="-1"></a><span class="co">#generate error term</span></span>
-<span id="cb500-18"><a href="further-explanations.html#cb500-18" tabindex="-1"></a>epsilon <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, <span class="dv">3</span>)</span>
-<span id="cb500-19"><a href="further-explanations.html#cb500-19" tabindex="-1"></a></span>
-<span id="cb500-20"><a href="further-explanations.html#cb500-20" tabindex="-1"></a><span class="co"># Generate grades</span></span>
-<span id="cb500-21"><a href="further-explanations.html#cb500-21" tabindex="-1"></a>grades <span class="ot">&lt;-</span> beta_0 <span class="sc">+</span> beta_1 <span class="sc">*</span> learning_time <span class="sc">+</span> beta_2 <span class="sc">*</span> gaming_time <span class="sc">+</span> epsilon</span>
-<span id="cb500-22"><a href="further-explanations.html#cb500-22" tabindex="-1"></a></span>
-<span id="cb500-23"><a href="further-explanations.html#cb500-23" tabindex="-1"></a><span class="co"># Create a data frame</span></span>
-<span id="cb500-24"><a href="further-explanations.html#cb500-24" tabindex="-1"></a>df_grades <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(learning_time,</span>
-<span id="cb500-25"><a href="further-explanations.html#cb500-25" tabindex="-1"></a>                   gaming_time,</span>
-<span id="cb500-26"><a href="further-explanations.html#cb500-26" tabindex="-1"></a>                   grades)</span>
-<span id="cb500-27"><a href="further-explanations.html#cb500-27" tabindex="-1"></a></span>
-<span id="cb500-28"><a href="further-explanations.html#cb500-28" tabindex="-1"></a><span class="co"># Display first few rows of the data frame</span></span>
-<span id="cb500-29"><a href="further-explanations.html#cb500-29" tabindex="-1"></a>grades_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(grades <span class="sc">~</span> learning_time <span class="sc">+</span> gaming_time, </span>
-<span id="cb500-30"><a href="further-explanations.html#cb500-30" tabindex="-1"></a>                   <span class="at">data =</span> df_grades)</span>
-<span id="cb500-31"><a href="further-explanations.html#cb500-31" tabindex="-1"></a></span>
-<span id="cb500-32"><a href="further-explanations.html#cb500-32" tabindex="-1"></a><span class="co">#Getting the summary</span></span>
-<span id="cb500-33"><a href="further-explanations.html#cb500-33" tabindex="-1"></a><span class="fu">summary</span>(grades_model)</span></code></pre></div>
+<div class="sourceCode" id="cb509"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb509-1"><a href="further-explanations.html#cb509-1" tabindex="-1"></a><span class="co"># Set seed for reproducibility</span></span>
+<span id="cb509-2"><a href="further-explanations.html#cb509-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb509-3"><a href="further-explanations.html#cb509-3" tabindex="-1"></a></span>
+<span id="cb509-4"><a href="further-explanations.html#cb509-4" tabindex="-1"></a><span class="co"># Number of samples</span></span>
+<span id="cb509-5"><a href="further-explanations.html#cb509-5" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb509-6"><a href="further-explanations.html#cb509-6" tabindex="-1"></a></span>
+<span id="cb509-7"><a href="further-explanations.html#cb509-7" tabindex="-1"></a><span class="co"># True coefficients</span></span>
+<span id="cb509-8"><a href="further-explanations.html#cb509-8" tabindex="-1"></a>beta_0 <span class="ot">&lt;-</span> <span class="dv">80</span></span>
+<span id="cb509-9"><a href="further-explanations.html#cb509-9" tabindex="-1"></a>beta_1 <span class="ot">&lt;-</span> <span class="fl">1.5</span></span>
+<span id="cb509-10"><a href="further-explanations.html#cb509-10" tabindex="-1"></a>beta_2 <span class="ot">&lt;-</span> <span class="fl">1.5</span></span>
+<span id="cb509-11"><a href="further-explanations.html#cb509-11" tabindex="-1"></a></span>
+<span id="cb509-12"><a href="further-explanations.html#cb509-12" tabindex="-1"></a><span class="co"># Generate independent variables</span></span>
+<span id="cb509-13"><a href="further-explanations.html#cb509-13" tabindex="-1"></a>learning_time <span class="ot">&lt;-</span> <span class="fu">runif</span>(n, <span class="dv">1</span>, <span class="dv">10</span>)</span>
+<span id="cb509-14"><a href="further-explanations.html#cb509-14" tabindex="-1"></a>gaming_time <span class="ot">&lt;-</span> <span class="fl">0.7</span> <span class="sc">*</span> learning_time <span class="sc">+</span> </span>
+<span id="cb509-15"><a href="further-explanations.html#cb509-15" tabindex="-1"></a>  <span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.7</span><span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> <span class="fu">rnorm</span>(n, <span class="at">sd =</span> <span class="dv">1</span>) </span>
+<span id="cb509-16"><a href="further-explanations.html#cb509-16" tabindex="-1"></a></span>
+<span id="cb509-17"><a href="further-explanations.html#cb509-17" tabindex="-1"></a><span class="co">#generate error term</span></span>
+<span id="cb509-18"><a href="further-explanations.html#cb509-18" tabindex="-1"></a>epsilon <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, <span class="dv">3</span>)</span>
+<span id="cb509-19"><a href="further-explanations.html#cb509-19" tabindex="-1"></a></span>
+<span id="cb509-20"><a href="further-explanations.html#cb509-20" tabindex="-1"></a><span class="co"># Generate grades</span></span>
+<span id="cb509-21"><a href="further-explanations.html#cb509-21" tabindex="-1"></a>grades <span class="ot">&lt;-</span> beta_0 <span class="sc">+</span> beta_1 <span class="sc">*</span> learning_time <span class="sc">+</span> beta_2 <span class="sc">*</span> gaming_time <span class="sc">+</span> epsilon</span>
+<span id="cb509-22"><a href="further-explanations.html#cb509-22" tabindex="-1"></a></span>
+<span id="cb509-23"><a href="further-explanations.html#cb509-23" tabindex="-1"></a><span class="co"># Create a data frame</span></span>
+<span id="cb509-24"><a href="further-explanations.html#cb509-24" tabindex="-1"></a>df_grades <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(learning_time,</span>
+<span id="cb509-25"><a href="further-explanations.html#cb509-25" tabindex="-1"></a>                   gaming_time,</span>
+<span id="cb509-26"><a href="further-explanations.html#cb509-26" tabindex="-1"></a>                   grades)</span>
+<span id="cb509-27"><a href="further-explanations.html#cb509-27" tabindex="-1"></a></span>
+<span id="cb509-28"><a href="further-explanations.html#cb509-28" tabindex="-1"></a><span class="co"># Display first few rows of the data frame</span></span>
+<span id="cb509-29"><a href="further-explanations.html#cb509-29" tabindex="-1"></a>grades_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(grades <span class="sc">~</span> learning_time <span class="sc">+</span> gaming_time, </span>
+<span id="cb509-30"><a href="further-explanations.html#cb509-30" tabindex="-1"></a>                   <span class="at">data =</span> df_grades)</span>
+<span id="cb509-31"><a href="further-explanations.html#cb509-31" tabindex="-1"></a></span>
+<span id="cb509-32"><a href="further-explanations.html#cb509-32" tabindex="-1"></a><span class="co">#Getting the summary</span></span>
+<span id="cb509-33"><a href="further-explanations.html#cb509-33" tabindex="-1"></a><span class="fu">summary</span>(grades_model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = grades ~ learning_time + gaming_time, data = df_grades)
@@ -1404,23 +1455,23 @@ Grades_i = \beta_0 + \beta_1*\text{learning time}_i + \beta_2 *\text{gaming time
 <div id="testing-correlations-to-each-other" class="section level5 hasAnchor" number="7.2.2.3.1">
 <h5><span class="header-section-number">7.2.2.3.1</span> Testing Correlations to each other<a href="further-explanations.html#testing-correlations-to-each-other" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>The first technique is to check the correlations of the variables to each other beforehand. You can do that two-ways: Just print out a correlation table:</p>
-<div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb502-1"><a href="further-explanations.html#cb502-1" tabindex="-1"></a><span class="co">#First store the variables you need in a seperate data frame </span></span>
-<span id="cb502-2"><a href="further-explanations.html#cb502-2" tabindex="-1"></a>cormatrix_data <span class="ot">&lt;-</span> df_grades <span class="sc">%&gt;%</span> </span>
-<span id="cb502-3"><a href="further-explanations.html#cb502-3" tabindex="-1"></a>  <span class="fu">select</span>(learning_time, gaming_time)</span>
-<span id="cb502-4"><a href="further-explanations.html#cb502-4" tabindex="-1"></a></span>
-<span id="cb502-5"><a href="further-explanations.html#cb502-5" tabindex="-1"></a></span>
-<span id="cb502-6"><a href="further-explanations.html#cb502-6" tabindex="-1"></a><span class="co">#Second, calculate the table, the 2 at the end are the dimensions</span></span>
-<span id="cb502-7"><a href="further-explanations.html#cb502-7" tabindex="-1"></a>cormatrix <span class="ot">&lt;-</span> <span class="fu">cor</span>(cormatrix_data) <span class="co">#Calculate the correlations</span></span>
-<span id="cb502-8"><a href="further-explanations.html#cb502-8" tabindex="-1"></a><span class="fu">round</span>(cormatrix, <span class="dv">2</span>) <span class="co">#round it to the second digit and display it </span></span></code></pre></div>
+<div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb511-1"><a href="further-explanations.html#cb511-1" tabindex="-1"></a><span class="co">#First store the variables you need in a seperate data frame </span></span>
+<span id="cb511-2"><a href="further-explanations.html#cb511-2" tabindex="-1"></a>cormatrix_data <span class="ot">&lt;-</span> df_grades <span class="sc">%&gt;%</span> </span>
+<span id="cb511-3"><a href="further-explanations.html#cb511-3" tabindex="-1"></a>  <span class="fu">select</span>(learning_time, gaming_time)</span>
+<span id="cb511-4"><a href="further-explanations.html#cb511-4" tabindex="-1"></a></span>
+<span id="cb511-5"><a href="further-explanations.html#cb511-5" tabindex="-1"></a></span>
+<span id="cb511-6"><a href="further-explanations.html#cb511-6" tabindex="-1"></a><span class="co">#Second, calculate the table, the 2 at the end are the dimensions</span></span>
+<span id="cb511-7"><a href="further-explanations.html#cb511-7" tabindex="-1"></a>cormatrix <span class="ot">&lt;-</span> <span class="fu">cor</span>(cormatrix_data) <span class="co">#Calculate the correlations</span></span>
+<span id="cb511-8"><a href="further-explanations.html#cb511-8" tabindex="-1"></a><span class="fu">round</span>(cormatrix, <span class="dv">2</span>) <span class="co">#round it to the second digit and display it </span></span></code></pre></div>
 <pre><code>##               learning_time gaming_time
 ## learning_time          1.00        0.95
 ## gaming_time            0.95        1.00</code></pre>
-<div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb504-1"><a href="further-explanations.html#cb504-1" tabindex="-1"></a><span class="co">#We could have also done this code in one step </span></span>
-<span id="cb504-2"><a href="further-explanations.html#cb504-2" tabindex="-1"></a></span>
-<span id="cb504-3"><a href="further-explanations.html#cb504-3" tabindex="-1"></a><span class="co">#df_grades %&gt;% </span></span>
-<span id="cb504-4"><a href="further-explanations.html#cb504-4" tabindex="-1"></a><span class="co">#  select(learning_time, gaming_time) %&gt;% </span></span>
-<span id="cb504-5"><a href="further-explanations.html#cb504-5" tabindex="-1"></a><span class="co">#  cor() %&gt;% </span></span>
-<span id="cb504-6"><a href="further-explanations.html#cb504-6" tabindex="-1"></a><span class="co">#  round(2) </span></span></code></pre></div>
+<div class="sourceCode" id="cb513"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb513-1"><a href="further-explanations.html#cb513-1" tabindex="-1"></a><span class="co">#We could have also done this code in one step </span></span>
+<span id="cb513-2"><a href="further-explanations.html#cb513-2" tabindex="-1"></a></span>
+<span id="cb513-3"><a href="further-explanations.html#cb513-3" tabindex="-1"></a><span class="co">#df_grades %&gt;% </span></span>
+<span id="cb513-4"><a href="further-explanations.html#cb513-4" tabindex="-1"></a><span class="co">#  select(learning_time, gaming_time) %&gt;% </span></span>
+<span id="cb513-5"><a href="further-explanations.html#cb513-5" tabindex="-1"></a><span class="co">#  cor() %&gt;% </span></span>
+<span id="cb513-6"><a href="further-explanations.html#cb513-6" tabindex="-1"></a><span class="co">#  round(2) </span></span></code></pre></div>
 <p>We can see that the correlation between both variables is way to high. Now, with only two variables the table works fine, but what if we have, let us say, 20 variables? It could get messy, therefore you could also use the correlation matrix, which I introduced in the chapter before. In this case, it does not make sense, since it would just print out one block. But keep it nevertheless in mind for the future.</p>
 </div>
 <div id="variance-of-inflation-vif" class="section level5 hasAnchor" number="7.2.2.3.2">
@@ -1431,8 +1482,8 @@ VIF_i = \frac{1}{1 - R^2_i}
 \]</span></p>
 <p>where, the Variance of inflation (VIF) of variable <em>i</em> is calculated by 1 divided by 1 - the R-squared (<span class="math inline">\(R^2_i\)</span>) of the regression with only that variable.</p>
 <p>In <code>R</code>, we can use the <code>VIF()</code> function from the <code>car</code> - package to do it.</p>
-<div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb505-1"><a href="further-explanations.html#cb505-1" tabindex="-1"></a><span class="co">#We only have to use the function VIF() on our model </span></span>
-<span id="cb505-2"><a href="further-explanations.html#cb505-2" tabindex="-1"></a><span class="fu">vif</span>(grades_model)</span></code></pre></div>
+<div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb514-1"><a href="further-explanations.html#cb514-1" tabindex="-1"></a><span class="co">#We only have to use the function VIF() on our model </span></span>
+<span id="cb514-2"><a href="further-explanations.html#cb514-2" tabindex="-1"></a><span class="fu">vif</span>(grades_model)</span></code></pre></div>
 <pre><code>## learning_time   gaming_time 
 ##      10.21358      10.21358</code></pre>
 <p>The rule is that if a value exceeds 10, it is considered critical. We should always test for multicolinearity, and if we detect it, run the regression separately without the correlated variables.</p>

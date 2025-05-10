@@ -11,7 +11,7 @@ pacman::p_load("dplyr", "tidyr", "ggpubr", "gapminder",
 
 Defining Function for later:
 
-```{r}
+```{r defining functions for later}
 ###Defining a function
 #Creating Function for Kable Table 
 table_ovb <- function(model1, model2) {
@@ -106,7 +106,7 @@ This simulates rolling a fair six-sided die 1,000 times.
 
 Let us plot it:
 
-```{r}
+```{r simple dice rolls}
 # Plot with ggplot
 ggplot(dice_rolls, aes(x = factor(roll))) +
   geom_bar(fill = "#89CFF0", color = "gray") +
@@ -177,7 +177,7 @@ With this graph we can directly see the cumulative distribution for several outc
 
 In this part I want to introduce you a new type of distribution: The bernoulli distribution. It is super easy it takes on the value 1 with probability $p$ and the value 0 with the probability $q = 1 -p$. In more simple terms, it displays the outcomes for any experiment that has yes/no answers. The classical example is head and tails, you throw a coin and it either shows head or tails. Let us simulate data and plot it:
 
-```{r bernoulli data}
+```{r bernoulli fair coin}
 # Simulate 1000 tosses of a fair coin (1 = Head, 0 = Tail)
 set.seed(101)  # for reproducibility
 fair_coin <- data.frame(
@@ -200,7 +200,7 @@ As we probably expected, if we throw a fair coin ten times we will get approxima
 
 This is an example for a fair coin, what if our coin was "not fair" or "unfair", thus a "biased" coin, we could plot that as well:
 
-```{r}
+```{r bernoulli biased coin}
 # Simulate 1000 tosses of a fair coin (1 = Head, 0 = Tail)
 set.seed(102)  # for reproducibility
 unfair_coin <- data.frame(
@@ -225,7 +225,7 @@ How does the Probability Distribution of a Bernoulli Distribution looks like? Be
 
 Let us calculate for the fair and the biased coin, the probability of our results:
 
-```{r}
+```{r dbinom}
 # fair coin
 dbinom(
   x = 5,
@@ -251,7 +251,7 @@ We can solve this problem by plotting a so-called Binomial Distribution. It disp
 
 It gets clear, when we plot all Probabilities for both coins for each possible outcome for head, thus 10, since we have 10 trials:
 
-```{r}
+```{r binomial distributions}
 # Create theoretical distributions
 theoretical_probs <- data.frame(
   heads = rep(0:10, 2),
@@ -284,7 +284,7 @@ In short, these deviations from the expected value arise from randomness. While 
 
 This concept will become important later again, but before that let us have a look at the cumulated distribution function (CDF) of the probability distribution function (PDF):
 
-```{r}
+```{r cumulative probabilities}
 # Fix cumulative sum: compute it within each coin_type group
 theoretical_probs <- theoretical_probs %>%
   group_by(coin_type) %>%
@@ -318,7 +318,7 @@ Thus far we looked at the two typical distributions for **discrete variables**. 
 
 The probability distributions of the Bernoulli trials we saw in the part follow the form of the arguably most important distribution: The normal distribution. This distribution is also called a Gaussian distribution after its inventor Carl-Friedrich Gauss, or Bell Curve due to its shape. Let us have a look at it at the Probability Distribution Function (PDF):
 
-```{r, error=FALSE}
+```{r pdf, error=FALSE}
 # simulating the data
 set.seed(123)
 snd <- data.frame(
@@ -358,7 +358,7 @@ The normal distribution has a lot of properties:
 
 We already saw the Cumulative Density Function in the Bernoulli Trials, but let us have a look again:
 
-```{r}
+```{r cdf}
 # Plot empirical CDF
 ggplot(snd, aes(x = sample)) +
   stat_ecdf(geom = "step", color = "black") +
@@ -388,7 +388,7 @@ Let us visualize that! Remember the sample of our dice? What if we draw many, ma
 
 Let us draw samples and look what happens. In the following I first define a function that rolls the dice 1000 times. In the next step, I use the function to draw a sample. I first take one sample, thus role the dice 1000 times and save the result, and plot it, I do the same for 2, 3, and 4 samples:
 
-```{r}
+```{r central limit theorem}
 set.seed(123)  # For reproducibility
 
 # Function to simulate rolling a die n_rolls times, repeated n_sim times
@@ -472,7 +472,7 @@ ggplot(plot_df, aes(x = x, y = y)) +
   geom_line(data = filter(plot_df, !distribution %in% c("Poisson (λ=3)")),
             color = "steelblue", linewidth = 1) +
   geom_point(data = filter(plot_df, distribution == "Poisson (λ=3)"),
-             color = "darkgreen", size = 1) +
+             color = "steelblue", size = 1) +
   facet_wrap(~ distribution, scales = "free", ncol = 3) +
   labs(title = "Overview of Common Statistical Distributions",
        x = "x", y = "Density / Probability") +
@@ -495,78 +495,136 @@ Let us go shortly through these distributions and their meanings:
 
 ### Working with Distributions
 
-This data about my mom gives us information about one person, but working with quantitative methods means, to (guess what?) collect data quantitatively. Thus, we are mostly interested in a so-called **population.**
+After the fairly theoretical part before, let us work with distributions hands-on in `R`: For this purpose let us simulate data. For the following part, I will simulate a normal distribution and introduce you to the first central function `rnorm()`. This functions takes in three arguments, the number of observations **n**, the **mean** and the standard deviation, **sd**. And again, the beauty of the normal distribution becomes clear, we do not need to tell R more than that, since normal distributions can be generated with only the mean and the standard deviation and on top we can define the number of observations.
 
-In statistics, a **population** refers to the entire set of individuals, items, or data points that are of interest in a particular study. It represents the complete group about which you want to draw conclusions or make inferences.
-
-In my example, the population I would be interested in could not only be my mum, but all mums living in Germany. I want to know their heights and if they wear glasses or not.
-
-To get all the heights and if they wearing glasses of all mums in Germany would be a lot. According to the public statistic there are 20 million mothers in Germany. But that is no problem, we can take smaller, representative subset of the population, selected for analysis. This is called a **sample**. Let us simulate 1000 mothers, their heights and if they wear glasses and simulate it in R, put it in a data frame and visualize it:
+We will simulate the normal distribution for IQ. Let the mean be 100 and the standard deviation 15. These are not randomly selected, most samples of the IQ result in this mean and sd:
 
 ```{r simulating sample}
-
 #Setting seed for reproduciability
 set.seed(123)
 
 #Simulating sample
-sample_mum <- data.frame(
-  name = rep("mum", 1000),
-  height = rnorm(1000, mean = 165.8, sd = 9),
-  glasses = as.factor(rbinom(1000, 1, 0.33))
-)
+sample_iq <- data.frame(
+  height = rnorm(10000, mean = 100, sd = 15))
 
-#print it
-head(sample_mum)
-
-#Making a histogram for the heights
-ggplot(sample_mum, aes(x = height)) +
-  geom_histogram(binwidth = 2, color = "white", 
-                 fill = "#FC4E2A") +
+#Plotting it
+ggplot(sample_iq, aes(x=height)) +
+  geom_density(linewidth = 1, color = "#E35335") +
   labs(
-    x = "Height (in cm)",
-    y = "Count"
+    x = "IQ", 
+    y = "Frequency"
   ) +
-  theme_bw()
-
-#Making a bar plot for glasses
-ggplot(sample_mum, aes(x = glasses)) +
-  geom_bar(fill = "#FC4E2A", width = 0.5) +
-  labs(
-    x = "",
-    y = ""
-  ) +
-  scale_x_discrete(labels = c("0" = "No Glasses", "1" = "Wearing Glasses")) +
-  theme_bw()
-
+  scale_x_continuous(breaks = seq(40, 160, 20),
+                     limits = c(40, 160)) +
+  theme_minimal()
 ```
 
-Now, we have sampled the information we need! We know how the heights of our representative sample is distributed, as well as the distribution of mums with or without glasses.
+#### The 68-95-99.7 Rule
 
-Let us now calculate some properties of these two distributions and get more information about them. We start by asking the question: What is the average height of a mum in Germany? We can simply calculate that by calling the respective column in our dataset `sample_mum$height` and wrap it into the built-in function of `R`: `mean()`
+Remember this Rule? Without any complex mathematics, we can determine, where the most values are located, just by by subtracting the standard deviation from the mean:
 
-```{r mean sample mum}
-mean_mum <- mean(sample_mum$height)
-print(mean_mum)
+-   68% of all values falls within one standard deviation of the mean:
+
+    $$
+    \mu + \sigma² = 100 + 15 = 115
+    $$
+
+    $$
+    \mu - \sigma² = 100 + 15 = 85
+    $$
+
+    We can interpret these values as follows, when your IQ falls between 115 and 115 you share the fate of 68% of our sample.
+
+-   95% of all values falls within two standard deviations of the mean:
+
+    $$
+    \mu + 2\sigma² = 100 + 2 \cdot 15 = 130
+    $$
+
+    $$
+    \mu - 2\sigma² = 100 - 2 \cdot 15 = 70
+    $$
+
+    If an IQ is not within 70 and 130 then it is either in the 2.5 % lowest or 2.5 highest values. An IQ smaller than 70 means being among the 2.5% lowest IQs and on the other side, if the IQ is above 130 than your IQ is higher than 97.5% !
+
+-   99.7% of all values falls within three standard deviations of the mean:
+
+    $$
+    \mu + 3\sigma² = 100 + 3 \cdot 15 = 145
+    $$
+
+    $$
+    \mu + 3\sigma² = 100 - 3 = 55
+    $$
+
+If the IQ value is outside of 145 or 55, the value is either at the top 0.15 or if it is below 55 it is at the bottom 0.15.
+
+#### Determining the probability of single values?
+
+The 68-95-99.7 rule is a helpful rule of thumb for understanding normal distributions. However, it's not very precise. If we want to determine the **exact probability** of a value in our distribution, we need to use the **Probability Density Function (PDF)** of the normal distribution.
+
+Now, because a continuous distribution has **infinitely many possible values**, the probability of observing **any exact value** (like exactly 100) is actually **zero**. That's why we work with **probability densities**, not exact probabilities at a single point.
+
+Instead of asking "What is the probability of exactly 100?", we ask "What is the **density** at 100?" — which reflects how likely it is to observe values **around** 100.
+
+In R, we can use the `dnorm()` function to compute this **density**. It takes three arguments:
+
+-   **x**: the value we're interested in
+
+-   **mean**: the mean of the distribution
+
+-   **sd**: the standard deviation
+
+Let us calculate the probability of having an IQ of exactly 100, 87 and 140:
+
+```{r dnorm}
+dnorm(x = 100, mean = 100, sd = 15) #Probability of 100 IQ
+dnorm(x = 87, mean = 100, sd = 15) #Probability of 65 IQ
+dnorm(x = 140, mean = 100, sd = 15) #Probability of 135 IQ
 ```
 
-Alright, the average height of a mum in Germany is 165 cm. But the PDF contains more information. For example, we could be interested in the dispersion and spread of the distribution, and could be interested in the Variance of the Distribution. The Variance tells us how much the data points are deviate from the average value. A low variance indicates that data points are close to the mean, while a high variance indicates more spread. In R, we can calculate the variance by wrapping our data (df\$height) into the var() function:
+So the probability of having an IQ of 100 is 2.6%, getting an IQ of 87 is 1.8% and lastly the probability of having an IQ of 140 is 0.07%.
 
-```{r}
-#Calculate Variance
-var_mum <- var(sample_mum$height)
-print(var_mum)
+#### Getting the probabilities until a certain value
+
+The function `pnorm()` in R gives the **cumulative probability** up to a certain value under the normal distribution. In simpler terms, it tells you **how likely it is that a value drawn from a normal distribution is less than or equal to a given number**.
+
+It takes the following arguments:
+
+-   `q`: the value you are interested in (the quantile)
+
+-   `mean`: the mean (μ) of the distribution
+
+-   `sd`: the standard deviation (σ) of the distribution
+
+```{r pnorm}
+pnorm(q = 100, mean = 100, sd = 15) #Probability of 100 IQ
+pnorm(q = 87, mean = 100, sd = 15) #Probability of 65 IQ
+pnorm(q = 140, mean = 100, sd = 15) #Probability of 135 IQ
 ```
 
-wThe variance is around 80, the problem with variance is, that it is a squared unit, but to make the interpretation more intuitive, we can take the square root and thus calculate the **standard deviation**. As the name suggests the standard deviation tells us that the data points typically deviate from the mean. We can calculate it by calling the sd() function (of course it would also work if we take the square root of the var_mum object:
+Now what do those values mean? The interpretation is quite easy, 0.5 means that an IQ of 100 is higher than 0.5, thus 50% of our distribution has lower values than 100. In simpler terms. If a person has an IQ of 100, the person has an IQ smarter than 50% of all other people. If a person has an IQ of 87, the person has an IQ higher than 19.3% of the sample/population. For an IQ of 140 we can say that the person has a higher IQ than 99.6% of all other persons in the sample. In other ways, with an IQ of 140, a person is part of the top 1%.
 
-```{r}
-sd_mum <- sd(sample_mum$height)
-print(sd_mum)
+What if we want to know which value we need, to be in a certain percentile? Well, for this case R has the `qnorm()` function.
+
+-   It takes in the argument **p**, which takes probability, we want the corresponding value and of course our two parameters mean and standard deviation
+
+```{r qnorm}
+qnorm(p = 0.5, mean = 100, sd = 15) #Probability of 100 IQ
+qnorm(p = 0.1930623, mean = 100, sd = 15) #Probability of 65 IQ
+qnorm(p = 0.9961696, mean = 100, sd = 15) #Probability of 135 IQ
 ```
 
-So, the height of mums in Germany typically deviates by 8.9 cm from the average height of mums 165cm, meaning that typically a mum in Germany is between 156.1 cm (165 cm - 8.9 cm) and 164.9 cm (165 cm + 8.9 cm).
+We see that we get our estimated values before. This function is especially useful when setting thresholds (e.g., what IQ is needed to qualify as a "genius") or determining cutoffs in standardized testing.
 
-### Conclusion
+#### Conclusion
+
+This concludes our chapter on probability theory.
+We explored different types of variables, learned about **Probability Mass Functions (PMFs)** and **Probability Density Functions (PDFs)**, and finally saw how to work with probability distributions in R.
+
+At first glance, this might seem like basic theory. However, a solid understanding of distributions is essential: it allows us to **detect and correct mistakes** when building statistical models, which often **rely on distributional assumptions**.
+
+Moreover, understanding distributions shows us **why** statistical analysis works in the first place—even in the presence of uncertainty. It allows us to assign **probabilities to predictions**, interpret results meaningfully, and quantify how likely certain outcomes are.
 
 ## Regression Diagnostics
 
