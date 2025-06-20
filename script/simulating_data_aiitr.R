@@ -482,5 +482,4 @@ final_BT <- data.frame(
 
 
 #Printing if loading Data was successful
-print("The simulated Data has been loaded in succesfully")
-print("Check out your Environment, a lot of Data Frames should be there!")
+print("The simulated Data has been loaded in succesfully!")
