@@ -497,7 +497,7 @@ If we want to visualize this, we would need a three-dimensional coordinate syste
 As I mentioned in the first chapter, there are different types of variables, let us reconsider them:
 
 |               |               |                                              |
-|----------------|----------------|----------------------------------------|
+|---------------|---------------|----------------------------------------------|
 | **Numeric**   | Numbers       | `c(1, 2.4, 3.14, 4)`                         |
 | **Character** | Text          | `c("1", "blue", "fun", "monster")`           |
 | **Logical**   | True or false | `c(TRUE, FALSE, TRUE, FALSE)`                |
@@ -649,7 +649,7 @@ Further Links:
 To understand linear regression, we do not have to load any complicated data. Let us assume, you are a market analyst and your customer is the production company of a series called "Breaking Thrones". The production company wants to know how the viewers of the series judge the final episode. You conduct a survey and ask people on how satisfied they were with the season final and some social demographics. Here is your codebook:
 
 | Variable | Description |
-|------------------------------------|------------------------------------|
+|----|----|
 | id | The id of the respondent |
 | satisfaction | The answer to the question "How satisfied were you with the final episode of Breaking Throne?", where 0 is completely dissatisfied and 10 completely satisfied |
 | age | The age of the respondent |

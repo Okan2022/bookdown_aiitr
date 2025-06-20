@@ -26,7 +26,8 @@
 
 #=====================RUN THESE LINES BEFORE CONTINUING========================#
 
-source("https://raw.githubusercontent.com/Okan2022/bookdown_aiitr/main/script/simulating_aiitr.R")
+#Simulating Data
+source("https://raw.githubusercontent.com/Okan2022/bookdown_aiitr/main/script/simulating_data_aiitr.R")
 
 #=====================RUN THESE LINES BEFORE CONTINUING========================#
 

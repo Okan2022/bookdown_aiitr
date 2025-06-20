@@ -587,17 +587,12 @@ c\. Make an automized EDA report for mtcars!
 
 To understand linear regression, we do not have to load any complicated data. Let us assume, you are a market analyst and your customer is the production company of a series called "Breaking Thrones". The production company wants to know how the viewers of the series judge the final episode. You conduct a survey and ask people on how satisfied they were with the season final and some social demographics. Here is your codebook:
 
-+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Variable     | Description                                                                                                                                                    |
-+==============+================================================================================================================================================================+
-| id           | The id of the respondent                                                                                                                                       |
-+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Variable | Description |
+|----|----|
+| id | The id of the respondent |
 | satisfaction | The answer to the question "How satisfied were you with the final episode of Breaking Throne?", where 0 is completely dissatisfied and 10 completely satisfied |
-+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| age          | The age of the respondent                                                                                                                                      |
-+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| female       | The Gender of the respondent, where 0 = Male, 1 = Female                                                                                                       |
-+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| age | The age of the respondent |
+| female | The Gender of the respondent, where 0 = Male, 1 = Female |
 
 Let us generate the data:
 

@@ -1,3 +1,14 @@
+#Installing pacman package
+if (!require("pacman")) install.packages("pacman")
+
+#installing remaining packages
+pacman::p_load("tidyverse", "psych", "gapminder", "babynames", "sf", "ggridges",
+               "rnaturalearth", "rnaturalearthdata" ,"forcats" ,"tmap", 
+               "summarytools", "SmartEDA", "skimr", "naniar", "gtsummary", 
+               "dlookr", "DataExplorer", "tidyr", "corrplot", "palmerpenguins",
+               "ggpubr", "sjPlot", "GGally", "car", "margins", "plotly", 
+               "kableExtra")
+
 #Simulating European Election Survey (ESS)
 set.seed(123)
 

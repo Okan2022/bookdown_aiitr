@@ -619,8 +619,7 @@ We see that we get our estimated values before. This function is especially usef
 
 #### Conclusion
 
-This concludes our chapter on probability theory.
-We explored different types of variables, learned about **Probability Mass Functions (PMFs)** and **Probability Density Functions (PDFs)**, and finally saw how to work with probability distributions in R.
+This concludes our chapter on probability theory. We explored different types of variables, learned about **Probability Mass Functions (PMFs)** and **Probability Density Functions (PDFs)**, and finally saw how to work with probability distributions in R.
 
 At first glance, this might seem like basic theory. However, a solid understanding of distributions is essential: it allows us to **detect and correct mistakes** when building statistical models, which often **rely on distributional assumptions**.
 
