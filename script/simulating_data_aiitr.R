@@ -480,4 +480,7 @@ final_BT <- data.frame(
   female = rbinom(10, 1, 0.5)
 )
 
-print(final_BT)
+
+#Printing if loading Data was successful
+print("The simulated Data has been loaded in succesfully. 
+      Check out your Environment, a lot of Data Frames should be there!")
